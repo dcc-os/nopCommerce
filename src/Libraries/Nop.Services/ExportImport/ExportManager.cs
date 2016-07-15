@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Xml;
 using Nop.Core;
@@ -224,24 +223,27 @@ namespace Nop.Services.ExportImport
 
                     var properties = new[]
                     {
-                        new PropertyByName<ExportProducAttribut>("AttributeId", p => p.AttributeId),
-                        new PropertyByName<ExportProducAttribut>("AttributName", p => p.AttributName),
-                        new PropertyByName<ExportProducAttribut>("AttributeControlTypeId", p => p.AttributeControlTypeId),
-                        new PropertyByName<ExportProducAttribut>("ProductAttributeValuesId", p => p.Id),
-                        new PropertyByName<ExportProducAttribut>("ValueName", p => p.Name),
-                        new PropertyByName<ExportProducAttribut>("AttributeValueTypeId", p => p.AttributeValueTypeId),
-                        new PropertyByName<ExportProducAttribut>("ColorSquaresRgb", p => p.ColorSquaresRgb),
-                        new PropertyByName<ExportProducAttribut>("ImageSquaresPictureId", p => p.ImageSquaresPictureId),
-                        new PropertyByName<ExportProducAttribut>("PriceAdjustment", p => p.PriceAdjustment),
-                        new PropertyByName<ExportProducAttribut>("WeightAdjustment", p => p.WeightAdjustment),
-                        new PropertyByName<ExportProducAttribut>("Cost", p => p.Cost),
-                        new PropertyByName<ExportProducAttribut>("Quantity", p => p.Quantity),
-                        new PropertyByName<ExportProducAttribut>("IsPreSelected", p => p.IsPreSelected),
-                        new PropertyByName<ExportProducAttribut>("DisplayOrder", p => p.DisplayOrder),
-                        new PropertyByName<ExportProducAttribut>("PictureId", p => p.PictureId)
+                        new PropertyByName<ExportProductAttribute>("AttributeId", p => p.AttributeId),
+                        new PropertyByName<ExportProductAttribute>("AttributeName", p => p.AttributeName),
+                        new PropertyByName<ExportProductAttribute>("AttributeTextPrompt", p => p.AttributeTextPrompt),
+                        new PropertyByName<ExportProductAttribute>("AttributeIsRequired", p => p.AttributeIsRequired),
+                        new PropertyByName<ExportProductAttribute>("AttributeControlTypeId", p => p.AttributeControlTypeId),
+                        new PropertyByName<ExportProductAttribute>("AttributeDisplayOrder", p => p.AttributeDisplayOrder), 
+                        new PropertyByName<ExportProductAttribute>("ProductAttributeValuesId", p => p.Id),
+                        new PropertyByName<ExportProductAttribute>("ValueName", p => p.Name),
+                        new PropertyByName<ExportProductAttribute>("AttributeValueTypeId", p => p.AttributeValueTypeId),
+                        new PropertyByName<ExportProductAttribute>("ColorSquaresRgb", p => p.ColorSquaresRgb),
+                        new PropertyByName<ExportProductAttribute>("ImageSquaresPictureId", p => p.ImageSquaresPictureId),
+                        new PropertyByName<ExportProductAttribute>("PriceAdjustment", p => p.PriceAdjustment),
+                        new PropertyByName<ExportProductAttribute>("WeightAdjustment", p => p.WeightAdjustment),
+                        new PropertyByName<ExportProductAttribute>("Cost", p => p.Cost),
+                        new PropertyByName<ExportProductAttribute>("Quantity", p => p.Quantity),
+                        new PropertyByName<ExportProductAttribute>("IsPreSelected", p => p.IsPreSelected),
+                        new PropertyByName<ExportProductAttribute>("DisplayOrder", p => p.DisplayOrder),
+                        new PropertyByName<ExportProductAttribute>("PictureId", p => p.PictureId)
                     };
 
-                    var manager = new PropertyManager<ExportProducAttribut>(properties);
+                    var manager = new PropertyManager<ExportProductAttribute>(properties);
 
                     var row = 2;
 
@@ -249,11 +251,14 @@ namespace Nop.Services.ExportImport
                     {
                         row++;
 
-                        var atributes = product.ProductAttributeMappings.SelectMany(pam => pam.ProductAttributeValues.Select(pav => new ExportProducAttribut
+                        var attributes = product.ProductAttributeMappings.SelectMany(pam => pam.ProductAttributeValues.Select(pav => new ExportProductAttribute
                         {
                             AttributeId = pam.ProductAttribute.Id,
-                            AttributName = pam.ProductAttribute.Name,
+                            AttributeName = pam.ProductAttribute.Name,
+                            AttributeTextPrompt = pam.TextPrompt,
+                            AttributeIsRequired = pam.IsRequired,
                             AttributeControlTypeId = pam.AttributeControlTypeId,
+                            AttributeDisplayOrder = pam.DisplayOrder,
                             Id = pav.Id,
                             Name = pav.Name,
                             AttributeValueTypeId = pav.AttributeValueTypeId,
@@ -268,19 +273,28 @@ namespace Nop.Services.ExportImport
                             PictureId = pav.PictureId
                         })).ToList();
 
-                        if(!atributes.Any())
+                        attributes.AddRange(product.ProductAttributeMappings.Where(pam => !pam.ProductAttributeValues.Any()).Select(pam=> new ExportProductAttribute
+                        {
+                            AttributeId = pam.ProductAttribute.Id,
+                            AttributeName = pam.ProductAttribute.Name,
+                            AttributeTextPrompt = pam.TextPrompt,
+                            AttributeIsRequired = pam.IsRequired,
+                            AttributeControlTypeId = pam.AttributeControlTypeId
+                        }));
+
+                        if (!attributes.Any())
                             continue;
 
-                        worksheet.InsertRow(row, atributes.Count+1);
-                        manager.WriteCaption(worksheet, SetCaptionStyle, row, 2);
+                        worksheet.InsertRow(row, attributes.Count + 1);
+                        manager.WriteCaption(worksheet, SetCaptionStyle, row, ExportProductAttribute.ProducAttributeCellOffset);
                         worksheet.Row(row).OutlineLevel = 1;
                         worksheet.Row(row).Collapsed = true;
 
-                        foreach (var exportProducAttribut in atributes)
+                        foreach (var exportProducAttribute in attributes)
                         {
                             row++;
-                            manager.CurrentObject = exportProducAttribut;
-                            manager.WriteToXlsx(worksheet, row, 2);
+                            manager.CurrentObject = exportProducAttribute;
+                            manager.WriteToXlsx(worksheet, row, ExportProductAttribute.ProducAttributeCellOffset);
                             worksheet.Row(row).OutlineLevel = 1;
                             worksheet.Row(row).Collapsed = true;
                         }
