@@ -10,6 +10,9 @@ using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.Messages;
+using Nop.Core.Domain.Shipping;
+using Nop.Core.Domain.Tax;
+using Nop.Core.Domain.Vendors;
 using Nop.Services.Catalog;
 using Nop.Services.Configuration;
 using Nop.Services.Directory;
@@ -18,6 +21,9 @@ using Nop.Services.Media;
 using Nop.Services.Messages;
 using Nop.Services.Security;
 using Nop.Services.Seo;
+using Nop.Services.Shipping;
+using Nop.Services.Tax;
+using Nop.Services.Vendors;
 using OfficeOpenXml;
 
 namespace Nop.Services.ExportImport
@@ -41,6 +47,12 @@ namespace Nop.Services.ExportImport
         private readonly IEncryptionService _encryptionService;
         private readonly IDataProvider _dataProvider;
         private readonly MediaSettings _mediaSettings;
+        private readonly IVendorService _vendorService;
+        private readonly IProductTemplateService _productTemplateService;
+        private readonly IDownloadService _downloadService;
+        private readonly IShippingService _shippingService;
+        private readonly ITaxCategoryService _taxCategoryService;
+        private readonly IMeasureService _measureService;
 
         #endregion
 
@@ -57,7 +69,13 @@ namespace Nop.Services.ExportImport
             IStateProvinceService stateProvinceService,
             IEncryptionService encryptionService,
             IDataProvider dataProvider,
-            MediaSettings mediaSettings)
+            MediaSettings mediaSettings,
+            IVendorService vendorService,
+            IProductTemplateService productTemplateService,
+            IDownloadService downloadService,
+            IShippingService shippingService,
+            ITaxCategoryService taxCategoryService,
+            IMeasureService measureService)
         {
             this._productService = productService;
             this._categoryService = categoryService;
@@ -71,6 +89,12 @@ namespace Nop.Services.ExportImport
             this._encryptionService = encryptionService;
             this._dataProvider = dataProvider;
             this._mediaSettings = mediaSettings;
+            this._vendorService = vendorService;
+            this._productTemplateService = productTemplateService;
+            this._downloadService = downloadService;
+            this._shippingService = shippingService;
+            this._taxCategoryService = taxCategoryService;
+            this._measureService = measureService;
         }
 
         #endregion
@@ -285,7 +309,7 @@ namespace Nop.Services.ExportImport
                 var allSku = new List<string>();
 
                 var tempProperty = manager.GetProperty("CategoryIds");
-                var categoryCellNum = tempProperty.Return(p=> p.PropertyOrderPosition, -1);
+                var categoryCellNum = tempProperty.Return(p => p.PropertyOrderPosition, -1);
 
                 tempProperty = manager.GetProperty("SKU");
                 var skuCellNum = tempProperty.Return(p => p.PropertyOrderPosition, -1);
@@ -293,7 +317,25 @@ namespace Nop.Services.ExportImport
                 var allManufacturersIds = new List<int>();
                 tempProperty = manager.GetProperty("ManufacturerIds");
                 var manufacturerCellNum = tempProperty.Return(p => p.PropertyOrderPosition, -1);
+                
+                manager.SetSelectList("ProductType", ProductType.SimpleProduct.ToSelectList());
+                manager.SetSelectList("GiftCardType", GiftCardType.Virtual.ToSelectList());
+                manager.SetSelectList("DownloadActivationType", DownloadActivationType.Manually.ToSelectList());
+                manager.SetSelectList("ManageInventoryMethod", ManageInventoryMethod.DontManageStock.ToSelectList());
+                manager.SetSelectList("LowStockActivity", LowStockActivity.Nothing.ToSelectList());
+                manager.SetSelectList("BackorderMode", BackorderMode.NoBackorders.ToSelectList());
+                manager.SetSelectList("RecurringCyclePeriod", RecurringProductCyclePeriod.Days.ToSelectList());
+                manager.SetSelectList("RentalPricePeriod", RentalPricePeriod.Days.ToSelectList());
 
+                manager.SetSelectList("Vendor", _vendorService.GetAllVendors(showHidden: true).Select(v => v as BaseEntity).ToSelectList(p => (p as Vendor).Return(v => v.Name, String.Empty)));
+                manager.SetSelectList("ProductTemplate", _productTemplateService.GetAllProductTemplates().Select(pt => pt as BaseEntity).ToSelectList(p => (p as ProductTemplate).Return(pt => pt.Name, String.Empty)));
+                manager.SetSelectList("Download", _downloadService.GetAllDownload().Select(d => d as BaseEntity).ToSelectList(p => (p as Download).Return(d => String.Format("{0}{1} ({2})", d.Filename, d.Extension, d.ContentType), String.Empty)));
+                manager.SetSelectList("SampleDownload", _downloadService.GetAllDownload().Select(d => d as BaseEntity).ToSelectList(p => (p as Download).Return(d => String.Format("{0}{1} ({2})", d.Filename, d.Extension, d.ContentType), String.Empty)));
+                manager.SetSelectList("DeliveryDate", _shippingService.GetAllDeliveryDates().Select(dd => dd as BaseEntity).ToSelectList(p => (p as DeliveryDate).Return(dd => dd.Name, String.Empty)));
+                manager.SetSelectList("TaxCategory", _taxCategoryService.GetAllTaxCategories().Select(tc => tc as BaseEntity).ToSelectList(p => (p as TaxCategory).Return(tc => tc.Name, String.Empty)));
+                manager.SetSelectList("BasepriceUnit", _measureService.GetAllMeasureWeights().Select(mw => mw as BaseEntity).ToSelectList(p =>(p as MeasureWeight).Return(mw => mw.Name, String.Empty)));
+                manager.SetSelectList("BasepriceBaseUnit", _measureService.GetAllMeasureWeights().Select(mw => mw as BaseEntity).ToSelectList(p => (p as MeasureWeight).Return(mw => mw.Name, String.Empty)));
+                
                 //find end of data
                 while (true)
                 {
@@ -304,7 +346,7 @@ namespace Nop.Services.ExportImport
                     if (allColumnsAreEmpty)
                         break;
 
-                    if(categoryCellNum > 0)
+                    if (categoryCellNum > 0)
                     { 
                         var categoryIds = worksheet.Cells[endRow, categoryCellNum].Value.Return(p => p.ToString(), string.Empty);
 
@@ -320,7 +362,7 @@ namespace Nop.Services.ExportImport
                             allSku.Add(sku);
                     }
 
-                    if(manufacturerCellNum > 0)
+                    if (manufacturerCellNum > 0)
                     { 
                         var manufacturerIds = worksheet.Cells[endRow, manufacturerCellNum].Value.Return(p => p.ToString(), string.Empty);
                         if (!manufacturerIds.IsEmpty())
@@ -372,7 +414,7 @@ namespace Nop.Services.ExportImport
                     {
                         switch (property.PropertyName)
                         {
-                            case "ProductTypeId":
+                            case "ProductType":
                                 product.ProductTypeId = property.IntValue;
                                 break;
                             case "ParentGroupedProductId":
@@ -390,10 +432,10 @@ namespace Nop.Services.ExportImport
                             case "FullDescription":
                                 product.FullDescription = property.StringValue;
                                 break;
-                            case "VendorId":
+                            case "Vendor":
                                 product.VendorId = property.IntValue;
                                 break;
-                            case "ProductTemplateId":
+                            case "ProductTemplate":
                                 product.ProductTemplateId = property.IntValue;
                                 break;
                             case "ShowOnHomePage":
@@ -426,7 +468,7 @@ namespace Nop.Services.ExportImport
                             case "IsGiftCard":
                                 product.IsGiftCard = property.BooleanValue;
                                 break;
-                            case "GiftCardTypeId":
+                            case "GiftCardType":
                                 product.GiftCardTypeId = property.IntValue;
                                 break;
                             case "OverriddenGiftCardAmount":
@@ -444,7 +486,7 @@ namespace Nop.Services.ExportImport
                             case "IsDownload":
                                 product.IsDownload = property.BooleanValue;
                                 break;
-                            case "DownloadId":
+                            case "Download":
                                 product.DownloadId = property.IntValue;
                                 break;
                             case "UnlimitedDownloads":
@@ -453,13 +495,13 @@ namespace Nop.Services.ExportImport
                             case "MaxNumberOfDownloads":
                                 product.MaxNumberOfDownloads = property.IntValue;
                                 break;
-                            case "DownloadActivationTypeId":
+                            case "DownloadActivationType":
                                 product.DownloadActivationTypeId = property.IntValue;
                                 break;
                             case "HasSampleDownload":
                                 product.HasSampleDownload = property.BooleanValue;
                                 break;
-                            case "SampleDownloadId":
+                            case "SampleDownload":
                                 product.SampleDownloadId = property.IntValue;
                                 break;
                             case "HasUserAgreement":
@@ -474,7 +516,7 @@ namespace Nop.Services.ExportImport
                             case "RecurringCycleLength":
                                 product.RecurringCycleLength = property.IntValue;
                                 break;
-                            case "RecurringCyclePeriodId":
+                            case "RecurringCyclePeriod":
                                 product.RecurringCyclePeriodId = property.IntValue;
                                 break;
                             case "RecurringTotalCycles":
@@ -486,7 +528,7 @@ namespace Nop.Services.ExportImport
                             case "RentalPriceLength":
                                 product.RentalPriceLength = property.IntValue;
                                 break;
-                            case "RentalPricePeriodId":
+                            case "RentalPricePeriod":
                                 product.RentalPricePeriodId = property.IntValue;
                                 break;
                             case "IsShipEnabled":
@@ -501,19 +543,19 @@ namespace Nop.Services.ExportImport
                             case "AdditionalShippingCharge":
                                 product.AdditionalShippingCharge = property.DecimalValue;
                                 break;
-                            case "DeliveryDateId":
+                            case "DeliveryDate":
                                 product.DeliveryDateId = property.IntValue;
                                 break;
                             case "IsTaxExempt":
                                 product.IsTaxExempt = property.BooleanValue;
                                 break;
-                            case "TaxCategoryId":
+                            case "TaxCategory":
                                 product.TaxCategoryId = property.IntValue;
                                 break;
                             case "IsTelecommunicationsOrBroadcastingOrElectronicServices":
                                 product.IsTelecommunicationsOrBroadcastingOrElectronicServices = property.BooleanValue;
                                 break;
-                            case "ManageInventoryMethodId":
+                            case "ManageInventoryMethod":
                                 product.ManageInventoryMethodId = property.IntValue;
                                 break;
                             case "UseMultipleWarehouses":
@@ -534,7 +576,7 @@ namespace Nop.Services.ExportImport
                             case "MinStockQuantity":
                                 product.MinStockQuantity = property.IntValue;
                                 break;
-                            case "LowStockActivityId":
+                            case "LowStockActivity":
                                 product.LowStockActivityId = property.IntValue;
                                 break;
                             case "NotifyAdminForQuantityBelow":
@@ -606,13 +648,13 @@ namespace Nop.Services.ExportImport
                             case "BasepriceAmount":
                                 product.BasepriceAmount = property.DecimalValue;
                                 break;
-                            case "BasepriceUnitId":
+                            case "BasepriceUnit":
                                 product.BasepriceUnitId = property.IntValue;
                                 break;
                             case "BasepriceBaseAmount":
                                 product.BasepriceBaseAmount = property.DecimalValue;
                                 break;
-                            case "BasepriceBaseUnitId":
+                            case "BasepriceBaseUnit":
                                 product.BasepriceBaseUnitId = property.IntValue;
                                 break;
                             case "MarkAsNew":
@@ -664,7 +706,7 @@ namespace Nop.Services.ExportImport
 
                     tempProperty = manager.GetProperty("CategoryIds");
 
-                    if(tempProperty != null)
+                    if (tempProperty != null)
                     { 
                         var categoryIds = tempProperty.StringValue;
 
@@ -709,9 +751,9 @@ namespace Nop.Services.ExportImport
                         }
                     }
                     
-                    var picture1 = manager.GetProperty("Picture1").Return(p => p.StringValue, "");
-                    var picture2 = manager.GetProperty("Picture2").Return(p => p.StringValue, "");
-                    var picture3 = manager.GetProperty("Picture3").Return(p => p.StringValue, "");
+                    var picture1 = manager.GetProperty("Picture1").Return(p => p.StringValue, String.Empty);
+                    var picture2 = manager.GetProperty("Picture2").Return(p => p.StringValue, String.Empty);
+                    var picture3 = manager.GetProperty("Picture3").Return(p => p.StringValue, String.Empty);
 
                     productPictureMetadata.Add(new ProductPictureMetadata
                     {
