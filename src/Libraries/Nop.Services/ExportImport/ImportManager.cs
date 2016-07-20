@@ -329,8 +329,6 @@ namespace Nop.Services.ExportImport
 
                 manager.SetSelectList("Vendor", _vendorService.GetAllVendors(showHidden: true).Select(v => v as BaseEntity).ToSelectList(p => (p as Vendor).Return(v => v.Name, String.Empty)));
                 manager.SetSelectList("ProductTemplate", _productTemplateService.GetAllProductTemplates().Select(pt => pt as BaseEntity).ToSelectList(p => (p as ProductTemplate).Return(pt => pt.Name, String.Empty)));
-                manager.SetSelectList("Download", _downloadService.GetAllDownload().Select(d => d as BaseEntity).ToSelectList(p => (p as Download).Return(d => String.Format("{0}{1} ({2})", d.Filename, d.Extension, d.ContentType), String.Empty)));
-                manager.SetSelectList("SampleDownload", _downloadService.GetAllDownload().Select(d => d as BaseEntity).ToSelectList(p => (p as Download).Return(d => String.Format("{0}{1} ({2})", d.Filename, d.Extension, d.ContentType), String.Empty)));
                 manager.SetSelectList("DeliveryDate", _shippingService.GetAllDeliveryDates().Select(dd => dd as BaseEntity).ToSelectList(p => (p as DeliveryDate).Return(dd => dd.Name, String.Empty)));
                 manager.SetSelectList("TaxCategory", _taxCategoryService.GetAllTaxCategories().Select(tc => tc as BaseEntity).ToSelectList(p => (p as TaxCategory).Return(tc => tc.Name, String.Empty)));
                 manager.SetSelectList("BasepriceUnit", _measureService.GetAllMeasureWeights().Select(mw => mw as BaseEntity).ToSelectList(p =>(p as MeasureWeight).Return(mw => mw.Name, String.Empty)));
@@ -486,7 +484,7 @@ namespace Nop.Services.ExportImport
                             case "IsDownload":
                                 product.IsDownload = property.BooleanValue;
                                 break;
-                            case "Download":
+                            case "DownloadId":
                                 product.DownloadId = property.IntValue;
                                 break;
                             case "UnlimitedDownloads":
@@ -501,7 +499,7 @@ namespace Nop.Services.ExportImport
                             case "HasSampleDownload":
                                 product.HasSampleDownload = property.BooleanValue;
                                 break;
-                            case "SampleDownload":
+                            case "SampleDownloadId":
                                 product.SampleDownloadId = property.IntValue;
                                 break;
                             case "HasUserAgreement":

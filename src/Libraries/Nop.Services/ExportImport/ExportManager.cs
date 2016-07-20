@@ -737,11 +737,7 @@ namespace Nop.Services.ExportImport
                 new PropertyByName<Product>("RequiredProductIds", p => p.RequiredProductIds, IgnoreExportPoductProperty(p => p.RequireOtherProductsAddedToTheCart)),
                 new PropertyByName<Product>("AutomaticallyAddRequiredProducts", p => p.AutomaticallyAddRequiredProducts, IgnoreExportPoductProperty(p => p.RequireOtherProductsAddedToTheCart)),
                 new PropertyByName<Product>("IsDownload", p => p.IsDownload, IgnoreExportPoductProperty(p => p.DownloadableProduct)),
-                new PropertyByName<Product>("Download", p => p.DownloadId, IgnoreExportPoductProperty(p => p.DownloadableProduct))
-                {
-                    DropDawnElements = _downloadService.GetAllDownload().Select(d => d as BaseEntity).ToSelectList(p => (p as Download).Return(d => String.Format("{0}{1} ({2})", d.Filename, d.Extension, d.ContentType), String.Empty)),
-                    AllowBlank = true
-                },
+                new PropertyByName<Product>("DownloadId", p => p.DownloadId, IgnoreExportPoductProperty(p => p.DownloadableProduct)),
                 new PropertyByName<Product>("UnlimitedDownloads", p => p.UnlimitedDownloads, IgnoreExportPoductProperty(p => p.DownloadableProduct)),
                 new PropertyByName<Product>("MaxNumberOfDownloads", p => p.MaxNumberOfDownloads, IgnoreExportPoductProperty(p => p.DownloadableProduct)),
                 new PropertyByName<Product>("DownloadActivationType", p => p.DownloadActivationTypeId, IgnoreExportPoductProperty(p => p.DownloadableProduct))
@@ -749,11 +745,7 @@ namespace Nop.Services.ExportImport
                     DropDawnElements = DownloadActivationType.Manually.ToSelectList()
                 },
                 new PropertyByName<Product>("HasSampleDownload", p => p.HasSampleDownload, IgnoreExportPoductProperty(p => p.DownloadableProduct)),
-                new PropertyByName<Product>("SampleDownload", p => p.SampleDownloadId, IgnoreExportPoductProperty(p => p.DownloadableProduct))
-                {
-                    DropDawnElements = _downloadService.GetAllDownload().Select(d => d as BaseEntity).ToSelectList(p => (p as Download).Return(d => String.Format("{0}{1} ({2})", d.Filename, d.Extension, d.ContentType), String.Empty)),
-                    AllowBlank = true
-                },
+                new PropertyByName<Product>("SampleDownloadId", p => p.SampleDownloadId, IgnoreExportPoductProperty(p => p.DownloadableProduct)),
                 new PropertyByName<Product>("HasUserAgreement", p => p.HasUserAgreement, IgnoreExportPoductProperty(p => p.DownloadableProduct)),
                 new PropertyByName<Product>("UserAgreementText", p => p.UserAgreementText, IgnoreExportPoductProperty(p => p.DownloadableProduct)),
                 new PropertyByName<Product>("IsRecurring", p => p.IsRecurring, IgnoreExportPoductProperty(p => p.RecurringProduct)),
