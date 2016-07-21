@@ -248,7 +248,7 @@ namespace Nop.Web.Controllers
                 }
 
                 //set already selected attributes
-                var selectedAttributesXml = !String.IsNullOrEmpty(overrideAttributesXml) ?
+                var selectedAttributesXml = !string.IsNullOrEmpty(overrideAttributesXml) ?
                     overrideAttributesXml : 
                     customer.GetAttribute<string>(SystemCustomerAttributeNames.CustomCustomerAttributes, _genericAttributeService);
                 switch (attribute.AttributeControlType)
@@ -257,7 +257,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.RadioList:
                     case AttributeControlType.Checkboxes:
                         {
-                            if (!String.IsNullOrEmpty(selectedAttributesXml))
+                            if (!string.IsNullOrEmpty(selectedAttributesXml))
                             {
                                 //clear default selection
                                 foreach (var item in attributeModel.Values)
@@ -281,7 +281,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.TextBox:
                     case AttributeControlType.MultilineTextbox:
                         {
-                            if (!String.IsNullOrEmpty(selectedAttributesXml))
+                            if (!string.IsNullOrEmpty(selectedAttributesXml))
                             {
                                 var enteredText = _customerAttributeParser.ParseValues(selectedAttributesXml, attribute.Id);
                                 if (enteredText.Any())
@@ -557,7 +557,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.RadioList:
                         {
                             var ctrlAttributes = form[controlId];
-                            if (!String.IsNullOrEmpty(ctrlAttributes))
+                            if (!string.IsNullOrEmpty(ctrlAttributes))
                             {
                                 int selectedAttributeId = int.Parse(ctrlAttributes);
                                 if (selectedAttributeId > 0)
@@ -569,7 +569,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.Checkboxes:
                         {
                             var cblAttributes = form[controlId];
-                            if (!String.IsNullOrEmpty(cblAttributes))
+                            if (!string.IsNullOrEmpty(cblAttributes))
                             {
                                 foreach (var item in cblAttributes.Split(new [] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                                 {
@@ -599,7 +599,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.MultilineTextbox:
                         {
                             var ctrlAttributes = form[controlId];
-                            if (!String.IsNullOrEmpty(ctrlAttributes))
+                            if (!string.IsNullOrEmpty(ctrlAttributes))
                             {
                                 string enteredText = ctrlAttributes.Trim();
                                 attributesXml = _customerAttributeParser.AddCustomerAttribute(attributesXml,
@@ -677,7 +677,7 @@ namespace Nop.Web.Controllers
                             //activity log
                             _customerActivityService.InsertActivity("PublicStore.Login", _localizationService.GetResource("ActivityLog.PublicStore.Login"), customer);
 
-                            if (String.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
+                            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
                                 return RedirectToRoute("HomePage");
                             
                             return Redirect(returnUrl);
@@ -972,7 +972,7 @@ namespace Nop.Web.Controllers
                             SystemCustomerAttributeNames.VatNumberStatusId,
                             (int)vatNumberStatus);
                         //send VAT number admin notification
-                        if (!String.IsNullOrEmpty(model.VatNumber) && _taxSettings.EuVatEmailAdminWhenNewVatSubmitted)
+                        if (!string.IsNullOrEmpty(model.VatNumber) && _taxSettings.EuVatEmailAdminWhenNewVatSubmitted)
                             _workflowMessageService.SendNewVatSubmittedStoreOwnerNotification(customer, model.VatNumber, vatAddress, _localizationSettings.DefaultAdminLanguageId);
 
                     }
@@ -1111,7 +1111,7 @@ namespace Nop.Web.Controllers
                                 _workflowMessageService.SendCustomerWelcomeMessage(customer, _workContext.WorkingLanguage.Id);
 
                                 var redirectUrl = Url.RouteUrl("RegisterResult", new { resultId = (int)UserRegistrationType.Standard });
-                                if (!String.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
+                                if (!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
                                     redirectUrl = _webHelper.ModifyQueryString(redirectUrl, "returnurl=" + HttpUtility.UrlEncode(returnUrl), null);
                                 return Redirect(redirectUrl);
                             }
@@ -1166,7 +1166,7 @@ namespace Nop.Web.Controllers
         [HttpPost]
         public ActionResult RegisterResult(string returnUrl)
         {
-            if (String.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
+            if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
                 return RedirectToRoute("HomePage");
 
             return Redirect(returnUrl);
@@ -1182,7 +1182,7 @@ namespace Nop.Web.Controllers
             var usernameAvailable = false;
             var statusText = _localizationService.GetResource("Account.CheckUsernameAvailability.NotAvailable");
 
-            if (_customerSettings.UsernamesEnabled && !String.IsNullOrWhiteSpace(username))
+            if (_customerSettings.UsernamesEnabled && !string.IsNullOrWhiteSpace(username))
             {
                 if (_workContext.CurrentCustomer != null &&
                     _workContext.CurrentCustomer.Username != null &&
@@ -1214,7 +1214,7 @@ namespace Nop.Web.Controllers
                 return RedirectToRoute("HomePage");
 
             var cToken = customer.GetAttribute<string>(SystemCustomerAttributeNames.AccountActivationToken);
-            if (String.IsNullOrEmpty(cToken))
+            if (string.IsNullOrEmpty(cToken))
                 return RedirectToRoute("HomePage");
 
             if (!cToken.Equals(token, StringComparison.InvariantCultureIgnoreCase))
@@ -1433,7 +1433,7 @@ namespace Nop.Web.Controllers
                                     SystemCustomerAttributeNames.VatNumberStatusId,
                                     (int)vatNumberStatus);
                             //send VAT number admin notification
-                            if (!String.IsNullOrEmpty(model.VatNumber) && _taxSettings.EuVatEmailAdminWhenNewVatSubmitted)
+                            if (!string.IsNullOrEmpty(model.VatNumber) && _taxSettings.EuVatEmailAdminWhenNewVatSubmitted)
                                 _workflowMessageService.SendNewVatSubmittedStoreOwnerNotification(customer, model.VatNumber, vatAddress, _localizationSettings.DefaultAdminLanguageId);
                         }
                     }
@@ -1886,7 +1886,7 @@ namespace Nop.Web.Controllers
                 try
                 {
                     var customerAvatar = _pictureService.GetPictureById(customer.GetAttribute<int>(SystemCustomerAttributeNames.AvatarPictureId));
-                    if ((uploadedFile != null) && (!String.IsNullOrEmpty(uploadedFile.FileName)))
+                    if ((uploadedFile != null) && (!string.IsNullOrEmpty(uploadedFile.FileName)))
                     {
                         int avatarMaxSize = _customerSettings.AvatarMaximumSizeBytes;
                         if (uploadedFile.ContentLength > avatarMaxSize)

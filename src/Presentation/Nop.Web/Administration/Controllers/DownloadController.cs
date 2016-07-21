@@ -31,8 +31,8 @@ namespace Nop.Admin.Controllers
             if (download.DownloadBinary == null)
                 return Content(string.Format("Download data is not available any more. Download GD={0}", download.Id));
 
-            string fileName = !String.IsNullOrWhiteSpace(download.Filename) ? download.Filename : download.Id.ToString();
-            string contentType = !String.IsNullOrWhiteSpace(download.ContentType)
+            string fileName = !string.IsNullOrWhiteSpace(download.Filename) ? download.Filename : download.Id.ToString();
+            string contentType = !string.IsNullOrWhiteSpace(download.ContentType)
                 ? download.ContentType
                 : MimeTypes.ApplicationOctetStream;
             return new FileContentResult(download.DownloadBinary, contentType)
@@ -70,7 +70,7 @@ namespace Nop.Admin.Controllers
             Stream stream = null;
             var fileName = "";
             var contentType = "";
-            if (String.IsNullOrEmpty(Request["qqfile"]))
+            if (string.IsNullOrEmpty(Request["qqfile"]))
             {
                 // IE
                 HttpPostedFileBase httpPostedFile = Request.Files[0];
@@ -91,7 +91,7 @@ namespace Nop.Admin.Controllers
             stream.Read(fileBinary, 0, fileBinary.Length);
 
             var fileExtension = Path.GetExtension(fileName);
-            if (!String.IsNullOrEmpty(fileExtension))
+            if (!string.IsNullOrEmpty(fileExtension))
                 fileExtension = fileExtension.ToLowerInvariant();
 
             var download = new Download

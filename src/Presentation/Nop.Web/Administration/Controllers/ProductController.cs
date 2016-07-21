@@ -534,11 +534,11 @@ namespace Nop.Admin.Controllers
         protected virtual string[] ParseProductTags(string productTags)
         {
             var result = new List<string>();
-            if (!String.IsNullOrWhiteSpace(productTags))
+            if (!string.IsNullOrWhiteSpace(productTags))
             {
                 string[] values = productTags.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string val1 in values)
-                    if (!String.IsNullOrEmpty(val1.Trim()))
+                    if (!string.IsNullOrEmpty(val1.Trim()))
                         result.Add(val1.Trim());
             }
             return result.ToArray();
@@ -1414,7 +1414,7 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageProducts))
                 return Json(new { Text = result });
 
-            if (!String.IsNullOrWhiteSpace(productIds))
+            if (!string.IsNullOrWhiteSpace(productIds))
             {
                 var ids = new List<int>();
                 var rangeArray = productIds
@@ -3317,7 +3317,7 @@ namespace Nop.Admin.Controllers
                 foreach (var lang in languages)
                 {
                     var name = predefinedValue.GetLocalized(x => x.Name, lang.Id, false, false);
-                    if (!String.IsNullOrEmpty(name))
+                    if (!string.IsNullOrEmpty(name))
                         _localizedEntityService.SaveLocalizedValue(pav, x => x.Name, name, lang.Id);
                 }
             }
@@ -3481,7 +3481,7 @@ namespace Nop.Admin.Controllers
 
             var model = new ProductAttributeConditionModel();
             model.ProductAttributeMappingId = productAttributeMapping.Id;
-            model.EnableCondition = !String.IsNullOrEmpty(productAttributeMapping.ConditionAttributeXml);
+            model.EnableCondition = !string.IsNullOrEmpty(productAttributeMapping.ConditionAttributeXml);
 
 
             //pre-select attribute and values
@@ -3537,7 +3537,7 @@ namespace Nop.Admin.Controllers
                             case AttributeControlType.ColorSquares:
                             case AttributeControlType.ImageSquares:
                                 {
-                                    if (!String.IsNullOrEmpty(productAttributeMapping.ConditionAttributeXml))
+                                    if (!string.IsNullOrEmpty(productAttributeMapping.ConditionAttributeXml))
                                     {
                                         //clear default selection
                                         foreach (var item in attributeModel.Values)
@@ -3606,7 +3606,7 @@ namespace Nop.Admin.Controllers
                         case AttributeControlType.ImageSquares:
                             {
                                 var ctrlAttributes = form[controlId];
-                                if (!String.IsNullOrEmpty(ctrlAttributes))
+                                if (!string.IsNullOrEmpty(ctrlAttributes))
                                 {
                                     int selectedAttributeId = int.Parse(ctrlAttributes);
                                     if (selectedAttributeId > 0)
@@ -3636,7 +3636,7 @@ namespace Nop.Admin.Controllers
                         case AttributeControlType.Checkboxes:
                             {
                                 var cblAttributes = form[controlId];
-                                if (!String.IsNullOrEmpty(cblAttributes))
+                                if (!string.IsNullOrEmpty(cblAttributes))
                                 {
                                     bool anyValueSelected = false;
                                     foreach (var item in cblAttributes.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
@@ -3751,7 +3751,7 @@ namespace Nop.Admin.Controllers
                     }
                     var pictureThumbnailUrl = _pictureService.GetPictureUrl(x.PictureId, 75, false);
                     //little hack here. Grid is rendered wrong way with <img> without "src" attribute
-                    if (String.IsNullOrEmpty(pictureThumbnailUrl))
+                    if (string.IsNullOrEmpty(pictureThumbnailUrl))
                         pictureThumbnailUrl = _pictureService.GetPictureUrl(null, 1, true);
                     return new ProductModel.ProductAttributeValueModel
                     {
@@ -3852,7 +3852,7 @@ namespace Nop.Admin.Controllers
             if (productAttributeMapping.AttributeControlType == AttributeControlType.ColorSquares)
             {
                 //ensure valid color is chosen/entered
-                if (String.IsNullOrEmpty(model.ColorSquaresRgb))
+                if (string.IsNullOrEmpty(model.ColorSquaresRgb))
                     ModelState.AddModelError("", "Color is required");
                 try
                 {
@@ -3961,7 +3961,7 @@ namespace Nop.Admin.Controllers
                 DisplayOrder = pav.DisplayOrder,
                 PictureId = pav.PictureId
             };
-            if (model.DisplayColorSquaresRgb && String.IsNullOrEmpty(model.ColorSquaresRgb))
+            if (model.DisplayColorSquaresRgb && string.IsNullOrEmpty(model.ColorSquaresRgb))
             {
                 model.ColorSquaresRgb = "#000000";
             }
@@ -4007,7 +4007,7 @@ namespace Nop.Admin.Controllers
             if (pav.ProductAttributeMapping.AttributeControlType == AttributeControlType.ColorSquares)
             {
                 //ensure valid color is chosen/entered
-                if (String.IsNullOrEmpty(model.ColorSquaresRgb))
+                if (string.IsNullOrEmpty(model.ColorSquaresRgb))
                     ModelState.AddModelError("", "Color is required");
                 try
                 {
@@ -4365,7 +4365,7 @@ namespace Nop.Admin.Controllers
                     case AttributeControlType.ImageSquares:
                         {
                             var ctrlAttributes = form[controlId];
-                            if (!String.IsNullOrEmpty(ctrlAttributes))
+                            if (!string.IsNullOrEmpty(ctrlAttributes))
                             {
                                 int selectedAttributeId = int.Parse(ctrlAttributes);
                                 if (selectedAttributeId > 0)
@@ -4377,7 +4377,7 @@ namespace Nop.Admin.Controllers
                     case AttributeControlType.Checkboxes:
                         {
                             var cblAttributes = form[controlId];
-                            if (!String.IsNullOrEmpty(cblAttributes))
+                            if (!string.IsNullOrEmpty(cblAttributes))
                             {
                                 foreach (var item in cblAttributes.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                                 {
@@ -4407,7 +4407,7 @@ namespace Nop.Admin.Controllers
                     case AttributeControlType.MultilineTextbox:
                         {
                             var ctrlAttributes = form[controlId];
-                            if (!String.IsNullOrEmpty(ctrlAttributes))
+                            if (!string.IsNullOrEmpty(ctrlAttributes))
                             {
                                 string enteredText = ctrlAttributes.Trim();
                                 attributesXml = _productAttributeParser.AddProductAttribute(attributesXml,
@@ -4423,7 +4423,7 @@ namespace Nop.Admin.Controllers
                             DateTime? selectedDate = null;
                             try
                             {
-                                selectedDate = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(date));
+                                selectedDate = new DateTime(int.Parse(year), int.Parse(month), int.Parse(date));
                             }
                             catch { }
                             if (selectedDate.HasValue)
@@ -4436,7 +4436,7 @@ namespace Nop.Admin.Controllers
                     case AttributeControlType.FileUpload:
                         {
                             var httpPostedFile = this.Request.Files[controlId];
-                            if ((httpPostedFile != null) && (!String.IsNullOrEmpty(httpPostedFile.FileName)))
+                            if ((httpPostedFile != null) && (!string.IsNullOrEmpty(httpPostedFile.FileName)))
                             {
                                 var fileSizeOk = true;
                                 if (attribute.ValidationFileMaximumSize.HasValue)
@@ -4579,7 +4579,7 @@ namespace Nop.Admin.Controllers
             _settingService.SaveSetting(productEditorSettings);
 
             //product list
-            if (String.IsNullOrEmpty(returnUrl))
+            if (string.IsNullOrEmpty(returnUrl))
                 return RedirectToAction("List");
             //prevent open redirection attack
             if (!Url.IsLocalUrl(returnUrl))

@@ -38,7 +38,7 @@ namespace Nop.Core
 
         #region Utilities
 
-        protected virtual Boolean IsRequestAvailable(HttpContextBase httpContext)
+        protected virtual bool IsRequestAvailable(HttpContextBase httpContext)
         {
             if (httpContext == null)
                 return false;
@@ -126,7 +126,7 @@ namespace Nop.Core
                 //for identifying the originating IP address of a client
                 //connecting to a web server through an HTTP proxy or load balancer.
                 var forwardedHttpHeader = "X-FORWARDED-FOR";
-                if (!String.IsNullOrEmpty(ConfigurationManager.AppSettings["ForwardedHTTPheader"]))
+                if (!string.IsNullOrEmpty(ConfigurationManager.AppSettings["ForwardedHTTPheader"]))
                 {
                     //but in some cases server use other HTTP header
                     //in these cases an administrator can specify a custom Forwarded HTTP header
@@ -142,14 +142,14 @@ namespace Nop.Core
                     .FirstOrDefault();
 
                 //if you want to exclude private IP addresses, then see http://stackoverflow.com/questions/2577496/how-can-i-get-the-clients-ip-address-in-asp-net-mvc
-                if (!String.IsNullOrEmpty(xff))
+                if (!string.IsNullOrEmpty(xff))
                 {
                     string lastIp = xff.Split(new[] { ',' }).FirstOrDefault();
                     result = lastIp;
                 }
             }
 
-            if (String.IsNullOrEmpty(result) && _httpContext.Request.UserHostAddress != null)
+            if (string.IsNullOrEmpty(result) && _httpContext.Request.UserHostAddress != null)
             {
                 result = _httpContext.Request.UserHostAddress;
             }
@@ -158,7 +158,7 @@ namespace Nop.Core
             if (result == "::1")
                 result = "127.0.0.1";
             //remove port
-            if (!String.IsNullOrEmpty(result))
+            if (!string.IsNullOrEmpty(result))
             {
                 int index = result.IndexOf(":", StringComparison.InvariantCultureIgnoreCase);
                 if (index > 0)
@@ -278,7 +278,7 @@ namespace Nop.Core
         {
             var result = "";
             var httpHost = ServerVariables("HTTP_HOST");
-            if (!String.IsNullOrEmpty(httpHost))
+            if (!string.IsNullOrEmpty(httpHost))
             {
                 result = "http://" + httpHost;
                 if (!result.EndsWith("/"))
@@ -296,7 +296,7 @@ namespace Nop.Core
                 if (currentStore == null)
                     throw new Exception("Current store cannot be loaded");
 
-                if (String.IsNullOrWhiteSpace(httpHost))
+                if (string.IsNullOrWhiteSpace(httpHost))
                 {
                     //HTTP_HOST variable is not available.
                     //This scenario is possible only when HttpContext is not available (for example, running in a schedule task)
@@ -308,7 +308,7 @@ namespace Nop.Core
 
                 if (useSsl)
                 {
-                    result = !String.IsNullOrWhiteSpace(currentStore.SecureUrl) ?
+                    result = !string.IsNullOrWhiteSpace(currentStore.SecureUrl) ?
                         //Secure URL specified. 
                         //So a store owner don't want it to be detected automatically.
                         //In this case let's use the specified secure URL
@@ -319,7 +319,7 @@ namespace Nop.Core
                 }
                 else
                 {
-                    if (currentStore.SslEnabled && !String.IsNullOrWhiteSpace(currentStore.SecureUrl))
+                    if (currentStore.SslEnabled && !string.IsNullOrWhiteSpace(currentStore.SecureUrl))
                     {
                         //SSL is enabled in this store and secure URL is specified.
                         //So a store owner don't want it to be detected automatically.
@@ -588,7 +588,7 @@ namespace Nop.Core
             if (IsRequestAvailable(_httpContext) && _httpContext.Request.QueryString[name] != null)
                 queryParam = _httpContext.Request.QueryString[name];
 
-            if (!String.IsNullOrEmpty(queryParam))
+            if (!string.IsNullOrEmpty(queryParam))
                 return CommonHelper.To<T>(queryParam);
 
             return default(T);
@@ -635,7 +635,7 @@ namespace Nop.Core
             // new request will come to the newly started AppDomain.
             if (_httpContext != null && makeRedirect)
             {
-                if (String.IsNullOrEmpty(redirectUrl))
+                if (string.IsNullOrEmpty(redirectUrl))
                     redirectUrl = GetThisPageUrl(true);
                 _httpContext.Response.Redirect(redirectUrl, true /*endResponse*/);
             }

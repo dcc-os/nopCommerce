@@ -173,7 +173,7 @@ namespace Nop.Admin.Controllers
 
             //store URL
             var currentStoreUrl = _storeContext.CurrentStore.Url;
-            if (!String.IsNullOrEmpty(currentStoreUrl) &&
+            if (!string.IsNullOrEmpty(currentStoreUrl) &&
                 (currentStoreUrl.Equals(_webHelper.GetStoreLocation(false), StringComparison.InvariantCultureIgnoreCase)
                 ||
                 currentStoreUrl.Equals(_webHelper.GetStoreLocation(true), StringComparison.InvariantCultureIgnoreCase)
@@ -395,7 +395,7 @@ namespace Nop.Admin.Controllers
             {
                 var machineKeySection = ConfigurationManager.GetSection("system.web/machineKey") as MachineKeySection;
                 var machineKeySpecified = machineKeySection != null &&
-                    !String.IsNullOrEmpty(machineKeySection.DecryptionKey) &&
+                    !string.IsNullOrEmpty(machineKeySection.DecryptionKey) &&
                     !machineKeySection.DecryptionKey.StartsWith("AutoGenerate", StringComparison.InvariantCultureIgnoreCase);
 
                 if (!machineKeySpecified)
@@ -604,7 +604,7 @@ namespace Nop.Admin.Controllers
             }
 
             //home page
-            if (String.IsNullOrEmpty(returnUrl))
+            if (string.IsNullOrEmpty(returnUrl))
                 returnUrl = Url.Action("Index", "Home", new { area = "Admin" });
             //prevent open redirection attack
             if (!Url.IsLocalUrl(returnUrl))
@@ -622,7 +622,7 @@ namespace Nop.Admin.Controllers
             cacheManager.Clear();
 
             //home page
-            if (String.IsNullOrEmpty(returnUrl))
+            if (string.IsNullOrEmpty(returnUrl))
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
             //prevent open redirection attack
             if (!Url.IsLocalUrl(returnUrl))
@@ -640,7 +640,7 @@ namespace Nop.Admin.Controllers
             _webHelper.RestartAppDomain();
 
             //home page
-            if (String.IsNullOrEmpty(returnUrl))
+            if (string.IsNullOrEmpty(returnUrl))
                 return RedirectToAction("Index", "Home", new { area = "Admin" });
             //prevent open redirection attack
             if (!Url.IsLocalUrl(returnUrl))

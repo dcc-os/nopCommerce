@@ -152,9 +152,9 @@ namespace Nop.Services.Authentication.External
                     if (registrationResult.Success)
                     {
                         //store other parameters (form fields)
-                        if (!String.IsNullOrEmpty(details.FirstName))
+                        if (!string.IsNullOrEmpty(details.FirstName))
                             _genericAttributeService.SaveAttribute(currentCustomer, SystemCustomerAttributeNames.FirstName, details.FirstName);
-                        if (!String.IsNullOrEmpty(details.LastName))
+                        if (!string.IsNullOrEmpty(details.LastName))
                             _genericAttributeService.SaveAttribute(currentCustomer, SystemCustomerAttributeNames.LastName, details.LastName);
                     
 

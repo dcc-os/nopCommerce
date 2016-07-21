@@ -47,7 +47,7 @@ namespace Nop.Core
         /// <returns>true if the string is a valid e-mail address and false if it's not</returns>
         public static bool IsValidEmail(string email)
         {
-            if (String.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(email))
                 return false;
 
             email = email.Trim();
@@ -76,7 +76,7 @@ namespace Nop.Core
             var random = new Random();
             string str = string.Empty;
             for (int i = 0; i < length; i++)
-                str = String.Concat(str, random.Next(10).ToString());
+                str = string.Concat(str, random.Next(10).ToString());
             return str;
         }
 
@@ -102,7 +102,7 @@ namespace Nop.Core
         /// <returns>Input string if its lengh is OK; otherwise, truncated input string</returns>
         public static string EnsureMaximumLength(string str, int maxLength, string postfix = null)
         {
-            if (String.IsNullOrEmpty(str))
+            if (string.IsNullOrEmpty(str))
                 return str;
 
             if (str.Length > maxLength)
@@ -110,7 +110,7 @@ namespace Nop.Core
                 var pLen = postfix == null ? 0 : postfix.Length;
 
                 var result = str.Substring(0, maxLength - pLen);
-                if (!String.IsNullOrEmpty(postfix))
+                if (!string.IsNullOrEmpty(postfix))
                 {
                     result += postfix;
                 }

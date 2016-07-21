@@ -604,9 +604,9 @@ namespace Nop.Core
 
         void ProcessParameters(ParameterExpression[] parameters) {
             foreach (ParameterExpression pe in parameters)
-                if (!String.IsNullOrEmpty(pe.Name))
+                if (!string.IsNullOrEmpty(pe.Name))
                     AddSymbol(pe.Name, pe);
-            if (parameters.Length == 1 && String.IsNullOrEmpty(parameters[0].Name))
+            if (parameters.Length == 1 && string.IsNullOrEmpty(parameters[0].Name))
                 it = parameters[0];
         }
 
@@ -908,20 +908,20 @@ namespace Nop.Core
             string text = token.text;
             if (text[0] != '-') {
                 ulong value;
-                if (!UInt64.TryParse(text, out value))
+                if (!ulong.TryParse(text, out value))
                     throw ParseError(Res.InvalidIntegerLiteral, text);
                 NextToken();
-                if (value <= (ulong)Int32.MaxValue) return CreateLiteral((int)value, text);
-                if (value <= (ulong)UInt32.MaxValue) return CreateLiteral((uint)value, text);
-                if (value <= (ulong)Int64.MaxValue) return CreateLiteral((long)value, text);
+                if (value <= (ulong)int.MaxValue) return CreateLiteral((int)value, text);
+                if (value <= (ulong)uint.MaxValue) return CreateLiteral((uint)value, text);
+                if (value <= (ulong)long.MaxValue) return CreateLiteral((long)value, text);
                 return CreateLiteral(value, text);
             }
             else {
                 long value;
-                if (!Int64.TryParse(text, out value))
+                if (!long.TryParse(text, out value))
                     throw ParseError(Res.InvalidIntegerLiteral, text);
                 NextToken();
-                if (value >= Int32.MinValue && value <= Int32.MaxValue)
+                if (value >= int.MinValue && value <= int.MaxValue)
                     return CreateLiteral((int)value, text);
                 return CreateLiteral(value, text);
             }
@@ -934,11 +934,11 @@ namespace Nop.Core
             char last = text[text.Length - 1];
             if (last == 'F' || last == 'f') {
                 float f;
-                if (Single.TryParse(text.Substring(0, text.Length - 1), out f)) value = f;
+                if (float.TryParse(text.Substring(0, text.Length - 1), out f)) value = f;
             }
             else {
                 double d;
-                if (Double.TryParse(text, out d)) value = d;
+                if (double.TryParse(text, out d)) value = d;
             }
             if (value == null) throw ParseError(Res.InvalidRealLiteral, text);
             NextToken();
@@ -1513,7 +1513,7 @@ namespace Nop.Core
                     string text;
                     if (literals.TryGetValue(ce, out text)) {
                         Type target = GetNonNullableType(type);
-                        Object value = null;
+                        object value = null;
                         switch (Type.GetTypeCode(ce.Type)) {
                             case TypeCode.Int32:
                             case TypeCode.UInt32:
@@ -1826,7 +1826,7 @@ namespace Nop.Core
         }
 
         void NextToken() {
-            while (Char.IsWhiteSpace(ch)) NextChar();
+            while (char.IsWhiteSpace(ch)) NextChar();
             TokenId t;
             int tokenPos = textPos;
             switch (ch) {
@@ -1959,25 +1959,25 @@ namespace Nop.Core
                     t = TokenId.StringLiteral;
                     break;
                 default:
-                    if (Char.IsLetter(ch) || ch == '@' || ch == '_') {
+                    if (char.IsLetter(ch) || ch == '@' || ch == '_') {
                         do {
                             NextChar();
-                        } while (Char.IsLetterOrDigit(ch) || ch == '_');
+                        } while (char.IsLetterOrDigit(ch) || ch == '_');
                         t = TokenId.Identifier;
                         break;
                     }
-                    if (Char.IsDigit(ch)) {
+                    if (char.IsDigit(ch)) {
                         t = TokenId.IntegerLiteral;
                         do {
                             NextChar();
-                        } while (Char.IsDigit(ch));
+                        } while (char.IsDigit(ch));
                         if (ch == '.') {
                             t = TokenId.RealLiteral;
                             NextChar();
                             ValidateDigit();
                             do {
                                 NextChar();
-                            } while (Char.IsDigit(ch));
+                            } while (char.IsDigit(ch));
                         }
                         if (ch == 'E' || ch == 'e') {
                             t = TokenId.RealLiteral;
@@ -1986,7 +1986,7 @@ namespace Nop.Core
                             ValidateDigit();
                             do {
                                 NextChar();
-                            } while (Char.IsDigit(ch));
+                            } while (char.IsDigit(ch));
                         }
                         if (ch == 'F' || ch == 'f') NextChar();
                         break;
@@ -2003,7 +2003,7 @@ namespace Nop.Core
         }
 
         bool TokenIdentifierIs(string id) {
-            return token.id == TokenId.Identifier && String.Equals(id, token.text, StringComparison.OrdinalIgnoreCase);
+            return token.id == TokenId.Identifier && string.Equals(id, token.text, StringComparison.OrdinalIgnoreCase);
         }
 
         string GetIdentifier() {
@@ -2014,7 +2014,7 @@ namespace Nop.Core
         }
 
         void ValidateDigit() {
-            if (!Char.IsDigit(ch)) throw ParseError(textPos, Res.DigitExpected);
+            if (!char.IsDigit(ch)) throw ParseError(textPos, Res.DigitExpected);
         }
 
         void ValidateToken(TokenId t, string errorMessage) {

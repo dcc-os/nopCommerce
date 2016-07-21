@@ -138,7 +138,7 @@ namespace Nop.Plugin.Shipping.ByWeight.Controllers
                     var s = _stateProvinceService.GetStateProvinceById(x.StateProvinceId);
                     m.StateProvinceName = (s != null) ? s.Name : "*";
                     //zip
-                    m.Zip = (!String.IsNullOrEmpty(x.Zip)) ? x.Zip : "*";
+                    m.Zip = (!string.IsNullOrEmpty(x.Zip)) ? x.Zip : "*";
 
 
                     var htmlSb = new StringBuilder("<div>");

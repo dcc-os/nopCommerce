@@ -78,7 +78,7 @@ namespace Nop.Services.Catalog
             for (int i = 0; i <= breadcrumb.Count - 1; i++)
             {
                 var categoryName = breadcrumb[i].GetLocalized(x => x.Name, languageId);
-                result = String.IsNullOrEmpty(result)
+                result = string.IsNullOrEmpty(result)
                     ? categoryName
                     : string.Format("{0} {1} {2}", result, separator, categoryName);
             }
@@ -105,7 +105,7 @@ namespace Nop.Services.Catalog
             for (int i = 0; i <= breadcrumb.Count - 1; i++)
             {
                 var categoryName = breadcrumb[i].GetLocalized(x => x.Name, languageId);
-                result = String.IsNullOrEmpty(result)
+                result = string.IsNullOrEmpty(result)
                     ? categoryName
                     : string.Format("{0} {1} {2}", result, separator, categoryName);
             }

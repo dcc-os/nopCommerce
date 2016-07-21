@@ -64,7 +64,7 @@ namespace Nop.Web.Framework.Themes
 
         protected virtual string CreateCacheKey(string prefix, string name, string controllerName, string areaName, string theme)
         {
-            return String.Format(CultureInfo.InvariantCulture, CacheKeyFormat,
+            return string.Format(CultureInfo.InvariantCulture, CacheKeyFormat,
                                  GetType().AssemblyQualifiedName, prefix, name, controllerName, areaName, theme);
         }
 
@@ -79,7 +79,7 @@ namespace Nop.Web.Framework.Themes
             {
                 throw new ArgumentNullException("controllerContext");
             }
-            if (String.IsNullOrEmpty(partialViewName))
+            if (string.IsNullOrEmpty(partialViewName))
             {
                 throw new ArgumentException("Partial view name cannot be null or empty.", "partialViewName");
             }
@@ -89,7 +89,7 @@ namespace Nop.Web.Framework.Themes
             string controllerName = controllerContext.RouteData.GetRequiredString("controller");
             string partialPath = GetPath(controllerContext, PartialViewLocationFormats, AreaPartialViewLocationFormats, "PartialViewLocationFormats", partialViewName, controllerName, theme, CacheKeyPrefixPartial, useCache, out searched);
 
-            if (String.IsNullOrEmpty(partialPath))
+            if (string.IsNullOrEmpty(partialPath))
             {
                 return new ViewEngineResult(searched);
             }
@@ -103,7 +103,7 @@ namespace Nop.Web.Framework.Themes
             {
                 throw new ArgumentNullException("controllerContext");
             }
-            if (String.IsNullOrEmpty(viewName))
+            if (string.IsNullOrEmpty(viewName))
             {
                 throw new ArgumentException("View name cannot be null or empty.", "viewName");
             }
@@ -116,7 +116,7 @@ namespace Nop.Web.Framework.Themes
             string viewPath = GetPath(controllerContext, ViewLocationFormats, AreaViewLocationFormats, "ViewLocationFormats", viewName, controllerName, theme, CacheKeyPrefixView, useCache, out viewLocationsSearched);
             string masterPath = GetPath(controllerContext, MasterLocationFormats, AreaMasterLocationFormats, "MasterLocationFormats", masterName, controllerName, theme, CacheKeyPrefixMaster, useCache, out masterLocationsSearched);
 
-            if (String.IsNullOrEmpty(viewPath) || (String.IsNullOrEmpty(masterPath) && !String.IsNullOrEmpty(masterName)))
+            if (string.IsNullOrEmpty(viewPath) || (string.IsNullOrEmpty(masterPath) && !string.IsNullOrEmpty(masterName)))
             {
                 return new ViewEngineResult(viewLocationsSearched.Union(masterLocationsSearched));
             }
@@ -128,9 +128,9 @@ namespace Nop.Web.Framework.Themes
         {
             searchedLocations = _emptyLocations;
 
-            if (String.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name))
             {
-                return String.Empty;
+                return string.Empty;
             }
 
             string areaName = GetAreaName(controllerContext.RouteData);
@@ -144,16 +144,16 @@ namespace Nop.Web.Framework.Themes
                 areaLocations = newLocations.ToArray();
             }
 
-            bool usingAreas = !String.IsNullOrEmpty(areaName);
+            bool usingAreas = !string.IsNullOrEmpty(areaName);
             List<ViewLocation> viewLocations = GetViewLocations(locations, (usingAreas) ? areaLocations : null);
 
             if (!viewLocations.Any())
             {
-                throw new InvalidOperationException(String.Format(CultureInfo.CurrentCulture, "Properties cannot be null or empty - {0}", locationsPropertyName));
+                throw new InvalidOperationException(string.Format(CultureInfo.CurrentCulture, "Properties cannot be null or empty - {0}", locationsPropertyName));
             }
 
             bool nameRepresentsPath = IsSpecificPath(name);
-            string cacheKey = CreateCacheKey(cacheKeyPrefix, name, (nameRepresentsPath) ? String.Empty : controllerName, areaName, theme);
+            string cacheKey = CreateCacheKey(cacheKeyPrefix, name, (nameRepresentsPath) ? string.Empty : controllerName, areaName, theme);
 
             if (useCache)
             {
@@ -195,7 +195,7 @@ namespace Nop.Web.Framework.Themes
 
         protected virtual string GetPathFromGeneralName(ControllerContext controllerContext, List<ViewLocation> locations, string name, string controllerName, string areaName, string theme, string cacheKey, ref string[] searchedLocations)
         {
-            string result = String.Empty;
+            string result = string.Empty;
             searchedLocations = new string[locations.Count];
 
             for (int i = 0; i < locations.Count; i++)
@@ -226,7 +226,7 @@ namespace Nop.Web.Framework.Themes
                         {
                             DisplayInfo displayInfoToCache = displayMode.GetDisplayInfo(controllerContext.HttpContext, virtualPath, virtualPathExists: path => FileExists(controllerContext, path));
 
-                            string cacheValue = String.Empty;
+                            string cacheValue = string.Empty;
                             if (displayInfoToCache != null && displayInfoToCache.FilePath != null)
                             {
                                 cacheValue = displayInfoToCache.FilePath;
@@ -249,7 +249,7 @@ namespace Nop.Web.Framework.Themes
 
             if (!(FilePathIsSupported(name) && FileExists(controllerContext, name)))
             {
-                result = String.Empty;
+                result = string.Empty;
                 searchedLocations = new[] { name };
             }
 

@@ -19,7 +19,7 @@ namespace Nop.Core.Fakes
 
         public bool IsAuthenticated
         {
-            get { return !String.IsNullOrEmpty(_name); }
+            get { return !string.IsNullOrEmpty(_name); }
         }
 
         public string Name

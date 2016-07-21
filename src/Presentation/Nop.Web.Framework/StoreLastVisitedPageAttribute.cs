@@ -23,7 +23,7 @@ namespace Nop.Web.Framework
                 return;
 
             //only GET requests
-            if (!String.Equals(filterContext.HttpContext.Request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(filterContext.HttpContext.Request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
                 return;
 
             var customerSettings = EngineContext.Current.Resolve<CustomerSettings>();
@@ -32,7 +32,7 @@ namespace Nop.Web.Framework
 
             var webHelper = EngineContext.Current.Resolve<IWebHelper>();
             var pageUrl = webHelper.GetThisPageUrl(true);
-            if (!String.IsNullOrEmpty(pageUrl))
+            if (!string.IsNullOrEmpty(pageUrl))
             {
                 var workContext = EngineContext.Current.Resolve<IWorkContext>();
                 var genericAttributeService = EngineContext.Current.Resolve<IGenericAttributeService>();

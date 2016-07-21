@@ -132,7 +132,7 @@ namespace Nop.Web.Framework
                 return null;
 
             var seoCode = virtualPath.GetLanguageSeoCodeFromUrl(applicationPath, false);
-            if (String.IsNullOrEmpty(seoCode))
+            if (string.IsNullOrEmpty(seoCode))
                 return null;
 
             var language = _languageService
@@ -154,7 +154,7 @@ namespace Nop.Web.Framework
                 return null;
 
             var userLanguage = _httpContext.Request.UserLanguages.FirstOrDefault();
-            if (String.IsNullOrEmpty(userLanguage))
+            if (string.IsNullOrEmpty(userLanguage))
                 return null;
 
             var language = _languageService
@@ -225,7 +225,7 @@ namespace Nop.Web.Framework
                 if (customer == null || customer.Deleted || !customer.Active)
                 {
                     var customerCookie = GetCustomerCookie();
-                    if (customerCookie != null && !String.IsNullOrEmpty(customerCookie.Value))
+                    if (customerCookie != null && !string.IsNullOrEmpty(customerCookie.Value))
                     {
                         Guid customerGuid;
                         if (Guid.TryParse(customerCookie.Value, out customerGuid))

@@ -39,7 +39,7 @@ namespace Nop.Services.Messages
                 //do not encode URLs
                 if (htmlEncode && !token.NeverHtmlEncoded)
                     tokenValue = HttpUtility.HtmlEncode(tokenValue);
-                template = Replace(template, String.Format(@"%{0}%", token.Key), tokenValue);
+                template = Replace(template, string.Format(@"%{0}%", token.Key), tokenValue);
             }
             return template;
 

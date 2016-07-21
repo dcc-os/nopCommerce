@@ -88,7 +88,7 @@ namespace Nop.Web.Framework.Kendoui
         {
             if (Filters != null && Filters.Any())
             {
-                return "(" + String.Join(" " + Logic + " ", Filters.Select(filter => filter.ToExpression(filters)).ToArray()) + ")";
+                return "(" + string.Join(" " + Logic + " ", Filters.Select(filter => filter.ToExpression(filters)).ToArray()) + ")";
             }
 
             int index = filters.IndexOf(this);
@@ -104,13 +104,13 @@ namespace Nop.Web.Framework.Kendoui
             //we ignore case
             if (comparison == "Contains")
             {
-                return String.Format("{0}.IndexOf(@{1}, System.StringComparison.InvariantCultureIgnoreCase) >= 0", Field, index);
+                return string.Format("{0}.IndexOf(@{1}, System.StringComparison.InvariantCultureIgnoreCase) >= 0", Field, index);
             }
             if (comparison == "DoesNotContain")
             {
-                return String.Format("{0}.IndexOf(@{1}, System.StringComparison.InvariantCultureIgnoreCase) < 0", Field, index);
+                return string.Format("{0}.IndexOf(@{1}, System.StringComparison.InvariantCultureIgnoreCase) < 0", Field, index);
             }
-            if (comparison == "=" && Value is String)
+            if (comparison == "=" && Value is string)
             {
                 //string only
                 comparison = "Equals";
@@ -118,10 +118,10 @@ namespace Nop.Web.Framework.Kendoui
             }
             if (comparison == "StartsWith" || comparison == "EndsWith" || comparison == "Equals")
             {
-                return String.Format("{0}.{1}(@{2}, System.StringComparison.InvariantCultureIgnoreCase)", Field, comparison, index);
+                return string.Format("{0}.{1}(@{2}, System.StringComparison.InvariantCultureIgnoreCase)", Field, comparison, index);
             }
 
-            return String.Format("{0} {1} @{2}", Field, comparison, index);
+            return string.Format("{0} {1} @{2}", Field, comparison, index);
         }
     }
 }

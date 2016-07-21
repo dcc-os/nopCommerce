@@ -114,7 +114,7 @@ namespace Nop.Admin.Controllers
                     //has new items?
                     if (i == 0)
                     {
-                        var firstRequest = String.IsNullOrEmpty(_adminAreaSettings.LastNewsTitleAdminArea);
+                        var firstRequest = string.IsNullOrEmpty(_adminAreaSettings.LastNewsTitleAdminArea);
                         if (_adminAreaSettings.LastNewsTitleAdminArea != newsItem.Title)
                         {
                             _adminAreaSettings.LastNewsTitleAdminArea = newsItem.Title;

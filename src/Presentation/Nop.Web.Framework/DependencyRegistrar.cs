@@ -240,7 +240,7 @@ namespace Nop.Web.Framework
 
             builder.RegisterType<DownloadService>().As<IDownloadService>().InstancePerLifetimeScope();
             //picture service
-            var useAzureBlobStorage = !String.IsNullOrEmpty(config.AzureBlobStorageConnectionString);
+            var useAzureBlobStorage = !string.IsNullOrEmpty(config.AzureBlobStorageConnectionString);
             if (useAzureBlobStorage)
             {
                 //Windows Azure BLOB

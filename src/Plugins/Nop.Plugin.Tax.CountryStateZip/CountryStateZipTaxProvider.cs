@@ -115,12 +115,12 @@ namespace Nop.Plugin.Tax.CountryStateZip
             //filter by zip
             var matchedByZip = new List<TaxRateForCaching>();
             foreach (var taxRate in matchedByStateProvince)
-                if ((String.IsNullOrEmpty(zip) && String.IsNullOrEmpty(taxRate.Zip)) ||
+                if ((string.IsNullOrEmpty(zip) && string.IsNullOrEmpty(taxRate.Zip)) ||
                     (zip.Equals(taxRate.Zip, StringComparison.InvariantCultureIgnoreCase)))
                     matchedByZip.Add(taxRate);
             if (!matchedByZip.Any())
                 foreach (var taxRate in matchedByStateProvince)
-                    if (String.IsNullOrWhiteSpace(taxRate.Zip))
+                    if (string.IsNullOrWhiteSpace(taxRate.Zip))
                         matchedByZip.Add(taxRate);
 
             if (matchedByZip.Any())

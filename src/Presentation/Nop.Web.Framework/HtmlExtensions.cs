@@ -112,7 +112,7 @@ namespace Nop.Web.Framework
         public static MvcHtmlString DeleteConfirmation<T>(this HtmlHelper<T> helper, string actionName,
             string buttonsSelector) where T : BaseNopEntityModel
         {
-            if (String.IsNullOrEmpty(actionName))
+            if (string.IsNullOrEmpty(actionName))
                 actionName = "Delete";
 
             var modalId = MvcHtmlString.Create(helper.ViewData.ModelMetadata.ModelType.Name.ToLower() + "-delete-confirmation")
@@ -217,7 +217,7 @@ namespace Nop.Web.Framework
             string parentContainer = null,
             params string[] datainputIds)
         {
-            if (String.IsNullOrEmpty(parentContainer) && datainputIds == null)
+            if (string.IsNullOrEmpty(parentContainer) && datainputIds == null)
                 throw new ArgumentException("Specify at least one selector");
 
             var result = new StringBuilder();
@@ -226,13 +226,13 @@ namespace Nop.Web.Framework
                 //render only when a certain store is chosen
                 const string cssClass = "multi-store-override-option";
                 string dataInputSelector = "";
-                if (!String.IsNullOrEmpty(parentContainer))
+                if (!string.IsNullOrEmpty(parentContainer))
                 {
                     dataInputSelector = "#" + parentContainer + " input, #" + parentContainer + " textarea, #" + parentContainer + " select";
                 }
                 if (datainputIds != null && datainputIds.Length > 0)
                 {
-                    dataInputSelector = "#" + String.Join(", #", datainputIds);
+                    dataInputSelector = "#" + string.Join(", #", datainputIds);
                 }
                 var onClick = string.Format("checkOverriddenStoreValue(this, '{0}')", dataInputSelector);
                 result.Append(helper.CheckBoxFor(expression, new Dictionary<string, object>
@@ -316,9 +316,9 @@ namespace Nop.Web.Framework
             {
                 liClassValue = "active";
             }
-            if (!String.IsNullOrEmpty(customCssClass))
+            if (!string.IsNullOrEmpty(customCssClass))
             {
-                if (!String.IsNullOrEmpty(liClassValue))
+                if (!string.IsNullOrEmpty(liClassValue))
                     liClassValue += " ";
                 liClassValue += customCssClass;
             }
@@ -388,7 +388,7 @@ namespace Nop.Web.Framework
                     var langId = EngineContext.Current.Resolve<IWorkContext>().WorkingLanguage.Id;
                     hintResource = EngineContext.Current.Resolve<ILocalizationService>()
                         .GetResource(resourceDisplayName.ResourceKey + ".Hint",  langId, returnEmptyIfNotFound: true, logIfNotFound: false);
-                    if (!String.IsNullOrEmpty(hintResource))
+                    if (!string.IsNullOrEmpty(hintResource))
                     {
                         result.Append(helper.Hint(hintResource).ToHtmlString());
                     }
@@ -505,7 +505,7 @@ namespace Nop.Web.Framework
             builder.AddCssClass("required");
             var innerText = "*";
             //add additional text if specified
-            if (!String.IsNullOrEmpty(additionalText))
+            if (!string.IsNullOrEmpty(additionalText))
                 innerText += " " + additionalText;
             builder.SetInnerText(innerText);
             // Render tag
@@ -659,9 +659,9 @@ namespace Nop.Web.Framework
             }
             var tag = new TagBuilder("label");
             tag.Attributes.Add("for", TagBuilder.CreateSanitizedId(html.ViewContext.ViewData.TemplateInfo.GetFullHtmlFieldId(htmlFieldName)));
-            if (!String.IsNullOrEmpty(suffix))
+            if (!string.IsNullOrEmpty(suffix))
             {
-                resolvedLabelText = String.Concat(resolvedLabelText, suffix);
+                resolvedLabelText = string.Concat(resolvedLabelText, suffix);
             }
             tag.SetInnerText(resolvedLabelText);
 

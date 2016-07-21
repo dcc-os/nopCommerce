@@ -20,7 +20,7 @@ namespace Nop.Core.Data
         protected virtual DataSettings ParseSettings(string text)
         {
             var shellSettings = new DataSettings();
-            if (String.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text))
                 return shellSettings;
 
             //Old way of file reading. This leads to unexpected behavior when a user's FTP program transfers these files as ASCII (\r\n becomes \n).
@@ -84,7 +84,7 @@ namespace Nop.Core.Data
         /// <returns></returns>
         public virtual DataSettings LoadSettings(string filePath = null)
         {
-            if (String.IsNullOrEmpty(filePath))
+            if (string.IsNullOrEmpty(filePath))
             {
                 filePath = Path.Combine(CommonHelper.MapPath("~/App_Data/"), filename);
             }

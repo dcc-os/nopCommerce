@@ -208,7 +208,7 @@ namespace Nop.Plugin.DiscountRules.HasOneProduct.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageProducts))
                 return Json(new { Text = result });
 
-            if (!String.IsNullOrWhiteSpace(productIds))
+            if (!string.IsNullOrWhiteSpace(productIds))
             {
                 var ids = new List<int>();
                 var rangeArray = productIds

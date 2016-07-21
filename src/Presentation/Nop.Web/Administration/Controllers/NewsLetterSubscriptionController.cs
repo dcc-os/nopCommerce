@@ -183,7 +183,7 @@ namespace Nop.Admin.Controllers
 
 		    string result = _exportManager.ExportNewsletterSubscribersToTxt(subscriptions);
 
-            string fileName = String.Format("newsletter_emails_{0}_{1}.txt", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"), CommonHelper.GenerateRandomDigitCode(4));
+            string fileName = string.Format("newsletter_emails_{0}_{1}.txt", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"), CommonHelper.GenerateRandomDigitCode(4));
 			return File(Encoding.UTF8.GetBytes(result), MimeTypes.TextCsv, fileName);
 		}
 
@@ -199,7 +199,7 @@ namespace Nop.Admin.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     int count = _importManager.ImportNewsletterSubscribersFromTxt(file.InputStream);
-                    SuccessNotification(String.Format(_localizationService.GetResource("Admin.Promotions.NewsLetterSubscriptions.ImportEmailsSuccess"), count));
+                    SuccessNotification(string.Format(_localizationService.GetResource("Admin.Promotions.NewsLetterSubscriptions.ImportEmailsSuccess"), count));
                     return RedirectToAction("List");
                 }
                 ErrorNotification(_localizationService.GetResource("Admin.Common.UploadFile"));

@@ -52,7 +52,7 @@ namespace Nop.Services.Helpers
 
         private string ToRegexp(string str)
         {
-            str = String.Format("^{0}$", Regex.Escape(str));
+            str = string.Format("^{0}$", Regex.Escape(str));
             return str.Replace("\\?", ".").Replace("\\*", ".*?");
         }
 

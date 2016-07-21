@@ -199,7 +199,7 @@ namespace Nop.Web.Controllers
                 {
                     var id = key.Replace("biss", "").Trim();
                     int subscriptionId;
-                    if (Int32.TryParse(id, out subscriptionId))
+                    if (int.TryParse(id, out subscriptionId))
                     {
                         var subscription = _backInStockSubscriptionService.GetSubscriptionById(subscriptionId);
                         if (subscription != null && subscription.CustomerId == _workContext.CurrentCustomer.Id)

@@ -152,7 +152,7 @@ namespace Nop.Web
             SetWorkingCulture();
         }
 
-        protected void Application_Error(Object sender, EventArgs e)
+        protected void Application_Error(object sender, EventArgs e)
         {
             var exception = Server.GetLastError();
 

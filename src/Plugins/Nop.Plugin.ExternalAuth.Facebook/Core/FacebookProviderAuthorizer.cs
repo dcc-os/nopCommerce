@@ -123,7 +123,7 @@ namespace Nop.Plugin.ExternalAuth.Facebook.Core
             if (authenticationResult.ExtraData.ContainsKey("name"))
             {
                 var name = authenticationResult.ExtraData["name"];
-                if (!String.IsNullOrEmpty(name))
+                if (!string.IsNullOrEmpty(name))
                 {
                     var nameSplit = name.Split(new [] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                     if (nameSplit.Length >= 2)

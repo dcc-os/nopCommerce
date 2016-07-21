@@ -261,7 +261,7 @@ namespace Nop.Web.MVC.Tests.Public.Infrastructure
                         break;
                 }
 
-                if (isNullable && (string)actualValue == String.Empty && expectedValue == null)
+                if (isNullable && (string)actualValue == string.Empty && expectedValue == null)
                 {
                     // The parameter is nullable so an expected value of '' is equivalent to null;
                     continue;
@@ -292,7 +292,7 @@ namespace Nop.Web.MVC.Tests.Public.Infrastructure
                 {
                     errorMsgFmt += "; no value found in the route context action parameter named '{0}' - does your matching route contain a token called '{0}'?";
                 }
-                actualValue.ShouldEqual(expectedValue, String.Format(errorMsgFmt, controllerParameterName, expectedValue, actualValue));
+                actualValue.ShouldEqual(expectedValue, string.Format(errorMsgFmt, controllerParameterName, expectedValue, actualValue));
             }
 
             return routeData;

@@ -94,7 +94,7 @@ namespace Nop.Web.Controllers
                 builder.InitialCatalog = "master";
                 var masterCatalogConnectionString = builder.ToString();
                 string query = string.Format("CREATE DATABASE [{0}]", databaseName);
-                if (!String.IsNullOrWhiteSpace(collation))
+                if (!string.IsNullOrWhiteSpace(collation))
                     query = string.Format("{0} COLLATE {1}", query, collation);
                 using (var conn = new SqlConnection(masterCatalogConnectionString))
                 {
@@ -331,7 +331,7 @@ namespace Nop.Web.Controllers
                                 //create database
                                 var collation = model.UseCustomCollation ? model.Collation : "";
                                 var errorCreatingDatabase = CreateDatabase(connectionString, collation);
-                                if (!String.IsNullOrEmpty(errorCreatingDatabase))
+                                if (!string.IsNullOrEmpty(errorCreatingDatabase))
                                     throw new Exception(errorCreatingDatabase);
                             }
                         }
@@ -386,7 +386,7 @@ namespace Nop.Web.Controllers
                         .OrderBy(x => x.PluginDescriptor.Group)
                         .ThenBy(x => x.PluginDescriptor.DisplayOrder)
                         .ToList();
-                    var pluginsIgnoredDuringInstallation = String.IsNullOrEmpty(_config.PluginsIgnoredDuringInstallation) ?
+                    var pluginsIgnoredDuringInstallation = string.IsNullOrEmpty(_config.PluginsIgnoredDuringInstallation) ?
                         new List<string>() :
                         _config.PluginsIgnoredDuringInstallation
                         .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)

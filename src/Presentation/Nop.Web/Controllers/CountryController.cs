@@ -47,7 +47,7 @@ namespace Nop.Web.Controllers
         public ActionResult GetStatesByCountryId(string countryId, bool addSelectStateItem)
         {
             //this action method gets called via an ajax request
-            if (String.IsNullOrEmpty(countryId))
+            if (string.IsNullOrEmpty(countryId))
                 throw new ArgumentNullException("countryId");
 
             string cacheKey = string.Format(ModelCacheEventConsumer.STATEPROVINCES_BY_COUNTRY_MODEL_KEY, countryId, addSelectStateItem, _workContext.WorkingLanguage.Id);

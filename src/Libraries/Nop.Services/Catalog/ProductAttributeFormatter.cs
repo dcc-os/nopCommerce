@@ -202,7 +202,7 @@ namespace Nop.Services.Catalog
                             }
                         }
 
-                        if (!String.IsNullOrEmpty(formattedAttribute))
+                        if (!string.IsNullOrEmpty(formattedAttribute))
                         {
                             if (i != 0 || j != 0)
                                 result.Append(serapator);
@@ -241,7 +241,7 @@ namespace Nop.Services.Catalog
                         giftCardFor = HttpUtility.HtmlEncode(giftCardFor);
                     }
 
-                    if (!String.IsNullOrEmpty(result.ToString()))
+                    if (!string.IsNullOrEmpty(result.ToString()))
                     {
                         result.Append(serapator);
                     }

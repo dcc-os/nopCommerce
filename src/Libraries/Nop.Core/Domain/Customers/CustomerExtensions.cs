@@ -21,7 +21,7 @@ namespace Nop.Core.Domain.Customers
             if (customer == null)
                 throw new ArgumentNullException("customer");
 
-            if (String.IsNullOrEmpty(customerRoleSystemName))
+            if (string.IsNullOrEmpty(customerRoleSystemName))
                 throw new ArgumentNullException("customerRoleSystemName");
 
             var result = customer.CustomerRoles
@@ -39,7 +39,7 @@ namespace Nop.Core.Domain.Customers
             if (customer == null)
                 throw new ArgumentNullException("customer");
 
-            if (!customer.IsSystemAccount || String.IsNullOrEmpty(customer.SystemName))
+            if (!customer.IsSystemAccount || string.IsNullOrEmpty(customer.SystemName))
                 return false;
 
             var result = customer.SystemName.Equals(SystemCustomerNames.SearchEngine, StringComparison.InvariantCultureIgnoreCase);
@@ -56,7 +56,7 @@ namespace Nop.Core.Domain.Customers
             if (customer == null)
                 throw new ArgumentNullException("customer");
 
-            if (!customer.IsSystemAccount || String.IsNullOrEmpty(customer.SystemName))
+            if (!customer.IsSystemAccount || string.IsNullOrEmpty(customer.SystemName))
                 return false;
 
             var result = customer.SystemName.Equals(SystemCustomerNames.BackgroundTask, StringComparison.InvariantCultureIgnoreCase);

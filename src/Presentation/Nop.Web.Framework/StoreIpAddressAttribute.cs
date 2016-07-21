@@ -22,14 +22,14 @@ namespace Nop.Web.Framework
                 return;
 
             //only GET requests
-            if (!String.Equals(filterContext.HttpContext.Request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(filterContext.HttpContext.Request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
                 return;
 
             var webHelper = EngineContext.Current.Resolve<IWebHelper>();
 
             //update IP address
             string currentIpAddress = webHelper.GetCurrentIpAddress();
-            if (!String.IsNullOrEmpty(currentIpAddress))
+            if (!string.IsNullOrEmpty(currentIpAddress))
             {
                 var workContext = EngineContext.Current.Resolve<IWorkContext>();
                 var customer = workContext.CurrentCustomer;

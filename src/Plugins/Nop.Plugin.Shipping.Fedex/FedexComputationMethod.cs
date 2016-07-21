@@ -589,7 +589,7 @@ namespace Nop.Plugin.Shipping.Fedex
                 string serviceName = FedexServices.GetServiceName(rateDetail.ServiceType.ToString());
 
                 // Skip the current service if services are selected and this service hasn't been selected
-                if (!String.IsNullOrEmpty(_fedexSettings.CarrierServicesOffered) && !_fedexSettings.CarrierServicesOffered.Contains(rateDetail.ServiceType.ToString()))
+                if (!string.IsNullOrEmpty(_fedexSettings.CarrierServicesOffered) && !_fedexSettings.CarrierServicesOffered.Contains(rateDetail.ServiceType.ToString()))
                 {
                     continue;
                 }
@@ -638,7 +638,7 @@ namespace Nop.Plugin.Shipping.Fedex
             return result;
         }
 
-        private Decimal ConvertChargeToPrimaryCurrency(Money charge, Currency requestedShipmentCurrency)
+        private decimal ConvertChargeToPrimaryCurrency(Money charge, Currency requestedShipmentCurrency)
         {
             decimal amount;
             var primaryStoreCurrency = _currencyService.GetCurrencyById(_currencySettings.PrimaryStoreCurrencyId);
@@ -806,7 +806,7 @@ namespace Nop.Plugin.Shipping.Fedex
                     {
                         if (reply.Notifications != null &&
                             reply.Notifications.Length > 0 &&
-                            !String.IsNullOrEmpty(reply.Notifications[0].Message))
+                            !string.IsNullOrEmpty(reply.Notifications[0].Message))
                         {
                             response.AddError(string.Format("{0} (code: {1})", reply.Notifications[0].Message, reply.Notifications[0].Code));
                             return response;

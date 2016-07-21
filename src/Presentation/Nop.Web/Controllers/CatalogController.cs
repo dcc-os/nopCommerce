@@ -276,7 +276,7 @@ namespace Nop.Web.Controllers
                         pagingFilteringModel.PageSizeOptions.Add(new SelectListItem
                         {
                             Text = pageSize,
-                            Value = String.Format(sortUrl, pageSize),
+                            Value = string.Format(sortUrl, pageSize),
                             Selected = pageSize.Equals(command.PageSize.ToString(), StringComparison.InvariantCultureIgnoreCase)
                         });
                     }
@@ -1412,7 +1412,7 @@ namespace Nop.Web.Controllers
                     model.NoResults = !model.Products.Any();
 
                     //search term statistics
-                    if (!String.IsNullOrEmpty(searchTerms))
+                    if (!string.IsNullOrEmpty(searchTerms))
                     {
                         var searchTerm = _searchTermService.GetSearchTermByKeyword(searchTerms, _storeContext.CurrentStore.Id);
                         if (searchTerm != null)
@@ -1463,7 +1463,7 @@ namespace Nop.Web.Controllers
 
         public ActionResult SearchTermAutoComplete(string term)
         {
-            if (String.IsNullOrWhiteSpace(term) || term.Length < _catalogSettings.ProductSearchTermMinimumLength)
+            if (string.IsNullOrWhiteSpace(term) || term.Length < _catalogSettings.ProductSearchTermMinimumLength)
                 return Content("");
 
             //products

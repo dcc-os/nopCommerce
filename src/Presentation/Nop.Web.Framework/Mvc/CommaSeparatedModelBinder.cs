@@ -39,7 +39,7 @@ namespace Nop.Web.Framework.Mvc
 
                         foreach (var splitValue in actualValue.AttemptedValue.Split(new[] { ',' }))
                         {
-                            if (!String.IsNullOrWhiteSpace(splitValue))
+                            if (!string.IsNullOrWhiteSpace(splitValue))
                                 list.Add(Convert.ChangeType(splitValue, valueType));
                         }
 

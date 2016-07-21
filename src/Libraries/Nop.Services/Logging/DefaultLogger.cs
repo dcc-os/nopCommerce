@@ -62,7 +62,7 @@ namespace Nop.Services.Logging
             if (!_commonSettings.IgnoreLogWordlist.Any())
                 return false;
 
-            if (String.IsNullOrWhiteSpace(message))
+            if (string.IsNullOrWhiteSpace(message))
                 return false;
 
             return _commonSettings
@@ -127,7 +127,7 @@ namespace Nop.Services.Logging
 
                 //do all databases support "Truncate command"?
                 string logTableName = _dbContext.GetTableName<Log>();
-                _dbContext.ExecuteSqlCommand(String.Format("TRUNCATE TABLE [{0}]", logTableName));
+                _dbContext.ExecuteSqlCommand(string.Format("TRUNCATE TABLE [{0}]", logTableName));
             }
             else
             {
@@ -161,7 +161,7 @@ namespace Nop.Services.Logging
                 var logLevelId = (int)logLevel.Value;
                 query = query.Where(l => logLevelId == l.LogLevelId);
             }
-             if (!String.IsNullOrEmpty(message))
+             if (!string.IsNullOrEmpty(message))
                 query = query.Where(l => l.ShortMessage.Contains(message) || l.FullMessage.Contains(message));
             query = query.OrderByDescending(l => l.CreatedOnUtc);
 

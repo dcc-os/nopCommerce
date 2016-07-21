@@ -52,7 +52,7 @@ namespace Nop.Web.Framework.Controllers
                                     //validate "value"
                                     //do not iterate because "Invalid request" exception can be thrown
                                     string value = controllerContext.HttpContext.Request.Form[buttonName];
-                                    if (!String.IsNullOrEmpty(value))
+                                    if (!string.IsNullOrEmpty(value))
                                         return true;
                                 }
                             }
@@ -72,7 +72,7 @@ namespace Nop.Web.Framework.Controllers
                                         if (formValue.StartsWith(buttonName, StringComparison.InvariantCultureIgnoreCase))
                                         { 
                                             var value = controllerContext.HttpContext.Request.Form[formValue];
-                                            if (!String.IsNullOrEmpty(value))
+                                            if (!string.IsNullOrEmpty(value))
                                                 return true;
                                         }
                                 }

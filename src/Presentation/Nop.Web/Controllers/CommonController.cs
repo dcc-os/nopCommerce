@@ -220,7 +220,7 @@ namespace Nop.Web.Controllers
                 {
                     logo = _pictureService.GetPictureUrl(logoPictureId, showDefaultPicture: false);
                 }
-                if (String.IsNullOrEmpty(logo))
+                if (string.IsNullOrEmpty(logo))
                 {
                     //use default logo
                     logo = string.Format("{0}Themes/{1}/Content/images/logo.png", _webHelper.GetStoreLocation(), _themeContext.WorkingThemeName);
@@ -274,7 +274,7 @@ namespace Nop.Web.Controllers
             }
 
             //home page
-            if (String.IsNullOrEmpty(returnUrl))
+            if (string.IsNullOrEmpty(returnUrl))
                 returnUrl = Url.RouteUrl("HomePage");
 
             //prevent open redirection attack
@@ -344,7 +344,7 @@ namespace Nop.Web.Controllers
                 _workContext.WorkingCurrency = currency;
 
             //home page
-            if (String.IsNullOrEmpty(returnUrl))
+            if (string.IsNullOrEmpty(returnUrl))
                 returnUrl = Url.RouteUrl("HomePage");
 
             //prevent open redirection attack
@@ -376,7 +376,7 @@ namespace Nop.Web.Controllers
             _workContext.TaxDisplayType = taxDisplayType;
 
             //home page
-            if (String.IsNullOrEmpty(returnUrl))
+            if (string.IsNullOrEmpty(returnUrl))
                 returnUrl = Url.RouteUrl("HomePage");
 
             //prevent open redirection attack
@@ -827,7 +827,7 @@ namespace Nop.Web.Controllers
             _themeContext.WorkingThemeName = themeName;
 
             //home page
-            if (String.IsNullOrEmpty(returnUrl))
+            if (string.IsNullOrEmpty(returnUrl))
                 returnUrl = Url.RouteUrl("HomePage");
 
             //prevent open redirection attack

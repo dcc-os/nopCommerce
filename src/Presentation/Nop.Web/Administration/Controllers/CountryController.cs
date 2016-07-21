@@ -487,7 +487,7 @@ namespace Nop.Admin.Controllers
 
 
             // This action method gets called via an ajax request
-            if (String.IsNullOrEmpty(countryId))
+            if (string.IsNullOrEmpty(countryId))
                 throw new ArgumentNullException("countryId");
 
             var country = _countryService.GetCountryById(Convert.ToInt32(countryId));
@@ -543,7 +543,7 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageCountries))
                 return AccessDeniedView();
 
-            string fileName = String.Format("states_{0}_{1}.txt", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"), CommonHelper.GenerateRandomDigitCode(4));
+            string fileName = string.Format("states_{0}_{1}.txt", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"), CommonHelper.GenerateRandomDigitCode(4));
 
             var states = _stateProvinceService.GetStateProvinces(true);
             string result = _exportManager.ExportStatesToTxt(states);
@@ -563,7 +563,7 @@ namespace Nop.Admin.Controllers
                 if (file != null && file.ContentLength > 0)
                 {
                     int count = _importManager.ImportStatesFromTxt(file.InputStream);
-                    SuccessNotification(String.Format(_localizationService.GetResource("Admin.Configuration.Countries.ImportSuccess"), count));
+                    SuccessNotification(string.Format(_localizationService.GetResource("Admin.Configuration.Countries.ImportSuccess"), count));
                     return RedirectToAction("List");
                 }
                 ErrorNotification(_localizationService.GetResource("Admin.Common.UploadFile"));

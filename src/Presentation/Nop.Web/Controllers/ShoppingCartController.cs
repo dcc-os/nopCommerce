@@ -292,7 +292,7 @@ namespace Nop.Web.Controllers
                     AttributeControlType = attribute.AttributeControlType,
                     DefaultValue = attribute.DefaultValue
                 };
-                if (!String.IsNullOrEmpty(attribute.ValidationFileAllowedExtensions))
+                if (!string.IsNullOrEmpty(attribute.ValidationFileAllowedExtensions))
                 {
                     attributeModel.AllowedFileExtensions = attribute.ValidationFileAllowedExtensions
                         .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
@@ -339,7 +339,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.ColorSquares:
                     case AttributeControlType.ImageSquares:
                         {
-                            if (!String.IsNullOrEmpty(selectedCheckoutAttributes))
+                            if (!string.IsNullOrEmpty(selectedCheckoutAttributes))
                             {
                                 //clear default selection
                                 foreach (var item in attributeModel.Values)
@@ -363,7 +363,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.TextBox:
                     case AttributeControlType.MultilineTextbox:
                         {
-                            if (!String.IsNullOrEmpty(selectedCheckoutAttributes))
+                            if (!string.IsNullOrEmpty(selectedCheckoutAttributes))
                             {
                                 var enteredText = _checkoutAttributeParser.ParseValues(selectedCheckoutAttributes, attribute.Id);
                                 if (enteredText.Any())
@@ -392,7 +392,7 @@ namespace Nop.Web.Controllers
                         break;
                     case AttributeControlType.FileUpload:
                         {
-                            if (!String.IsNullOrEmpty(selectedCheckoutAttributes))
+                            if (!string.IsNullOrEmpty(selectedCheckoutAttributes))
                             {
                                 var downloadGuidStr = _checkoutAttributeParser.ParseValues(selectedCheckoutAttributes, attribute.Id).FirstOrDefault();
                                 Guid downloadGuid;
@@ -472,7 +472,7 @@ namespace Nop.Web.Controllers
                 //4. visible individually?
                 cartItemModel.AllowItemEditing = _shoppingCartSettings.AllowCartItemEditing && 
                     sci.Product.ProductType == ProductType.SimpleProduct &&
-                    (!String.IsNullOrEmpty(cartItemModel.AttributeInfo) || sci.Product.IsGiftCard) &&
+                    (!string.IsNullOrEmpty(cartItemModel.AttributeInfo) || sci.Product.IsGiftCard) &&
                     sci.Product.VisibleIndividually;
 
                 //allowed quantities
@@ -712,7 +712,7 @@ namespace Nop.Web.Controllers
                 //4. visible individually?
                 cartItemModel.AllowItemEditing = _shoppingCartSettings.AllowCartItemEditing &&
                     sci.Product.ProductType == ProductType.SimpleProduct &&
-                    (!String.IsNullOrEmpty(cartItemModel.AttributeInfo) || sci.Product.IsGiftCard) &&
+                    (!string.IsNullOrEmpty(cartItemModel.AttributeInfo) || sci.Product.IsGiftCard) &&
                     sci.Product.VisibleIndividually;
 
                 //allowed quantities
@@ -938,7 +938,7 @@ namespace Nop.Web.Controllers
                     decimal orderSubTotalDiscountAmount = _currencyService.ConvertFromPrimaryStoreCurrency(orderSubTotalDiscountAmountBase, _workContext.WorkingCurrency);
                     model.SubTotalDiscount = _priceFormatter.FormatPrice(-orderSubTotalDiscountAmount, true, _workContext.WorkingCurrency, _workContext.WorkingLanguage, subTotalIncludingTax);
                     model.AllowRemovingSubTotalDiscount = model.IsEditable && 
-                        orderSubTotalAppliedDiscounts.Any(d => d.RequiresCouponCode && !String.IsNullOrEmpty(d.CouponCode));
+                        orderSubTotalAppliedDiscounts.Any(d => d.RequiresCouponCode && !string.IsNullOrEmpty(d.CouponCode));
                 }
 
 
@@ -1029,7 +1029,7 @@ namespace Nop.Web.Controllers
                     decimal orderTotalDiscountAmount = _currencyService.ConvertFromPrimaryStoreCurrency(orderTotalDiscountAmountBase, _workContext.WorkingCurrency);
                     model.OrderTotalDiscount = _priceFormatter.FormatPrice(-orderTotalDiscountAmount, true, false);
                     model.AllowRemovingOrderTotalDiscount = model.IsEditable &&
-                        orderTotalAppliedDiscounts.Any(d => d.RequiresCouponCode && !String.IsNullOrEmpty(d.CouponCode));
+                        orderTotalAppliedDiscounts.Any(d => d.RequiresCouponCode && !string.IsNullOrEmpty(d.CouponCode));
                 }
 
                 //gift cards
@@ -1097,7 +1097,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.ImageSquares:
                         {
                             var ctrlAttributes = form[controlId];
-                            if (!String.IsNullOrEmpty(ctrlAttributes))
+                            if (!string.IsNullOrEmpty(ctrlAttributes))
                             {
                                 int selectedAttributeId = int.Parse(ctrlAttributes);
                                 if (selectedAttributeId > 0)
@@ -1109,7 +1109,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.Checkboxes:
                         {
                             var cblAttributes = form[controlId];
-                            if (!String.IsNullOrEmpty(cblAttributes))
+                            if (!string.IsNullOrEmpty(cblAttributes))
                             {
                                 foreach (var item in cblAttributes.Split(new [] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                                 {
@@ -1139,7 +1139,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.MultilineTextbox:
                         {
                             var ctrlAttributes = form[controlId];
-                            if (!String.IsNullOrEmpty(ctrlAttributes))
+                            if (!string.IsNullOrEmpty(ctrlAttributes))
                             {
                                 string enteredText = ctrlAttributes.Trim();
                                 attributesXml = _checkoutAttributeParser.AddCheckoutAttribute(attributesXml,
@@ -1155,7 +1155,7 @@ namespace Nop.Web.Controllers
                             DateTime? selectedDate = null;
                             try
                             {
-                                selectedDate = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(date));
+                                selectedDate = new DateTime(int.Parse(year), int.Parse(month), int.Parse(date));
                             }
                             catch { }
                             if (selectedDate.HasValue)
@@ -1219,7 +1219,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.ImageSquares:
                         {
                             var ctrlAttributes = form[controlId];
-                            if (!String.IsNullOrEmpty(ctrlAttributes))
+                            if (!string.IsNullOrEmpty(ctrlAttributes))
                             {
                                 int selectedAttributeId = int.Parse(ctrlAttributes);
                                 if (selectedAttributeId > 0)
@@ -1231,7 +1231,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.Checkboxes:
                         {
                             var ctrlAttributes = form[controlId];
-                            if (!String.IsNullOrEmpty(ctrlAttributes))
+                            if (!string.IsNullOrEmpty(ctrlAttributes))
                             {
                                 foreach (var item in ctrlAttributes.Split(new [] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                                 {
@@ -1261,7 +1261,7 @@ namespace Nop.Web.Controllers
                     case AttributeControlType.MultilineTextbox:
                         {
                             var ctrlAttributes = form[controlId];
-                            if (!String.IsNullOrEmpty(ctrlAttributes))
+                            if (!string.IsNullOrEmpty(ctrlAttributes))
                             {
                                 string enteredText = ctrlAttributes.Trim();
                                 attributesXml = _productAttributeParser.AddProductAttribute(attributesXml,
@@ -1277,7 +1277,7 @@ namespace Nop.Web.Controllers
                             DateTime? selectedDate = null;
                             try
                             {
-                                selectedDate = new DateTime(Int32.Parse(year), Int32.Parse(month), Int32.Parse(day));
+                                selectedDate = new DateTime(int.Parse(year), int.Parse(month), int.Parse(day));
                             }
                             catch { }
                             if (selectedDate.HasValue)
@@ -1978,7 +1978,7 @@ namespace Nop.Web.Controllers
             Stream stream = null;
             var fileName = "";
             var contentType = "";
-            if (String.IsNullOrEmpty(Request["qqfile"]))
+            if (string.IsNullOrEmpty(Request["qqfile"]))
             {
                 // IE
                 HttpPostedFileBase httpPostedFile = Request.Files[0];
@@ -1999,7 +1999,7 @@ namespace Nop.Web.Controllers
             stream.Read(fileBinary, 0, fileBinary.Length);
 
             var fileExtension = Path.GetExtension(fileName);
-            if (!String.IsNullOrEmpty(fileExtension))
+            if (!string.IsNullOrEmpty(fileExtension))
                 fileExtension = fileExtension.ToLowerInvariant();
 
             if (attribute.ValidationFileMaximumSize.HasValue)
@@ -2062,7 +2062,7 @@ namespace Nop.Web.Controllers
             Stream stream = null;
             var fileName = "";
             var contentType = "";
-            if (String.IsNullOrEmpty(Request["qqfile"]))
+            if (string.IsNullOrEmpty(Request["qqfile"]))
             {
                 // IE
                 HttpPostedFileBase httpPostedFile = Request.Files[0];
@@ -2083,7 +2083,7 @@ namespace Nop.Web.Controllers
             stream.Read(fileBinary, 0, fileBinary.Length);
 
             var fileExtension = Path.GetExtension(fileName);
-            if (!String.IsNullOrEmpty(fileExtension))
+            if (!string.IsNullOrEmpty(fileExtension))
                 fileExtension = fileExtension.ToLowerInvariant();
 
             if (attribute.ValidationFileMaximumSize.HasValue)
@@ -2232,7 +2232,7 @@ namespace Nop.Web.Controllers
         public ActionResult ContinueShopping()
         {
             var returnUrl = _workContext.CurrentCustomer.GetAttribute<string>(SystemCustomerAttributeNames.LastContinueShoppingPage, _storeContext.CurrentStore.Id);
-            if (!String.IsNullOrEmpty(returnUrl))
+            if (!string.IsNullOrEmpty(returnUrl))
             {
                 return Redirect(returnUrl);
             }
@@ -2301,7 +2301,7 @@ namespace Nop.Web.Controllers
             ParseAndSaveCheckoutAttributes(cart, form);
             
             var model = new ShoppingCartModel();
-            if (!String.IsNullOrWhiteSpace(discountcouponcode))
+            if (!string.IsNullOrWhiteSpace(discountcouponcode))
             {
                 //we find even hidden records here. this way we can display a user-friendly message if it's expired
                 var discount = _discountService.GetDiscountByCouponCode(discountcouponcode, true);
@@ -2317,7 +2317,7 @@ namespace Nop.Web.Controllers
                     }
                     else
                     {
-                        if (!String.IsNullOrEmpty(validationResult.UserError))
+                        if (!string.IsNullOrEmpty(validationResult.UserError))
                         {
                             //some user error
                             model.DiscountBox.Message = validationResult.UserError;
@@ -2370,7 +2370,7 @@ namespace Nop.Web.Controllers
             var model = new ShoppingCartModel();
             if (!cart.IsRecurring())
             {
-                if (!String.IsNullOrWhiteSpace(giftcardcouponcode))
+                if (!string.IsNullOrWhiteSpace(giftcardcouponcode))
                 {
                     var giftCard = _giftCardService.GetAllGiftCards(giftCardCouponCode: giftcardcouponcode).FirstOrDefault();
                     bool isGiftCardValid = giftCard != null && giftCard.IsGiftCardValid();

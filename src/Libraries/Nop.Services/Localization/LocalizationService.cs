@@ -297,12 +297,12 @@ namespace Nop.Services.Localization
                 if (lsr != null) 
                     result = lsr;
             }
-            if (String.IsNullOrEmpty(result))
+            if (string.IsNullOrEmpty(result))
             {
                 if (logIfNotFound)
                     _logger.Warning(string.Format("Resource string ({0}) is not found. Language ID = {1}", resourceKey, languageId));
                 
-                if (!String.IsNullOrEmpty(defaultValue))
+                if (!string.IsNullOrEmpty(defaultValue))
                 {
                     result = defaultValue;
                 }
@@ -358,7 +358,7 @@ namespace Nop.Services.Localization
             if (language == null)
                 throw new ArgumentNullException("language");
 
-            if (String.IsNullOrEmpty(xml))
+            if (string.IsNullOrEmpty(xml))
                 return;
             if (_commonSettings.UseStoredProceduresIfSupported && _dataProvider.StoredProceduredSupported)
             {
@@ -406,7 +406,7 @@ namespace Nop.Services.Localization
                     if (valueNode != null)
                         value = valueNode.InnerText;
 
-                    if (String.IsNullOrEmpty(name))
+                    if (string.IsNullOrEmpty(name))
                         continue;
 
                     //do not use "Insert"/"Update" methods because they clear cache

@@ -130,7 +130,7 @@ namespace Nop.Services.Directory
         /// <returns>Currency</returns>
         public virtual Currency GetCurrencyByCode(string currencyCode)
         {
-            if (String.IsNullOrEmpty(currencyCode))
+            if (string.IsNullOrEmpty(currencyCode))
                 return null;
             return GetAllCurrencies(true).FirstOrDefault(c => c.CurrencyCode.ToLower() == currencyCode.ToLower());
         }

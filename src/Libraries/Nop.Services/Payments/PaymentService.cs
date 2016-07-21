@@ -150,7 +150,7 @@ namespace Nop.Services.Payments
             }
 
             //We should strip out any white space or dash in the CC number entered.
-            if (!String.IsNullOrWhiteSpace(processPaymentRequest.CreditCardNumber))
+            if (!string.IsNullOrWhiteSpace(processPaymentRequest.CreditCardNumber))
             {
                 processPaymentRequest.CreditCardNumber = processPaymentRequest.CreditCardNumber.Replace(" ", "");
                 processPaymentRequest.CreditCardNumber = processPaymentRequest.CreditCardNumber.Replace("-", "");
@@ -219,7 +219,7 @@ namespace Nop.Services.Payments
         /// <returns>Additional handling fee</returns>
         public virtual decimal GetAdditionalHandlingFee(IList<ShoppingCartItem> cart, string paymentMethodSystemName)
         {
-            if (String.IsNullOrEmpty(paymentMethodSystemName))
+            if (string.IsNullOrEmpty(paymentMethodSystemName))
                 return decimal.Zero;
 
             var paymentMethod = LoadPaymentMethodBySystemName(paymentMethodSystemName);
@@ -394,7 +394,7 @@ namespace Nop.Services.Payments
         /// <returns>Masked credit card number</returns>
         public virtual string GetMaskedCreditCardNumber(string creditCardNumber)
         {
-            if (String.IsNullOrEmpty(creditCardNumber))
+            if (string.IsNullOrEmpty(creditCardNumber))
                 return string.Empty;
 
             if (creditCardNumber.Length <= 4)

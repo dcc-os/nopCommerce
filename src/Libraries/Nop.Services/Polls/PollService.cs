@@ -59,7 +59,7 @@ namespace Nop.Services.Polls
         /// <returns>Poll</returns>
         public virtual Poll GetPollBySystemKeyword(string systemKeyword, int languageId)
         {
-            if (String.IsNullOrWhiteSpace(systemKeyword))
+            if (string.IsNullOrWhiteSpace(systemKeyword))
                 return null;
 
             var query = from p in _pollRepository.Table

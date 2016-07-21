@@ -27,7 +27,7 @@ namespace Nop.Services.Orders
         protected virtual IList<int> ParseCheckoutAttributeIds(string attributesXml)
         {
             var ids = new List<int>();
-            if (String.IsNullOrEmpty(attributesXml))
+            if (string.IsNullOrEmpty(attributesXml))
                 return ids;
 
             try
@@ -92,7 +92,7 @@ namespace Nop.Services.Orders
                 var valuesStr = ParseValues(attributesXml, attribute.Id);
                 foreach (string valueStr in valuesStr)
                 {
-                    if (!String.IsNullOrEmpty(valueStr))
+                    if (!string.IsNullOrEmpty(valueStr))
                     {
                         int id;
                         if (int.TryParse(valueStr, out id))
@@ -163,7 +163,7 @@ namespace Nop.Services.Orders
             try
             {
                 var xmlDoc = new XmlDocument();
-                if (String.IsNullOrEmpty(attributesXml))
+                if (string.IsNullOrEmpty(attributesXml))
                 {
                     var element1 = xmlDoc.CreateElement("Attributes");
                     xmlDoc.AppendChild(element1);
@@ -226,7 +226,7 @@ namespace Nop.Services.Orders
         /// <returns>Updated attributes in XML format</returns>
         public virtual string EnsureOnlyActiveAttributes(string attributesXml, IList<ShoppingCartItem> cart)
         {
-            if (String.IsNullOrEmpty(attributesXml))
+            if (string.IsNullOrEmpty(attributesXml))
                 return attributesXml;
 
             var result = attributesXml;
@@ -288,7 +288,7 @@ namespace Nop.Services.Orders
                 throw new ArgumentNullException("attribute");
 
             var conditionAttributeXml = attribute.ConditionAttributeXml;
-            if (String.IsNullOrEmpty(conditionAttributeXml))
+            if (string.IsNullOrEmpty(conditionAttributeXml))
                 //no condition
                 return null;
 
@@ -302,7 +302,7 @@ namespace Nop.Services.Orders
                 //ConditionAttributeXml can contain "empty" values (nothing is selected)
                 //but in other cases (like below) we do not store empty values
                 //that's why we remove empty values here
-                .Where(x => !String.IsNullOrEmpty(x))
+                .Where(x => !string.IsNullOrEmpty(x))
                 .ToList();
             var selectedValues = ParseValues(selectedAttributesXml, dependOnAttribute.Id);
             if (valuesThatShouldBeSelected.Count != selectedValues.Count)
@@ -335,7 +335,7 @@ namespace Nop.Services.Orders
             try
             {
                 var xmlDoc = new XmlDocument();
-                if (String.IsNullOrEmpty(attributesXml))
+                if (string.IsNullOrEmpty(attributesXml))
                 {
                     var element1 = xmlDoc.CreateElement("Attributes");
                     xmlDoc.AppendChild(element1);

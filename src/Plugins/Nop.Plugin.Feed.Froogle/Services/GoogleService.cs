@@ -96,7 +96,7 @@ namespace Nop.Plugin.Feed.Froogle.Services
         public virtual IList<string> GetTaxonomyList()
         {
             var fileContent = GetEmbeddedFileContent("taxonomy.txt");
-            if (String.IsNullOrEmpty((fileContent)))
+            if (string.IsNullOrEmpty((fileContent)))
                 return new List<string>();
 
             //parse the file

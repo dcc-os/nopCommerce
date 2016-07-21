@@ -28,7 +28,7 @@ namespace Nop.Web.Framework
                 return;
 
             //only GET requests
-            if (!String.Equals(filterContext.HttpContext.Request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
+            if (!string.Equals(filterContext.HttpContext.Request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
                 return;
 
             if (!DataSettingsHelper.DatabaseIsInstalled())

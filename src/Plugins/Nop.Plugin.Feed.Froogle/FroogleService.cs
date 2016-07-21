@@ -95,7 +95,7 @@ namespace Nop.Plugin.Feed.Froogle
         /// <returns>Valid string</returns>
         private string StripInvalidChars(string input, bool isHtmlEncoded)
         {
-            if (String.IsNullOrWhiteSpace(input))
+            if (string.IsNullOrWhiteSpace(input))
                 return input;
 
             //Microsoft uses a proprietary encoding (called CP-1252) for the bullet symbol and some other special characters, 
@@ -244,9 +244,9 @@ namespace Nop.Plugin.Feed.Froogle
                         //description [description] - Description of the item
                         writer.WriteStartElement("description");
                         string description = product.GetLocalized(x => x.FullDescription, languageId);
-                        if (String.IsNullOrEmpty(description))
+                        if (string.IsNullOrEmpty(description))
                             description = product.GetLocalized(x => x.ShortDescription, languageId);
-                        if (String.IsNullOrEmpty(description))
+                        if (string.IsNullOrEmpty(description))
                             description = product.GetLocalized(x => x.Name, languageId); //description is required
                         //resolving character encoding issues in your data feed
                         description = StripInvalidChars(description, true);
@@ -262,9 +262,9 @@ namespace Nop.Plugin.Feed.Froogle
                         var googleProduct = allGoogleProducts.FirstOrDefault(x => x.ProductId == product.Id);
                         if (googleProduct != null)
                             googleProductCategory = googleProduct.Taxonomy;
-                        if (String.IsNullOrEmpty(googleProductCategory))
+                        if (string.IsNullOrEmpty(googleProductCategory))
                             googleProductCategory = _froogleSettings.DefaultGoogleCategory;
-                        if (String.IsNullOrEmpty(googleProductCategory))
+                        if (string.IsNullOrEmpty(googleProductCategory))
                             throw new NopException("Default Google category is not set");
                         writer.WriteStartElement("g", "google_product_category", googleBaseNamespace);
                         writer.WriteCData(googleProductCategory);
@@ -279,7 +279,7 @@ namespace Nop.Plugin.Feed.Froogle
                             //TODO localize categories
                             var category = defaultProductCategory.Category
                                 .GetFormattedBreadCrumb(_categoryService, separator: ">", languageId: languageId);
-                            if (!String.IsNullOrEmpty((category)))
+                            if (!string.IsNullOrEmpty((category)))
                             {
                                 writer.WriteStartElement("g", "product_type", googleBaseNamespace);
                                 writer.WriteCData(category);
@@ -379,7 +379,7 @@ namespace Nop.Plugin.Feed.Froogle
 
                         //GTIN [gtin] - GTIN
                         var gtin = product.Gtin;
-                        if (!String.IsNullOrEmpty(gtin))
+                        if (!string.IsNullOrEmpty(gtin))
                         {
                             writer.WriteStartElement("g", "gtin", googleBaseNamespace);
                             writer.WriteCData(gtin);
@@ -399,7 +399,7 @@ namespace Nop.Plugin.Feed.Froogle
 
                         //mpn [mpn] - Manufacturer Part Number (MPN) of the item
                         var mpn = product.ManufacturerPartNumber;
-                        if (!String.IsNullOrEmpty(mpn))
+                        if (!string.IsNullOrEmpty(mpn))
                         {
                             writer.WriteStartElement("g", "mpn", googleBaseNamespace);
                             writer.WriteCData(mpn);
@@ -421,7 +421,7 @@ namespace Nop.Plugin.Feed.Froogle
                         */
 
                         //gender [gender] - Gender of the item
-                        if (googleProduct != null && !String.IsNullOrEmpty(googleProduct.Gender))
+                        if (googleProduct != null && !string.IsNullOrEmpty(googleProduct.Gender))
                         {
                             writer.WriteStartElement("g", "gender", googleBaseNamespace);
                             writer.WriteCData(googleProduct.Gender);
@@ -429,7 +429,7 @@ namespace Nop.Plugin.Feed.Froogle
                         }
 
                         //age group [age_group] - Target age group of the item
-                        if (googleProduct != null && !String.IsNullOrEmpty(googleProduct.AgeGroup))
+                        if (googleProduct != null && !string.IsNullOrEmpty(googleProduct.AgeGroup))
                         {
                             writer.WriteStartElement("g", "age_group", googleBaseNamespace);
                             writer.WriteCData(googleProduct.AgeGroup);
@@ -437,7 +437,7 @@ namespace Nop.Plugin.Feed.Froogle
                         }
 
                         //color [color] - Color of the item
-                        if (googleProduct != null && !String.IsNullOrEmpty(googleProduct.Color))
+                        if (googleProduct != null && !string.IsNullOrEmpty(googleProduct.Color))
                         {
                             writer.WriteStartElement("g", "color", googleBaseNamespace);
                             writer.WriteCData(googleProduct.Color);
@@ -445,7 +445,7 @@ namespace Nop.Plugin.Feed.Froogle
                         }
 
                         //size [size] - Size of the item
-                        if (googleProduct != null && !String.IsNullOrEmpty(googleProduct.Size))
+                        if (googleProduct != null && !string.IsNullOrEmpty(googleProduct.Size))
                         {
                             writer.WriteStartElement("g", "size", googleBaseNamespace);
                             writer.WriteCData(googleProduct.Size);

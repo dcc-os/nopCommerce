@@ -350,9 +350,9 @@ namespace Nop.Web.Controllers
                 {
                     var shippingOptionToSelect = model.ShippingMethods.ToList()
                         .Find( so =>
-                            !String.IsNullOrEmpty(so.Name) &&
+                            !string.IsNullOrEmpty(so.Name) &&
                             so.Name.Equals(selectedShippingOption.Name, StringComparison.InvariantCultureIgnoreCase) &&
-                            !String.IsNullOrEmpty(so.ShippingRateComputationMethodSystemName) &&
+                            !string.IsNullOrEmpty(so.ShippingRateComputationMethodSystemName) &&
                             so.ShippingRateComputationMethodSystemName.Equals(selectedShippingOption.ShippingRateComputationMethodSystemName, StringComparison.InvariantCultureIgnoreCase));
                     if (shippingOptionToSelect != null)
                     {
@@ -435,7 +435,7 @@ namespace Nop.Web.Controllers
             var selectedPaymentMethodSystemName = _workContext.CurrentCustomer.GetAttribute<string>(
                 SystemCustomerAttributeNames.SelectedPaymentMethod,
                 _genericAttributeService, _storeContext.CurrentStore.Id);
-            if (!String.IsNullOrEmpty(selectedPaymentMethodSystemName))
+            if (!string.IsNullOrEmpty(selectedPaymentMethodSystemName))
             {
                 var paymentMethodToSelect = model.PaymentMethods.ToList()
                     .Find(pm => pm.PaymentMethodSystemName.Equals(selectedPaymentMethodSystemName, StringComparison.InvariantCultureIgnoreCase));
@@ -954,7 +954,7 @@ namespace Nop.Web.Controllers
             }
 
             //parse selected method 
-            if (String.IsNullOrEmpty(shippingoption))
+            if (string.IsNullOrEmpty(shippingoption))
                 return ShippingMethod();
             var splittedOption = shippingoption.Split(new [] { "___" }, StringSplitOptions.RemoveEmptyEntries);
             if (splittedOption.Length != 2)
@@ -981,7 +981,7 @@ namespace Nop.Web.Controllers
             }
 
             var shippingOption = shippingOptions
-                .Find(so => !String.IsNullOrEmpty(so.Name) && so.Name.Equals(selectedName, StringComparison.InvariantCultureIgnoreCase));
+                .Find(so => !string.IsNullOrEmpty(so.Name) && so.Name.Equals(selectedName, StringComparison.InvariantCultureIgnoreCase));
             if (shippingOption == null)
                 return ShippingMethod();
 
@@ -1081,7 +1081,7 @@ namespace Nop.Web.Controllers
                 return RedirectToRoute("CheckoutPaymentInfo");
             }
             //payment method 
-            if (String.IsNullOrEmpty(paymentmethod))
+            if (string.IsNullOrEmpty(paymentmethod))
                 return PaymentMethod();
 
             var paymentMethodInst = _paymentService.LoadPaymentMethodBySystemName(paymentmethod);
@@ -1792,7 +1792,7 @@ namespace Nop.Web.Controllers
 
                 //parse selected method 
                 string shippingoption = form["shippingoption"];
-                if (String.IsNullOrEmpty(shippingoption))
+                if (string.IsNullOrEmpty(shippingoption))
                     throw new Exception("Selected shipping method can't be parsed");
                 var splittedOption = shippingoption.Split(new [] { "___" }, StringSplitOptions.RemoveEmptyEntries);
                 if (splittedOption.Length != 2)
@@ -1819,7 +1819,7 @@ namespace Nop.Web.Controllers
                 }
                 
                 var shippingOption = shippingOptions
-                    .Find(so => !String.IsNullOrEmpty(so.Name) && so.Name.Equals(selectedName, StringComparison.InvariantCultureIgnoreCase));
+                    .Find(so => !string.IsNullOrEmpty(so.Name) && so.Name.Equals(selectedName, StringComparison.InvariantCultureIgnoreCase));
                 if (shippingOption == null)
                     throw new Exception("Selected shipping method can't be loaded");
 
@@ -1857,7 +1857,7 @@ namespace Nop.Web.Controllers
 
                 string paymentmethod = form["paymentmethod"];
                 //payment method 
-                if (String.IsNullOrEmpty(paymentmethod))
+                if (string.IsNullOrEmpty(paymentmethod))
                     throw new Exception("Selected payment method can't be parsed");
 
 

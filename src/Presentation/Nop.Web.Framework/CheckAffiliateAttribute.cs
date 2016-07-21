@@ -45,7 +45,7 @@ namespace Nop.Web.Framework
                 else if (request.QueryString[AFFILIATE_FRIENDLYURLNAME_QUERY_PARAMETER_NAME] != null)
                 {
                     var friendlyUrlName = request.QueryString[AFFILIATE_FRIENDLYURLNAME_QUERY_PARAMETER_NAME];
-                    if (!String.IsNullOrEmpty(friendlyUrlName))
+                    if (!string.IsNullOrEmpty(friendlyUrlName))
                     {
                         var affiliateService = EngineContext.Current.Resolve<IAffiliateService>();
                         affiliate = affiliateService.GetAffiliateByFriendlyUrlName(friendlyUrlName);

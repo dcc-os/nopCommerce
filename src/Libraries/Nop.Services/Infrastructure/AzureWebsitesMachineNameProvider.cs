@@ -18,7 +18,7 @@ namespace Nop.Services.Infrastructure
             //return Microsoft.WindowsAzure.ServiceRuntime.RoleEnvironment.CurrentRoleInstance.Id;
 
             var name = System.Environment.GetEnvironmentVariable("WEBSITE_INSTANCE_ID");
-            if (String.IsNullOrEmpty(name))
+            if (string.IsNullOrEmpty(name))
                 name = System.Environment.MachineName;
 
             //you can also use ARR affinity cookie in order to detect instance name

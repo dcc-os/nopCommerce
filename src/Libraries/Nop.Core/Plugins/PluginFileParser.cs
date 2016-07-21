@@ -18,7 +18,7 @@ namespace Nop.Core.Plugins
                 return new List<string>();
 
             var text = File.ReadAllText(filePath);
-            if (String.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text))
                 return new List<string>();
             
             //Old way of file reading. This leads to unexpected behavior when a user's FTP program transfers these files as ASCII (\r\n becomes \n).
@@ -30,7 +30,7 @@ namespace Nop.Core.Plugins
                 string str;
                 while ((str = reader.ReadLine()) != null)
                 {
-                    if (String.IsNullOrWhiteSpace(str))
+                    if (string.IsNullOrWhiteSpace(str))
                         continue;
                     lines.Add(str.Trim());
                 }
@@ -38,7 +38,7 @@ namespace Nop.Core.Plugins
             return lines;
         }
 
-        public static void SaveInstalledPluginsFile(IList<String> pluginSystemNames, string filePath)
+        public static void SaveInstalledPluginsFile(IList<string> pluginSystemNames, string filePath)
         {
             string result = "";
             foreach (var sn in pluginSystemNames)
@@ -51,7 +51,7 @@ namespace Nop.Core.Plugins
         {
             var descriptor = new PluginDescriptor();
             var text = File.ReadAllText(filePath);
-            if (String.IsNullOrEmpty(text))
+            if (string.IsNullOrEmpty(text))
                 return descriptor;
 
             var settings = new List<string>();
@@ -60,7 +60,7 @@ namespace Nop.Core.Plugins
                 string str;
                 while ((str = reader.ReadLine()) != null)
                 {
-                    if (String.IsNullOrWhiteSpace(str))
+                    if (string.IsNullOrWhiteSpace(str))
                         continue;
                     settings.Add(str.Trim());
                 }

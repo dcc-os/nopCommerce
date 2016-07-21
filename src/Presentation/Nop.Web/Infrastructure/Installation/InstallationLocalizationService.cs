@@ -39,7 +39,7 @@ namespace Nop.Web.Infrastructure.Installation
                 .Where(r => r.Name.Equals(resourceName, StringComparison.InvariantCultureIgnoreCase))
                 .Select(r => r.Value)
                 .FirstOrDefault();
-            if (String.IsNullOrEmpty(resourceValue))
+            if (string.IsNullOrEmpty(resourceValue))
                 //return name
                 return resourceName;
 
@@ -56,7 +56,7 @@ namespace Nop.Web.Infrastructure.Installation
 
             var cookieLanguageCode = "";
             var cookie = httpContext.Request.Cookies[LanguageCookieName];
-            if (cookie != null && !String.IsNullOrEmpty(cookie.Value))
+            if (cookie != null && !string.IsNullOrEmpty(cookie.Value))
                 cookieLanguageCode = cookie.Value;
 
             //ensure it's available (it could be delete since the previous installation)
@@ -71,7 +71,7 @@ namespace Nop.Web.Infrastructure.Installation
             if (httpContext.Request.UserLanguages != null)
             {
                 var userLanguage = httpContext.Request.UserLanguages.FirstOrDefault();
-                if (!String.IsNullOrEmpty(userLanguage))
+                if (!string.IsNullOrEmpty(userLanguage))
                 {
                     //right. we do "StartsWith" (not "Equals") because we have shorten codes (not full culture names)
                     language = availableLanguages

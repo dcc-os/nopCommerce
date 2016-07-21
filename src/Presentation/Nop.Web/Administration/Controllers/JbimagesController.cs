@@ -53,7 +53,7 @@ namespace Nop.Admin.Controllers
             }
 
             var fileName = Path.GetFileName(uploadFile.FileName);
-            if (String.IsNullOrEmpty(fileName))
+            if (string.IsNullOrEmpty(fileName))
             {
                 ViewData["resultCode"] = "failed";
                 ViewData["result"] = "No file name provided";

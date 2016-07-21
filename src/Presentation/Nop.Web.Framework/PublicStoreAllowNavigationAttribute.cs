@@ -35,11 +35,11 @@ namespace Nop.Web.Framework
                 return;
 
             string actionName = filterContext.ActionDescriptor.ActionName;
-            if (String.IsNullOrEmpty(actionName))
+            if (string.IsNullOrEmpty(actionName))
                 return;
 
             string controllerName = filterContext.Controller.ToString();
-            if (String.IsNullOrEmpty(controllerName))
+            if (string.IsNullOrEmpty(controllerName))
                 return;
 
             //don't apply filter to child methods

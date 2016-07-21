@@ -116,7 +116,7 @@ namespace Nop.Plugin.Payments.PayPalDirect
         /// <returns>Paypal credit card type</returns>
         protected CreditCardTypeType GetPaypalCreditCardType(string creditCardType)
         {
-            if (String.IsNullOrEmpty(creditCardType))
+            if (string.IsNullOrEmpty(creditCardType))
                 return CreditCardTypeType.VISA;
 
             if (creditCardType.Equals("VISA", StringComparison.InvariantCultureIgnoreCase))
@@ -434,7 +434,7 @@ namespace Nop.Plugin.Payments.PayPalDirect
             var result = new VoidPaymentResult();
 
             string transactionId = voidPaymentRequest.Order.AuthorizationTransactionId;
-            if (String.IsNullOrEmpty(transactionId))
+            if (string.IsNullOrEmpty(transactionId))
                 transactionId = voidPaymentRequest.Order.CaptureTransactionId;
 
             var req = new DoVoidReq();

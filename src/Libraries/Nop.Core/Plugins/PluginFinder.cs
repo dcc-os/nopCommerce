@@ -69,7 +69,7 @@ namespace Nop.Core.Plugins
             if (pluginDescriptor == null)
                 throw new ArgumentNullException("pluginDescriptor");
 
-            if (String.IsNullOrEmpty(group))
+            if (string.IsNullOrEmpty(group))
                 return true;
 
             return group.Equals(pluginDescriptor.Group, StringComparison.InvariantCultureIgnoreCase);

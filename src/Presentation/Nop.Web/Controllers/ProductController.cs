@@ -227,7 +227,7 @@ namespace Nop.Web.Controllers
             };
 
             //automatically generate product description?
-            if (_seoSettings.GenerateProductMetaDescription && String.IsNullOrEmpty(model.MetaDescription))
+            if (_seoSettings.GenerateProductMetaDescription && string.IsNullOrEmpty(model.MetaDescription))
             {
                 //based on short description
                 model.MetaDescription = model.ShortDescription;
@@ -278,7 +278,7 @@ namespace Nop.Web.Controllers
 
             #region Page sharing
 
-            if (_catalogSettings.ShowShareButton && !String.IsNullOrEmpty(_catalogSettings.PageShareCode))
+            if (_catalogSettings.ShowShareButton && !string.IsNullOrEmpty(_catalogSettings.PageShareCode))
             {
                 var shareCode = _catalogSettings.PageShareCode;
                 if (_webHelper.IsCurrentConnectionSecured())
@@ -640,9 +640,9 @@ namespace Nop.Web.Controllers
                     IsRequired = attribute.IsRequired,
                     AttributeControlType = attribute.AttributeControlType,
                     DefaultValue = updatecartitem != null ? null : attribute.DefaultValue,
-                    HasCondition = !String.IsNullOrEmpty(attribute.ConditionAttributeXml)
+                    HasCondition = !string.IsNullOrEmpty(attribute.ConditionAttributeXml)
                 };
-                if (!String.IsNullOrEmpty(attribute.ValidationFileAllowedExtensions))
+                if (!string.IsNullOrEmpty(attribute.ValidationFileAllowedExtensions))
                 {
                     attributeModel.AllowedFileExtensions = attribute.ValidationFileAllowedExtensions
                         .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
@@ -718,7 +718,7 @@ namespace Nop.Web.Controllers
                         case AttributeControlType.ColorSquares:
                         case AttributeControlType.ImageSquares:
                             {
-                                if (!String.IsNullOrEmpty(updatecartitem.AttributesXml))
+                                if (!string.IsNullOrEmpty(updatecartitem.AttributesXml))
                                 {
                                     //clear default selection
                                     foreach (var item in attributeModel.Values)
@@ -742,7 +742,7 @@ namespace Nop.Web.Controllers
                         case AttributeControlType.TextBox:
                         case AttributeControlType.MultilineTextbox:
                             {
-                                if (!String.IsNullOrEmpty(updatecartitem.AttributesXml))
+                                if (!string.IsNullOrEmpty(updatecartitem.AttributesXml))
                                 {
                                     var enteredText = _productAttributeParser.ParseValues(updatecartitem.AttributesXml, attribute.Id);
                                     if (enteredText.Any())
@@ -771,7 +771,7 @@ namespace Nop.Web.Controllers
                             break;
                         case AttributeControlType.FileUpload:
                             {
-                                if (!String.IsNullOrEmpty(updatecartitem.AttributesXml))
+                                if (!string.IsNullOrEmpty(updatecartitem.AttributesXml))
                                 {
                                     var downloadGuidStr = _productAttributeParser.ParseValues(updatecartitem.AttributesXml, attribute.Id).FirstOrDefault();
                                     Guid downloadGuid;
@@ -1185,7 +1185,7 @@ namespace Nop.Web.Controllers
                 string productUrl = Url.RouteUrl("Product", new { SeName = product.GetSeName() }, _webHelper.IsCurrentConnectionSecured() ? "https" : "http");
                 string productName = product.GetLocalized(x => x.Name);
                 string productDescription = product.GetLocalized(x => x.ShortDescription);
-                var item = new SyndicationItem(productName, productDescription, new Uri(productUrl), String.Format("urn:store:{0}:newProducts:product:{1}", _storeContext.CurrentStore.Id, product.Id), product.CreatedOnUtc);
+                var item = new SyndicationItem(productName, productDescription, new Uri(productUrl), string.Format("urn:store:{0}:newProducts:product:{1}", _storeContext.CurrentStore.Id, product.Id), product.CreatedOnUtc);
                 items.Add(item);
                 //uncomment below if you want to add RSS enclosure for pictures
                 //var picture = _pictureService.GetPicturesByProductId(product.Id, 1).FirstOrDefault();

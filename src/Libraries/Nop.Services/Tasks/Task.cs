@@ -90,7 +90,7 @@ namespace Nop.Services.Tasks
                     {
                         var machineNameProvider = EngineContext.Current.ContainerManager.Resolve<IMachineNameProvider>("", scope);
                         var machineName = machineNameProvider.GetMachineName();
-                        if (String.IsNullOrEmpty(machineName))
+                        if (string.IsNullOrEmpty(machineName))
                         {
                             throw new Exception("Machine name cannot be detected. You cannot run in web farm.");
                             //actually in this case we can generate some unique string (e.g. Guid) and store it in some "static" (!!!) variable

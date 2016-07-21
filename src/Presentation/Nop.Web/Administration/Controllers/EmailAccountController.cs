@@ -193,7 +193,7 @@ namespace Nop.Admin.Controllers
 
             try
             {
-                if (String.IsNullOrWhiteSpace(model.SendTestEmailTo))
+                if (string.IsNullOrWhiteSpace(model.SendTestEmailTo))
                     throw new NopException("Enter test email address");
 
                 string subject = _storeContext.CurrentStore.Name + ". Testing email functionality.";

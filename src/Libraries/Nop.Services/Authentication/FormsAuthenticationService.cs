@@ -55,7 +55,7 @@ namespace Nop.Services.Authentication
 
             var usernameOrEmail = ticket.UserData;
 
-            if (String.IsNullOrWhiteSpace(usernameOrEmail))
+            if (string.IsNullOrWhiteSpace(usernameOrEmail))
                 return null;
             var customer = _customerSettings.UsernamesEnabled
                 ? _customerService.GetCustomerByUsername(usernameOrEmail)

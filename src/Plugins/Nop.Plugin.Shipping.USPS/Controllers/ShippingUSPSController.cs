@@ -41,14 +41,14 @@ namespace Nop.Plugin.Shipping.USPS.Controllers
             foreach (string service in USPSServices.DomesticServices)
                 model.AvailableCarrierServicesDomestic.Add(service);
 
-            if (!String.IsNullOrEmpty(carrierServicesOfferedDomestic))
+            if (!string.IsNullOrEmpty(carrierServicesOfferedDomestic))
                 foreach (string service in USPSServices.DomesticServices)
                 {
                     string serviceId = USPSServices.GetServiceIdDomestic(service);
-                    if (!String.IsNullOrEmpty(serviceId) && !String.IsNullOrEmpty(carrierServicesOfferedDomestic))
+                    if (!string.IsNullOrEmpty(serviceId) && !string.IsNullOrEmpty(carrierServicesOfferedDomestic))
                     {
                         // Add delimiters [] so that single digit IDs aren't found in multi-digit IDs
-                        if (carrierServicesOfferedDomestic.Contains(String.Format("[{0}]", serviceId)))
+                        if (carrierServicesOfferedDomestic.Contains(string.Format("[{0}]", serviceId)))
                             model.CarrierServicesOfferedDomestic.Add(service);
                     }
                 }
@@ -58,14 +58,14 @@ namespace Nop.Plugin.Shipping.USPS.Controllers
             foreach (string service in USPSServices.InternationalServices)
                 model.AvailableCarrierServicesInternational.Add(service);
 
-            if (!String.IsNullOrEmpty(carrierServicesOfferedInternational))
+            if (!string.IsNullOrEmpty(carrierServicesOfferedInternational))
                 foreach (string service in USPSServices.InternationalServices)
                 {
                     string serviceId = USPSServices.GetServiceIdInternational(service);
-                    if (!String.IsNullOrEmpty(serviceId) && !String.IsNullOrEmpty(carrierServicesOfferedInternational))
+                    if (!string.IsNullOrEmpty(serviceId) && !string.IsNullOrEmpty(carrierServicesOfferedInternational))
                     {
                         // Add delimiters [] so that single digit IDs aren't found in multi-digit IDs
-                        if (carrierServicesOfferedInternational.Contains(String.Format("[{0}]", serviceId)))
+                        if (carrierServicesOfferedInternational.Contains(string.Format("[{0}]", serviceId)))
                             model.CarrierServicesOfferedInternational.Add(service);
                     }
                 }
@@ -107,7 +107,7 @@ namespace Nop.Plugin.Shipping.USPS.Controllers
                         break;
                     }
 
-                    if (!String.IsNullOrEmpty(serviceId))
+                    if (!string.IsNullOrEmpty(serviceId))
                     {
                         // Add delimiters [] so that single digit IDs aren't found in multi-digit IDs
                         carrierServicesOfferedDomestic.AppendFormat("[{0}]:", serviceId);
@@ -138,7 +138,7 @@ namespace Nop.Plugin.Shipping.USPS.Controllers
                         carrierServicesOfferedInternational.AppendFormat("[{0}]:", serviceId);
                         break;
                     }
-                    if (!String.IsNullOrEmpty(serviceId))
+                    if (!string.IsNullOrEmpty(serviceId))
                     {
                         // Add delimiters [] so that single digit IDs aren't found in multi-digit IDs
                         carrierServicesOfferedInternational.AppendFormat("[{0}]:", serviceId);

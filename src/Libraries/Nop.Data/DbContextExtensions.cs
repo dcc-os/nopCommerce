@@ -99,7 +99,7 @@ namespace Nop.Data
             if (context == null)
                 throw new ArgumentNullException("context");
 
-            if (String.IsNullOrEmpty(tableName))
+            if (string.IsNullOrEmpty(tableName))
                 throw new ArgumentNullException("tableName");
 
             //drop the table
@@ -180,7 +180,7 @@ namespace Nop.Data
 
                 return match;
 
-            }).Select(sel => new {sel.Name, MaxLength = sel.TypeUsage.Facets["MaxLength"].Value}).Where(p=>Int32.TryParse(p.MaxLength.ToString(), out temp)).ToDictionary(p=>p.Name,p=>Convert.ToInt32(p.MaxLength));
+            }).Select(sel => new {sel.Name, MaxLength = sel.TypeUsage.Facets["MaxLength"].Value}).Where(p=>int.TryParse(p.MaxLength.ToString(), out temp)).ToDictionary(p=>p.Name,p=>Convert.ToInt32(p.MaxLength));
             
             return queryResult;
         }

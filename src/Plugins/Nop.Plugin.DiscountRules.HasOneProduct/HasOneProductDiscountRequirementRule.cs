@@ -33,7 +33,7 @@ namespace Nop.Plugin.DiscountRules.HasOneProduct
             var result = new DiscountRequirementValidationResult();
 
             var restrictedProductIds = _settingService.GetSettingByKey<string>(string.Format("DiscountRequirement.RestrictedProductIds-{0}", request.DiscountRequirementId));
-            if (String.IsNullOrWhiteSpace(restrictedProductIds))
+            if (string.IsNullOrWhiteSpace(restrictedProductIds))
             {
                 //valid
                 result.IsValid = true;
@@ -69,7 +69,7 @@ namespace Nop.Plugin.DiscountRules.HasOneProduct
             bool found = false;
             foreach (var restrictedProduct in restrictedProducts)
             {
-                if (String.IsNullOrWhiteSpace(restrictedProduct))
+                if (string.IsNullOrWhiteSpace(restrictedProduct))
                     continue;
 
                 foreach (var sci in cart)

@@ -181,7 +181,7 @@ namespace Nop.Web.Extensions
                                                         decimal finalPrice = currencyService.ConvertFromPrimaryStoreCurrency(finalPriceBase, workContext.WorkingCurrency);
 
                                                         priceModel.OldPrice = null;
-                                                        priceModel.Price = String.Format(localizationService.GetResource("Products.PriceRangeFrom"), priceFormatter.FormatPrice(finalPrice));
+                                                        priceModel.Price = string.Format(localizationService.GetResource("Products.PriceRangeFrom"), priceFormatter.FormatPrice(finalPrice));
                                                         priceModel.PriceValue = finalPrice;
 
                                                         //PAngV baseprice (used in Germany)
@@ -281,7 +281,7 @@ namespace Nop.Web.Extensions
                                             if (displayFromMessage)
                                             {
                                                 priceModel.OldPrice = null;
-                                                priceModel.Price = String.Format(localizationService.GetResource("Products.PriceRangeFrom"), priceFormatter.FormatPrice(finalPrice));
+                                                priceModel.Price = string.Format(localizationService.GetResource("Products.PriceRangeFrom"), priceFormatter.FormatPrice(finalPrice));
                                                 priceModel.PriceValue = finalPrice;
                                             }
                                             else

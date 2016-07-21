@@ -140,7 +140,7 @@ namespace Nop.Web.Models.Catalog
             public bool CustomerEntersPrice { get; set; }
             [NopResourceDisplayName("Products.EnterProductPrice")]
             public decimal CustomerEnteredPrice { get; set; }
-            public String CustomerEnteredPriceRange { get; set; }
+            public string CustomerEnteredPriceRange { get; set; }
 
             public bool DisableBuyButton { get; set; }
             public bool DisableWishlistButton { get; set; }

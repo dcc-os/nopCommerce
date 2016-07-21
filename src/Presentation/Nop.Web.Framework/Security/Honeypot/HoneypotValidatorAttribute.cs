@@ -20,7 +20,7 @@ namespace Nop.Web.Framework.Security.Honeypot
             {
                 string inputValue = filterContext.HttpContext.Request.Form[securitySettings.HoneypotInputName];
 
-                var isBot = !String.IsNullOrWhiteSpace(inputValue);
+                var isBot = !string.IsNullOrWhiteSpace(inputValue);
                 if (isBot)
                 {
                     var logger = EngineContext.Current.Resolve<ILogger>();

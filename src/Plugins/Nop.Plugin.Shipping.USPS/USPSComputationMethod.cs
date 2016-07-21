@@ -521,15 +521,15 @@ namespace Nop.Plugin.Shipping.USPS
                                 if (tr.Name.Equals(classStr))
                                 {
                                     // Add delimiters [] so that single digit IDs aren't found in multi-digit IDs                                    
-                                    serviceId = String.Format("[{0}]", tr.Value);
+                                    serviceId = string.Format("[{0}]", tr.Value);
                                     break;
                                 }
                             }
                         }
 
                         // Go to the next rate if the service ID is not in the list of services to offer
-                        if (!String.IsNullOrEmpty(serviceId) &&
-                            !String.IsNullOrEmpty(carrierServicesOffered) &&
+                        if (!string.IsNullOrEmpty(serviceId) &&
+                            !string.IsNullOrEmpty(carrierServicesOffered) &&
                             !carrierServicesOffered.Contains(serviceId))
                         {
                             continue;
@@ -627,7 +627,7 @@ namespace Nop.Plugin.Shipping.USPS
             string responseXml = DoRequest(_uspsSettings.Url, requestString);
             string error = "";
             var shippingOptions = ParseResponse(responseXml, isDomestic, ref error);
-            if (String.IsNullOrEmpty(error))
+            if (string.IsNullOrEmpty(error))
             {
                 foreach (var shippingOption in shippingOptions)
                 {

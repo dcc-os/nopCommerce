@@ -68,14 +68,14 @@ namespace Nop.Services.Catalog
                 throw new ArgumentNullException("targetCurrency");
 
             string result;
-            if (!String.IsNullOrEmpty(targetCurrency.CustomFormatting))
+            if (!string.IsNullOrEmpty(targetCurrency.CustomFormatting))
             {
                 //custom formatting specified by a store owner
                 result = amount.ToString(targetCurrency.CustomFormatting);
             }
             else
             {
-                if (!String.IsNullOrEmpty(targetCurrency.DisplayLocale))
+                if (!string.IsNullOrEmpty(targetCurrency.DisplayLocale))
                 {
                     //default behavior
                     result = amount.ToString("C", new CultureInfo(targetCurrency.DisplayLocale));
@@ -84,14 +84,14 @@ namespace Nop.Services.Catalog
                 {
                     //not possible because "DisplayLocale" should be always specified
                     //but anyway let's just handle this behavior
-                    result = String.Format("{0} ({1})", amount.ToString("N"), targetCurrency.CurrencyCode);
+                    result = string.Format("{0} ({1})", amount.ToString("N"), targetCurrency.CurrencyCode);
                     return result;
                 }
             }
 
             //display currency code?
             if (showCurrency && _currencySettings.DisplayCurrencyLabel)
-                result = String.Format("{0} ({1})", result, targetCurrency.CurrencyCode);
+                result = string.Format("{0} ({1})", result, targetCurrency.CurrencyCode);
             return result;
         }
 
@@ -217,13 +217,13 @@ namespace Nop.Services.Catalog
                 if (priceIncludesTax)
                 {
                     formatStr = _localizationService.GetResource("Products.InclTaxSuffix", language.Id, false);
-                    if (String.IsNullOrEmpty(formatStr))
+                    if (string.IsNullOrEmpty(formatStr))
                         formatStr = "{0} incl tax";
                 }
                 else
                 {
                     formatStr = _localizationService.GetResource("Products.ExclTaxSuffix", language.Id, false);
-                    if (String.IsNullOrEmpty(formatStr))
+                    if (string.IsNullOrEmpty(formatStr))
                         formatStr = "{0} excl tax";
                 }
                 return string.Format(formatStr, currencyString);
@@ -246,7 +246,7 @@ namespace Nop.Services.Catalog
             if (!product.IsRental)
                 return price;
 
-            if (String.IsNullOrWhiteSpace(price))
+            if (string.IsNullOrWhiteSpace(price))
                 return price;
 
             string result;

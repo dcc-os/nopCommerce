@@ -81,7 +81,7 @@ namespace Nop.Services.Authentication.External
             string email = null;
             if (parameters.UserClaims != null)
                 foreach (var userClaim in parameters.UserClaims
-                    .Where(x => x.Contact != null && !String.IsNullOrEmpty(x.Contact.Email)))
+                    .Where(x => x.Contact != null && !string.IsNullOrEmpty(x.Contact.Email)))
                     {
                         //found
                         email = userClaim.Contact.Email;

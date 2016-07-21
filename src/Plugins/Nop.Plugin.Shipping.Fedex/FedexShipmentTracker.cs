@@ -136,7 +136,7 @@ namespace Nop.Plugin.Shipping.Fedex
                                 {
                                     sse.Date = trackevent.Timestamp;
                                 }
-                                sse.EventName = String.Format("{0} ({1})", trackevent.EventDescription, trackevent.EventType);
+                                sse.EventName = string.Format("{0} ({1})", trackevent.EventDescription, trackevent.EventType);
                                 sse.Location = trackevent.Address.City;
                                 sse.CountryCode = trackevent.Address.CountryCode;
                                 //other properties (not used yet)

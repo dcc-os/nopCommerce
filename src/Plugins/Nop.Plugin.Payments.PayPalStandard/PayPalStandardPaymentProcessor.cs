@@ -315,7 +315,7 @@ namespace Nop.Plugin.Payments.PayPalStandard
             if (_paypalStandardPaymentSettings.EnableIpn)
             {
                 string ipnUrl;
-                if (String.IsNullOrWhiteSpace(_paypalStandardPaymentSettings.IpnUrl))
+                if (string.IsNullOrWhiteSpace(_paypalStandardPaymentSettings.IpnUrl))
                     ipnUrl = _webHelper.GetStoreLocation(false) + "Plugins/PaymentPayPalStandard/IPNHandler";
                 else
                     ipnUrl = _paypalStandardPaymentSettings.IpnUrl;

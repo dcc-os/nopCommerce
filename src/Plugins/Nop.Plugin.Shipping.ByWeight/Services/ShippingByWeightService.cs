@@ -116,13 +116,13 @@ namespace Nop.Plugin.Shipping.ByWeight.Services
             //filter by zip
             var matchedByZip = new List<ShippingByWeightRecord>();
             foreach (var sbw in matchedByStateProvince)
-                if ((String.IsNullOrEmpty(zip) && String.IsNullOrEmpty(sbw.Zip)) ||
+                if ((string.IsNullOrEmpty(zip) && string.IsNullOrEmpty(sbw.Zip)) ||
                     (zip.Equals(sbw.Zip, StringComparison.InvariantCultureIgnoreCase)))
                     matchedByZip.Add(sbw);
 
             if (!matchedByZip.Any())
                 foreach (var taxRate in matchedByStateProvince)
-                    if (String.IsNullOrWhiteSpace(taxRate.Zip))
+                    if (string.IsNullOrWhiteSpace(taxRate.Zip))
                         matchedByZip.Add(taxRate);
 
             return matchedByZip.FirstOrDefault();

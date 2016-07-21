@@ -170,11 +170,11 @@ namespace Nop.Services.Discounts
                         && (!d.EndDateUtc.HasValue || d.EndDateUtc >= nowUtc)
                         );
                 }
-                if (!String.IsNullOrEmpty(couponCode))
+                if (!string.IsNullOrEmpty(couponCode))
                 {
                     query = query.Where(d => d.CouponCode == couponCode);
                 }
-                if (!String.IsNullOrEmpty(discountName))
+                if (!string.IsNullOrEmpty(discountName))
                 {
                     query = query.Where(d => d.Name.Contains(discountName));
                 }
@@ -275,7 +275,7 @@ namespace Nop.Services.Discounts
         /// <returns>Discount</returns>
         public virtual Discount GetDiscountByCouponCode(string couponCode, bool showHidden = false)
         {
-            if (String.IsNullOrWhiteSpace(couponCode))
+            if (string.IsNullOrWhiteSpace(couponCode))
                 return null;
 
             var discount = GetAllDiscounts(null, couponCode, null, showHidden).FirstOrDefault();
@@ -321,7 +321,7 @@ namespace Nop.Services.Discounts
             //check coupon code
             if (discount.RequiresCouponCode)
             {
-                if (String.IsNullOrEmpty(discount.CouponCode))
+                if (string.IsNullOrEmpty(discount.CouponCode))
                     return result;
                 if (!discount.CouponCode.Equals(couponCodeToValidate, StringComparison.InvariantCultureIgnoreCase))
                     return result;

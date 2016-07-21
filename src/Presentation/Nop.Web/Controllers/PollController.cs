@@ -74,7 +74,7 @@ namespace Nop.Web.Controllers
         [ChildActionOnly]
         public ActionResult PollBlock(string systemKeyword)
         {
-            if (String.IsNullOrWhiteSpace(systemKeyword))
+            if (string.IsNullOrWhiteSpace(systemKeyword))
                 return Content("");
 
             var cacheKey = string.Format(ModelCacheEventConsumer.POLL_BY_SYSTEMNAME__MODEL_KEY, systemKeyword, _workContext.WorkingLanguage.Id);

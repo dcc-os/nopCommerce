@@ -39,7 +39,7 @@ namespace Nop.Services.Security
         /// <returns>Password hash</returns>
         public virtual string CreatePasswordHash(string password, string saltkey, string passwordFormat = "SHA1")
         {
-            return CreateHash(Encoding.UTF8.GetBytes(String.Concat(password, saltkey)), passwordFormat);
+            return CreateHash(Encoding.UTF8.GetBytes(string.Concat(password, saltkey)), passwordFormat);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Nop.Services.Security
         /// <returns>Data hash</returns>
         public virtual string CreateHash(byte[] data, string hashAlgorithm = "SHA1")
         {
-            if (String.IsNullOrEmpty(hashAlgorithm))
+            if (string.IsNullOrEmpty(hashAlgorithm))
                 hashAlgorithm = "SHA1";
            
             //return FormsAuthentication.HashPasswordForStoringInConfigFile(saltAndPassword, passwordFormat);
@@ -73,7 +73,7 @@ namespace Nop.Services.Security
             if (string.IsNullOrEmpty(plainText))
                 return plainText;
 
-            if (String.IsNullOrEmpty(encryptionPrivateKey))
+            if (string.IsNullOrEmpty(encryptionPrivateKey))
                 encryptionPrivateKey = _securitySettings.EncryptionKey;
 
             var tDESalg = new TripleDESCryptoServiceProvider();
@@ -92,10 +92,10 @@ namespace Nop.Services.Security
         /// <returns>Decrypted text</returns>
         public virtual string DecryptText(string cipherText, string encryptionPrivateKey = "") 
         {
-            if (String.IsNullOrEmpty(cipherText))
+            if (string.IsNullOrEmpty(cipherText))
                 return cipherText;
 
-            if (String.IsNullOrEmpty(encryptionPrivateKey))
+            if (string.IsNullOrEmpty(encryptionPrivateKey))
                 encryptionPrivateKey = _securitySettings.EncryptionKey;
 
             var tDESalg = new TripleDESCryptoServiceProvider();

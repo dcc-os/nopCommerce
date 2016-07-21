@@ -26,7 +26,7 @@ namespace Nop.Plugin.ExchangeRate.EcbExchange
         /// <returns>Exchange rates</returns>
         public IList<Core.Domain.Directory.ExchangeRate> GetCurrencyLiveRates(string exchangeRateCurrencyCode)
         {
-            if (String.IsNullOrEmpty(exchangeRateCurrencyCode) ||
+            if (string.IsNullOrEmpty(exchangeRateCurrencyCode) ||
                 exchangeRateCurrencyCode.ToLower() != "eur")
                 throw new NopException(_localizationService.GetResource("Plugins.ExchangeRate.EcbExchange.SetCurrencyToEURO"));
 
