@@ -67,9 +67,9 @@ namespace Nop.Admin.Controllers
         private string FormatTokens(string[] tokens)
         {
             var sb = new StringBuilder();
-            for (int i = 0; i < tokens.Length; i++)
+            for (var i = 0; i < tokens.Length; i++)
             {
-                string token = tokens[i];
+                var token = tokens[i];
                 sb.Append(token);
                 if (i != tokens.Length - 1)
                     sb.Append(", ");
@@ -191,7 +191,7 @@ namespace Nop.Admin.Controllers
                             .GetAllStores()
                             .Where(s => !x.LimitedToStores || templateModel.SelectedStoreIds.Contains(s.Id))
                             .ToList();
-                    for (int i = 0; i < stores.Count; i++)
+                    for (var i = 0; i < stores.Count; i++)
                     {
                         templateModel.ListOfStores += stores[i].Name;
                         if (i != stores.Count - 1)

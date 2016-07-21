@@ -50,7 +50,7 @@ namespace Nop.Web.Controllers
             if (String.IsNullOrEmpty(countryId))
                 throw new ArgumentNullException("countryId");
 
-            string cacheKey = string.Format(ModelCacheEventConsumer.STATEPROVINCES_BY_COUNTRY_MODEL_KEY, countryId, addSelectStateItem, _workContext.WorkingLanguage.Id);
+            var cacheKey = string.Format(ModelCacheEventConsumer.STATEPROVINCES_BY_COUNTRY_MODEL_KEY, countryId, addSelectStateItem, _workContext.WorkingLanguage.Id);
             var cacheModel = _cacheManager.Get(cacheKey, () =>
             {
                 var country = _countryService.GetCountryById(Convert.ToInt32(countryId));

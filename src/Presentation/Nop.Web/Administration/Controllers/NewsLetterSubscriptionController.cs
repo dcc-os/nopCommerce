@@ -181,9 +181,9 @@ namespace Nop.Admin.Controllers
             var subscriptions = _newsLetterSubscriptionService.GetAllNewsLetterSubscriptions(model.SearchEmail,
                 startDateValue, endDateValue, model.StoreId, isActive, model.CustomerRoleId);
 
-		    string result = _exportManager.ExportNewsletterSubscribersToTxt(subscriptions);
+		    var result = _exportManager.ExportNewsletterSubscribersToTxt(subscriptions);
 
-            string fileName = String.Format("newsletter_emails_{0}_{1}.txt", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"), CommonHelper.GenerateRandomDigitCode(4));
+            var fileName = String.Format("newsletter_emails_{0}_{1}.txt", DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss"), CommonHelper.GenerateRandomDigitCode(4));
 			return File(Encoding.UTF8.GetBytes(result), MimeTypes.TextCsv, fileName);
 		}
 
@@ -198,7 +198,7 @@ namespace Nop.Admin.Controllers
                 var file = Request.Files["importcsvfile"];
                 if (file != null && file.ContentLength > 0)
                 {
-                    int count = _importManager.ImportNewsletterSubscribersFromTxt(file.InputStream);
+                    var count = _importManager.ImportNewsletterSubscribersFromTxt(file.InputStream);
                     SuccessNotification(String.Format(_localizationService.GetResource("Admin.Promotions.NewsLetterSubscriptions.ImportEmailsSuccess"), count));
                     return RedirectToAction("List");
                 }

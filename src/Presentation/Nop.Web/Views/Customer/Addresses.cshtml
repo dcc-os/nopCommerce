@@ -24,7 +24,7 @@
             {
                 @Html.AntiForgeryToken()
                 <div class="address-list">
-                    @for (int i = 0; i < Model.Addresses.Count; i++)
+                    @for (var i = 0; i < Model.Addresses.Count; i++)
                     {
                         var address = Model.Addresses[i];
                         <div class="section address-item">

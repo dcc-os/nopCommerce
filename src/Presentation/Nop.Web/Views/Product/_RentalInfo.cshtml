@@ -8,8 +8,8 @@
 {
     <div class="attributes rental-attributes">
         @{
-            string startDateControlId = string.Format("rental_start_date_{0}", Model.Id);
-            string endDateControlId = string.Format("rental_end_date_{0}", Model.Id);
+            var startDateControlId = string.Format("rental_start_date_{0}", Model.Id);
+            var endDateControlId = string.Format("rental_end_date_{0}", Model.Id);
             //currenly we support only this format
             //java-script format
             const string datePickerFormat = "mm/dd/yy";

@@ -208,7 +208,7 @@ namespace Nop.Admin.Controllers
 
             //var customer = returnRequest.Customer;
             var orderItem = _orderService.GetOrderItemById(returnRequest.OrderItemId);
-            int queuedEmailId = _workflowMessageService.SendReturnRequestStatusChangedCustomerNotification(returnRequest, orderItem, _localizationSettings.DefaultAdminLanguageId);
+            var queuedEmailId = _workflowMessageService.SendReturnRequestStatusChangedCustomerNotification(returnRequest, orderItem, _localizationSettings.DefaultAdminLanguageId);
             if (queuedEmailId > 0)
                 SuccessNotification(_localizationService.GetResource("Admin.ReturnRequests.Notified"));
             return RedirectToAction("Edit",  new {id = returnRequest.Id});

@@ -497,7 +497,7 @@ namespace Nop.Admin.Controllers
                 {
                     using (var sr = new StreamReader(file.InputStream, Encoding.UTF8))
                     {
-                        string content = sr.ReadToEnd();
+                        var content = sr.ReadToEnd();
                         _localizationService.ImportResourcesFromXml(language, content);
                     }
 

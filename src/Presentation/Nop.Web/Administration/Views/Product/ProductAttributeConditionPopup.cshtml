@@ -105,7 +105,7 @@
                                         <div class="col-md-9 col-md-offset-3">
                                             @foreach (var attribute in Model.ProductAttributes)
                                             {
-                                                string controlId = string.Format("product_attribute_{0}", attribute.Id);
+                                                var controlId = string.Format("product_attribute_{0}", attribute.Id);
                                                 <div id="@string.Format("pnl_attribute_values_{0}", attribute.Id)">
                                                     @switch (attribute.AttributeControlType)
                                                     {

@@ -536,8 +536,8 @@ namespace Nop.Admin.Controllers
             var result = new List<string>();
             if (!String.IsNullOrWhiteSpace(productTags))
             {
-                string[] values = productTags.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (string val1 in values)
+                var values = productTags.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var val1 in values)
                     if (!String.IsNullOrEmpty(val1.Trim()))
                         result.Add(val1.Trim());
             }
@@ -555,8 +555,8 @@ namespace Nop.Admin.Controllers
             var productTagsToRemove = new List<ProductTag>();
             foreach (var existingProductTag in existingProductTags)
             {
-                bool found = false;
-                foreach (string newProductTag in productTags)
+                var found = false;
+                foreach (var newProductTag in productTags)
                 {
                     if (existingProductTag.Name.Equals(newProductTag, StringComparison.InvariantCultureIgnoreCase))
                     {
@@ -574,7 +574,7 @@ namespace Nop.Admin.Controllers
                 product.ProductTags.Remove(productTag);
                 _productService.UpdateProduct(product);
             }
-            foreach (string productTagName in productTags)
+            foreach (var productTagName in productTags)
             {
                 ProductTag productTag;
                 var productTag2 = _productTagService.GetProductTagByName(productTagName);
@@ -767,7 +767,7 @@ namespace Nop.Admin.Controllers
             if (product != null)
             {
                 var result = new StringBuilder();
-                for (int i = 0; i < product.ProductTags.Count; i++)
+                for (var i = 0; i < product.ProductTags.Count; i++)
                 {
                     var pt = product.ProductTags.ToList()[i];
                     result.Append(pt.Name);
@@ -851,24 +851,24 @@ namespace Nop.Admin.Controllers
             foreach (var warehouse in warehouses)
             {
                 //parse stock quantity
-                int stockQuantity = 0;
-                foreach (string formKey in this.Request.Form.AllKeys)
+                var stockQuantity = 0;
+                foreach (var formKey in this.Request.Form.AllKeys)
                     if (formKey.Equals(string.Format("warehouse_qty_{0}", warehouse.Id), StringComparison.InvariantCultureIgnoreCase))
                     {
                         int.TryParse(this.Request.Form[formKey], out stockQuantity);
                         break;
                     }
                 //parse reserved quantity
-                int reservedQuantity = 0;
-                foreach (string formKey in this.Request.Form.AllKeys)
+                var reservedQuantity = 0;
+                foreach (var formKey in this.Request.Form.AllKeys)
                     if (formKey.Equals(string.Format("warehouse_reserved_{0}", warehouse.Id), StringComparison.InvariantCultureIgnoreCase))
                     {
                         int.TryParse(this.Request.Form[formKey], out reservedQuantity);
                         break;
                     }
                 //parse "used" field
-                bool used = false;
-                foreach (string formKey in this.Request.Form.AllKeys)
+                var used = false;
+                foreach (var formKey in this.Request.Form.AllKeys)
                     if (formKey.Equals(string.Format("warehouse_used_{0}", warehouse.Id), StringComparison.InvariantCultureIgnoreCase))
                     {
                         int tmp;
@@ -1044,7 +1044,7 @@ namespace Nop.Admin.Controllers
         [FormValueRequired("go-to-product-by-sku")]
         public ActionResult GoToSku(ProductListModel model)
         {
-            string sku = model.GoDirectlyToSku;
+            var sku = model.GoDirectlyToSku;
 
             //try to load a product entity
             var product = _productService.GetProductBySku(sku);
@@ -1253,8 +1253,8 @@ namespace Nop.Admin.Controllers
                 }
                 //some previously used values
                 var prevStockQuantity = product.GetTotalStockQuantity();
-                int prevDownloadId = product.DownloadId;
-                int prevSampleDownloadId = product.SampleDownloadId;
+                var prevDownloadId = product.DownloadId;
+                var prevSampleDownloadId = product.SampleDownloadId;
 
                 //product
                 product = model.ToEntity(product);
@@ -1422,7 +1422,7 @@ namespace Nop.Admin.Controllers
                     .Select(x => x.Trim())
                     .ToList();
 
-                foreach (string str1 in rangeArray)
+                foreach (var str1 in rangeArray)
                 {
                     int tmp1;
                     if (int.TryParse(str1, out tmp1))
@@ -1430,7 +1430,7 @@ namespace Nop.Admin.Controllers
                 }
 
                 var products = _productService.GetProductsByIds(ids.ToArray());
-                for (int i = 0; i <= products.Count - 1; i++)
+                for (var i = 0; i <= products.Count - 1; i++)
                 {
                     result += products[i].Name;
                     if (i != products.Count - 1)
@@ -1682,7 +1682,7 @@ namespace Nop.Admin.Controllers
 
             if (model.SelectedProductIds != null)
             {
-                foreach (int id in model.SelectedProductIds)
+                foreach (var id in model.SelectedProductIds)
                 {
                     var product = _productService.GetProductById(id);
                     if (product != null)
@@ -1857,7 +1857,7 @@ namespace Nop.Admin.Controllers
 
             if (model.SelectedProductIds != null)
             {
-                foreach (int id in model.SelectedProductIds)
+                foreach (var id in model.SelectedProductIds)
                 {
                     var product = _productService.GetProductById(id);
                     if (product != null)
@@ -2065,7 +2065,7 @@ namespace Nop.Admin.Controllers
 
             if (model.SelectedProductIds != null)
             {
-                foreach (int id in model.SelectedProductIds)
+                foreach (var id in model.SelectedProductIds)
                 {
                     var product = _productService.GetProductById(id);
                     if (product != null)
@@ -2833,7 +2833,7 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageProducts))
                 return AccessDeniedView();
 
-            int vendorId = 0;
+            var vendorId = 0;
             //a vendor should have access only to his products
             if (_workContext.CurrentVendor != null)
                 vendorId = _workContext.CurrentVendor.Id;
@@ -2913,7 +2913,7 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageProducts))
                 return AccessDeniedView();
 
-            int vendorId = 0;
+            var vendorId = 0;
             //a vendor should have access only to his products
             if (_workContext.CurrentVendor != null)
                 vendorId = _workContext.CurrentVendor.Id;
@@ -3597,7 +3597,7 @@ namespace Nop.Admin.Controllers
                 var attribute = _productAttributeService.GetProductAttributeMappingById(model.SelectedProductAttributeId);
                 if (attribute != null)
                 {
-                    string controlId = string.Format("product_attribute_{0}", attribute.Id);
+                    var controlId = string.Format("product_attribute_{0}", attribute.Id);
                     switch (attribute.AttributeControlType)
                     {
                         case AttributeControlType.DropdownList:
@@ -3608,7 +3608,7 @@ namespace Nop.Admin.Controllers
                                 var ctrlAttributes = form[controlId];
                                 if (!String.IsNullOrEmpty(ctrlAttributes))
                                 {
-                                    int selectedAttributeId = int.Parse(ctrlAttributes);
+                                    var selectedAttributeId = int.Parse(ctrlAttributes);
                                     if (selectedAttributeId > 0)
                                     {
                                         attributesXml = _productAttributeParser.AddProductAttribute(attributesXml,
@@ -3638,10 +3638,10 @@ namespace Nop.Admin.Controllers
                                 var cblAttributes = form[controlId];
                                 if (!String.IsNullOrEmpty(cblAttributes))
                                 {
-                                    bool anyValueSelected = false;
+                                    var anyValueSelected = false;
                                     foreach (var item in cblAttributes.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                                     {
-                                        int selectedAttributeId = int.Parse(item);
+                                        var selectedAttributeId = int.Parse(item);
                                         if (selectedAttributeId > 0)
                                         {
                                             attributesXml = _productAttributeParser.AddProductAttribute(attributesXml,
@@ -4231,7 +4231,7 @@ namespace Nop.Admin.Controllers
                     //warnings
                     var warnings = _shoppingCartService.GetShoppingCartItemAttributeWarnings(_workContext.CurrentCustomer,
                         ShoppingCartType.ShoppingCart, x.Product, 1, x.AttributesXml, true);
-                    for (int i = 0; i < warnings.Count; i++)
+                    for (var i = 0; i < warnings.Count; i++)
                     {
                         pacModel.Warnings += warnings[i];
                         if (i != warnings.Count - 1)
@@ -4345,7 +4345,7 @@ namespace Nop.Admin.Controllers
             ViewBag.formId = formId;
 
             //attributes
-            string attributesXml = "";
+            var attributesXml = "";
             var warnings = new List<string>();
 
             #region Product attributes
@@ -4356,7 +4356,7 @@ namespace Nop.Admin.Controllers
                 .ToList();
             foreach (var attribute in attributes)
             {
-                string controlId = string.Format("product_attribute_{0}", attribute.Id);
+                var controlId = string.Format("product_attribute_{0}", attribute.Id);
                 switch (attribute.AttributeControlType)
                 {
                     case AttributeControlType.DropdownList:
@@ -4367,7 +4367,7 @@ namespace Nop.Admin.Controllers
                             var ctrlAttributes = form[controlId];
                             if (!String.IsNullOrEmpty(ctrlAttributes))
                             {
-                                int selectedAttributeId = int.Parse(ctrlAttributes);
+                                var selectedAttributeId = int.Parse(ctrlAttributes);
                                 if (selectedAttributeId > 0)
                                     attributesXml = _productAttributeParser.AddProductAttribute(attributesXml,
                                         attribute, selectedAttributeId.ToString());
@@ -4381,7 +4381,7 @@ namespace Nop.Admin.Controllers
                             {
                                 foreach (var item in cblAttributes.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                                 {
-                                    int selectedAttributeId = int.Parse(item);
+                                    var selectedAttributeId = int.Parse(item);
                                     if (selectedAttributeId > 0)
                                         attributesXml = _productAttributeParser.AddProductAttribute(attributesXml,
                                             attribute, selectedAttributeId.ToString());
@@ -4409,7 +4409,7 @@ namespace Nop.Admin.Controllers
                             var ctrlAttributes = form[controlId];
                             if (!String.IsNullOrEmpty(ctrlAttributes))
                             {
-                                string enteredText = ctrlAttributes.Trim();
+                                var enteredText = ctrlAttributes.Trim();
                                 attributesXml = _productAttributeParser.AddProductAttribute(attributesXml,
                                     attribute, enteredText);
                             }

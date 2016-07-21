@@ -263,7 +263,7 @@ namespace Nop.Admin.Controllers
                 {
                     languageId = _localizationSettings.DefaultAdminLanguageId;
                 }
-                int queuedEmailId = _workflowMessageService.SendGiftCardNotification(giftCard, languageId);
+                var queuedEmailId = _workflowMessageService.SendGiftCardNotification(giftCard, languageId);
                 if (queuedEmailId > 0)
                 {
                     giftCard.IsRecipientNotified = true;

@@ -475,7 +475,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-9 col-md-offset-3">
-                                    @for (int i = 0; i < Model.ConditionModel.ConditionAttributes.Count; i++)
+                                    @for (var i = 0; i < Model.ConditionModel.ConditionAttributes.Count; i++)
                                     {
                                         @Html.HiddenFor(model => Model.ConditionModel.ConditionAttributes[i].Id)
                                         <div id="@string.Format("pnl_attribute_values_{0}", Model.ConditionModel.ConditionAttributes[i].Id)">

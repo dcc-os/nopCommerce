@@ -103,7 +103,7 @@ namespace Nop.Admin.Controllers
             if (discount == null)
                 throw new ArgumentNullException("discount");
 
-            string url = string.Format("{0}{1}", _webHelper.GetStoreLocation(), discountRequirementRule.GetConfigurationUrl(discount.Id, discountRequirementId));
+            var url = string.Format("{0}{1}", _webHelper.GetStoreLocation(), discountRequirementRule.GetConfigurationUrl(discount.Id, discountRequirementId));
             return url;
         }
         
@@ -363,7 +363,7 @@ namespace Nop.Admin.Controllers
             if (discount == null)
                 throw new ArgumentException("Discount could not be loaded");
 
-            string url = GetRequirementUrlInternal(discountRequirementRule, discount, discountRequirementId);
+            var url = GetRequirementUrlInternal(discountRequirementRule, discount, discountRequirementId);
             return Json(new { url = url }, JsonRequestBehavior.AllowGet);
         }
 
@@ -384,8 +384,8 @@ namespace Nop.Admin.Controllers
             if (discountRequirementRule == null)
                 throw new ArgumentException("Discount requirement rule could not be loaded");
 
-            string url = GetRequirementUrlInternal(discountRequirementRule, discount, discountRequirementId);
-            string ruleName = discountRequirementRule.PluginDescriptor.FriendlyName;
+            var url = GetRequirementUrlInternal(discountRequirementRule, discount, discountRequirementId);
+            var ruleName = discountRequirementRule.PluginDescriptor.FriendlyName;
             return Json(new { url = url, ruleName = ruleName }, JsonRequestBehavior.AllowGet);
         }
 
@@ -533,7 +533,7 @@ namespace Nop.Admin.Controllers
 
             if (model.SelectedProductIds != null)
             {
-                foreach (int id in model.SelectedProductIds)
+                foreach (var id in model.SelectedProductIds)
                 {
                     var product = _productService.GetProductById(id);
                     if (product != null)
@@ -650,7 +650,7 @@ namespace Nop.Admin.Controllers
 
             if (model.SelectedCategoryIds != null)
             {
-                foreach (int id in model.SelectedCategoryIds)
+                foreach (var id in model.SelectedCategoryIds)
                 {
                     var category = _categoryService.GetCategoryById(id);
                     if (category != null)
@@ -761,7 +761,7 @@ namespace Nop.Admin.Controllers
 
             if (model.SelectedManufacturerIds != null)
             {
-                foreach (int id in model.SelectedManufacturerIds)
+                foreach (var id in model.SelectedManufacturerIds)
                 {
                     var manufacturer = _manufacturerService.GetManufacturerById(id);
                     if (manufacturer != null)

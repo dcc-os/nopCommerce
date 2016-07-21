@@ -354,7 +354,7 @@ namespace Nop.Admin.Controllers
             //validate write permissions (the same procedure like during installation)
             var dirPermissionsOk = true;
             var dirsToCheck = FilePermissionHelper.GetDirectoriesWrite();
-            foreach (string dir in dirsToCheck)
+            foreach (var dir in dirsToCheck)
                 if (!FilePermissionHelper.CheckPermissions(dir, false, true, true, false))
                 {
                     model.Add(new SystemWarningModel
@@ -373,7 +373,7 @@ namespace Nop.Admin.Controllers
 
             var filePermissionsOk = true;
             var filesToCheck = FilePermissionHelper.GetFilesWrite();
-            foreach (string file in filesToCheck)
+            foreach (var file in filesToCheck)
                 if (!FilePermissionHelper.CheckPermissions(file, false, true, true, true))
                 {
                     model.Add(new SystemWarningModel
@@ -442,10 +442,10 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageMaintenance))
                 return AccessDeniedView();
 
-            DateTime? startDateValue = (model.DeleteGuests.StartDate == null) ? null
+            var startDateValue = (model.DeleteGuests.StartDate == null) ? null
                             : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.DeleteGuests.StartDate.Value, _dateTimeHelper.CurrentTimeZone);
 
-            DateTime? endDateValue = (model.DeleteGuests.EndDate == null) ? null
+            var endDateValue = (model.DeleteGuests.EndDate == null) ? null
                             : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.DeleteGuests.EndDate.Value, _dateTimeHelper.CurrentTimeZone).AddDays(1);
 
             model.DeleteGuests.NumberOfDeletedCustomers = _customerService.DeleteGuestCustomers(startDateValue, endDateValue, model.DeleteGuests.OnlyWithoutShoppingCart);
@@ -473,15 +473,15 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageMaintenance))
                 return AccessDeniedView();
 
-            DateTime? startDateValue = (model.DeleteExportedFiles.StartDate == null) ? null
+            var startDateValue = (model.DeleteExportedFiles.StartDate == null) ? null
                             : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.DeleteExportedFiles.StartDate.Value, _dateTimeHelper.CurrentTimeZone);
 
-            DateTime? endDateValue = (model.DeleteExportedFiles.EndDate == null) ? null
+            var endDateValue = (model.DeleteExportedFiles.EndDate == null) ? null
                             : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.DeleteExportedFiles.EndDate.Value, _dateTimeHelper.CurrentTimeZone).AddDays(1);
 
 
             model.DeleteExportedFiles.NumberOfDeletedFiles = 0;
-            string path = Path.Combine(this.Request.PhysicalApplicationPath, "content\\files\\exportimport");
+            var path = Path.Combine(this.Request.PhysicalApplicationPath, "content\\files\\exportimport");
             foreach (var fullPath in Directory.GetFiles(path))
             {
                 try
@@ -681,7 +681,7 @@ namespace Nop.Admin.Controllers
                     }
 
                     //details URL
-                    string detailsUrl = "";
+                    var detailsUrl = "";
                     var entityName = x.EntityName != null ? x.EntityName.ToLowerInvariant() : "";
                     switch (entityName)
                     {
@@ -773,7 +773,7 @@ namespace Nop.Admin.Controllers
         public ActionResult MultistoreDisabledWarning()
         {
             //default setting
-            bool enabled = _catalogSettings.IgnoreStoreLimitations;
+            var enabled = _catalogSettings.IgnoreStoreLimitations;
             if (!enabled)
             {
                 //overridden settings
@@ -799,7 +799,7 @@ namespace Nop.Admin.Controllers
         public ActionResult AclDisabledWarning()
         {
             //default setting
-            bool enabled = _catalogSettings.IgnoreAcl;
+            var enabled = _catalogSettings.IgnoreAcl;
             if (!enabled)
             {
                 //overridden settings

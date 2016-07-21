@@ -319,7 +319,7 @@
         var productTags = EngineContext.Current.Resolve<IProductTagService>().GetAllProductTags();
         var productTagsSb = new StringBuilder();
         productTagsSb.Append("var initialProductTags = [");
-        for (int i = 0; i < productTags.Count; i++)
+        for (var i = 0; i < productTags.Count; i++)
         {
             var tag = productTags[i];
             productTagsSb.Append("'");

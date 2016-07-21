@@ -21,7 +21,7 @@ namespace Nop.Admin.Helpers
         /// <returns>Category list</returns>
         public static List<SelectListItem> GetCategoryList(ICategoryService categoryService, ICacheManager cacheManager, bool showHidden = false)
         {
-            string cacheKey = string.Format(ModelCacheEventConsumer.CATEGORIES_LIST_KEY, showHidden);
+            var cacheKey = string.Format(ModelCacheEventConsumer.CATEGORIES_LIST_KEY, showHidden);
             var categoryListItems = cacheManager.Get(cacheKey, () =>
             {
                 var categories = categoryService.GetAllCategories(showHidden: showHidden);

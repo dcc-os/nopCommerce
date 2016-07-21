@@ -33,7 +33,7 @@ namespace Nop.Admin.Controllers
             if (String.IsNullOrEmpty(Request["qqfile"]))
             {
                 // IE
-                HttpPostedFileBase httpPostedFile = Request.Files[0];
+                var httpPostedFile = Request.Files[0];
                 if (httpPostedFile == null)
                     throw new ArgumentException("No file uploaded");
                 stream = httpPostedFile.InputStream;

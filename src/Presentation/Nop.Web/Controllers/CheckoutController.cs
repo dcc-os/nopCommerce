@@ -146,10 +146,10 @@ namespace Nop.Web.Controllers
         [NonAction]
         protected virtual bool IsPaymentWorkflowRequired(IList<ShoppingCartItem> cart, bool ignoreRewardPoints = false)
         {
-            bool result = true;
+            var result = true;
 
             //check whether order total equals zero
-            decimal? shoppingCartTotalBase = _orderTotalCalculationService.GetShoppingCartTotal(cart, ignoreRewardPoints);
+            var shoppingCartTotalBase = _orderTotalCalculationService.GetShoppingCartTotal(cart, ignoreRewardPoints);
             if (shoppingCartTotalBase.HasValue && shoppingCartTotalBase.Value == decimal.Zero)
                 result = false;
             return result;
@@ -336,8 +336,8 @@ namespace Nop.Web.Controllers
                     var shippingTotal = _orderTotalCalculationService.AdjustShippingRate(
                         shippingOption.Rate, cart, out appliedDiscounts);
 
-                    decimal rateBase = _taxService.GetShippingPrice(shippingTotal, _workContext.CurrentCustomer);
-                    decimal rate = _currencyService.ConvertFromPrimaryStoreCurrency(rateBase, _workContext.WorkingCurrency);
+                    var rateBase = _taxService.GetShippingPrice(shippingTotal, _workContext.CurrentCustomer);
+                    var rate = _currencyService.ConvertFromPrimaryStoreCurrency(rateBase, _workContext.WorkingCurrency);
                     soModel.Fee = _priceFormatter.FormatShippingPrice(rate, true);
 
                     model.ShippingMethods.Add(soModel);
@@ -392,9 +392,9 @@ namespace Nop.Web.Controllers
             //reward points
             if (_rewardPointsSettings.Enabled && !cart.IsRecurring())
             {
-                int rewardPointsBalance = _rewardPointService.GetRewardPointsBalance(_workContext.CurrentCustomer.Id, _storeContext.CurrentStore.Id);
-                decimal rewardPointsAmountBase = _orderTotalCalculationService.ConvertRewardPointsToAmount(rewardPointsBalance);
-                decimal rewardPointsAmount = _currencyService.ConvertFromPrimaryStoreCurrency(rewardPointsAmountBase, _workContext.WorkingCurrency);
+                var rewardPointsBalance = _rewardPointService.GetRewardPointsBalance(_workContext.CurrentCustomer.Id, _storeContext.CurrentStore.Id);
+                var rewardPointsAmountBase = _orderTotalCalculationService.ConvertRewardPointsToAmount(rewardPointsBalance);
+                var rewardPointsAmount = _currencyService.ConvertFromPrimaryStoreCurrency(rewardPointsAmountBase, _workContext.WorkingCurrency);
                 if (rewardPointsAmount > decimal.Zero && 
                     _orderTotalCalculationService.CheckMinimumRewardPointsToUseRequirement(rewardPointsBalance))
                 {
@@ -422,9 +422,9 @@ namespace Nop.Web.Controllers
                     LogoUrl = pm.PluginDescriptor.GetLogoUrl(_webHelper)
                 };
                 //payment method additional fee
-                decimal paymentMethodAdditionalFee = _paymentService.GetAdditionalHandlingFee(cart, pm.PluginDescriptor.SystemName);
-                decimal rateBase = _taxService.GetPaymentMethodAdditionalFee(paymentMethodAdditionalFee, _workContext.CurrentCustomer);
-                decimal rate = _currencyService.ConvertFromPrimaryStoreCurrency(rateBase, _workContext.WorkingCurrency);
+                var paymentMethodAdditionalFee = _paymentService.GetAdditionalHandlingFee(cart, pm.PluginDescriptor.SystemName);
+                var rateBase = _taxService.GetPaymentMethodAdditionalFee(paymentMethodAdditionalFee, _workContext.CurrentCustomer);
+                var rate = _currencyService.ConvertFromPrimaryStoreCurrency(rateBase, _workContext.WorkingCurrency);
                 if (rate > decimal.Zero)
                     pmModel.Fee = _priceFormatter.FormatPaymentMethodAdditionalFee(rate, true);
 
@@ -475,10 +475,10 @@ namespace Nop.Web.Controllers
             //terms of service
             model.TermsOfServiceOnOrderConfirmPage = _orderSettings.TermsOfServiceOnOrderConfirmPage;
             //min order amount validation
-            bool minOrderTotalAmountOk = _orderProcessingService.ValidateMinOrderTotalAmount(cart);
+            var minOrderTotalAmountOk = _orderProcessingService.ValidateMinOrderTotalAmount(cart);
             if (!minOrderTotalAmountOk)
             {
-                decimal minOrderTotalAmount = _currencyService.ConvertFromPrimaryStoreCurrency(_orderSettings.MinOrderTotalAmount, _workContext.WorkingCurrency);
+                var minOrderTotalAmount = _currencyService.ConvertFromPrimaryStoreCurrency(_orderSettings.MinOrderTotalAmount, _workContext.WorkingCurrency);
                 model.MinOrderTotalWarning = string.Format(_localizationService.GetResource("Checkout.MinOrderTotalAmount"), _priceFormatter.FormatPrice(minOrderTotalAmount, true, false));
             }
             return model;
@@ -514,7 +514,7 @@ namespace Nop.Web.Controllers
             if (!cart.Any())
                 return RedirectToRoute("ShoppingCart");
 
-            bool downloadableProductsRequireRegistration =
+            var downloadableProductsRequireRegistration =
                 _customerSettings.RequireRegistrationForDownloadableProducts && cart.Any(sci => sci.Product.IsDownload);
 
             if (_workContext.CurrentCustomer.IsGuest() 
@@ -532,7 +532,7 @@ namespace Nop.Web.Controllers
             if (scWarnings.Any())
                 return RedirectToRoute("ShoppingCart");
             //validation (each shopping cart item)
-            foreach (ShoppingCartItem sci in cart)
+            foreach (var sci in cart)
             {
                 var sciWarnings = _shoppingCartService.GetShoppingCartItemWarnings(_workContext.CurrentCustomer,
                     sci.ShoppingCartType,
@@ -959,8 +959,8 @@ namespace Nop.Web.Controllers
             var splittedOption = shippingoption.Split(new [] { "___" }, StringSplitOptions.RemoveEmptyEntries);
             if (splittedOption.Length != 2)
                 return ShippingMethod();
-            string selectedName = splittedOption[0];
-            string shippingRateComputationMethodSystemName = splittedOption[1];
+            var selectedName = splittedOption[0];
+            var shippingRateComputationMethodSystemName = splittedOption[1];
             
             //find it
             //performance optimization. try cache first
@@ -1009,7 +1009,7 @@ namespace Nop.Web.Controllers
 
             //Check whether payment workflow is required
             //we ignore reward points during cart total calculation
-            bool isPaymentWorkflowRequired = IsPaymentWorkflowRequired(cart, true);
+            var isPaymentWorkflowRequired = IsPaymentWorkflowRequired(cart, true);
             if (!isPaymentWorkflowRequired)
             {
                 _genericAttributeService.SaveAttribute<string>(_workContext.CurrentCustomer,
@@ -1018,7 +1018,7 @@ namespace Nop.Web.Controllers
             }
 
             //filter by country
-            int filterByCountryId = 0;
+            var filterByCountryId = 0;
             if (_addressSettings.CountryEnabled &&
                 _workContext.CurrentCustomer.BillingAddress != null &&
                 _workContext.CurrentCustomer.BillingAddress.Country != null)
@@ -1073,7 +1073,7 @@ namespace Nop.Web.Controllers
             }
 
             //Check whether payment workflow is required
-            bool isPaymentWorkflowRequired = IsPaymentWorkflowRequired(cart);
+            var isPaymentWorkflowRequired = IsPaymentWorkflowRequired(cart);
             if (!isPaymentWorkflowRequired)
             {
                 _genericAttributeService.SaveAttribute<string>(_workContext.CurrentCustomer,
@@ -1114,7 +1114,7 @@ namespace Nop.Web.Controllers
                 return new HttpUnauthorizedResult();
 
             //Check whether payment workflow is required
-            bool isPaymentWorkflowRequired = IsPaymentWorkflowRequired(cart);
+            var isPaymentWorkflowRequired = IsPaymentWorkflowRequired(cart);
             if (!isPaymentWorkflowRequired)
             {
                 return RedirectToRoute("CheckoutConfirm");
@@ -1164,7 +1164,7 @@ namespace Nop.Web.Controllers
                 return new HttpUnauthorizedResult();
 
             //Check whether payment workflow is required
-            bool isPaymentWorkflowRequired = IsPaymentWorkflowRequired(cart);
+            var isPaymentWorkflowRequired = IsPaymentWorkflowRequired(cart);
             if (!isPaymentWorkflowRequired)
             {
                 return RedirectToRoute("CheckoutConfirm");
@@ -1342,11 +1342,11 @@ namespace Nop.Web.Controllers
         {
             //Check whether payment workflow is required
             //we ignore reward points during cart total calculation
-            bool isPaymentWorkflowRequired = IsPaymentWorkflowRequired(cart, true);
+            var isPaymentWorkflowRequired = IsPaymentWorkflowRequired(cart, true);
             if (isPaymentWorkflowRequired)
             {
                 //filter by country
-                int filterByCountryId = 0;
+                var filterByCountryId = 0;
                 if (_addressSettings.CountryEnabled &&
                     _workContext.CurrentCustomer.BillingAddress != null &&
                     _workContext.CurrentCustomer.BillingAddress.Country != null)
@@ -1791,14 +1791,14 @@ namespace Nop.Web.Controllers
                     throw new Exception("Shipping is not required");
 
                 //parse selected method 
-                string shippingoption = form["shippingoption"];
+                var shippingoption = form["shippingoption"];
                 if (String.IsNullOrEmpty(shippingoption))
                     throw new Exception("Selected shipping method can't be parsed");
                 var splittedOption = shippingoption.Split(new [] { "___" }, StringSplitOptions.RemoveEmptyEntries);
                 if (splittedOption.Length != 2)
                     throw new Exception("Selected shipping method can't be parsed");
-                string selectedName = splittedOption[0];
-                string shippingRateComputationMethodSystemName = splittedOption[1];
+                var selectedName = splittedOption[0];
+                var shippingRateComputationMethodSystemName = splittedOption[1];
                 
                 //find it
                 //performance optimization. try cache first
@@ -1855,7 +1855,7 @@ namespace Nop.Web.Controllers
                 if (_workContext.CurrentCustomer.IsGuest() && !_orderSettings.AnonymousCheckoutAllowed)
                     throw new Exception("Anonymous checkout is not allowed");
 
-                string paymentmethod = form["paymentmethod"];
+                var paymentmethod = form["paymentmethod"];
                 //payment method 
                 if (String.IsNullOrEmpty(paymentmethod))
                     throw new Exception("Selected payment method can't be parsed");
@@ -1873,7 +1873,7 @@ namespace Nop.Web.Controllers
                 }
 
                 //Check whether payment workflow is required
-                bool isPaymentWorkflowRequired = IsPaymentWorkflowRequired(cart);
+                var isPaymentWorkflowRequired = IsPaymentWorkflowRequired(cart);
                 if (!isPaymentWorkflowRequired)
                 {
                     //payment is not required

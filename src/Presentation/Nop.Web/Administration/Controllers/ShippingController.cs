@@ -789,7 +789,7 @@ namespace Nop.Admin.Controllers
             foreach (var country in countries)
                 foreach (var shippingMethod in shippingMethods)
                 {
-                    bool restricted = shippingMethod.CountryRestrictionExists(country.Id);
+                    var restricted = shippingMethod.CountryRestrictionExists(country.Id);
                     if (!model.Restricted.ContainsKey(country.Id))
                         model.Restricted[country.Id] = new Dictionary<int, bool>();
                     model.Restricted[country.Id][shippingMethod.Id] = restricted;
@@ -810,7 +810,7 @@ namespace Nop.Admin.Controllers
 
             foreach (var shippingMethod in shippingMethods)
             {
-                string formKey = "restrict_" + shippingMethod.Id;
+                var formKey = "restrict_" + shippingMethod.Id;
                 var countryIdsToRestrict = form[formKey] != null 
                     ? form[formKey].Split(new [] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                     .Select(int.Parse)
@@ -820,7 +820,7 @@ namespace Nop.Admin.Controllers
                 foreach (var country in countries)
                 {
 
-                    bool restrict = countryIdsToRestrict.Contains(country.Id);
+                    var restrict = countryIdsToRestrict.Contains(country.Id);
                     if (restrict)
                     {
                         if (shippingMethod.RestrictedCountries.FirstOrDefault(c => c.Id == country.Id) == null)

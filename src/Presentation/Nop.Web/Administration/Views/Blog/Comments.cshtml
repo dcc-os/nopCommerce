@@ -31,7 +31,7 @@
                     <div id="comments-grid"></div>
 
                     @{
-                        string readUrl = "";
+                        var readUrl = "";
                         if (filterByBlogPostId.HasValue)
                         {
                             readUrl = Url.Action("Comments", "Blog", new {filterByBlogPostId = filterByBlogPostId.Value});

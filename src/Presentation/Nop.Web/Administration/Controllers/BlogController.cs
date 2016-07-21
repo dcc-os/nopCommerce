@@ -323,7 +323,7 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageBlog))
                 return AccessDeniedView();
 
-            IList<BlogComment> comments = filterByBlogPostId.HasValue ?
+            var comments = filterByBlogPostId.HasValue ?
                 //filter comments by blog
                 _blogService.GetBlogPostById(filterByBlogPostId.Value).BlogComments.OrderBy(bc => bc.CreatedOnUtc).ToList() :
                 //load all blog comments

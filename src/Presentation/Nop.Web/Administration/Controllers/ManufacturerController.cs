@@ -455,7 +455,7 @@ namespace Nop.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                int prevPictureId = manufacturer.PictureId;
+                var prevPictureId = manufacturer.PictureId;
                 manufacturer = model.ToEntity(manufacturer);
                 manufacturer.UpdatedOnUtc = DateTime.UtcNow;
                 _manufacturerService.UpdateManufacturer(manufacturer);
@@ -749,7 +749,7 @@ namespace Nop.Admin.Controllers
 
             if (model.SelectedProductIds != null)
             {
-                foreach (int id in model.SelectedProductIds)
+                foreach (var id in model.SelectedProductIds)
                 {
                     var product = _productService.GetProductById(id);
                     if (product != null)

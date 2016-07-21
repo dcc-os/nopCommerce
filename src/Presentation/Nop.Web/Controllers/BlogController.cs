@@ -162,8 +162,8 @@ namespace Nop.Web.Controllers
             if (command.PageSize <= 0) command.PageSize = _blogSettings.PostsPageSize;
             if (command.PageNumber <= 0) command.PageNumber = 1;
 
-            DateTime? dateFrom = command.GetFromMonth();
-            DateTime? dateTo = command.GetToMonth();
+            var dateFrom = command.GetFromMonth();
+            var dateTo = command.GetToMonth();
 
             IPagedList<BlogPost> blogPosts;
             if (String.IsNullOrEmpty(command.Tag))
@@ -237,7 +237,7 @@ namespace Nop.Web.Controllers
             var blogPosts = _blogService.GetAllBlogPosts(_storeContext.CurrentStore.Id, languageId);
             foreach (var blogPost in blogPosts)
             {
-                string blogPostUrl = Url.RouteUrl("BlogPost", new { SeName = blogPost.GetSeName(blogPost.LanguageId, ensureTwoPublishedLanguages: false) }, _webHelper.IsCurrentConnectionSecured() ? "https" : "http");
+                var blogPostUrl = Url.RouteUrl("BlogPost", new { SeName = blogPost.GetSeName(blogPost.LanguageId, ensureTwoPublishedLanguages: false) }, _webHelper.IsCurrentConnectionSecured() ? "https" : "http");
                 items.Add(new SyndicationItem(blogPost.Title, blogPost.Body, new Uri(blogPostUrl), String.Format("urn:store:{0}:blog:post:{1}", _storeContext.CurrentStore.Id, blogPost.Id), blogPost.CreatedOnUtc));
             }
             feed.Items = items;
@@ -388,7 +388,7 @@ namespace Nop.Web.Controllers
                     }
 
 
-                    int current = 0;
+                    var current = 0;
                     foreach (var kvp in months)
                     {
                         var date = kvp.Key;
@@ -425,7 +425,7 @@ namespace Nop.Web.Controllers
             if (!_blogSettings.Enabled || !_blogSettings.ShowHeaderRssUrl)
                 return Content("");
 
-            string link = string.Format("<link href=\"{0}\" rel=\"alternate\" type=\"{1}\" title=\"{2}: Blog\" />",
+            var link = string.Format("<link href=\"{0}\" rel=\"alternate\" type=\"{1}\" title=\"{2}: Blog\" />",
                 Url.RouteUrl("BlogRSS", new { languageId = _workContext.WorkingLanguage.Id }, _webHelper.IsCurrentConnectionSecured() ? "https" : "http"), MimeTypes.ApplicationRssXml, _storeContext.CurrentStore.GetLocalized(x => x.Name));
 
             return Content(link);

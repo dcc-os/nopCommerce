@@ -61,9 +61,9 @@ namespace Nop.Admin.Controllers
         protected virtual string FormatTokens(string[] tokens)
         {
             var sb = new StringBuilder();
-            for (int i = 0; i < tokens.Length; i++)
+            for (var i = 0; i < tokens.Length; i++)
             {
-                string token = tokens[i];
+                var token = tokens[i];
                 sb.Append(token);
                 if (i != tokens.Length - 1)
                     sb.Append(", ");

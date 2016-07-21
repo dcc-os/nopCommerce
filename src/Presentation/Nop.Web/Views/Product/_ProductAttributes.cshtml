@@ -10,8 +10,8 @@
         <dl>
             @foreach (var attribute in Model)
             {
-                string controlId = string.Format("product_attribute_{0}", attribute.Id);
-                string textPrompt = !string.IsNullOrEmpty(attribute.TextPrompt) ? attribute.TextPrompt : attribute.Name;
+                var controlId = string.Format("product_attribute_{0}", attribute.Id);
+                var textPrompt = !string.IsNullOrEmpty(attribute.TextPrompt) ? attribute.TextPrompt : attribute.Name;
                 <dt id="@string.Format("product_attribute_label_{0}", attribute.Id)">
                     <label class="text-prompt">
                         @textPrompt
@@ -280,7 +280,7 @@
         //generate change event script
         foreach (var attribute in Model)
         {
-            string controlId = string.Format("product_attribute_{0}", attribute.Id);
+            var controlId = string.Format("product_attribute_{0}", attribute.Id);
             switch (attribute.AttributeControlType)
             {
                 case AttributeControlType.DropdownList:

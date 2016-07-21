@@ -333,7 +333,7 @@ namespace Nop.Admin.Controllers
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageNews))
                 return AccessDeniedView();
 
-            IList<NewsComment> comments = filterByNewsItemId.HasValue ?
+            var comments = filterByNewsItemId.HasValue ?
                 //filter comments by news item
                 _newsService.GetNewsById(filterByNewsItemId.Value).NewsComments.OrderBy(bc => bc.CreatedOnUtc).ToList() :
                 //load all news comments

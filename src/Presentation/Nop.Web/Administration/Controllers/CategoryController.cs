@@ -479,7 +479,7 @@ namespace Nop.Admin.Controllers
 
             if (ModelState.IsValid)
             {
-                int prevPictureId = category.PictureId;
+                var prevPictureId = category.PictureId;
                 category = model.ToEntity(category);
                 category.UpdatedOnUtc = DateTime.UtcNow;
                 _categoryService.UpdateCategory(category);
@@ -768,7 +768,7 @@ namespace Nop.Admin.Controllers
 
             if (model.SelectedProductIds != null)
             {
-                foreach (int id in model.SelectedProductIds)
+                foreach (var id in model.SelectedProductIds)
                 {
                     var product = _productService.GetProductById(id);
                     if (product != null)

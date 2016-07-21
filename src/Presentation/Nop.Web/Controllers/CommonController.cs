@@ -284,7 +284,7 @@ namespace Nop.Web.Controllers
             //language part in URL
             if (_localizationSettings.SeoFriendlyUrlsForLanguagesEnabled)
             {
-                string applicationPath = HttpContext.Request.ApplicationPath;
+                var applicationPath = HttpContext.Request.ApplicationPath;
                 if (returnUrl.IsLocalizedUrl(applicationPath, true))
                 {
                     //already localized URL
@@ -486,7 +486,7 @@ namespace Nop.Web.Controllers
         public ActionResult Footer()
         {
             //footer topics
-            string topicCacheKey = string.Format(ModelCacheEventConsumer.TOPIC_FOOTER_MODEL_KEY,
+            var topicCacheKey = string.Format(ModelCacheEventConsumer.TOPIC_FOOTER_MODEL_KEY,
                 _workContext.WorkingLanguage.Id,
                 _storeContext.CurrentStore.Id,
                 string.Join(",", _workContext.CurrentCustomer.GetCustomerRoleIds()));
@@ -559,9 +559,9 @@ namespace Nop.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                string email = model.Email.Trim();
-                string fullName = model.FullName;
-                string subject = _commonSettings.SubjectFieldOnContactUsForm ?
+                var email = model.Email.Trim();
+                var fullName = model.FullName;
+                var subject = _commonSettings.SubjectFieldOnContactUsForm ?
                     model.Subject :
                     string.Format(_localizationService.GetResource("ContactUs.EmailSubject"), _storeContext.CurrentStore.GetLocalized(x => x.Name));
 
@@ -573,7 +573,7 @@ namespace Nop.Web.Controllers
 
                 string from;
                 string fromName;
-                string body = Core.Html.HtmlHelper.FormatText(model.Enquiry, false, true, false, false, false, false);
+                var body = Core.Html.HtmlHelper.FormatText(model.Enquiry, false, true, false, false, false, false);
                 //required for some SMTP servers
                 if (_commonSettings.UseSystemEmailForContactUsForm)
                 {
@@ -659,10 +659,10 @@ namespace Nop.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                string email = model.Email.Trim();
-                string fullName = model.FullName;
+                var email = model.Email.Trim();
+                var fullName = model.FullName;
 
-                string subject = _commonSettings.SubjectFieldOnContactUsForm ?
+                var subject = _commonSettings.SubjectFieldOnContactUsForm ?
                     model.Subject :
                     string.Format(_localizationService.GetResource("ContactVendor.EmailSubject"), _storeContext.CurrentStore.GetLocalized(x => x.Name));
 
@@ -675,7 +675,7 @@ namespace Nop.Web.Controllers
 
                 string from;
                 string fromName;
-                string body = Core.Html.HtmlHelper.FormatText(model.Enquiry, false, true, false, false, false, false);
+                var body = Core.Html.HtmlHelper.FormatText(model.Enquiry, false, true, false, false, false, false);
                 //required for some SMTP servers
                 if (_commonSettings.UseSystemEmailForContactUsForm)
                 {
@@ -722,7 +722,7 @@ namespace Nop.Web.Controllers
             if (!_commonSettings.SitemapEnabled)
                 return RedirectToRoute("HomePage");
 
-            string cacheKey = string.Format(ModelCacheEventConsumer.SITEMAP_PAGE_MODEL_KEY,
+            var cacheKey = string.Format(ModelCacheEventConsumer.SITEMAP_PAGE_MODEL_KEY,
                 _workContext.WorkingLanguage.Id,
                 string.Join(",", _workContext.CurrentCustomer.GetCustomerRoleIds()),
                 _storeContext.CurrentStore.Id);
@@ -791,7 +791,7 @@ namespace Nop.Web.Controllers
             if (!_commonSettings.SitemapEnabled)
                 return RedirectToRoute("HomePage");
 
-            string cacheKey = string.Format(ModelCacheEventConsumer.SITEMAP_SEO_MODEL_KEY,
+            var cacheKey = string.Format(ModelCacheEventConsumer.SITEMAP_SEO_MODEL_KEY,
                 _workContext.WorkingLanguage.Id,
                 string.Join(",", _workContext.CurrentCustomer.GetCustomerRoleIds()),
                 _storeContext.CurrentStore.Id);
@@ -911,11 +911,11 @@ namespace Nop.Web.Controllers
             var sb = new StringBuilder();
 
             //if robots.custom.txt exists, let's use it instead of hard-coded data below
-            string robotsFilePath = System.IO.Path.Combine(CommonHelper.MapPath("~/"), "robots.custom.txt");
+            var robotsFilePath = System.IO.Path.Combine(CommonHelper.MapPath("~/"), "robots.custom.txt");
             if (System.IO.File.Exists(robotsFilePath))
             {
                 //the robots.txt file exists
-                string robotsFileContent = System.IO.File.ReadAllText(robotsFilePath);
+                var robotsFileContent = System.IO.File.ReadAllText(robotsFilePath);
                 sb.Append(robotsFileContent);
             }
             else
@@ -1037,10 +1037,10 @@ namespace Nop.Web.Controllers
                 }
 
                 //load and add robots.txt additions to the end of file.
-                string robotsAdditionsFile = System.IO.Path.Combine(CommonHelper.MapPath("~/"), "robots.additions.txt");
+                var robotsAdditionsFile = System.IO.Path.Combine(CommonHelper.MapPath("~/"), "robots.additions.txt");
                 if (System.IO.File.Exists(robotsAdditionsFile))
                 {
-                    string robotsFileContent = System.IO.File.ReadAllText(robotsAdditionsFile);
+                    var robotsFileContent = System.IO.File.ReadAllText(robotsAdditionsFile);
                     sb.Append(robotsFileContent);
                 }
             }
