@@ -53,7 +53,7 @@ namespace Nop.Plugin.DiscountRules.HadSpentAmount
             var orders = _orderService.SearchOrders(storeId: request.Store.Id, 
                 customerId: request.Customer.Id,
                 osIds: new List<int>() { (int)OrderStatus.Complete });
-            decimal spentAmount = orders.Sum(o => o.OrderTotal);
+            var spentAmount = orders.Sum(o => o.OrderTotal);
             if (spentAmount > spentAmountRequirement)
             {
                 result.IsValid = true;
@@ -74,7 +74,7 @@ namespace Nop.Plugin.DiscountRules.HadSpentAmount
         public string GetConfigurationUrl(int discountId, int? discountRequirementId)
         {
             //configured in RouteProvider.cs
-            string result = "Plugins/DiscountRulesHadSpentAmount/Configure/?discountId=" + discountId;
+            var result = "Plugins/DiscountRulesHadSpentAmount/Configure/?discountId=" + discountId;
             if (discountRequirementId.HasValue)
                 result += string.Format("&discountRequirementId={0}", discountRequirementId.Value);
             return result;

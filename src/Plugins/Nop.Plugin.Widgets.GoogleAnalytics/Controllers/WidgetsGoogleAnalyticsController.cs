@@ -116,7 +116,7 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers
         [ChildActionOnly]
         public ActionResult PublicInfo(string widgetZone, object additionalData = null)
         {
-            string globalScript = "";
+            var globalScript = "";
             var routeData = ((System.Web.UI.Page)this.HttpContext.CurrentHandler).RouteData;
 
             try
@@ -235,9 +235,9 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers
                 var sb = new StringBuilder();
                 foreach (var item in order.OrderItems)
                 {
-                    string analyticsEcommerceDetailScript = googleAnalyticsSettings.EcommerceDetailScript;
+                    var analyticsEcommerceDetailScript = googleAnalyticsSettings.EcommerceDetailScript;
                     //get category
-                    string category = "";
+                    var category = "";
                     var defaultProductCategory = _categoryService.GetProductCategoriesByProductId(item.ProductId).FirstOrDefault();
                     if (defaultProductCategory != null)
                         category = defaultProductCategory.Category.Name;

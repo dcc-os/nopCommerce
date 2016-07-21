@@ -66,7 +66,7 @@ namespace Nop.Plugin.DiscountRules.HasOneProduct
             var cart = cartQuery.ToList();
 
             //process
-            bool found = false;
+            var found = false;
             foreach (var restrictedProduct in restrictedProducts)
             {
                 if (String.IsNullOrWhiteSpace(restrictedProduct))
@@ -159,7 +159,7 @@ namespace Nop.Plugin.DiscountRules.HasOneProduct
         public string GetConfigurationUrl(int discountId, int? discountRequirementId)
         {
             //configured in RouteProvider.cs
-            string result = "Plugins/DiscountRulesHasOneProduct/Configure/?discountId=" + discountId;
+            var result = "Plugins/DiscountRulesHasOneProduct/Configure/?discountId=" + discountId;
             if (discountRequirementId.HasValue)
                 result += string.Format("&discountRequirementId={0}", discountRequirementId.Value);
             return result;

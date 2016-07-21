@@ -57,7 +57,7 @@ namespace Nop.Plugin.DiscountRules.CustomerRoles
         public string GetConfigurationUrl(int discountId, int? discountRequirementId)
         {
             //configured in RouteProvider.cs
-            string result = "Plugins/DiscountRulesCustomerRoles/Configure/?discountId=" + discountId;
+            var result = "Plugins/DiscountRulesCustomerRoles/Configure/?discountId=" + discountId;
             if (discountRequirementId.HasValue)
                 result += string.Format("&discountRequirementId={0}", discountRequirementId.Value);
             return result;

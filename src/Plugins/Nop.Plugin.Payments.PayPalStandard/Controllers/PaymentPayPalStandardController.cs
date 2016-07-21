@@ -182,18 +182,18 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
 
             if (processor.GetPdtDetails(tx, out values, out response))
             {
-                string orderNumber = string.Empty;
+                var orderNumber = string.Empty;
                 values.TryGetValue("custom", out orderNumber);
-                Guid orderNumberGuid = Guid.Empty;
+                var orderNumberGuid = Guid.Empty;
                 try
                 {
                     orderNumberGuid = new Guid(orderNumber);
                 }
                 catch { }
-                Order order = _orderService.GetOrderByGuid(orderNumberGuid);
+                var order = _orderService.GetOrderByGuid(orderNumberGuid);
                 if (order != null)
                 {
-                    decimal mc_gross = decimal.Zero;
+                    var mc_gross = decimal.Zero;
                     try
                     {
                         mc_gross = decimal.Parse(values["mc_gross"], new CultureInfo("en-US"));
@@ -203,25 +203,25 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                         _logger.Error("PayPal PDT. Error getting mc_gross", exc);
                     }
 
-                    string payer_status = string.Empty;
+                    var payer_status = string.Empty;
                     values.TryGetValue("payer_status", out payer_status);
-                    string payment_status = string.Empty;
+                    var payment_status = string.Empty;
                     values.TryGetValue("payment_status", out payment_status);
-                    string pending_reason = string.Empty;
+                    var pending_reason = string.Empty;
                     values.TryGetValue("pending_reason", out pending_reason);
-                    string mc_currency = string.Empty;
+                    var mc_currency = string.Empty;
                     values.TryGetValue("mc_currency", out mc_currency);
-                    string txn_id = string.Empty;
+                    var txn_id = string.Empty;
                     values.TryGetValue("txn_id", out txn_id);
-                    string payment_type = string.Empty;
+                    var payment_type = string.Empty;
                     values.TryGetValue("payment_type", out payment_type);
-                    string payer_id = string.Empty;
+                    var payer_id = string.Empty;
                     values.TryGetValue("payer_id", out payer_id);
-                    string receiver_id = string.Empty;
+                    var receiver_id = string.Empty;
                     values.TryGetValue("receiver_id", out receiver_id);
-                    string invoice = string.Empty;
+                    var invoice = string.Empty;
                     values.TryGetValue("invoice", out invoice);
-                    string payment_fee = string.Empty;
+                    var payment_fee = string.Empty;
                     values.TryGetValue("payment_fee", out payment_fee);
 
                     var sb = new StringBuilder();
@@ -257,7 +257,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                     //validate order total
                     if (payPalStandardPaymentSettings.PdtValidateOrderTotal && !Math.Round(mc_gross, 2).Equals(Math.Round(order.OrderTotal, 2)))
                     {
-                        string errorStr = string.Format("PayPal PDT. Returned order total {0} doesn't equal order total {1}. Order# {2}.", mc_gross, order.OrderTotal, order.Id);
+                        var errorStr = string.Format("PayPal PDT. Returned order total {0} doesn't equal order total {1}. Order# {2}.", mc_gross, order.OrderTotal, order.Id);
                         //log
                         _logger.Error(errorStr);
                         //order note
@@ -289,15 +289,15 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
             }
             else
             {
-                string orderNumber = string.Empty;
+                var orderNumber = string.Empty;
                 values.TryGetValue("custom", out orderNumber);
-                Guid orderNumberGuid = Guid.Empty;
+                var orderNumberGuid = Guid.Empty;
                 try
                 {
                     orderNumberGuid = new Guid(orderNumber);
                 }
                 catch { }
-                Order order = _orderService.GetOrderByGuid(orderNumberGuid);
+                var order = _orderService.GetOrderByGuid(orderNumberGuid);
                 if (order != null)
                 {
                     //order note
@@ -316,8 +316,8 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
         [ValidateInput(false)]
         public ActionResult IPNHandler()
         {
-            byte[] param = Request.BinaryRead(Request.ContentLength);
-            string strRequest = Encoding.ASCII.GetString(param);
+            var param = Request.BinaryRead(Request.ContentLength);
+            var strRequest = Encoding.ASCII.GetString(param);
             Dictionary<string, string> values;
 
             var processor = _paymentService.LoadPaymentMethodBySystemName("Payments.PayPalStandard") as PayPalStandardPaymentProcessor;
@@ -328,43 +328,43 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
             if (processor.VerifyIpn(strRequest, out values))
             {
                 #region values
-                decimal mc_gross = decimal.Zero;
+                var mc_gross = decimal.Zero;
                 try
                 {
                     mc_gross = decimal.Parse(values["mc_gross"], new CultureInfo("en-US"));
                 }
                 catch { }
 
-                string payer_status = string.Empty;
+                var payer_status = string.Empty;
                 values.TryGetValue("payer_status", out payer_status);
-                string payment_status = string.Empty;
+                var payment_status = string.Empty;
                 values.TryGetValue("payment_status", out payment_status);
-                string pending_reason = string.Empty;
+                var pending_reason = string.Empty;
                 values.TryGetValue("pending_reason", out pending_reason);
-                string mc_currency = string.Empty;
+                var mc_currency = string.Empty;
                 values.TryGetValue("mc_currency", out mc_currency);
-                string txn_id = string.Empty;
+                var txn_id = string.Empty;
                 values.TryGetValue("txn_id", out txn_id);
-                string txn_type = string.Empty;
+                var txn_type = string.Empty;
                 values.TryGetValue("txn_type", out txn_type);
-                string rp_invoice_id = string.Empty;
+                var rp_invoice_id = string.Empty;
                 values.TryGetValue("rp_invoice_id", out rp_invoice_id);
-                string payment_type = string.Empty;
+                var payment_type = string.Empty;
                 values.TryGetValue("payment_type", out payment_type);
-                string payer_id = string.Empty;
+                var payer_id = string.Empty;
                 values.TryGetValue("payer_id", out payer_id);
-                string receiver_id = string.Empty;
+                var receiver_id = string.Empty;
                 values.TryGetValue("receiver_id", out receiver_id);
-                string invoice = string.Empty;
+                var invoice = string.Empty;
                 values.TryGetValue("invoice", out invoice);
-                string payment_fee = string.Empty;
+                var payment_fee = string.Empty;
                 values.TryGetValue("payment_fee", out payment_fee);
 
                 #endregion
 
                 var sb = new StringBuilder();
                 sb.AppendLine("Paypal IPN:");
-                foreach (KeyValuePair<string, string> kvp in values)
+                foreach (var kvp in values)
                 {
                     sb.AppendLine(kvp.Key + ": " + kvp.Value);
                 }
@@ -380,7 +380,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                     case "recurring_payment":
                         #region Recurring payment
                         {
-                            Guid orderNumberGuid = Guid.Empty;
+                            var orderNumberGuid = Guid.Empty;
                             try
                             {
                                 orderNumberGuid = new Guid(rp_invoice_id);
@@ -443,9 +443,9 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                     default:
                         #region Standard payment
                         {
-                            string orderNumber = string.Empty;
+                            var orderNumber = string.Empty;
                             values.TryGetValue("custom", out orderNumber);
-                            Guid orderNumberGuid = Guid.Empty;
+                            var orderNumberGuid = Guid.Empty;
                             try
                             {
                                 orderNumberGuid = new Guid(orderNumber);
@@ -487,7 +487,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                                             else
                                             {
                                                 //not valid
-                                                string errorStr = string.Format("PayPal IPN. Returned order total {0} doesn't equal order total {1}. Order# {2}.", mc_gross, order.OrderTotal, order.Id);
+                                                var errorStr = string.Format("PayPal IPN. Returned order total {0} doesn't equal order total {1}. Order# {2}.", mc_gross, order.OrderTotal, order.Id);
                                                 //log
                                                 _logger.Error(errorStr);
                                                 //order note
@@ -518,7 +518,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                                             else
                                             {
                                                 //not valid
-                                                string errorStr = string.Format("PayPal IPN. Returned order total {0} doesn't equal order total {1}. Order# {2}.", mc_gross, order.OrderTotal, order.Id);
+                                                var errorStr = string.Format("PayPal IPN. Returned order total {0} doesn't equal order total {1}. Order# {2}.", mc_gross, order.OrderTotal, order.Id);
                                                 //log
                                                 _logger.Error(errorStr);
                                                 //order note
