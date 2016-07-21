@@ -43,7 +43,7 @@ namespace Nop.Services.Seo
         {
             if (productTag == null)
                 throw new ArgumentNullException("productTag");
-            string seName = GetSeName(productTag.GetLocalized(x => x.Name, languageId));
+            var seName = GetSeName(productTag.GetLocalized(x => x.Name, languageId));
             return seName;
         }
 
@@ -60,7 +60,7 @@ namespace Nop.Services.Seo
         {
             if (forumGroup == null)
                 throw new ArgumentNullException("forumGroup");
-            string seName = GetSeName(forumGroup.Name);
+            var seName = GetSeName(forumGroup.Name);
             return seName;
         }
 
@@ -73,7 +73,7 @@ namespace Nop.Services.Seo
         {
             if (forum == null)
                 throw new ArgumentNullException("forum");
-            string seName = GetSeName(forum.Name);
+            var seName = GetSeName(forum.Name);
             return seName;
         }
 
@@ -86,7 +86,7 @@ namespace Nop.Services.Seo
         {
             if (forumTopic == null)
                 throw new ArgumentNullException("forumTopic");
-            string seName = GetSeName(forumTopic.Subject);
+            var seName = GetSeName(forumTopic.Subject);
 
             // Trim SE name to avoid URLs that are too long
             var maxLength = 100;
@@ -131,7 +131,7 @@ namespace Nop.Services.Seo
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            string entityName = typeof(T).Name;
+            var entityName = typeof(T).Name;
             return GetSeName(entity.Id, entityName, languageId, returnDefaultValue, ensureTwoPublishedLanguages);
         }
 
@@ -147,13 +147,13 @@ namespace Nop.Services.Seo
         public static string GetSeName(int entityId, string entityName, int languageId, bool returnDefaultValue = true,
             bool ensureTwoPublishedLanguages = true)
         {
-            string result = string.Empty;
+            var result = string.Empty;
 
             var urlRecordService = EngineContext.Current.Resolve<IUrlRecordService>();
             if (languageId > 0)
             {
                 //ensure that we have at least two published languages
-                bool loadLocalizedValue = true;
+                var loadLocalizedValue = true;
                 if (ensureTwoPublishedLanguages)
                 {
                     var lService = EngineContext.Current.Resolve<ILanguageService>();
@@ -217,10 +217,10 @@ namespace Nop.Services.Seo
             }
 
             //ensure this sename is not reserved yet
-            string entityName = typeof(T).Name;
+            var entityName = typeof(T).Name;
             var urlRecordService = EngineContext.Current.Resolve<IUrlRecordService>();
             var seoSettings = EngineContext.Current.Resolve<SeoSettings>();
-            int i = 2;
+            var i = 2;
             var tempSeName = seName;
             while (true)
             {
@@ -263,7 +263,7 @@ namespace Nop.Services.Seo
         {
             if (String.IsNullOrEmpty(name))
                 return name;
-            string okChars = "abcdefghijklmnopqrstuvwxyz1234567890 _-";
+            var okChars = "abcdefghijklmnopqrstuvwxyz1234567890 _-";
             name = name.Trim().ToLowerInvariant();
 
             if (convertNonWesternChars)
@@ -273,9 +273,9 @@ namespace Nop.Services.Seo
             }
 
             var sb = new StringBuilder();
-            foreach (char c in name.ToCharArray())
+            foreach (var c in name.ToCharArray())
             {
-                string c2 = c.ToString();
+                var c2 = c.ToString();
                 if (convertNonWesternChars)
                 {
                     if (_seoCharacterTable.ContainsKey(c2))
@@ -292,7 +292,7 @@ namespace Nop.Services.Seo
                     sb.Append(c2);
                 }
             }
-            string name2 = sb.ToString();
+            var name2 = sb.ToString();
             name2 = name2.Replace(" ", "-");
             while (name2.Contains("--"))
                 name2 = name2.Replace("--", "-");

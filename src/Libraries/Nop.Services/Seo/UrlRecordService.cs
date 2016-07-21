@@ -96,7 +96,7 @@ namespace Nop.Services.Seo
         protected virtual IList<UrlRecordForCaching> GetAllUrlRecordsCached()
         {
             //cache
-            string key = string.Format(URLRECORD_ALL_KEY);
+            var key = string.Format(URLRECORD_ALL_KEY);
             return _cacheManager.Get(key, () =>
             {
                 var query = from ur in _urlRecordRepository.Table
@@ -261,7 +261,7 @@ namespace Nop.Services.Seo
             }
 
             //gradual loading
-            string key = string.Format(URLRECORD_BY_SLUG_KEY, slug);
+            var key = string.Format(URLRECORD_BY_SLUG_KEY, slug);
             return _cacheManager.Get(key, () =>
             {
                 var urlRecord = GetBySlug(slug);
@@ -302,7 +302,7 @@ namespace Nop.Services.Seo
         {
             if (_localizationSettings.LoadAllUrlRecordsOnStartup)
             {
-                string key = string.Format(URLRECORD_ACTIVE_BY_ID_NAME_LANGUAGE_KEY, entityId, entityName, languageId);
+                var key = string.Format(URLRECORD_ACTIVE_BY_ID_NAME_LANGUAGE_KEY, entityId, entityName, languageId);
                 return _cacheManager.Get(key, () =>
                 {
                     //load all records (we know they are cached)
@@ -324,7 +324,7 @@ namespace Nop.Services.Seo
             else
             {
                 //gradual loading
-                string key = string.Format(URLRECORD_ACTIVE_BY_ID_NAME_LANGUAGE_KEY, entityId, entityName, languageId);
+                var key = string.Format(URLRECORD_ACTIVE_BY_ID_NAME_LANGUAGE_KEY, entityId, entityName, languageId);
                 return _cacheManager.Get(key, () =>
                 {
                     var source = _urlRecordRepository.Table;
@@ -356,8 +356,8 @@ namespace Nop.Services.Seo
             if (entity == null)
                 throw new ArgumentNullException("entity");
 
-            int entityId = entity.Id;
-            string entityName = typeof(T).Name;
+            var entityId = entity.Id;
+            var entityName = typeof(T).Name;
 
             var query = from ur in _urlRecordRepository.Table
                         where ur.EntityId == entityId &&

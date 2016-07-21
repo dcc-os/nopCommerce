@@ -1077,7 +1077,7 @@ namespace Nop.Services.ExportImport
                 foreach (var store in _storeService.GetAllStores())
                 {
                     var newsletter = _newsLetterSubscriptionService.GetNewsLetterSubscriptionByEmailAndStoreId(customer.Email, store.Id);
-                    bool subscribedToNewsletters = newsletter != null && newsletter.Active;
+                    var subscribedToNewsletters = newsletter != null && newsletter.Active;
                     xmlWriter.WriteElementString(string.Format("Newsletter-in-store-{0}", store.Id), null, subscribedToNewsletters.ToString());
                 }
 

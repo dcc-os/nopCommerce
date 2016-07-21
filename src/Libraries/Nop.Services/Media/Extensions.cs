@@ -20,8 +20,8 @@ namespace Nop.Services.Media
         /// <returns>Download binary array</returns>
         public static byte[] GetDownloadBits(this HttpPostedFileBase postedFile)
         {
-            Stream fs = postedFile.InputStream;
-            int size = postedFile.ContentLength;
+            var fs = postedFile.InputStream;
+            var size = postedFile.ContentLength;
             var binary = new byte[size];
             fs.Read(binary, 0, size);
             return binary;
@@ -34,8 +34,8 @@ namespace Nop.Services.Media
         /// <returns>Picture binary array</returns>
         public static byte[] GetPictureBits(this HttpPostedFileBase postedFile)
         {
-            Stream fs = postedFile.InputStream;
-            int size = postedFile.ContentLength;
+            var fs = postedFile.InputStream;
+            var size = postedFile.ContentLength;
             var img = new byte[size];
             fs.Read(img, 0, size);
             return img;
