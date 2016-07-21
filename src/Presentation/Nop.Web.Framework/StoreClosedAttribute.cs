@@ -37,15 +37,15 @@ namespace Nop.Web.Framework
             if (_ignore)
                 return;
 
-            HttpRequestBase request = filterContext.HttpContext.Request;
+            var request = filterContext.HttpContext.Request;
             if (request == null)
                 return;
 
-            string actionName = filterContext.ActionDescriptor.ActionName;
+            var actionName = filterContext.ActionDescriptor.ActionName;
             if (String.IsNullOrEmpty(actionName))
                 return;
 
-            string controllerName = filterContext.Controller.ToString();
+            var controllerName = filterContext.Controller.ToString();
             if (String.IsNullOrEmpty(controllerName))
                 return;
 

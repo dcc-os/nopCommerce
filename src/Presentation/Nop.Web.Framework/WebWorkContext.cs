@@ -112,7 +112,7 @@ namespace Nop.Web.Framework
                 }
                 else
                 {
-                    int cookieExpires = 24*365; //TODO make configurable
+                    var cookieExpires = 24*365; //TODO make configurable
                     cookie.Expires = DateTime.Now.AddHours(cookieExpires);
                 }
 
@@ -126,8 +126,8 @@ namespace Nop.Web.Framework
             if (_httpContext == null || _httpContext.Request == null)
                 return null;
 
-            string virtualPath = _httpContext.Request.AppRelativeCurrentExecutionFilePath;
-            string applicationPath = _httpContext.Request.ApplicationPath;
+            var virtualPath = _httpContext.Request.AppRelativeCurrentExecutionFilePath;
+            var applicationPath = _httpContext.Request.ApplicationPath;
             if (!virtualPath.IsLocalizedUrl(applicationPath, false))
                 return null;
 

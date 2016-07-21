@@ -33,7 +33,7 @@ namespace Nop.Web.Framework.Controllers
 
         public override bool IsValidForRequest(ControllerContext controllerContext, MethodInfo methodInfo)
         {
-            foreach (string buttonName in _submitButtonNames)
+            foreach (var buttonName in _submitButtonNames)
             {
                 try
                 {
@@ -51,7 +51,7 @@ namespace Nop.Web.Framework.Controllers
                                 {
                                     //validate "value"
                                     //do not iterate because "Invalid request" exception can be thrown
-                                    string value = controllerContext.HttpContext.Request.Form[buttonName];
+                                    var value = controllerContext.HttpContext.Request.Form[buttonName];
                                     if (!String.IsNullOrEmpty(value))
                                         return true;
                                 }

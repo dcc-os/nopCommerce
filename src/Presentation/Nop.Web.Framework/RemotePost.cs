@@ -103,10 +103,10 @@ namespace Nop.Web.Framework
             {
                 foreach (string key in _inputValues.Keys)
                 {
-                    string[] values = _inputValues.GetValues(key);
+                    var values = _inputValues.GetValues(key);
                     if (values != null)
                     {
-                        foreach (string value in values)
+                        foreach (var value in values)
                         {
                             _httpContext.Response.Write(string.Format("<input name=\"{0}\" type=\"hidden\" value=\"{1}\">", HttpUtility.HtmlEncode(key), HttpUtility.HtmlEncode(value)));
                         }
@@ -115,7 +115,7 @@ namespace Nop.Web.Framework
             }
             else
             {
-                for (int i = 0; i < _inputValues.Keys.Count; i++)
+                for (var i = 0; i < _inputValues.Keys.Count; i++)
                     _httpContext.Response.Write(string.Format("<input name=\"{0}\" type=\"hidden\" value=\"{1}\">", HttpUtility.HtmlEncode(_inputValues.Keys[i]), HttpUtility.HtmlEncode(_inputValues[_inputValues.Keys[i]])));
             }
             _httpContext.Response.Write("</form>");

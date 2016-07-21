@@ -11,7 +11,7 @@ namespace Nop.Web.Framework.Security.Captcha
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            bool valid = false;
+            var valid = false;
             var captchaChallengeValue = filterContext.HttpContext.Request.Form[CHALLENGE_FIELD_KEY];
             var captchaResponseValue = filterContext.HttpContext.Request.Form[RESPONSE_FIELD_KEY];
             var gCaptchaResponseValue = filterContext.HttpContext.Request.Form[G_RESPONSE_FIELD_KEY];

@@ -19,7 +19,7 @@ namespace Nop.Web.Framework
             if (filterContext == null || filterContext.HttpContext == null)
                 return;
 
-            HttpRequestBase request = filterContext.HttpContext.Request;
+            var request = filterContext.HttpContext.Request;
             if (request == null)
                 return;
 

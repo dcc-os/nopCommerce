@@ -19,7 +19,7 @@ namespace Nop.Web.Framework
             if (filterContext == null || filterContext.HttpContext == null)
                 return;
 
-            HttpRequestBase request = filterContext.HttpContext.Request;
+            var request = filterContext.HttpContext.Request;
             if (request == null)
                 return;
 
@@ -45,7 +45,7 @@ namespace Nop.Web.Framework
 
             //process current URL
             var pageUrl = filterContext.HttpContext.Request.RawUrl;
-            string applicationPath = filterContext.HttpContext.Request.ApplicationPath;
+            var applicationPath = filterContext.HttpContext.Request.ApplicationPath;
             if (pageUrl.IsLocalizedUrl(applicationPath, true))
                 //already localized URL
                 return;
