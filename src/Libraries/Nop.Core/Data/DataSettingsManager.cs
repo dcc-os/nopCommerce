@@ -40,8 +40,8 @@ namespace Nop.Core.Data
                 {
                     continue;
                 }
-                string key = setting.Substring(0, separatorIndex).Trim();
-                string value = setting.Substring(separatorIndex + 1).Trim();
+                var key = setting.Substring(0, separatorIndex).Trim();
+                var value = setting.Substring(separatorIndex + 1).Trim();
 
                 switch (key)
                 {
@@ -90,7 +90,7 @@ namespace Nop.Core.Data
             }
             if (File.Exists(filePath))
             {
-                string text = File.ReadAllText(filePath);
+                var text = File.ReadAllText(filePath);
                 return ParseSettings(text);
             }
             
@@ -106,7 +106,7 @@ namespace Nop.Core.Data
             if (settings == null)
                 throw new ArgumentNullException("settings");
             
-            string filePath = Path.Combine(CommonHelper.MapPath("~/App_Data/"), filename);
+            var filePath = Path.Combine(CommonHelper.MapPath("~/App_Data/"), filename);
             if (!File.Exists(filePath))
             {
                 using (File.Create(filePath))
