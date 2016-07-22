@@ -269,7 +269,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                         });
                         _orderService.UpdateOrder(order);
 
-                        return RedirectToAction("Index", "Home", new { area = "" });
+                        return RedirectToAction("Index", "Home", new { area = string.Empty });
                     }
 
                     //mark order as paid
@@ -309,7 +309,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                     });
                     _orderService.UpdateOrder(order);
                 }
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction("Index", "Home", new { area = string.Empty });
             }
         }
 
@@ -580,7 +580,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
             }
 
             //nothing should be rendered to visitor
-            return Content("");
+            return Content(string.Empty);
         }
 
         public ActionResult CancelOrder(FormCollection form)
@@ -596,7 +596,7 @@ namespace Nop.Plugin.Payments.PayPalStandard.Controllers
                 }
             }
 
-            return RedirectToAction("Index", "Home", new { area = "" });
+            return RedirectToAction("Index", "Home", new { area = string.Empty });
         }
     }
 }

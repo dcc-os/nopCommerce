@@ -66,7 +66,7 @@ namespace Nop.Web.Framework.ViewEngines.Razor
                 if (!string.IsNullOrEmpty(layout))
                 {
                     var filename = Path.GetFileNameWithoutExtension(layout);
-                    ViewEngineResult viewResult = System.Web.Mvc.ViewEngines.Engines.FindView(ViewContext.Controller.ControllerContext, filename, "");
+                    ViewEngineResult viewResult = System.Web.Mvc.ViewEngines.Engines.FindView(ViewContext.Controller.ControllerContext, filename, string.Empty);
 
                     if (viewResult.View != null && viewResult.View is RazorView)
                     {

@@ -24,7 +24,7 @@ namespace Nop.Data.Tests.Customers
             fromDb.Username.ShouldEqual("a@b.com");
             fromDb.Password.ShouldEqual("password");
             fromDb.PasswordFormat.ShouldEqual(PasswordFormat.Clear);
-            fromDb.PasswordSalt.ShouldEqual("");
+            fromDb.PasswordSalt.ShouldEqual(string.Empty);
             fromDb.Email.ShouldEqual("a@b.com");
             fromDb.AdminComment.ShouldEqual("some comment here");
             fromDb.IsTaxExempt.ShouldEqual(true);
@@ -220,7 +220,7 @@ namespace Nop.Data.Tests.Customers
                 Username = "a@b.com",
                 Password = "password",
                 PasswordFormat = PasswordFormat.Clear,
-                PasswordSalt = "",
+                PasswordSalt = string.Empty,
                 Email = "a@b.com",
                 CustomerGuid = Guid.NewGuid(),
                 AdminComment = "some comment here",

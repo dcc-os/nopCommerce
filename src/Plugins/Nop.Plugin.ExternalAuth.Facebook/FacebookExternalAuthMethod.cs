@@ -62,8 +62,8 @@ namespace Nop.Plugin.ExternalAuth.Facebook
             //settings
             var settings = new FacebookExternalAuthSettings
             {
-                ClientKeyIdentifier = "",
-                ClientSecret = "",
+                ClientKeyIdentifier = string.Empty,
+                ClientSecret = string.Empty,
             };
             _settingService.SaveSetting(settings);
 

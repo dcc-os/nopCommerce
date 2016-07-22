@@ -343,11 +343,11 @@ namespace Nop.Plugin.Payments.PayPalStandard
             if (postProcessPaymentRequest.Order.BillingAddress.StateProvince != null)
                 builder.AppendFormat("&state={0}", HttpUtility.UrlEncode(postProcessPaymentRequest.Order.BillingAddress.StateProvince.Abbreviation));
             else
-                builder.AppendFormat("&state={0}", "");
+                builder.AppendFormat("&state={0}", string.Empty);
             if (postProcessPaymentRequest.Order.BillingAddress.Country != null)
                 builder.AppendFormat("&country={0}", HttpUtility.UrlEncode(postProcessPaymentRequest.Order.BillingAddress.Country.TwoLetterIsoCode));
             else
-                builder.AppendFormat("&country={0}", "");
+                builder.AppendFormat("&country={0}", string.Empty);
             builder.AppendFormat("&zip={0}", HttpUtility.UrlEncode(postProcessPaymentRequest.Order.BillingAddress.ZipPostalCode));
             builder.AppendFormat("&email={0}", HttpUtility.UrlEncode(postProcessPaymentRequest.Order.BillingAddress.Email));
             _httpContext.Response.Redirect(builder.ToString());

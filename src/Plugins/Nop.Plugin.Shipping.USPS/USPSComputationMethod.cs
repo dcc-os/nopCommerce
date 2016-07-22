@@ -497,7 +497,7 @@ namespace Nop.Plugin.Shipping.USPS
 
                     if ((tr.Name == "Error") && (tr.NodeType == XmlNodeType.Element))
                     {
-                        string errorText = "";
+                        string errorText = string.Empty;
                         while (tr.Read())
                         {
                             if ((tr.Name == "Description") && (tr.NodeType == XmlNodeType.Element))
@@ -625,7 +625,7 @@ namespace Nop.Plugin.Shipping.USPS
             bool isDomestic = IsDomesticRequest(getShippingOptionRequest);
             string requestString = CreateRequest(_uspsSettings.Username, _uspsSettings.Password, getShippingOptionRequest);
             string responseXml = DoRequest(_uspsSettings.Url, requestString);
-            string error = "";
+            string error = string.Empty;
             var shippingOptions = ParseResponse(responseXml, isDomestic, ref error);
             if (String.IsNullOrEmpty(error))
             {
@@ -680,8 +680,8 @@ namespace Nop.Plugin.Shipping.USPS
                 Username = "123",
                 Password = "456",
                 AdditionalHandlingCharge = 0,
-                CarrierServicesOfferedDomestic = "",
-                CarrierServicesOfferedInternational = ""
+                CarrierServicesOfferedDomestic = string.Empty,
+                CarrierServicesOfferedInternational = string.Empty
             };
             _settingService.SaveSetting(settings);
 

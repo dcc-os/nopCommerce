@@ -119,7 +119,7 @@ namespace Nop.Web.Controllers
             //validate CAPTCHA
             if (_captchaSettings.Enabled && _captchaSettings.ShowOnApplyVendorPage && !captchaValid)
             {
-                ModelState.AddModelError("", _captchaSettings.GetWrongCaptchaMessage(_localizationService));
+                ModelState.AddModelError(string.Empty, _captchaSettings.GetWrongCaptchaMessage(_localizationService));
             }
 
             int pictureId = 0;
@@ -137,7 +137,7 @@ namespace Nop.Web.Controllers
                 }
                 catch (Exception)
                 {
-                    ModelState.AddModelError("", _localizationService.GetResource("Vendors.ApplyAccount.Picture.ErrorMessage"));
+                    ModelState.AddModelError(string.Empty, _localizationService.GetResource("Vendors.ApplyAccount.Picture.ErrorMessage"));
                 }
             }
 
@@ -232,7 +232,7 @@ namespace Nop.Web.Controllers
                 }
                 catch (Exception)
                 {
-                    ModelState.AddModelError("", _localizationService.GetResource("Account.VendorInfo.Picture.ErrorMessage"));
+                    ModelState.AddModelError(string.Empty, _localizationService.GetResource("Account.VendorInfo.Picture.ErrorMessage"));
                 }
             }
 

@@ -82,7 +82,7 @@ namespace Nop.Admin.Controllers
                     //"Error during serialization or deserialization using the JSON JavaScriptSerializer. The length of the string exceeds the value set on the maxJsonLength property. "
                     //also it improves performance
                     //FullMessage = x.FullMessage,
-                    FullMessage = "",
+                    FullMessage = string.Empty,
                     IpAddress = x.IpAddress,
                     CustomerId = x.CustomerId,
                     CustomerEmail = x.Customer != null ? x.Customer.Email : null,

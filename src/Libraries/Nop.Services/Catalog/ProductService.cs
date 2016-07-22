@@ -521,7 +521,7 @@ namespace Nop.Services.Catalog
                 #region Use stored procedure
                 
                 //pass category identifiers as comma-delimited string
-                string commaSeparatedCategoryIds = categoryIds == null ? "" : string.Join(",", categoryIds);
+                string commaSeparatedCategoryIds = categoryIds == null ? string.Empty : string.Join(",", categoryIds);
 
 
                 //pass customer role identifiers as comma-delimited string
@@ -529,7 +529,7 @@ namespace Nop.Services.Catalog
 
 
                 //pass specification identifiers as comma-delimited string
-                string commaSeparatedSpecIds = "";
+                string commaSeparatedSpecIds = string.Empty;
                 if (filteredSpecs != null)
                 {
                     ((List<int>)filteredSpecs).Sort();
@@ -653,7 +653,7 @@ namespace Nop.Services.Catalog
 
                 var pAllowedCustomerRoleIds = _dataProvider.GetParameter();
                 pAllowedCustomerRoleIds.ParameterName = "AllowedCustomerRoleIds";
-                pAllowedCustomerRoleIds.Value = !_catalogSettings.IgnoreAcl ? commaSeparatedAllowedCustomerRoleIds : "";
+                pAllowedCustomerRoleIds.Value = !_catalogSettings.IgnoreAcl ? commaSeparatedAllowedCustomerRoleIds : string.Empty;
                 pAllowedCustomerRoleIds.DbType = DbType.String;
 
                 var pPageIndex = _dataProvider.GetParameter();
@@ -726,7 +726,7 @@ namespace Nop.Services.Catalog
                     pFilterableSpecificationAttributeOptionIds,
                     pTotalRecords);
                 //get filterable specification attribute option identifier
-                string filterableSpecificationAttributeOptionIdsStr = (pFilterableSpecificationAttributeOptionIds.Value != DBNull.Value) ? (string)pFilterableSpecificationAttributeOptionIds.Value : "";
+                string filterableSpecificationAttributeOptionIdsStr = (pFilterableSpecificationAttributeOptionIds.Value != DBNull.Value) ? (string)pFilterableSpecificationAttributeOptionIds.Value : string.Empty;
                 if (loadFilterableSpecificationAttributeOptionIds &&
                     !string.IsNullOrWhiteSpace(filterableSpecificationAttributeOptionIdsStr))
                 {

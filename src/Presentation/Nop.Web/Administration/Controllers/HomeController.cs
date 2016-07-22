@@ -132,7 +132,7 @@ namespace Nop.Admin.Controllers
             }
             catch (Exception)
             {
-                return Content("");
+                return Content(string.Empty);
             }
         }
 
@@ -151,11 +151,11 @@ namespace Nop.Admin.Controllers
                 !_permissionService.Authorize(StandardPermissionProvider.ManageOrders) ||
                 !_permissionService.Authorize(StandardPermissionProvider.ManageReturnRequests) ||
                 !_permissionService.Authorize(StandardPermissionProvider.ManageProducts))
-                return Content("");
+                return Content(string.Empty);
 
             //a vendor doesn't have access to this report
             if (_workContext.CurrentVendor != null)
-                return Content("");
+                return Content(string.Empty);
 
             var model = new CommonStatisticsModel();
 

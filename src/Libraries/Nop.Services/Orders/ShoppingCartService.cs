@@ -625,7 +625,7 @@ namespace Nop.Services.Orders
                         var totalQty = quantity * attributeValue.Quantity;
                         var associatedProductWarnings = GetShoppingCartItemWarnings(customer,
                             shoppingCartType, associatedProduct, _storeContext.CurrentStore.Id,
-                            "", decimal.Zero, null, null, totalQty, false);
+                            string.Empty, decimal.Zero, null, null, totalQty, false);
                         foreach (var associatedProductWarning in associatedProductWarnings)
                         {
                             var attributeName = attributeValue.ProductAttributeMapping.ProductAttribute.GetLocalized(a => a.Name);

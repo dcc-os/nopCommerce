@@ -709,9 +709,9 @@ namespace Nop.Services.ExportImport
                         }
                     }
                     
-                    var picture1 = manager.GetProperty("Picture1").Return(p => p.StringValue, "");
-                    var picture2 = manager.GetProperty("Picture2").Return(p => p.StringValue, "");
-                    var picture3 = manager.GetProperty("Picture3").Return(p => p.StringValue, "");
+                    var picture1 = manager.GetProperty("Picture1").Return(p => p.StringValue, string.Empty);
+                    var picture2 = manager.GetProperty("Picture2").Return(p => p.StringValue, string.Empty);
+                    var picture3 = manager.GetProperty("Picture3").Return(p => p.StringValue, string.Empty);
 
                     productPictureMetadata.Add(new ProductPictureMetadata
                     {

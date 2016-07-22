@@ -243,7 +243,7 @@ namespace Nop.Web.Extensions
                 var topicService = EngineContext.Current.Resolve<ITopicService>();
                 var topic = topicService.GetTopicBySystemName(systemName, storeContext.CurrentStore.Id);
                 if (topic == null)
-                    return "";
+                    return string.Empty;
 
                 return topic.GetSeName();
             });

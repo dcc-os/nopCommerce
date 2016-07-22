@@ -144,7 +144,7 @@ namespace Nop.Plugin.ExternalAuth.Facebook.Core
         private AuthorizeState RequestAuthentication()
         {
             var authUrl = GenerateServiceLoginUrl().AbsoluteUri;
-            return new AuthorizeState("", OpenAuthenticationStatus.RequiresRedirect) { Result = new RedirectResult(authUrl) };
+            return new AuthorizeState(string.Empty, OpenAuthenticationStatus.RequiresRedirect) { Result = new RedirectResult(authUrl) };
         }
 
         private Uri GenerateLocalCallbackUri()

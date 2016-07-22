@@ -25,7 +25,7 @@ namespace Nop.Web.Framework.Security.Honeypot
 
             return MvcHtmlString.Create(sb.ToString());
 
-            //var hpInput = helper.TextBox(securitySettings.HoneypotInputName, "", new { @class = "hp" });
+            //var hpInput = helper.TextBox(securitySettings.HoneypotInputName, string.Empty, new { @class = "hp" });
             //var hpInput = helper.Hidden(securitySettings.HoneypotInputName);
             //return hpInput;
         }

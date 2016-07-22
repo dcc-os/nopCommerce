@@ -30,7 +30,7 @@ namespace Nop.Core.Tests.Domain.Stores
             };
 
             store.ContainsHostValue(null).ShouldEqual(false);
-            store.ContainsHostValue("").ShouldEqual(false);
+            store.ContainsHostValue(string.Empty).ShouldEqual(false);
             store.ContainsHostValue("store.com").ShouldEqual(false);
             store.ContainsHostValue("yourstore.com").ShouldEqual(true);
             store.ContainsHostValue("yoursTore.com").ShouldEqual(true);

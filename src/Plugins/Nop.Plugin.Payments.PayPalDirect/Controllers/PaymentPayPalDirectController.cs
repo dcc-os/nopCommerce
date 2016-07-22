@@ -497,7 +497,7 @@ namespace Nop.Plugin.Payments.PayPalDirect.Controllers
             }
 
             //nothing should be rendered to visitor
-            return Content("");
+            return Content(string.Empty);
         }
     }
 }

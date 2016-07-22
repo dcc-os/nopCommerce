@@ -203,7 +203,7 @@ namespace Nop.Plugin.DiscountRules.HasAllProducts.Controllers
         [AdminAntiForgery]
         public ActionResult LoadProductFriendlyNames(string productIds)
         {
-            var result = "";
+            var result = string.Empty;
 
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageProducts))
                 return Json(new { Text = result });

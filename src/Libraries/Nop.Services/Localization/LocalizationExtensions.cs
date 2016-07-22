@@ -210,7 +210,7 @@ namespace Nop.Services.Localization
                 typeof(T).ToString(), 
                 //Convert.ToInt32(enumValue)
                 enumValue.ToString());
-            string result = localizationService.GetResource(resourceName, languageId, false, "", true);
+            string result = localizationService.GetResource(resourceName, languageId, false, string.Empty, true);
 
             //set default value if required
             if (String.IsNullOrEmpty(result))
@@ -255,7 +255,7 @@ namespace Nop.Services.Localization
 
             //localized value
             string resourceName = string.Format("Permission.{0}", permissionRecord.SystemName);
-            string result = localizationService.GetResource(resourceName, languageId, false, "", true);
+            string result = localizationService.GetResource(resourceName, languageId, false, string.Empty, true);
 
             //set default value if required
             if (String.IsNullOrEmpty(result))
@@ -456,7 +456,7 @@ namespace Nop.Services.Localization
             //localized value
             string resourceName = string.Format("Plugins.FriendlyName.{0}",
                 systemName);
-            string result = localizationService.GetResource(resourceName, languageId, false, "", true);
+            string result = localizationService.GetResource(resourceName, languageId, false, string.Empty, true);
 
             //set default value if required
             if (String.IsNullOrEmpty(result) && returnDefaultValue)

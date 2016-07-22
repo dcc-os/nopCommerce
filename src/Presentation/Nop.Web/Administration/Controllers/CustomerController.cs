@@ -289,7 +289,7 @@ namespace Nop.Admin.Controllers
                 return "Add the customer to 'Guests' or 'Registered' customer role";
 
             //no errors
-            return "";
+            return string.Empty;
         }
 
         [NonAction]
@@ -410,7 +410,7 @@ namespace Nop.Admin.Controllers
             if (form == null)
                 throw new ArgumentNullException("form");
 
-            string attributesXml = "";
+            string attributesXml = string.Empty;
             var customerAttributes = _customerAttributeService.GetAllCustomerAttributes();
             foreach (var attribute in customerAttributes)
             {
@@ -854,13 +854,13 @@ namespace Nop.Admin.Controllers
             {
                 var cust2 = _customerService.GetCustomerByEmail(model.Email);
                 if (cust2 != null)
-                    ModelState.AddModelError("", "Email is already registered");
+                    ModelState.AddModelError(string.Empty, "Email is already registered");
             }
             if (!String.IsNullOrWhiteSpace(model.Username) & _customerSettings.UsernamesEnabled)
             {
                 var cust2 = _customerService.GetCustomerByUsername(model.Username);
                 if (cust2 != null)
-                    ModelState.AddModelError("", "Username is already registered");
+                    ModelState.AddModelError(string.Empty, "Username is already registered");
             }
 
             //validate customer roles
@@ -872,14 +872,14 @@ namespace Nop.Admin.Controllers
             var customerRolesError = ValidateCustomerRoles(newCustomerRoles);
             if (!String.IsNullOrEmpty(customerRolesError))
             {
-                ModelState.AddModelError("", customerRolesError);
+                ModelState.AddModelError(string.Empty, customerRolesError);
                 ErrorNotification(customerRolesError, false);
             }
 
             // Ensure that valid email address is entered if Registered role is checked to avoid registered customers with empty email address
             if (newCustomerRoles.Any() && newCustomerRoles.FirstOrDefault(c => c.SystemName == SystemCustomerRoleNames.Registered) != null && !CommonHelper.IsValidEmail(model.Email))
             {
-                ModelState.AddModelError("", "Valid Email is required for customer to be in 'Registered' role");
+                ModelState.AddModelError(string.Empty, "Valid Email is required for customer to be in 'Registered' role");
                 ErrorNotification("Valid Email is required for customer to be in 'Registered' role", false);
             }
 
@@ -1070,14 +1070,14 @@ namespace Nop.Admin.Controllers
             var customerRolesError = ValidateCustomerRoles(newCustomerRoles);
             if (!String.IsNullOrEmpty(customerRolesError))
             {
-                ModelState.AddModelError("", customerRolesError);
+                ModelState.AddModelError(string.Empty, customerRolesError);
                 ErrorNotification(customerRolesError, false);
             }
 
             // Ensure that valid email address is entered if Registered role is checked to avoid registered customers with empty email address
             if (newCustomerRoles.Any() && newCustomerRoles.FirstOrDefault(c => c.SystemName == SystemCustomerRoleNames.Registered) != null && !CommonHelper.IsValidEmail(model.Email))
             {
-                ModelState.AddModelError("", "Valid Email is required for customer to be in 'Registered' role");
+                ModelState.AddModelError(string.Empty, "Valid Email is required for customer to be in 'Registered' role");
                 ErrorNotification("Valid Email is required for customer to be in 'Registered' role", false);
             }
 
@@ -1461,7 +1461,7 @@ namespace Nop.Admin.Controllers
             _genericAttributeService.SaveAttribute<int?>(_workContext.CurrentCustomer,
                 SystemCustomerAttributeNames.ImpersonatedCustomerId, customer.Id);
 
-            return RedirectToAction("Index", "Home", new { area = "" });
+            return RedirectToAction("Index", "Home", new { area = string.Empty });
         }
 
         [HttpPost, ActionName("Edit")]
@@ -1758,7 +1758,7 @@ namespace Nop.Admin.Controllers
             var customAttributeWarnings = _addressAttributeParser.GetAttributeWarnings(customAttributes);
             foreach (var error in customAttributeWarnings)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
 
             if (ModelState.IsValid)
@@ -1825,7 +1825,7 @@ namespace Nop.Admin.Controllers
             var customAttributeWarnings = _addressAttributeParser.GetAttributeWarnings(customAttributes);
             foreach (var error in customAttributeWarnings)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
 
             if (ModelState.IsValid)
@@ -1917,7 +1917,7 @@ namespace Nop.Admin.Controllers
         public ActionResult ReportBestCustomersByOrderTotalList(DataSourceRequest command, BestCustomersReportModel model)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageCustomers))
-                return Content("");
+                return Content(string.Empty);
 
             DateTime? startDateValue = (model.StartDate == null) ? null
                             : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.StartDate.Value, _dateTimeHelper.CurrentTimeZone);
@@ -1958,7 +1958,7 @@ namespace Nop.Admin.Controllers
         public ActionResult ReportBestCustomersByNumberOfOrdersList(DataSourceRequest command, BestCustomersReportModel model)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageCustomers))
-                return Content("");
+                return Content(string.Empty);
 
             DateTime? startDateValue = (model.StartDate == null) ? null
                             : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.StartDate.Value, _dateTimeHelper.CurrentTimeZone);
@@ -2000,7 +2000,7 @@ namespace Nop.Admin.Controllers
         public ActionResult ReportRegisteredCustomers()
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageCustomers))
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView();
         }
@@ -2009,7 +2009,7 @@ namespace Nop.Admin.Controllers
         public ActionResult ReportRegisteredCustomersList(DataSourceRequest command)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageCustomers))
-                return Content("");
+                return Content(string.Empty);
 
             var model = GetReportRegisteredCustomersModel();
             var gridModel = new DataSourceResult
@@ -2025,11 +2025,11 @@ namespace Nop.Admin.Controllers
 	    public ActionResult CustomerStatistics()
 	    {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             //a vendor doesn't have access to this report
             if (_workContext.CurrentVendor != null)
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView();
 	    }
@@ -2038,7 +2038,7 @@ namespace Nop.Admin.Controllers
         public ActionResult LoadCustomerStatistics(string period)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageCustomers))
-                return Content("");
+                return Content(string.Empty);
 
             var result = new List<object>();
 
@@ -2139,7 +2139,7 @@ namespace Nop.Admin.Controllers
         public ActionResult GetCartList(int customerId, int cartTypeId)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageCustomers))
-                return Content("");
+                return Content(string.Empty);
 
             var customer = _customerService.GetCustomerById(customerId);
             var cart = customer.ShoppingCartItems.Where(x => x.ShoppingCartTypeId == cartTypeId).ToList();
@@ -2178,7 +2178,7 @@ namespace Nop.Admin.Controllers
         public ActionResult ListActivityLog(DataSourceRequest command, int customerId)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageCustomers))
-                return Content("");
+                return Content(string.Empty);
 
             var activityLog = _customerActivityService.GetAllActivities(null, null, customerId, 0, command.Page - 1, command.PageSize);
             var gridModel = new DataSourceResult
@@ -2210,7 +2210,7 @@ namespace Nop.Admin.Controllers
         public ActionResult BackInStockSubscriptionList(DataSourceRequest command, int customerId)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageCustomers))
-                return Content("");
+                return Content(string.Empty);
 
             var subscriptions = _backInStockSubscriptionService.GetAllSubscriptionsByCustomerId(customerId,
                 0, command.Page - 1, command.PageSize);

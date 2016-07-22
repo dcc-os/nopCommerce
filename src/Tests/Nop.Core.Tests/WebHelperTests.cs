@@ -22,7 +22,7 @@ namespace Nop.Core.Tests
             _webHelper = new WebHelper(_httpContext);
             _webHelper.ServerVariables("Key1").ShouldEqual("Value1");
             _webHelper.ServerVariables("Key2").ShouldEqual("Value2");
-            _webHelper.ServerVariables("Key3").ShouldEqual("");
+            _webHelper.ServerVariables("Key3").ShouldEqual(string.Empty);
         }
 
         [Test]

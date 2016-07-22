@@ -116,7 +116,7 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers
         [ChildActionOnly]
         public ActionResult PublicInfo(string widgetZone, object additionalData = null)
         {
-            string globalScript = "";
+            string globalScript = string.Empty;
             var routeData = ((System.Web.UI.Page)this.HttpContext.CurrentHandler).RouteData;
 
             try
@@ -125,7 +125,7 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers
                 var action = routeData.Values["action"];
 
                 if (controller == null || action == null)
-                    return Content("");
+                    return Content(string.Empty);
 
                 //Special case, if we are in last step of checkout, we can use order total for conversion value
                 if (controller.ToString().Equals("checkout", StringComparison.InvariantCultureIgnoreCase) &&
@@ -171,7 +171,7 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers
             var googleAnalyticsSettings = _settingService.LoadSetting<GoogleAnalyticsSettings>(_storeContext.CurrentStore.Id);
             var analyticsTrackingScript = googleAnalyticsSettings.TrackingScript + "\n";
             analyticsTrackingScript = analyticsTrackingScript.Replace("{GOOGLEID}", googleAnalyticsSettings.GoogleId);
-            analyticsTrackingScript = analyticsTrackingScript.Replace("{ECOMMERCE}", "");
+            analyticsTrackingScript = analyticsTrackingScript.Replace("{ECOMMERCE}", string.Empty);
             return analyticsTrackingScript;
         }
         
@@ -223,21 +223,21 @@ namespace Nop.Plugin.Widgets.GoogleAnalytics.Controllers
                 var analyticsEcommerceScript = googleAnalyticsSettings.EcommerceScript + "\n";
                 analyticsEcommerceScript = analyticsEcommerceScript.Replace("{GOOGLEID}", googleAnalyticsSettings.GoogleId);
                 analyticsEcommerceScript = analyticsEcommerceScript.Replace("{ORDERID}", order.Id.ToString());
-                analyticsEcommerceScript = analyticsEcommerceScript.Replace("{SITE}", _storeContext.CurrentStore.Url.Replace("http://", "").Replace("/", ""));
+                analyticsEcommerceScript = analyticsEcommerceScript.Replace("{SITE}", _storeContext.CurrentStore.Url.Replace("http://", string.Empty).Replace("/", ""));
                 analyticsEcommerceScript = analyticsEcommerceScript.Replace("{TOTAL}", order.OrderTotal.ToString("0.00", usCulture));
                 analyticsEcommerceScript = analyticsEcommerceScript.Replace("{TAX}", order.OrderTax.ToString("0.00", usCulture));
                 var orderShipping = googleAnalyticsSettings.IncludingTax ? order.OrderShippingInclTax : order.OrderShippingExclTax;
                 analyticsEcommerceScript = analyticsEcommerceScript.Replace("{SHIP}", orderShipping.ToString("0.00", usCulture));
-                analyticsEcommerceScript = analyticsEcommerceScript.Replace("{CITY}", order.BillingAddress == null ? "" : FixIllegalJavaScriptChars(order.BillingAddress.City));
-                analyticsEcommerceScript = analyticsEcommerceScript.Replace("{STATEPROVINCE}", order.BillingAddress == null || order.BillingAddress.StateProvince == null ? "" : FixIllegalJavaScriptChars(order.BillingAddress.StateProvince.Name));
-                analyticsEcommerceScript = analyticsEcommerceScript.Replace("{COUNTRY}", order.BillingAddress == null || order.BillingAddress.Country == null ? "" : FixIllegalJavaScriptChars(order.BillingAddress.Country.Name));
+                analyticsEcommerceScript = analyticsEcommerceScript.Replace("{CITY}", order.BillingAddress == null ? string.Empty : FixIllegalJavaScriptChars(order.BillingAddress.City));
+                analyticsEcommerceScript = analyticsEcommerceScript.Replace("{STATEPROVINCE}", order.BillingAddress == null || order.BillingAddress.StateProvince == null ? string.Empty : FixIllegalJavaScriptChars(order.BillingAddress.StateProvince.Name));
+                analyticsEcommerceScript = analyticsEcommerceScript.Replace("{COUNTRY}", order.BillingAddress == null || order.BillingAddress.Country == null ? string.Empty : FixIllegalJavaScriptChars(order.BillingAddress.Country.Name));
 
                 var sb = new StringBuilder();
                 foreach (var item in order.OrderItems)
                 {
                     string analyticsEcommerceDetailScript = googleAnalyticsSettings.EcommerceDetailScript;
                     //get category
-                    string category = "";
+                    string category = string.Empty;
                     var defaultProductCategory = _categoryService.GetProductCategoriesByProductId(item.ProductId).FirstOrDefault();
                     if (defaultProductCategory != null)
                         category = defaultProductCategory.Category.Name;

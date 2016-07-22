@@ -139,7 +139,7 @@ namespace Nop.Web.Framework.Seo
                 if (!String.IsNullOrEmpty(slugForCurrentLanguage) && 
                     !slugForCurrentLanguage.Equals(slug, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    //we should make not null or "" validation above because some entities does not have SeName for standard (ID=0) language (e.g. news, blog posts)
+                    //we should make not null or string.Empty validation above because some entities does not have SeName for standard (ID=0) language (e.g. news, blog posts)
                     var webHelper = EngineContext.Current.Resolve<IWebHelper>();
                     var response = httpContext.Response;
                     //response.Status = "302 Found";

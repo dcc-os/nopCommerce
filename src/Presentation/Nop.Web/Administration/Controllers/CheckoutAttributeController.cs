@@ -512,7 +512,7 @@ namespace Nop.Admin.Controllers
             {
                 //ensure valid color is chosen/entered
                 if (String.IsNullOrEmpty(model.ColorSquaresRgb))
-                    ModelState.AddModelError("", "Color is required");
+                    ModelState.AddModelError(string.Empty, "Color is required");
                 try
                 {
                     //ensure color is valid (can be instanciated)
@@ -520,7 +520,7 @@ namespace Nop.Admin.Controllers
                 }
                 catch (Exception exc)
                 {
-                    ModelState.AddModelError("", exc.Message);
+                    ModelState.AddModelError(string.Empty, exc.Message);
                 }
             }
 
@@ -602,7 +602,7 @@ namespace Nop.Admin.Controllers
             {
                 //ensure valid color is chosen/entered
                 if (String.IsNullOrEmpty(model.ColorSquaresRgb))
-                    ModelState.AddModelError("", "Color is required");
+                    ModelState.AddModelError(string.Empty, "Color is required");
                 try
                 {
                     //ensure color is valid (can be instanciated)
@@ -610,7 +610,7 @@ namespace Nop.Admin.Controllers
                 }
                 catch (Exception exc)
                 {
-                    ModelState.AddModelError("", exc.Message);
+                    ModelState.AddModelError(string.Empty, exc.Message);
                 }
             }
 

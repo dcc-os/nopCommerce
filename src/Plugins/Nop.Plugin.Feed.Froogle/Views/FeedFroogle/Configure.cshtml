@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "";
+    Layout = string.Empty;
 
     Html.AddCssFileParts("~/Plugins/Feed.Froogle/Content/styles.css");
 }
@@ -242,13 +242,13 @@ var gridPageSizes = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAr
                                 type: "json",
                                 transport: {
                                     read: {
-                                        url: "@Html.Raw(Url.Action("GoogleProductList", "FeedFroogle", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Feed.Froogle.Controllers" }, { "area", "" } }))",
+                                        url: "@Html.Raw(Url.Action("GoogleProductList", "FeedFroogle", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Feed.Froogle.Controllers" }, { "area", string.Empty } }))",
                                         type: "POST",
                                         dataType: "json",
                                         data: addAntiForgeryToken
                                     },
                                     update: {
-                                        url: "@Html.Raw(Url.Action("GoogleProductUpdate", "FeedFroogle", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Feed.Froogle.Controllers" }, { "area", "" } }))",
+                                        url: "@Html.Raw(Url.Action("GoogleProductUpdate", "FeedFroogle", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Feed.Froogle.Controllers" }, { "area", string.Empty } }))",
                                         type: "POST",
                                         dataType: "json",
                                         data: addAntiForgeryToken

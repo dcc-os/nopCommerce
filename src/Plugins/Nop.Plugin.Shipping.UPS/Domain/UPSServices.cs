@@ -49,7 +49,7 @@ namespace Nop.Plugin.Shipping.UPS.Domain
         /// <returns>service id or empty string if not found</returns>
         public static string GetServiceId(string service)
         {
-            var serviceId = "";
+            var serviceId = string.Empty;
             if (String.IsNullOrEmpty(service))
                 return serviceId;
 

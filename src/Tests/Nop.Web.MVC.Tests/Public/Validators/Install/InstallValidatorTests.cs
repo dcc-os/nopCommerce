@@ -18,7 +18,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Install
         {
             //set up localziation service used by almost all validators
             _ilService = MockRepository.GenerateMock<IInstallationLocalizationService>();
-            _ilService.Expect(l => l.GetResource("")).Return("Invalid").IgnoreArguments();
+            _ilService.Expect(l => l.GetResource(string.Empty)).Return("Invalid").IgnoreArguments();
 
             _validator = new InstallValidator(_ilService);
         }
@@ -29,7 +29,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Install
             var model = new InstallModel();
             model.AdminEmail = null;
             _validator.ShouldHaveValidationErrorFor(x => x.AdminEmail, model);
-            model.AdminEmail = "";
+            model.AdminEmail = string.Empty;
             _validator.ShouldHaveValidationErrorFor(x => x.AdminEmail, model);
         }
 
@@ -57,7 +57,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Install
             //we know that password should equal confirmation password
             model.ConfirmPassword = model.AdminPassword;
             _validator.ShouldHaveValidationErrorFor(x => x.AdminPassword, model);
-            model.AdminPassword = "";
+            model.AdminPassword = string.Empty;
             //we know that password should equal confirmation password
             model.ConfirmPassword = model.AdminPassword;
             _validator.ShouldHaveValidationErrorFor(x => x.AdminPassword, model);
@@ -79,7 +79,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Install
             var model = new InstallModel();
             model.ConfirmPassword = null;
             _validator.ShouldHaveValidationErrorFor(x => x.ConfirmPassword, model);
-            model.ConfirmPassword = "";
+            model.ConfirmPassword = string.Empty;
             _validator.ShouldHaveValidationErrorFor(x => x.ConfirmPassword, model);
         }
 

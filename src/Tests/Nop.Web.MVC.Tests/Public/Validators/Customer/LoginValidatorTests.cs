@@ -25,7 +25,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Customer
             var model = new LoginModel();
             model.Email = null;
             _validator.ShouldHaveValidationErrorFor(x => x.Email, model);
-            model.Email = "";
+            model.Email = string.Empty;
             _validator.ShouldHaveValidationErrorFor(x => x.Email, model);
         }
 

@@ -155,7 +155,7 @@ namespace Nop.Web.Controllers
         public ActionResult HomePageNews()
         {
             if (!_newsSettings.Enabled || !_newsSettings.ShowNewsOnMainPage)
-                return Content("");
+                return Content(string.Empty);
 
             var cacheKey = string.Format(ModelCacheEventConsumer.HOMEPAGE_NEWSMODEL_KEY, _workContext.WorkingLanguage.Id, _storeContext.CurrentStore.Id);
             var cachedModel = _cacheManager.Get(cacheKey, () =>
@@ -274,12 +274,12 @@ namespace Nop.Web.Controllers
             //validate CAPTCHA
             if (_captchaSettings.Enabled && _captchaSettings.ShowOnNewsCommentPage && !captchaValid)
             {
-                ModelState.AddModelError("", _captchaSettings.GetWrongCaptchaMessage(_localizationService));
+                ModelState.AddModelError(string.Empty, _captchaSettings.GetWrongCaptchaMessage(_localizationService));
             }
 
             if (_workContext.CurrentCustomer.IsGuest() && !_newsSettings.AllowNotRegisteredUsersToLeaveComments)
             {
-                ModelState.AddModelError("", _localizationService.GetResource("News.Comments.OnlyRegisteredUsersLeaveComments"));
+                ModelState.AddModelError(string.Empty, _localizationService.GetResource("News.Comments.OnlyRegisteredUsersLeaveComments"));
             }
 
             if (ModelState.IsValid)
@@ -321,7 +321,7 @@ namespace Nop.Web.Controllers
         public ActionResult RssHeaderLink()
         {
             if (!_newsSettings.Enabled || !_newsSettings.ShowHeaderRssUrl)
-                return Content("");
+                return Content(string.Empty);
 
             string link = string.Format("<link href=\"{0}\" rel=\"alternate\" type=\"{1}\" title=\"{2}: News\" />",
                 Url.RouteUrl("NewsRSS", new { languageId = _workContext.WorkingLanguage.Id }, _webHelper.IsCurrentConnectionSecured() ? "https" : "http"), MimeTypes.ApplicationRssXml, _storeContext.CurrentStore.GetLocalized(x => x.Name));

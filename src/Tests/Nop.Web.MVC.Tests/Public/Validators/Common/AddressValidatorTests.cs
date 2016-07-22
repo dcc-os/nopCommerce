@@ -28,7 +28,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
             var model = new AddressModel();
             model.Email = null;
             validator.ShouldHaveValidationErrorFor(x => x.Email, model);
-            model.Email = "";
+            model.Email = string.Empty;
             validator.ShouldHaveValidationErrorFor(x => x.Email, model);
         }
         [Test]
@@ -61,7 +61,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
             var model = new AddressModel();
             model.FirstName = null;
             validator.ShouldHaveValidationErrorFor(x => x.FirstName, model);
-            model.FirstName = "";
+            model.FirstName = string.Empty;
             validator.ShouldHaveValidationErrorFor(x => x.FirstName, model);
         }
         [Test]
@@ -84,7 +84,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
             var model = new AddressModel();
             model.LastName = null;
             validator.ShouldHaveValidationErrorFor(x => x.LastName, model);
-            model.LastName = "";
+            model.LastName = string.Empty;
             validator.ShouldHaveValidationErrorFor(x => x.LastName, model);
         }
         [Test]
@@ -112,7 +112,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.Company = null;
             validator.ShouldHaveValidationErrorFor(x => x.Company, model);
-            model.Company = "";
+            model.Company = string.Empty;
             validator.ShouldHaveValidationErrorFor(x => x.Company, model);
 
 
@@ -125,7 +125,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.Company = null;
             validator.ShouldNotHaveValidationErrorFor(x => x.Company, model);
-            model.Company = "";
+            model.Company = string.Empty;
             validator.ShouldNotHaveValidationErrorFor(x => x.Company, model);
         }
         [Test]
@@ -156,7 +156,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.Address1 = null;
             validator.ShouldHaveValidationErrorFor(x => x.Address1, model);
-            model.Address1 = "";
+            model.Address1 = string.Empty;
             validator.ShouldHaveValidationErrorFor(x => x.Address1, model);
 
             //not required
@@ -168,7 +168,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.Address1 = null;
             validator.ShouldNotHaveValidationErrorFor(x => x.Address1, model);
-            model.Address1 = "";
+            model.Address1 = string.Empty;
             validator.ShouldNotHaveValidationErrorFor(x => x.Address1, model);
         }
         [Test]
@@ -199,7 +199,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.Address2 = null;
             validator.ShouldHaveValidationErrorFor(x => x.Address2, model);
-            model.Address2 = "";
+            model.Address2 = string.Empty;
             validator.ShouldHaveValidationErrorFor(x => x.Address2, model);
 
             //not required
@@ -211,7 +211,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.Address2 = null;
             validator.ShouldNotHaveValidationErrorFor(x => x.Address2, model);
-            model.Address2 = "";
+            model.Address2 = string.Empty;
             validator.ShouldNotHaveValidationErrorFor(x => x.Address2, model);
         }
         [Test]
@@ -242,7 +242,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.ZipPostalCode = null;
             validator.ShouldHaveValidationErrorFor(x => x.ZipPostalCode, model);
-            model.ZipPostalCode = "";
+            model.ZipPostalCode = string.Empty;
             validator.ShouldHaveValidationErrorFor(x => x.ZipPostalCode, model);
 
 
@@ -255,7 +255,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.ZipPostalCode = null;
             validator.ShouldNotHaveValidationErrorFor(x => x.ZipPostalCode, model);
-            model.ZipPostalCode = "";
+            model.ZipPostalCode = string.Empty;
             validator.ShouldNotHaveValidationErrorFor(x => x.ZipPostalCode, model);
         }
         [Test]
@@ -286,7 +286,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.City = null;
             validator.ShouldHaveValidationErrorFor(x => x.City, model);
-            model.City = "";
+            model.City = string.Empty;
             validator.ShouldHaveValidationErrorFor(x => x.City, model);
 
 
@@ -299,7 +299,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.City = null;
             validator.ShouldNotHaveValidationErrorFor(x => x.City, model);
-            model.City = "";
+            model.City = string.Empty;
             validator.ShouldNotHaveValidationErrorFor(x => x.City, model);
         }
         [Test]
@@ -330,7 +330,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.PhoneNumber = null;
             validator.ShouldHaveValidationErrorFor(x => x.PhoneNumber, model);
-            model.PhoneNumber = "";
+            model.PhoneNumber = string.Empty;
             validator.ShouldHaveValidationErrorFor(x => x.PhoneNumber, model);
 
             //not required
@@ -342,7 +342,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.PhoneNumber = null;
             validator.ShouldNotHaveValidationErrorFor(x => x.PhoneNumber, model);
-            model.PhoneNumber = "";
+            model.PhoneNumber = string.Empty;
             validator.ShouldNotHaveValidationErrorFor(x => x.PhoneNumber, model);
         }
         [Test]
@@ -373,7 +373,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.FaxNumber = null;
             validator.ShouldHaveValidationErrorFor(x => x.FaxNumber, model);
-            model.FaxNumber = "";
+            model.FaxNumber = string.Empty;
             validator.ShouldHaveValidationErrorFor(x => x.FaxNumber, model);
 
 
@@ -386,7 +386,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Common
                 });
             model.FaxNumber = null;
             validator.ShouldNotHaveValidationErrorFor(x => x.FaxNumber, model);
-            model.FaxNumber = "";
+            model.FaxNumber = string.Empty;
             validator.ShouldNotHaveValidationErrorFor(x => x.FaxNumber, model);
         }
         [Test]

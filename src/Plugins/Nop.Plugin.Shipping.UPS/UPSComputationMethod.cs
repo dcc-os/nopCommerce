@@ -626,7 +626,7 @@ namespace Nop.Plugin.Shipping.UPS
                 {
                     if ((tr.Name == "Error") && (tr.NodeType == XmlNodeType.Element))
                     {
-                        string errorText = "";
+                        string errorText = string.Empty;
                         while (tr.Read())
                         {
                             if ((tr.Name == "ErrorCode") && (tr.NodeType == XmlNodeType.Element))
@@ -642,8 +642,8 @@ namespace Nop.Plugin.Shipping.UPS
                     }
                     if ((tr.Name == "RatedShipment") && (tr.NodeType == XmlNodeType.Element))
                     {
-                        string serviceCode = "";
-                        string monetaryValue = "";
+                        string serviceCode = string.Empty;
+                        string monetaryValue = string.Empty;
                         while (tr.Read())
                         {
                             if ((tr.Name == "Service") && (tr.NodeType == XmlNodeType.Element))
@@ -755,7 +755,7 @@ namespace Nop.Plugin.Shipping.UPS
                 if (_upsSettings.Tracing)
                     _traceMessages.AppendLine("Response:").AppendLine(responseXml);
 
-                string error = "";
+                string error = string.Empty;
                 var shippingOptions = ParseResponse(responseXml, ref error);
                 if (String.IsNullOrEmpty(error))
                 {

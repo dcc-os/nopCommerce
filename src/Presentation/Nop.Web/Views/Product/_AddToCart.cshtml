@@ -49,7 +49,7 @@
                     </script>
                 }
                 @{
-                    var addToCartText = "";
+                    var addToCartText = string.Empty;
                     if (Model.UpdatedShoppingCartItemId > 0 && Model.UpdateShoppingCartItemType.HasValue && Model.UpdateShoppingCartItemType.Value == ShoppingCartType.ShoppingCart)
                     {
                         addToCartText = T("ShoppingCart.AddToCart.Update").Text;

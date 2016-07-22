@@ -435,7 +435,7 @@ namespace Nop.Services.Tests.Orders
         {
             var sci1 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 3,
                 Product= new Product
                 {
@@ -449,7 +449,7 @@ namespace Nop.Services.Tests.Orders
             };
             var sci2 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 4,
                 Product = new Product
                 {
@@ -465,7 +465,7 @@ namespace Nop.Services.Tests.Orders
             //sci3 is not shippable
             var sci3 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 5,
                 Product = new Product
                 {
@@ -487,7 +487,7 @@ namespace Nop.Services.Tests.Orders
         {
             var sci1 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 3,
                 Product = new Product
                 {
@@ -501,7 +501,7 @@ namespace Nop.Services.Tests.Orders
             };
             var sci2 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 4,
                 Product = new Product
                 {
@@ -526,7 +526,7 @@ namespace Nop.Services.Tests.Orders
         {
             var sci1 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 3,
                 Product = new Product
                 {
@@ -540,7 +540,7 @@ namespace Nop.Services.Tests.Orders
             };
             var sci2 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 4,
                 Product = new Product
                 {
@@ -565,7 +565,7 @@ namespace Nop.Services.Tests.Orders
         {
             var sci1 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 3,
                 Product = new Product
                 {
@@ -579,7 +579,7 @@ namespace Nop.Services.Tests.Orders
             };
             var sci2 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 4,
                 Product = new Product
                 {
@@ -616,7 +616,7 @@ namespace Nop.Services.Tests.Orders
         {
             var sci1 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 3,
                 Product = new Product
                 {
@@ -631,7 +631,7 @@ namespace Nop.Services.Tests.Orders
             };
             var sci2 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 4,
                 Product = new Product
                 {
@@ -648,7 +648,7 @@ namespace Nop.Services.Tests.Orders
             //sci3 is not shippable
             var sci3 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 5,
                 Product = new Product
                 {
@@ -683,7 +683,7 @@ namespace Nop.Services.Tests.Orders
         {
             var sci1 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 3,
                 Product = new Product
                 {
@@ -698,7 +698,7 @@ namespace Nop.Services.Tests.Orders
             };
             var sci2 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 4,
                 Product = new Product
                 {
@@ -715,7 +715,7 @@ namespace Nop.Services.Tests.Orders
             //sci3 is not shippable
             var sci3 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 5,
                 Product = new Product
                 {
@@ -750,7 +750,7 @@ namespace Nop.Services.Tests.Orders
         {
             var sci1 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 3,
                 Product = new Product
                 {
@@ -765,7 +765,7 @@ namespace Nop.Services.Tests.Orders
             };
             var sci2 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 4,
                 Product = new Product
                 {
@@ -782,7 +782,7 @@ namespace Nop.Services.Tests.Orders
             //sci3 is not shippable
             var sci3 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 5,
                 Product = new Product
                 {
@@ -831,7 +831,7 @@ namespace Nop.Services.Tests.Orders
         {
             var sci1 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 3,
                 Product = new Product
                 {
@@ -846,7 +846,7 @@ namespace Nop.Services.Tests.Orders
             };
             var sci2 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 4,
                 Product = new Product
                 {
@@ -863,7 +863,7 @@ namespace Nop.Services.Tests.Orders
             //sci3 is not shippable
             var sci3 = new ShoppingCartItem
             {
-                AttributesXml = "",
+                AttributesXml = string.Empty,
                 Quantity = 5,
                 Product = new Product
                 {

@@ -408,7 +408,7 @@ namespace Nop.Services.Configuration
                 if (value != null)
                     SetSetting(key, value, storeId, false);
                 else
-                    SetSetting(key, "", storeId, false);
+                    SetSetting(key, string.Empty, storeId, false);
             }
 
             //and now clear cache
@@ -450,7 +450,7 @@ namespace Nop.Services.Configuration
             if (value != null)
                 SetSetting(key, value, storeId, clearCache);
             else
-                SetSetting(key, "", storeId, clearCache);
+                SetSetting(key, string.Empty, storeId, clearCache);
         }
 
         /// <summary>

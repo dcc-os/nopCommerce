@@ -35,8 +35,8 @@ namespace Nop.Core.Html.CodeFormatter
             options.Title = match.Groups["title"].Value;
             options.AlternateLineNumbers = match.Groups["altlinenumbers"].Value == "on";
 
-            string result = match.Value.Replace(match.Groups["begin"].Value, "");
-            result = result.Replace(match.Groups["end"].Value, "");
+            string result = match.Value.Replace(match.Groups["begin"].Value, string.Empty);
+            result = result.Replace(match.Groups["end"].Value, string.Empty);
             result = Highlight(options, result);
             return result;
 

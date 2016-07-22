@@ -275,7 +275,7 @@ namespace Nop.Admin.Controllers
         {
             const int searchTermMinimumLength = 3;
             if (String.IsNullOrWhiteSpace(term) || term.Length < searchTermMinimumLength)
-                return Content("");
+                return Content(string.Empty);
 
             //products
             const int productNumber = 15;

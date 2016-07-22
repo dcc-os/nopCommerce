@@ -70,7 +70,7 @@ namespace Nop.Plugin.Shipping.USPS.Domain
         /// <returns>service id or empty string if not found</returns>
         public static string GetServiceIdDomestic(string service)
         {
-            var serviceId = "";
+            var serviceId = string.Empty;
             if (String.IsNullOrEmpty(service))
                 return serviceId;
 
@@ -87,7 +87,7 @@ namespace Nop.Plugin.Shipping.USPS.Domain
         /// <returns>service id or empty string</returns>
         public static string GetServiceIdInternational(string service)
         {
-            var serviceId = "";
+            var serviceId = string.Empty;
             if (String.IsNullOrEmpty(service))
                 return serviceId;
 

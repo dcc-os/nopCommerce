@@ -16,7 +16,7 @@
         @if (Model.AllowPrivateMessages)
         {
             <li>
-                <a href="@Url.RouteUrl("PrivateMessages", new { tab = "" })" class="ico-inbox">
+                <a href="@Url.RouteUrl("PrivateMessages", new { tab = string.Empty })" class="ico-inbox">
                     <span class="inbox-label">@T("PrivateMessages.Inbox")</span>
                     <span class="inbox-unread">@Model.UnreadPrivateMessages</span>
                 </a>

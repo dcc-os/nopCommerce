@@ -722,7 +722,7 @@ namespace Nop.Services.Tax
 
             if (vatNumber == null)
                 vatNumber = string.Empty;
-            vatNumber = vatNumber.Trim().Replace(" ", "");
+            vatNumber = vatNumber.Trim().Replace(" ", string.Empty);
 
             if (twoLetterIsoCode == null)
                 twoLetterIsoCode = string.Empty;

@@ -60,7 +60,7 @@ namespace Nop.Services.Tests.Payments
         [Test]
         public void Can_get_masked_credit_card_number()
         {
-            _paymentService.GetMaskedCreditCardNumber("").ShouldEqual("");
+            _paymentService.GetMaskedCreditCardNumber(string.Empty).ShouldEqual(string.Empty);
             _paymentService.GetMaskedCreditCardNumber("123").ShouldEqual("123");
             _paymentService.GetMaskedCreditCardNumber("1234567890123456").ShouldEqual("************3456");
         }

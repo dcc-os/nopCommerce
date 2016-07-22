@@ -15,13 +15,13 @@
                                 type: "json",
                                 transport: {
                                     read: {
-                                        url: "@Html.Raw(Url.Action("List", "PickupInStore", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Pickup.PickupInStore.Controllers" }, { "area", "" } }))",
+                                        url: "@Html.Raw(Url.Action("List", "PickupInStore", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Pickup.PickupInStore.Controllers" }, { "area", string.Empty } }))",
                                         type: "POST",
                                         dataType: "json",
                                         data: addAntiForgeryToken
                                     },
                                     destroy: {
-                                        url: "@Html.Raw(Url.Action("Delete", "PickupInStore", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Pickup.PickupInStore.Controllers" }, { "area", "" } }))",
+                                        url: "@Html.Raw(Url.Action("Delete", "PickupInStore", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Pickup.PickupInStore.Controllers" }, { "area", string.Empty } }))",
                                         type: "POST",
                                         dataType: "json",
                                         data: addAntiForgeryToken

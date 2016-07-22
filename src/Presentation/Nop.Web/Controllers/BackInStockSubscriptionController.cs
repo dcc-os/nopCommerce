@@ -197,7 +197,7 @@ namespace Nop.Web.Controllers
 
                 if (value.Equals("on") && key.StartsWith("biss", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    var id = key.Replace("biss", "").Trim();
+                    var id = key.Replace("biss", string.Empty).Trim();
                     int subscriptionId;
                     if (Int32.TryParse(id, out subscriptionId))
                     {

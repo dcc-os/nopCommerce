@@ -382,7 +382,7 @@ namespace Nop.Services.Installation
                     CurrencyCode = "USD",
                     Rate = 1,
                     DisplayLocale = "en-US",
-                    CustomFormatting = "",
+                    CustomFormatting = string.Empty,
                     Published = true,
                     DisplayOrder = 1,
                     CreatedOnUtc = DateTime.UtcNow,
@@ -394,7 +394,7 @@ namespace Nop.Services.Installation
                     CurrencyCode = "AUD",
                     Rate = 1.14M,
                     DisplayLocale = "en-AU",
-                    CustomFormatting = "",
+                    CustomFormatting = string.Empty,
                     Published = false,
                     DisplayOrder = 2,
                     CreatedOnUtc = DateTime.UtcNow,
@@ -406,7 +406,7 @@ namespace Nop.Services.Installation
                     CurrencyCode = "GBP",
                     Rate = 0.62M,
                     DisplayLocale = "en-GB",
-                    CustomFormatting = "",
+                    CustomFormatting = string.Empty,
                     Published = false,
                     DisplayOrder = 3,
                     CreatedOnUtc = DateTime.UtcNow,
@@ -418,7 +418,7 @@ namespace Nop.Services.Installation
                     CurrencyCode = "CAD",
                     Rate = 1.12M,
                     DisplayLocale = "en-CA",
-                    CustomFormatting = "",
+                    CustomFormatting = string.Empty,
                     Published = false,
                     DisplayOrder = 4,
                     CreatedOnUtc = DateTime.UtcNow,
@@ -430,7 +430,7 @@ namespace Nop.Services.Installation
                     CurrencyCode = "CNY",
                     Rate = 6.11M,
                     DisplayLocale = "zh-CN",
-                    CustomFormatting = "",
+                    CustomFormatting = string.Empty,
                     Published = false,
                     DisplayOrder = 5,
                     CreatedOnUtc = DateTime.UtcNow,
@@ -441,7 +441,7 @@ namespace Nop.Services.Installation
                     Name = "Euro",
                     CurrencyCode = "EUR",
                     Rate = 0.79M,
-                    DisplayLocale = "",
+                    DisplayLocale = string.Empty,
                     //CustomFormatting = "ˆ0.00",
                     CustomFormatting = string.Format("{0}0.00", "\u20ac"),
                     Published = true,
@@ -455,7 +455,7 @@ namespace Nop.Services.Installation
                     CurrencyCode = "HKD",
                     Rate = 7.75M,
                     DisplayLocale = "zh-HK",
-                    CustomFormatting = "",
+                    CustomFormatting = string.Empty,
                     Published = false,
                     DisplayOrder = 7,
                     CreatedOnUtc = DateTime.UtcNow,
@@ -467,7 +467,7 @@ namespace Nop.Services.Installation
                     CurrencyCode = "JPY",
                     Rate = 109.27M,
                     DisplayLocale = "ja-JP",
-                    CustomFormatting = "",
+                    CustomFormatting = string.Empty,
                     Published = false,
                     DisplayOrder = 8,
                     CreatedOnUtc = DateTime.UtcNow,
@@ -479,7 +479,7 @@ namespace Nop.Services.Installation
                     CurrencyCode = "RUB",
                     Rate = 43.51M,
                     DisplayLocale = "ru-RU",
-                    CustomFormatting = "",
+                    CustomFormatting = string.Empty,
                     Published = false,
                     DisplayOrder = 9,
                     CreatedOnUtc = DateTime.UtcNow,
@@ -491,7 +491,7 @@ namespace Nop.Services.Installation
                     CurrencyCode = "SEK",
                     Rate = 7.39M,
                     DisplayLocale = "sv-SE",
-                    CustomFormatting = "",
+                    CustomFormatting = string.Empty,
                     Published = false,
                     DisplayOrder = 10,
                     CreatedOnUtc = DateTime.UtcNow,
@@ -503,7 +503,7 @@ namespace Nop.Services.Installation
                     CurrencyCode = "RON",
                     Rate = 3.52M,
                     DisplayLocale = "ro-RO",
-                    CustomFormatting = "",
+                    CustomFormatting = string.Empty,
                     Published = false,
                     DisplayOrder = 11,
                     CreatedOnUtc = DateTime.UtcNow,
@@ -4045,7 +4045,7 @@ namespace Nop.Services.Installation
                 Username = defaultUserEmail,
                 Password = defaultUserPassword,
                 PasswordFormat = PasswordFormat.Clear,
-                PasswordSalt = "",
+                PasswordSalt = string.Empty,
                 Active = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 LastActivityDateUtc = DateTime.UtcNow,
@@ -4056,10 +4056,10 @@ namespace Nop.Services.Installation
                 LastName = "Smith",
                 PhoneNumber = "12345678",
                 Email = defaultUserEmail,
-                FaxNumber = "",
+                FaxNumber = string.Empty,
                 Company = "Nop Solutions Ltd",
                 Address1 = "21 West 52nd Street",
-                Address2 = "",
+                Address2 = string.Empty,
                 City = "New York",
                 StateProvince = _stateProvinceRepository.Table.FirstOrDefault(sp => sp.Name == "New York"),
                 Country = _countryRepository.Table.FirstOrDefault(c => c.ThreeLetterIsoCode == "USA"),
@@ -4087,7 +4087,7 @@ namespace Nop.Services.Installation
                 Username = secondUserEmail,
                 Password = "123456",
                 PasswordFormat = PasswordFormat.Clear,
-                PasswordSalt = "",
+                PasswordSalt = string.Empty,
                 Active = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 LastActivityDateUtc = DateTime.UtcNow,
@@ -4098,10 +4098,10 @@ namespace Nop.Services.Installation
                 LastName = "Gates",
                 PhoneNumber = "87654321",
                 Email = secondUserEmail,
-                FaxNumber = "",
+                FaxNumber = string.Empty,
                 Company = "Steve Company",
                 Address1 = "750 Bel Air Rd.",
-                Address2 = "",
+                Address2 = string.Empty,
                 City = "Los Angeles",
                 StateProvince = _stateProvinceRepository.Table.FirstOrDefault(sp => sp.Name == "California"),
                 Country = _countryRepository.Table.FirstOrDefault(c => c.ThreeLetterIsoCode == "USA"),
@@ -4127,7 +4127,7 @@ namespace Nop.Services.Installation
                 Username = thirdUserEmail,
                 Password = "123456",
                 PasswordFormat = PasswordFormat.Clear,
-                PasswordSalt = "",
+                PasswordSalt = string.Empty,
                 Active = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 LastActivityDateUtc = DateTime.UtcNow,
@@ -4138,10 +4138,10 @@ namespace Nop.Services.Installation
                 LastName = "Holmes",
                 PhoneNumber = "111222333",
                 Email = thirdUserEmail,
-                FaxNumber = "",
+                FaxNumber = string.Empty,
                 Company = "Holmes Company",
                 Address1 = "221B Baker Street",
-                Address2 = "",
+                Address2 = string.Empty,
                 City = "London",
                 Country = _countryRepository.Table.FirstOrDefault(c => c.ThreeLetterIsoCode == "GBR"),
                 ZipPostalCode = "NW1 6XE",
@@ -4166,7 +4166,7 @@ namespace Nop.Services.Installation
                 Username = fourthUserEmail,
                 Password = "123456",
                 PasswordFormat = PasswordFormat.Clear,
-                PasswordSalt = "",
+                PasswordSalt = string.Empty,
                 Active = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 LastActivityDateUtc = DateTime.UtcNow,
@@ -4177,10 +4177,10 @@ namespace Nop.Services.Installation
                 LastName = "Pan",
                 PhoneNumber = "369258147",
                 Email = fourthUserEmail,
-                FaxNumber = "",
+                FaxNumber = string.Empty,
                 Company = "Pan Company",
                 Address1 = "St Katharine’s West 16",
-                Address2 = "",
+                Address2 = string.Empty,
                 City = "St Andrews",
                 Country = _countryRepository.Table.FirstOrDefault(c => c.ThreeLetterIsoCode == "GBR"),
                 ZipPostalCode = "KY16 9AX",
@@ -4205,7 +4205,7 @@ namespace Nop.Services.Installation
                 Username = fifthUserEmail,
                 Password = "123456",
                 PasswordFormat = PasswordFormat.Clear,
-                PasswordSalt = "",
+                PasswordSalt = string.Empty,
                 Active = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 LastActivityDateUtc = DateTime.UtcNow,
@@ -4216,10 +4216,10 @@ namespace Nop.Services.Installation
                 LastName = "Lindgren",
                 PhoneNumber = "14785236",
                 Email = fifthUserEmail,
-                FaxNumber = "",
+                FaxNumber = string.Empty,
                 Company = "Brenda Company",
                 Address1 = "1249 Tongass Avenue, Suite B",
-                Address2 = "",
+                Address2 = string.Empty,
                 City = "Ketchikan",
                 StateProvince = _stateProvinceRepository.Table.FirstOrDefault(sp => sp.Name == "Alaska"),
                 Country = _countryRepository.Table.FirstOrDefault(c => c.ThreeLetterIsoCode == "USA"),
@@ -4245,7 +4245,7 @@ namespace Nop.Services.Installation
                 Username = sixthUserEmail,
                 Password = "123456",
                 PasswordFormat = PasswordFormat.Clear,
-                PasswordSalt = "",
+                PasswordSalt = string.Empty,
                 Active = true,
                 CreatedOnUtc = DateTime.UtcNow,
                 LastActivityDateUtc = DateTime.UtcNow,
@@ -4256,10 +4256,10 @@ namespace Nop.Services.Installation
                 LastName = "Terces",
                 PhoneNumber = "45612378",
                 Email = sixthUserEmail,
-                FaxNumber = "",
+                FaxNumber = string.Empty,
                 Company = "Terces Company",
                 Address1 = "201 1st Avenue South",
-                Address2 = "",
+                Address2 = string.Empty,
                 City = "Saskatoon",
                 StateProvince = _stateProvinceRepository.Table.FirstOrDefault(sp => sp.Name == "Saskatchewan"),
                 Country = _countryRepository.Table.FirstOrDefault(c => c.ThreeLetterIsoCode == "CAN"),
@@ -5540,7 +5540,7 @@ namespace Nop.Services.Installation
                                            IsPasswordProtected = false,
                                            DisplayOrder = 1,
                                            Published = true,
-                                           Title = "",
+                                           Title = string.Empty,
                                            Body = "<p><strong>Register and save time!</strong><br />Register with us for future convenience:</p><ul><li>Fast and easy check out</li><li>Easy access to your order history and status</li></ul>",
                                            TopicTemplateId = defaultTopicTemplate.Id
                                        },
@@ -5563,7 +5563,7 @@ namespace Nop.Services.Installation
                                            IsPasswordProtected = false,
                                            DisplayOrder = 1,
                                            Published = true,
-                                           Title = "",
+                                           Title = string.Empty,
                                            Body = "<p>Put your contact information here. You can edit this in the admin site.</p>",
                                            TopicTemplateId = defaultTopicTemplate.Id
                                        },
@@ -5619,7 +5619,7 @@ namespace Nop.Services.Installation
                                            IsPasswordProtected = false,
                                            DisplayOrder = 1,
                                            Published = true,
-                                           Title = "",
+                                           Title = string.Empty,
                                            Body = "<p><strong>The page you requested was not found, and we have a fine guess why.</strong></p><ul><li>If you typed the URL directly, please make sure the spelling is correct.</li><li>The page no longer exists. In this case, we profusely apologize for the inconvenience and for any damage this may cause.</li></ul>",
                                            TopicTemplateId = defaultTopicTemplate.Id
                                        },
@@ -5642,7 +5642,7 @@ namespace Nop.Services.Installation
                                            IsPasswordProtected = false,
                                            DisplayOrder = 1,
                                            Published = true,
-                                           Title = "",
+                                           Title = string.Empty,
                                            Body = "<p>Put your apply vendor instructions here. You can edit this in the admin site.</p>",
                                            TopicTemplateId = defaultTopicTemplate.Id
                                        },
@@ -5659,7 +5659,7 @@ namespace Nop.Services.Installation
                     EntityName = "Topic",
                     LanguageId = 0,
                     IsActive = true,
-                    Slug = topic.ValidateSeName("", !String.IsNullOrEmpty(topic.Title) ? topic.Title : topic.SystemName, true)
+                    Slug = topic.ValidateSeName(string.Empty, !String.IsNullOrEmpty(topic.Title) ? topic.Title : topic.SystemName, true)
                 });
             }
 
@@ -5700,8 +5700,8 @@ namespace Nop.Services.Installation
                 PageTitleSeparator = ". ",
                 PageTitleSeoAdjustment = PageTitleSeoAdjustment.PagenameAfterStorename,
                 DefaultTitle = "Your store",
-                DefaultMetaKeywords = "",
-                DefaultMetaDescription = "",
+                DefaultMetaKeywords = string.Empty,
+                DefaultMetaDescription = string.Empty,
                 GenerateProductMetaDescription = true,
                 ConvertNonWesternChars = false,
                 AllowUnicodeCharsInUrls = true,
@@ -5743,7 +5743,7 @@ namespace Nop.Services.Installation
                         "eucookielawaccept",
                         "page-not-found"
                     },
-                CustomHeadTags = "",
+                CustomHeadTags = string.Empty,
             });
 
             settingService.SaveSetting(new AdminAreaSettings
@@ -6103,7 +6103,7 @@ namespace Nop.Services.Installation
 
             settingService.SaveSetting(new DateTimeSettings
             {
-                DefaultStoreTimeZoneId = "",
+                DefaultStoreTimeZoneId = string.Empty,
                 AllowCustomersToSetTimeZone = false
             });
 
@@ -6691,7 +6691,7 @@ namespace Nop.Services.Installation
                     EntityName = "Category",
                     LanguageId = 0,
                     IsActive = true,
-                    Slug = category.ValidateSeName("", category.Name, true)
+                    Slug = category.ValidateSeName(string.Empty, category.Name, true)
                 });
             }
         }
@@ -6766,7 +6766,7 @@ namespace Nop.Services.Installation
                     EntityName = "Manufacturer",
                     LanguageId = 0,
                     IsActive = true,
-                    Slug = manufacturer.ValidateSeName("", manufacturer.Name, true)
+                    Slug = manufacturer.ValidateSeName(string.Empty, manufacturer.Name, true)
                 });
             }
         }
@@ -7057,7 +7057,7 @@ namespace Nop.Services.Installation
                 VisibleIndividually = true,
                 Name = "Lenovo IdeaCentre 600 All-in-One PC",
                 Sku = "LE_IC_600",
-                ShortDescription = "",
+                ShortDescription = string.Empty,
                 FullDescription = "<p>The A600 features a 21.5in screen, DVD or optional Blu-Ray drive, support for the full beans 1920 x 1080 HD, Dolby Home Cinema certification and an optional hybrid analogue/digital TV tuner.</p><p>Connectivity is handled by 802.11a/b/g - 802.11n is optional - and an ethernet port. You also get four USB ports, a Firewire slot, a six-in-one card reader and a 1.3- or two-megapixel webcam.</p>",
                 ProductTemplateId = productTemplateSimple.Id,
                 //SeName = "hp-iq506-touchsmart-desktop-pc",
@@ -8703,7 +8703,7 @@ namespace Nop.Services.Installation
                 VisibleIndividually = true,
                 Name = "Nike Tailwind Loose Short-Sleeve Running Shirt",
                 Sku = "NK_TLS_RS",
-                ShortDescription = "",
+                ShortDescription = string.Empty,
                 FullDescription = "<p>Boost your adrenaline with the Nike® Women's Tailwind Running Shirt. The lightweight, slouchy fit is great for layering, and moisture-wicking fabrics keep you feeling at your best. This tee has a notched hem for an enhanced range of motion, while flat seams with reinforcement tape lessen discomfort and irritation over longer distances. Put your keys and card in the side zip pocket and take off in your Nike® running t-shirt.</p>",
                 ProductTemplateId = productTemplateSimple.Id,
                 //SeName = "50s-rockabilly-polka-dot-top-jr-plus-size",
@@ -8809,7 +8809,7 @@ namespace Nop.Services.Installation
                 VisibleIndividually = true,
                 Name = "Oversized Women T-Shirt",
                 Sku = "WM_OVR_TS",
-                ShortDescription = "",
+                ShortDescription = string.Empty,
                 FullDescription = "<p>This oversized women t-Shirt needs minimum ironing. It is a great product at a great value!</p>",
                 ProductTemplateId = productTemplateSimple.Id,
                 //SeName = "arrow-mens-wrinkle-free-pinpoint-solid-long-sleeve",
@@ -9019,7 +9019,7 @@ namespace Nop.Services.Installation
                 VisibleIndividually = true,
                 Name = "Obey Propaganda Hat",
                 Sku = "OB_HAT_PR",
-                ShortDescription = "",
+                ShortDescription = string.Empty,
                 FullDescription = "<p>Printed poplin 5 panel camp hat with debossed leather patch and web closure</p>",
                 ProductTemplateId = productTemplateSimple.Id,
                 //SeName = "indiana-jones-shapeable-wool-hat",
@@ -9897,7 +9897,7 @@ namespace Nop.Services.Installation
                     EntityName = "Product",
                     LanguageId = 0,
                     IsActive = true,
-                    Slug = product.ValidateSeName("", product.Name, true)
+                    Slug = product.ValidateSeName(string.Empty, product.Name, true)
                 });
             }
 
@@ -10551,7 +10551,7 @@ namespace Nop.Services.Installation
                     EntityName = "BlogPost",
                     LanguageId = blogPost.LanguageId,
                     IsActive = true,
-                    Slug = blogPost.ValidateSeName("", blogPost.Title, true)
+                    Slug = blogPost.ValidateSeName(string.Empty, blogPost.Title, true)
                 });
             }
 
@@ -10623,7 +10623,7 @@ namespace Nop.Services.Installation
                     EntityName = "NewsItem",
                     LanguageId = newsItem.LanguageId,
                     IsActive = true,
-                    Slug = newsItem.ValidateSeName("", newsItem.Title, true)
+                    Slug = newsItem.ValidateSeName(string.Empty, newsItem.Title, true)
                 });
             }
 
@@ -10655,7 +10655,7 @@ namespace Nop.Services.Installation
             {
                 Language = defaultLanguage,
                 Name = "Do you like nopCommerce?",
-                SystemKeyword = "",
+                SystemKeyword = string.Empty,
                 Published = true,
                 ShowOnHomePage = true,
                 DisplayOrder = 1,
@@ -11315,7 +11315,7 @@ namespace Nop.Services.Installation
                     Name = "Vendor 1",
                     Email = "vendor1email@gmail.com",
                     Description = "Some description...",
-                    AdminComment = "",
+                    AdminComment = string.Empty,
                     PictureId = 0,
                     Active = true,
                     DisplayOrder = 1,
@@ -11328,7 +11328,7 @@ namespace Nop.Services.Installation
                     Name = "Vendor 2",
                     Email = "vendor2email@gmail.com",
                     Description = "Some description...",
-                    AdminComment = "",
+                    AdminComment = string.Empty,
                     PictureId = 0,
                     Active = true,
                     DisplayOrder = 2,
@@ -11349,7 +11349,7 @@ namespace Nop.Services.Installation
                     EntityName = "Vendor",
                     LanguageId = 0,
                     IsActive = true,
-                    Slug = vendor.ValidateSeName("", vendor.Name, true)
+                    Slug = vendor.ValidateSeName(string.Empty, vendor.Name, true)
                 });
             }
         }

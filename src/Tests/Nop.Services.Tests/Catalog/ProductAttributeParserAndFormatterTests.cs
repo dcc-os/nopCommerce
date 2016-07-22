@@ -217,7 +217,7 @@ namespace Nop.Services.Tests.Catalog
         [Test]
         public void Can_add_and_parse_productAttributes()
         {
-            string attributes = "";
+            string attributes = string.Empty;
             //color: green
             attributes = _productAttributeParser.AddProductAttribute(attributes, pam1_1, pav1_1.Id.ToString());
             //custom option: option 1, option 2
@@ -242,7 +242,7 @@ namespace Nop.Services.Tests.Catalog
         [Test]
         public void Can_add_and_remove_productAttributes()
         {
-            string attributes = "";
+            string attributes = string.Empty;
             //color: green
             attributes = _productAttributeParser.AddProductAttribute(attributes, pam1_1, pav1_1.Id.ToString());
             //custom option: option 1, option 2
@@ -268,7 +268,7 @@ namespace Nop.Services.Tests.Catalog
         [Test]
         public void Can_add_and_parse_giftCardAttributes()
         {
-            string attributes = "";
+            string attributes = string.Empty;
             attributes = _productAttributeParser.AddGiftCardAttribute(attributes,
                 "recipientName 1", "recipientEmail@gmail.com", 
                 "senderName 1", "senderEmail@gmail.com", "custom message");
@@ -290,7 +290,7 @@ namespace Nop.Services.Tests.Catalog
         [Test]
         public void Can_render_virtual_gift_cart()
         {
-            string attributes = _productAttributeParser.AddGiftCardAttribute("",
+            string attributes = _productAttributeParser.AddGiftCardAttribute(string.Empty,
                 "recipientName 1", "recipientEmail@gmail.com",
                 "senderName 1", "senderEmail@gmail.com", "custom message");
 
@@ -308,7 +308,7 @@ namespace Nop.Services.Tests.Catalog
         [Test]
         public void Can_render_physical_gift_cart()
         {
-            string attributes = _productAttributeParser.AddGiftCardAttribute("",
+            string attributes = _productAttributeParser.AddGiftCardAttribute(string.Empty,
                 "recipientName 1", "recipientEmail@gmail.com",
                 "senderName 1", "senderEmail@gmail.com", "custom message");
 
@@ -326,7 +326,7 @@ namespace Nop.Services.Tests.Catalog
         [Test]
         public void Can_render_attributes_withoutPrices()
         {
-            string attributes = "";
+            string attributes = string.Empty;
             //color: green
             attributes = _productAttributeParser.AddProductAttribute(attributes, pam1_1, pav1_1.Id.ToString());
             //custom option: option 1, option 2

@@ -71,8 +71,8 @@ namespace Nop.Web.Controllers
                 SystemName = topic.SystemName,
                 IncludeInSitemap = topic.IncludeInSitemap,
                 IsPasswordProtected = topic.IsPasswordProtected,
-                Title = topic.IsPasswordProtected ? "" : topic.GetLocalized(x => x.Title),
-                Body = topic.IsPasswordProtected ? "" : topic.GetLocalized(x => x.Body),
+                Title = topic.IsPasswordProtected ? string.Empty : topic.GetLocalized(x => x.Title),
+                Body = topic.IsPasswordProtected ? string.Empty : topic.GetLocalized(x => x.Body),
                 MetaKeywords = topic.GetLocalized(x => x.MetaKeywords),
                 MetaDescription = topic.GetLocalized(x => x.MetaDescription),
                 MetaTitle = topic.GetLocalized(x => x.MetaTitle),
@@ -198,7 +198,7 @@ namespace Nop.Web.Controllers
             });
 
             if (cacheModel == null)
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView(cacheModel);
         }

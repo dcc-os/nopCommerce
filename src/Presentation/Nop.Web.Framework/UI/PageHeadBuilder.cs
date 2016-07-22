@@ -64,11 +64,11 @@ namespace Nop.Web.Framework.UI
                 throw new ArgumentException("parts");
 
             //calculate hash
-            var hash = "";
+            var hash = string.Empty;
             using (SHA256 sha = new SHA256Managed())
             {
                 // string concatenation
-                var hashInput = "";
+                var hashInput = string.Empty;
                 foreach (var part in parts)
                 {
                     hashInput += part;
@@ -114,7 +114,7 @@ namespace Nop.Web.Framework.UI
         }
         public virtual string GenerateTitle(bool addDefaultTitle)
         {
-            string result = "";
+            string result = string.Empty;
             var specificTitle = string.Join(_seoSettings.PageTitleSeparator, _titleParts.AsEnumerable().Reverse().ToArray());
             if (!String.IsNullOrEmpty(specificTitle))
             {
@@ -229,10 +229,10 @@ namespace Nop.Web.Framework.UI
         public virtual string GenerateScripts(UrlHelper urlHelper, ResourceLocation location, bool? bundleFiles = null)
         {
             if (!_scriptParts.ContainsKey(location) || _scriptParts[location] == null)
-                return "";
+                return string.Empty;
 
             if (!_scriptParts.Any())
-                return "";
+                return string.Empty;
             
             if (!bundleFiles.HasValue)
             {
@@ -283,7 +283,7 @@ namespace Nop.Web.Framework.UI
                 //parts to do not bundle
                 foreach (var item in partsToDontBundle)
                 {
-                    result.AppendFormat("<script {2}src=\"{0}\" type=\"{1}\"></script>", urlHelper.Content(item.Part), MimeTypes.TextJavascript, item.IsAsync ? "async " : "");
+                    result.AppendFormat("<script {2}src=\"{0}\" type=\"{1}\"></script>", urlHelper.Content(item.Part), MimeTypes.TextJavascript, item.IsAsync ? "async " : string.Empty);
                     result.Append(Environment.NewLine);
                 }
                 return result.ToString();
@@ -294,7 +294,7 @@ namespace Nop.Web.Framework.UI
                 var result = new StringBuilder();
                 foreach (var item in _scriptParts[location].Select(x => new { x.Part, x.IsAsync}).Distinct())
                 {
-                    result.AppendFormat("<script {2}src=\"{0}\" type=\"{1}\"></script>", urlHelper.Content(item.Part), MimeTypes.TextJavascript, item.IsAsync ? "async ":"");
+                    result.AppendFormat("<script {2}src=\"{0}\" type=\"{1}\"></script>", urlHelper.Content(item.Part), MimeTypes.TextJavascript, item.IsAsync ? "async " : string.Empty);
                     result.Append(Environment.NewLine);
                 }
                 return result.ToString();
@@ -333,10 +333,10 @@ namespace Nop.Web.Framework.UI
         public virtual string GenerateCssFiles(UrlHelper urlHelper, ResourceLocation location, bool? bundleFiles = null)
         {
             if (!_cssParts.ContainsKey(location) || _cssParts[location] == null)
-                return "";
+                return string.Empty;
 
             if (!_cssParts.Any())
-                return "";
+                return string.Empty;
 
             if (!bundleFiles.HasValue)
             {
@@ -457,7 +457,7 @@ namespace Nop.Web.Framework.UI
             //use only distinct rows
             var distinctParts = _headCustomParts.Distinct().ToList();
             if (!distinctParts.Any())
-                return "";
+                return string.Empty;
 
             var result = new StringBuilder();
             foreach (var path in distinctParts)

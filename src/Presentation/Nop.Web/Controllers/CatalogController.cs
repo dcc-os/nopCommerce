@@ -743,7 +743,7 @@ namespace Nop.Web.Controllers
             );
 
             if (!model.Any())
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView(model);
         }
@@ -924,7 +924,7 @@ namespace Nop.Web.Controllers
         public ActionResult ManufacturerNavigation(int currentManufacturerId)
         {
             if (_catalogSettings.ManufacturersBlockItemsToDisplay == 0)
-                return Content("");
+                return Content(string.Empty);
 
             string cacheKey = string.Format(ModelCacheEventConsumer.MANUFACTURER_NAVIGATION_MODEL_KEY, 
                 currentManufacturerId, 
@@ -957,7 +957,7 @@ namespace Nop.Web.Controllers
                 });
 
             if (!cacheModel.Manufacturers.Any())
-                return Content("");
+                return Content(string.Empty);
             
             return PartialView(cacheModel);
         }
@@ -1074,7 +1074,7 @@ namespace Nop.Web.Controllers
         public ActionResult VendorNavigation()
         {
             if (_vendorSettings.VendorsBlockItemsToDisplay == 0)
-                return Content("");
+                return Content(string.Empty);
 
             string cacheKey = ModelCacheEventConsumer.VENDOR_NAVIGATION_MODEL_KEY;
             var cacheModel = _cacheManager.Get(cacheKey, () =>
@@ -1098,7 +1098,7 @@ namespace Nop.Web.Controllers
             });
 
             if (!cacheModel.Vendors.Any())
-                return Content("");
+                return Content(string.Empty);
             
             return PartialView(cacheModel);
         }
@@ -1144,7 +1144,7 @@ namespace Nop.Web.Controllers
             });
 
             if (!cacheModel.Tags.Any())
-                return Content("");
+                return Content(string.Empty);
             
             return PartialView(cacheModel);
         }
@@ -1233,7 +1233,7 @@ namespace Nop.Web.Controllers
 
             var searchTerms = model.q;
             if (searchTerms == null)
-                searchTerms = "";
+                searchTerms = string.Empty;
             searchTerms = searchTerms.Trim();
 
 
@@ -1261,7 +1261,7 @@ namespace Nop.Web.Controllers
                 foreach (var c in allCategories)
                 {
                     //generate full category name (breadcrumb)
-                    string categoryBreadcrumb= "";
+                    string categoryBreadcrumb= string.Empty;
                     var breadcrumb = c.GetCategoryBreadCrumb(allCategories, _aclService, _storeMappingService);
                     for (int i = 0; i <= breadcrumb.Count - 1; i++)
                     {
@@ -1464,7 +1464,7 @@ namespace Nop.Web.Controllers
         public ActionResult SearchTermAutoComplete(string term)
         {
             if (String.IsNullOrWhiteSpace(term) || term.Length < _catalogSettings.ProductSearchTermMinimumLength)
-                return Content("");
+                return Content(string.Empty);
 
             //products
             var productNumber = _catalogSettings.ProductSearchAutoCompleteNumberOfProducts > 0 ?

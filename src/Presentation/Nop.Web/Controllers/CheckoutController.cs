@@ -311,7 +311,7 @@ namespace Nop.Web.Controllers
 
             var getShippingOptionResponse = _shippingService
                 .GetShippingOptions(cart, shippingAddress,
-                "", _storeContext.CurrentStore.Id);
+                string.Empty, _storeContext.CurrentStore.Id);
             if (getShippingOptionResponse.Success)
             {
                 //performance optimization. cache returned shipping options.
@@ -686,7 +686,7 @@ namespace Nop.Web.Controllers
             var customAttributeWarnings = _addressAttributeParser.GetAttributeWarnings(customAttributes);
             foreach (var error in customAttributeWarnings)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
 
             if (ModelState.IsValid)
@@ -849,7 +849,7 @@ namespace Nop.Web.Controllers
             var customAttributeWarnings = _addressAttributeParser.GetAttributeWarnings(customAttributes);
             foreach (var error in customAttributeWarnings)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
 
             if (ModelState.IsValid)
@@ -1185,7 +1185,7 @@ namespace Nop.Web.Controllers
 
             var warnings = paymentController.ValidatePaymentForm(form);
             foreach (var warning in warnings)
-                ModelState.AddModelError("", warning);
+                ModelState.AddModelError(string.Empty, warning);
             if (ModelState.IsValid)
             {
                 //get payment info
@@ -1521,7 +1521,7 @@ namespace Nop.Web.Controllers
                     var customAttributeWarnings = _addressAttributeParser.GetAttributeWarnings(customAttributes);
                     foreach (var error in customAttributeWarnings)
                     {
-                        ModelState.AddModelError("", error);
+                        ModelState.AddModelError(string.Empty, error);
                     }
 
                     //validate model
@@ -1705,7 +1705,7 @@ namespace Nop.Web.Controllers
                     var customAttributeWarnings = _addressAttributeParser.GetAttributeWarnings(customAttributes);
                     foreach (var error in customAttributeWarnings)
                     {
-                        ModelState.AddModelError("", error);
+                        ModelState.AddModelError(string.Empty, error);
                     }
 
                     //validate model
@@ -1944,7 +1944,7 @@ namespace Nop.Web.Controllers
 
                 var warnings = paymentController.ValidatePaymentForm(form);
                 foreach (var warning in warnings)
-                    ModelState.AddModelError("", warning);
+                    ModelState.AddModelError(string.Empty, warning);
                 if (ModelState.IsValid)
                 {
                     //get payment info

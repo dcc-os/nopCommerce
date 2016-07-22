@@ -68,8 +68,8 @@ namespace Nop.Admin.Controllers
             //we process it distinct ways based on a browser
             //find more info here http://stackoverflow.com/questions/4884920/mvc3-valums-ajax-file-upload
             Stream stream = null;
-            var fileName = "";
-            var contentType = "";
+            var fileName = string.Empty;
+            var contentType = string.Empty;
             if (String.IsNullOrEmpty(Request["qqfile"]))
             {
                 // IE
@@ -98,7 +98,7 @@ namespace Nop.Admin.Controllers
             {
                 DownloadGuid = Guid.NewGuid(),
                 UseDownloadUrl = false,
-                DownloadUrl = "",
+                DownloadUrl = string.Empty,
                 DownloadBinary = fileBinary,
                 ContentType = contentType,
                 //we store filename without extension for downloads

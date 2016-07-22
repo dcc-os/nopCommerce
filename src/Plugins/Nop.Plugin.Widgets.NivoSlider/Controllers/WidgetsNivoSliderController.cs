@@ -44,9 +44,9 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
             return _cacheManager.Get(cacheKey, () =>
             {
                 var url = _pictureService.GetPictureUrl(pictureId, showDefaultPicture: false);
-                //little hack here. nulls aren't cacheable so set it to ""
+                //little hack here. nulls aren't cacheable so set it to string.Empty
                 if (url == null)
-                    url = "";
+                    url = string.Empty;
 
                 return url;
             });
@@ -178,7 +178,7 @@ namespace Nop.Plugin.Widgets.NivoSlider.Controllers
                 string.IsNullOrEmpty(model.Picture3Url) && string.IsNullOrEmpty(model.Picture4Url) &&
                 string.IsNullOrEmpty(model.Picture5Url))
                 //no pictures uploaded
-                return Content("");
+                return Content(string.Empty);
 
 
             return View("~/Plugins/Widgets.NivoSlider/Views/WidgetsNivoSlider/PublicInfo.cshtml", model);

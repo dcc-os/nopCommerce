@@ -832,7 +832,7 @@ namespace Nop.Services.Seo
                     _seoCharacterTable.Add(ToUnichar("02A5"), "dz");	// LATIN SMALL LETTER DZ DIGRAPH WITH CURL -- no decomposition
                     _seoCharacterTable.Add(ToUnichar("02A6"), "ts");	// LATIN SMALL LETTER TS DIGRAPH -- no decomposition
                     _seoCharacterTable.Add(ToUnichar("02A7"), "ts");	// LATIN SMALL LETTER TESH DIGRAPH -- no decomposition
-                    _seoCharacterTable.Add(ToUnichar("02A8"), ""); // LATIN SMALL LETTER TC DIGRAPH WITH CURL -- no decomposition
+                    _seoCharacterTable.Add(ToUnichar("02A8"), string.Empty); // LATIN SMALL LETTER TC DIGRAPH WITH CURL -- no decomposition
                     _seoCharacterTable.Add(ToUnichar("02A9"), "fn");	// LATIN SMALL LETTER FENG DIGRAPH -- no decomposition
                     _seoCharacterTable.Add(ToUnichar("02AA"), "ls");	// LATIN SMALL LETTER LS DIGRAPH -- no decomposition
                     _seoCharacterTable.Add(ToUnichar("02AB"), "lz");	// LATIN SMALL LETTER LZ DIGRAPH -- no decomposition
@@ -1297,9 +1297,9 @@ namespace Nop.Services.Seo
                     _seoCharacterTable.Add(ToUnichar("0427"), "CH");  // RUSSIAN CAPITAL LETTER Ч
                     _seoCharacterTable.Add(ToUnichar("0428"), "SH");  // RUSSIAN CAPITAL LETTER Ш
                     _seoCharacterTable.Add(ToUnichar("0429"), "SHH");  // RUSSIAN CAPITAL LETTER Щ
-                    _seoCharacterTable.Add(ToUnichar("042A"), "");  // RUSSIAN CAPITAL LETTER Ъ
+                    _seoCharacterTable.Add(ToUnichar("042A"), string.Empty);  // RUSSIAN CAPITAL LETTER Ъ
                     _seoCharacterTable.Add(ToUnichar("042B"), "Y");  // RUSSIAN CAPITAL LETTER Ы
-                    _seoCharacterTable.Add(ToUnichar("042C"), "");  // RUSSIAN CAPITAL LETTER Ь
+                    _seoCharacterTable.Add(ToUnichar("042C"), string.Empty);  // RUSSIAN CAPITAL LETTER Ь
                     _seoCharacterTable.Add(ToUnichar("042D"), "E");  // RUSSIAN CAPITAL LETTER Э
                     _seoCharacterTable.Add(ToUnichar("042E"), "YU");  // RUSSIAN CAPITAL LETTER Ю
                     _seoCharacterTable.Add(ToUnichar("042F"), "YA");  // RUSSIAN CAPITAL LETTER Я
@@ -1330,9 +1330,9 @@ namespace Nop.Services.Seo
                     _seoCharacterTable.Add(ToUnichar("0447"), "ch");  // RUSSIAN SMALL LETTER ч
                     _seoCharacterTable.Add(ToUnichar("0448"), "sh");  // RUSSIAN SMALL LETTER ш
                     _seoCharacterTable.Add(ToUnichar("0449"), "shh");  // RUSSIAN SMALL LETTER щ
-                    _seoCharacterTable.Add(ToUnichar("044A"), "");  // RUSSIAN SMALL LETTER ъ
+                    _seoCharacterTable.Add(ToUnichar("044A"), string.Empty);  // RUSSIAN SMALL LETTER ъ
                     _seoCharacterTable.Add(ToUnichar("044B"), "y");  // RUSSIAN SMALL LETTER ы
-                    _seoCharacterTable.Add(ToUnichar("044C"), "");  // RUSSIAN SMALL LETTER ь
+                    _seoCharacterTable.Add(ToUnichar("044C"), string.Empty);  // RUSSIAN SMALL LETTER ь
                     _seoCharacterTable.Add(ToUnichar("044D"), "e");  // RUSSIAN SMALL LETTER э
                     _seoCharacterTable.Add(ToUnichar("044E"), "yu");  // RUSSIAN SMALL LETTER ю
                     _seoCharacterTable.Add(ToUnichar("044F"), "ya");  // RUSSIAN SMALL LETTER я

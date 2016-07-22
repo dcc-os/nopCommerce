@@ -109,7 +109,7 @@ namespace Nop.Plugin.Tax.CountryStateZip.Controllers
                     m.StoreName = (store != null) ? store.Name : "*";
                     //tax category
                     var tc = _taxCategoryService.GetTaxCategoryById(x.TaxCategoryId);
-                    m.TaxCategoryName = (tc != null) ? tc.Name : "";
+                    m.TaxCategoryName = (tc != null) ? tc.Name : string.Empty;
                     //country
                     var c = _countryService.GetCountryById(x.CountryId);
                     m.CountryName = (c != null) ? c.Name : "Unavailable";

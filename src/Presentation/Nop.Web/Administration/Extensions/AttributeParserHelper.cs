@@ -18,7 +18,7 @@ namespace Nop.Admin.Extensions
             if (form == null)
                 throw new ArgumentNullException("form");
 
-            string attributesXml = "";
+            string attributesXml = string.Empty;
             var attributes = addressAttributeService.GetAllAddressAttributes();
             foreach (var attribute in attributes)
             {

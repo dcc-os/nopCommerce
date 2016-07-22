@@ -68,7 +68,7 @@ namespace Nop.Web.Controllers
 
             //no data?
             if (!cacheModel.Any())
-                return Content("");
+                return Content(string.Empty);
 
             //"RouteValues" property of widget models depends on "additionalData".
             //We need to clone the cached model before modifications (the updated one should not be cached)

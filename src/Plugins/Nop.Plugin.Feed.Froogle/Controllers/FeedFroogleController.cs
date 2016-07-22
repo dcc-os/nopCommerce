@@ -82,7 +82,7 @@ namespace Nop.Plugin.Feed.Froogle.Controllers
                 model.AvailableCurrencies.Add(new SelectListItem { Text = c.Name, Value = c.Id.ToString() });
             //Google categories
             model.DefaultGoogleCategory = _froogleSettings.DefaultGoogleCategory;
-            model.AvailableGoogleCategories.Add(new SelectListItem {Text = "Select a category", Value = ""});
+            model.AvailableGoogleCategories.Add(new SelectListItem {Text = "Select a category", Value = string.Empty});
             foreach (var gc in _googleService.GetTaxonomyList())
                 model.AvailableGoogleCategories.Add(new SelectListItem { Text = gc, Value = gc });
 

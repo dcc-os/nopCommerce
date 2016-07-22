@@ -51,7 +51,7 @@
     Html.AppendScriptParts("~/Administration/Scripts/jquery-1.10.2.min.js");
 
     //page title
-    string adminPageTitle = !String.IsNullOrWhiteSpace(ViewBag.Title) ? ViewBag.Title + " / " : "";
+    string adminPageTitle = !String.IsNullOrWhiteSpace(ViewBag.Title) ? ViewBag.Title + " / " : string.Empty;
     adminPageTitle += T("Admin.PageTitle").Text;
 
     //has "Manage Maintenance" permission?

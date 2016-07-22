@@ -14,7 +14,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators
         {
             //set up localziation service used by almost all validators
             _localizationService = MockRepository.GenerateMock<ILocalizationService>();
-            _localizationService.Expect(l => l.GetResource("")).Return("Invalid").IgnoreArguments();
+            _localizationService.Expect(l => l.GetResource(string.Empty)).Return("Invalid").IgnoreArguments();
         }
     }
 }

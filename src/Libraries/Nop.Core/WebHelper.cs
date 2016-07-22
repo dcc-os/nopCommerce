@@ -119,7 +119,7 @@ namespace Nop.Core
             if (!IsRequestAvailable(_httpContext))
                 return string.Empty;
 
-            var result = "";
+            var result = string.Empty;
             if (_httpContext.Request.Headers != null)
             {
                 //The X-Forwarded-For (XFF) HTTP header field is a de facto standard
@@ -276,7 +276,7 @@ namespace Nop.Core
         /// <returns>Store host location</returns>
         public virtual string GetStoreHost(bool useSsl)
         {
-            var result = "";
+            var result = string.Empty;
             var httpHost = ServerVariables("HTTP_HOST");
             if (!String.IsNullOrEmpty(httpHost))
             {
@@ -508,7 +508,7 @@ namespace Nop.Core
             {
                 str2 = anchor;
             }
-            return (url + (string.IsNullOrEmpty(str) ? "" : ("?" + str)) + (string.IsNullOrEmpty(str2) ? "" : ("#" + str2))).ToLowerInvariant();
+            return (url + (string.IsNullOrEmpty(str) ? string.Empty : ("?" + str)) + (string.IsNullOrEmpty(str2) ? string.Empty : ("#" + str2))).ToLowerInvariant();
         }
 
         /// <summary>
@@ -573,7 +573,7 @@ namespace Nop.Core
                     str = builder.ToString();
                 }
             }
-            return (url + (string.IsNullOrEmpty(str) ? "" : ("?" + str)));
+            return (url + (string.IsNullOrEmpty(str) ? string.Empty : ("?" + str)));
         }
 
         /// <summary>

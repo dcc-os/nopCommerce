@@ -38,7 +38,7 @@ namespace Nop.Web.Controllers
         public ActionResult NewsletterBox()
         {
             if (_customerSettings.HideNewsletterBlock)
-                return Content("");
+                return Content(string.Empty);
 
             var model = new NewsletterBoxModel()
             {

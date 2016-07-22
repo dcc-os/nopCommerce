@@ -40,7 +40,7 @@ namespace Nop.Core.Plugins
 
         public static void SaveInstalledPluginsFile(IList<String> pluginSystemNames, string filePath)
         {
-            string result = "";
+            string result = string.Empty;
             foreach (var sn in pluginSystemNames)
                 result += string.Format("{0}{1}", sn, Environment.NewLine);
 

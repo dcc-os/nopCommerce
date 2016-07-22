@@ -22,7 +22,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Boards
             var model = new EditForumTopicModel();
             model.Subject = null;
             _validator.ShouldHaveValidationErrorFor(x => x.Subject, model);
-            model.Subject = "";
+            model.Subject = string.Empty;
             _validator.ShouldHaveValidationErrorFor(x => x.Subject, model);
         }
 
@@ -40,7 +40,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Boards
             var model = new EditForumTopicModel();
             model.Text = null;
             _validator.ShouldHaveValidationErrorFor(x => x.Text, model);
-            model.Text = "";
+            model.Text = string.Empty;
             _validator.ShouldHaveValidationErrorFor(x => x.Text, model);
         }
 

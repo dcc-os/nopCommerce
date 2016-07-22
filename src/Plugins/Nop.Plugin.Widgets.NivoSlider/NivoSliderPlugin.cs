@@ -81,13 +81,13 @@ namespace Nop.Plugin.Widgets.NivoSlider
             var settings = new NivoSliderSettings
             {
                 Picture1Id = _pictureService.InsertPicture(File.ReadAllBytes(sampleImagesPath + "banner1.jpg"), MimeTypes.ImagePJpeg, "banner_1").Id,
-                Text1 = "",
+                Text1 = string.Empty,
                 Link1 = _webHelper.GetStoreLocation(false),
                 Picture2Id = _pictureService.InsertPicture(File.ReadAllBytes(sampleImagesPath + "banner2.jpg"), MimeTypes.ImagePJpeg, "banner_2").Id,
-                Text2 = "",
+                Text2 = string.Empty,
                 Link2 = _webHelper.GetStoreLocation(false),
                 //Picture3Id = _pictureService.InsertPicture(File.ReadAllBytes(sampleImagesPath + "banner3.jpg"), MimeTypes.ImagePJpeg, "banner_3").Id,
-                //Text3 = "",
+                //Text3 = string.Empty,
                 //Link3 = _webHelper.GetStoreLocation(false),
             };
             _settingService.SaveSetting(settings);

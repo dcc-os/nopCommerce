@@ -108,18 +108,18 @@ namespace Nop.Plugin.Feed.Froogle
             if (isHtmlEncoded)
                 input = HttpUtility.HtmlDecode(input);
 
-            input = input.Replace("¼", "");
-            input = input.Replace("½", "");
-            input = input.Replace("¾", "");
-            //input = input.Replace("•", "");
-            //input = input.Replace("”", "");
-            //input = input.Replace("“", "");
-            //input = input.Replace("’", "");
-            //input = input.Replace("‘", "");
-            //input = input.Replace("™", "");
-            //input = input.Replace("®", "");
-            //input = input.Replace("°", "");
-            
+            input = input.Replace("¼", string.Empty);
+            input = input.Replace("½", string.Empty);
+            input = input.Replace("¾", string.Empty);
+            //input = input.Replace("•", string.Empty);
+            //input = input.Replace("”", string.Empty);
+            //input = input.Replace("“", string.Empty);
+            //input = input.Replace("’", string.Empty);
+            //input = input.Replace("‘", string.Empty);
+            //input = input.Replace("™", string.Empty);
+            //input = input.Replace("®", string.Empty);
+            //input = input.Replace("°", string.Empty);
+
             if (isHtmlEncoded)
                 input = HttpUtility.HtmlEncode(input);
 
@@ -257,7 +257,7 @@ namespace Nop.Plugin.Feed.Froogle
 
                         //google product category [google_product_category] - Google's category of the item
                         //the category of the product according to Google’s product taxonomy. http://www.google.com/support/merchants/bin/answer.py?answer=160081
-                        string googleProductCategory = "";
+                        string googleProductCategory = string.Empty;
                         //var googleProduct = _googleService.GetByProductId(product.Id);
                         var googleProduct = allGoogleProducts.FirstOrDefault(x => x.ProductId == product.Id);
                         if (googleProduct != null)

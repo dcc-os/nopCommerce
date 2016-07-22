@@ -233,7 +233,7 @@ namespace Nop.Services.Catalog
             _productService.InsertProduct(productCopy);
 
             //search engine name
-            _urlRecordService.SaveSlug(productCopy, productCopy.ValidateSeName("", productCopy.Name, true), 0);
+            _urlRecordService.SaveSlug(productCopy, productCopy.ValidateSeName(string.Empty, productCopy.Name, true), 0);
 
             var languages = _languageService.GetAllLanguages(true);
 
@@ -265,7 +265,7 @@ namespace Nop.Services.Catalog
                     _localizedEntityService.SaveLocalizedValue(productCopy, x => x.MetaTitle, metaTitle, lang.Id);
 
                 //search engine name
-                _urlRecordService.SaveSlug(productCopy, productCopy.ValidateSeName("", name, false), lang.Id);
+                _urlRecordService.SaveSlug(productCopy, productCopy.ValidateSeName(string.Empty, name, false), lang.Id);
             }
 
             //product tags
@@ -473,7 +473,7 @@ namespace Nop.Services.Catalog
             foreach (var combination in _productAttributeService.GetAllProductAttributeCombinations(product.Id))
             {
                 //generate new AttributesXml according to new value IDs
-                string newAttributesXml = "";
+                string newAttributesXml = string.Empty;
                 var parsedProductAttributes = _productAttributeParser.ParseProductAttributeMappings(combination.AttributesXml);
                 foreach (var oldAttribute in parsedProductAttributes)
                 {

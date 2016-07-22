@@ -50,7 +50,7 @@ namespace Nop.Web.Framework.Security.Captcha
                 writer.Write(captchaTag.ToString(TagRenderMode.Normal));
 
                 var scriptLoadApiTag = new TagBuilder("script");
-                scriptLoadApiTag.Attributes.Add("src", RECAPTCHA_API_URL_VERSION2 + (string.IsNullOrEmpty(Language) ? "" : string.Format("&hl={0}", Language)));
+                scriptLoadApiTag.Attributes.Add("src", RECAPTCHA_API_URL_VERSION2 + (string.IsNullOrEmpty(Language) ? string.Empty : string.Format("&hl={0}", Language)));
                 scriptLoadApiTag.Attributes.Add("async", null);
                 scriptLoadApiTag.Attributes.Add("defer", null);
                 writer.Write(scriptLoadApiTag.ToString(TagRenderMode.Normal));

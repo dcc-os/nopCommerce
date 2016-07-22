@@ -912,7 +912,7 @@ namespace Nop.Services.Messages
             _eventPublisher.MessageTokensAdded(messageTemplate, tokens);
 
             var toEmail = subscription.Email;
-            var toName = "";
+            var toName = string.Empty;
             return SendNotification(messageTemplate, emailAccount,
                 languageId, tokens,
                 toEmail, toName);
@@ -949,7 +949,7 @@ namespace Nop.Services.Messages
             _eventPublisher.MessageTokensAdded(messageTemplate, tokens);
 
             var toEmail = subscription.Email;
-            var toName = "";
+            var toName = string.Empty;
             return SendNotification(messageTemplate, emailAccount,
                 languageId, tokens,
                 toEmail, toName);
@@ -1000,7 +1000,7 @@ namespace Nop.Services.Messages
             _eventPublisher.MessageTokensAdded(messageTemplate, tokens);
 
             var toEmail = friendsEmail;
-            var toName = "";
+            var toName = string.Empty;
             return SendNotification(messageTemplate, emailAccount,
                 languageId, tokens,
                 toEmail, toName);
@@ -1042,7 +1042,7 @@ namespace Nop.Services.Messages
             _eventPublisher.MessageTokensAdded(messageTemplate, tokens);
 
             var toEmail = friendsEmail;
-            var toName = "";
+            var toName = string.Empty;
             return SendNotification(messageTemplate, emailAccount,
                 languageId, tokens,
                 toEmail, toName);

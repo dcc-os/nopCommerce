@@ -661,7 +661,7 @@ namespace Nop.Services.Orders
             taxRates = new SortedDictionary<decimal, decimal>();
 
             var customer = cart.GetCustomer();
-            string paymentMethodSystemName = "";
+            string paymentMethodSystemName = string.Empty;
             if (customer != null)
             {
                 paymentMethodSystemName = customer.GetAttribute<string>(
@@ -811,7 +811,7 @@ namespace Nop.Services.Orders
             redeemedRewardPointsAmount = decimal.Zero;
 
             var customer = cart.GetCustomer();
-            string paymentMethodSystemName = "";
+            string paymentMethodSystemName = string.Empty;
             if (customer != null)
             {
                 paymentMethodSystemName = customer.GetAttribute<string>(

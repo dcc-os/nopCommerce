@@ -105,8 +105,8 @@ namespace Nop.Admin.Controllers
                         break;
                     case "GENERATETHUMB":
                         int w = 140, h = 0;
-                        int.TryParse(_context.Request["width"].Replace("px", ""), out w);
-                        int.TryParse(_context.Request["height"].Replace("px", ""), out h);
+                        int.TryParse(_context.Request["width"].Replace("px", string.Empty), out w);
+                        int.TryParse(_context.Request["height"].Replace("px", string.Empty), out h);
                         ShowThumbnail(_context.Request["f"], w, h);
                         break;
                     case "UPLOAD":
@@ -140,7 +140,7 @@ namespace Nop.Admin.Controllers
         {
             //custom code by nopCommerce team
             if (path == null)
-                path = "";
+                path= string.Empty;
 
             if (!path.StartsWith("~")){
                 if (!path.StartsWith("/"))
@@ -184,9 +184,9 @@ namespace Nop.Admin.Controllers
         {
             bool ret = false;
             FileInfo file = new FileInfo(filename);
-            string ext = file.Extension.Replace(".", "").ToLower();
+            string ext = file.Extension.Replace(".", string.Empty).ToLower();
             string setting = GetSetting("FORBIDDEN_UPLOADS").Trim().ToLower();
-            if (setting != "")
+            if (setting != string.Empty)
             {
                 ArrayList tmp = new ArrayList();
                 tmp.AddRange(Regex.Split(setting, "\\s+"));
@@ -194,7 +194,7 @@ namespace Nop.Admin.Controllers
                     ret = true;
             }
             setting = GetSetting("ALLOWED_UPLOADS").Trim().ToLower();
-            if (setting != "")
+            if (setting != string.Empty)
             {
                 ArrayList tmp = new ArrayList();
                 tmp.AddRange(Regex.Split(setting, "\\s+"));
@@ -206,14 +206,14 @@ namespace Nop.Admin.Controllers
         }
         protected Dictionary<string, string> ParseJSON(string file){
             Dictionary<string, string> ret = new Dictionary<string,string>();
-            string json = "";
+            string json= string.Empty;
             try{
                 json = System.IO.File.ReadAllText(_context.Server.MapPath(file), System.Text.Encoding.UTF8);
             }
             catch{}
 
             json = json.Trim();
-            if(json != ""){
+            if(json != string.Empty){
                 if (json.StartsWith("{"))
                     json = json.Substring(1, json.Length - 2);
                 json = json.Trim();
@@ -222,7 +222,7 @@ namespace Nop.Admin.Controllers
                 foreach(string line in lines){
                     string[] tmp = Regex.Split(line, "\"\\s*:\\s*\"");
                     try{
-                        if (tmp[0] != "" && !ret.ContainsKey(tmp[0]))
+                        if (tmp[0] != string.Empty && !ret.ContainsKey(tmp[0]))
                         {
                            ret.Add(tmp[0], tmp[1]);
                         }
@@ -234,10 +234,10 @@ namespace Nop.Admin.Controllers
         }
         protected string GetFilesRoot(){
             string ret = GetSetting("FILES_ROOT");
-            if (GetSetting("SESSION_PATH_KEY") != "" && _context.Session[GetSetting("SESSION_PATH_KEY")] != null)
+            if (GetSetting("SESSION_PATH_KEY") != string.Empty && _context.Session[GetSetting("SESSION_PATH_KEY")] != null)
                 ret = (string)_context.Session[GetSetting("SESSION_PATH_KEY")];
         
-            if(ret == "")
+            if(ret == string.Empty)
                 ret = _context.Server.MapPath("../Uploads");
             else
                 ret = FixPath(ret);
@@ -248,7 +248,7 @@ namespace Nop.Admin.Controllers
                 _settings = ParseJSON(confFile);
         }
         protected string GetSetting(string name){
-            string ret = "";
+            string ret= string.Empty;
             LoadConf();
             if(_settings.ContainsKey(name))
                 ret = _settings[name];
@@ -284,7 +284,7 @@ namespace Nop.Admin.Controllers
         }
         protected string GetSuccessRes()
         {
-            return GetSuccessRes("");
+            return GetSuccessRes(string.Empty);
         }
         protected string GetErrorRes(string msg)
         {
@@ -419,10 +419,10 @@ namespace Nop.Admin.Controllers
         private List<string> GetFiles(string path, string type){
             List<string> ret = new List<string>();
             if(type == "#")
-                type = "";
+                type = string.Empty;
             string[] files = Directory.GetFiles(path);
             foreach(string f in files){
-                if ((GetFileType(new FileInfo(f).Extension) == type) || (type == ""))
+                if ((GetFileType(new FileInfo(f).Extension) == type) || (type == string.Empty))
                     ret.Add(f);
             }
             return ret;
@@ -449,7 +449,7 @@ namespace Nop.Admin.Controllers
             _r.Write("[");
             for(int i = 0; i <dirs.Count; i++){
                 string dir = (string) dirs[i];
-                _r.Write("{\"p\":\"/" + dir.Replace(localPath, "").Replace("\\", "/") + "\",\"f\":\"" + GetFiles(dir, type).Count.ToString() + "\",\"d\":\"" + Directory.GetDirectories(dir).Length.ToString() + "\"}");
+                _r.Write("{\"p\":\"/" + dir.Replace(localPath, string.Empty).Replace("\\", "/") + "\",\"f\":\"" + GetFiles(dir, type).Count.ToString() + "\",\"d\":\"" + Directory.GetDirectories(dir).Length.ToString() + "\"}");
                 if(i < dirs.Count -1)
                     _r.Write(",");
             }
@@ -704,7 +704,7 @@ namespace Nop.Admin.Controllers
             g.DrawImage(img, 0, 0, newWidth, newHeight);
             img.Dispose();
             g.Dispose();
-            if(dest != ""){
+            if(dest != string.Empty){
                 newImg.Save(dest, GetImageFormat(dest));
             }
             newImg.Dispose();

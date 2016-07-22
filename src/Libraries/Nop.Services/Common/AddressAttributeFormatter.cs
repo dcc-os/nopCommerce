@@ -47,7 +47,7 @@ namespace Nop.Services.Common
                 for (int j = 0; j < valuesStr.Count; j++)
                 {
                     string valueStr = valuesStr[j];
-                    string formattedAttribute = "";
+                    string formattedAttribute = string.Empty;
                     if (!attribute.ShouldHaveValues())
                     {
                         //no values

@@ -114,7 +114,7 @@ namespace Nop.Services.Orders
                 totalCycles = _totalCycles.Value;
             }
 
-            return "";
+            return string.Empty;
         }
 
         /// <summary>

@@ -54,7 +54,7 @@ namespace Nop.Web.Infrastructure.Installation
         {
             var httpContext = EngineContext.Current.Resolve<HttpContextBase>();
 
-            var cookieLanguageCode = "";
+            var cookieLanguageCode = string.Empty;
             var cookie = httpContext.Request.Cookies[LanguageCookieName];
             if (cookie != null && !String.IsNullOrEmpty(cookie.Value))
                 cookieLanguageCode = cookie.Value;
@@ -123,7 +123,7 @@ namespace Nop.Web.Infrastructure.Installation
 
 
                     //get language code
-                    var languageCode = "";
+                    var languageCode = string.Empty;
                     //we file name format: installation.{languagecode}.xml
                     var r = new Regex(Regex.Escape("installation.") + "(.*?)" + Regex.Escape(".xml"));
                     var matches = r.Matches(Path.GetFileName(filePath));

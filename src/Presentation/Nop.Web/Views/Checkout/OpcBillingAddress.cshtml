@@ -20,7 +20,7 @@
                         title="" onchange="Billing.newAddress(!this.value)">
                     @foreach (var address in Model.ExistingAddresses)
                     {
-                        var addressLine = "";
+                        var addressLine = string.Empty;
                         addressLine += address.FirstName;
                         addressLine += " " + address.LastName;
                         if (address.StreetAddressEnabled && !String.IsNullOrEmpty(address.Address1))

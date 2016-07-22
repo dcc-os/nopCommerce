@@ -52,7 +52,7 @@
                 }
                 @if (Model.DisplayCheckoutButton)
                 {
-                    var checkoutUrl = "";
+                    var checkoutUrl = string.Empty;
                     if (Model.AnonymousCheckoutAllowed && Model.CurrentCustomerIsGuest)
                     {
                         checkoutUrl = Url.RouteUrl("LoginCheckoutAsGuest", new { returnUrl = Url.RouteUrl("ShoppingCart") });

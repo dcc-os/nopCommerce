@@ -105,7 +105,7 @@ namespace Nop.Core.Fakes
 
         public override string PathInfo
         {
-            get { return ""; }
+            get { return string.Empty; }
         }
 
         public override string ApplicationPath

@@ -39,7 +39,7 @@ namespace Nop.Web.MVC.Tests.Admin.Validators.Catalog
             var model = new ManufacturerModel();
             model.PageSizeOptions = null;
             _validator.ShouldNotHaveValidationErrorFor(x => x.PageSizeOptions, model);
-            model.PageSizeOptions = "";
+            model.PageSizeOptions = string.Empty;
             _validator.ShouldNotHaveValidationErrorFor(x => x.PageSizeOptions, model);
         }
     }

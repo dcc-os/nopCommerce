@@ -175,7 +175,7 @@ namespace Nop.Admin.Controllers
         {
             var allStores = _storeService.GetAllStores();
             if (allStores.Count < 2)
-                return Content("");
+                return Content(string.Empty);
 
             var model = new StoreScopeConfigurationModel();
             foreach (var s in allStores)
@@ -2021,7 +2021,7 @@ namespace Nop.Admin.Controllers
             try
             {
                 if (model.SecuritySettings.EncryptionKey == null)
-                    model.SecuritySettings.EncryptionKey = "";
+                    model.SecuritySettings.EncryptionKey = string.Empty;
 
                 model.SecuritySettings.EncryptionKey = model.SecuritySettings.EncryptionKey.Trim();
 

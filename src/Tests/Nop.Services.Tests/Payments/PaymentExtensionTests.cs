@@ -11,7 +11,7 @@ namespace Nop.Services.Tests.Payments
         public void Can_deserialize_empty_string()
         {
             var processPaymentRequest = new ProcessPaymentRequest();
-            var deserialized = processPaymentRequest.DeserializeCustomValues("");
+            var deserialized = processPaymentRequest.DeserializeCustomValues(string.Empty);
 
             deserialized.ShouldNotBeNull();
             deserialized.Count.ShouldEqual(0);
@@ -57,7 +57,7 @@ namespace Nop.Services.Tests.Payments
 
             deserialized.ContainsKey("key2").ShouldEqual(true);
             //deserialized["key2"].ShouldEqual(null);
-            deserialized["key2"].ShouldEqual("");
+            deserialized["key2"].ShouldEqual(string.Empty);
 
             deserialized.ContainsKey("key3").ShouldEqual(true);
             deserialized["key3"].ShouldEqual("3");

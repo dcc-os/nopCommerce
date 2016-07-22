@@ -221,7 +221,7 @@ namespace Nop.Web.Controllers
                 ManufacturerPartNumber = product.ManufacturerPartNumber,
                 ShowGtin = _catalogSettings.ShowGtin,
                 Gtin = product.Gtin,
-                StockAvailability = product.FormatStockMessage("", _localizationService, _productAttributeParser),
+                StockAvailability = product.FormatStockMessage(string.Empty, _localizationService, _productAttributeParser),
                 HasSampleDownload = product.IsDownload && product.HasSampleDownload,
                 DisplayDiscontinuedMessage = !product.Published && _catalogSettings.DisplayDiscontinuedMessageForUnpublishedProducts
             };
@@ -1028,7 +1028,7 @@ namespace Nop.Web.Controllers
             products = products.Where(p => p.IsAvailable()).ToList();
 
             if (!products.Any())
-                return Content("");
+                return Content(string.Empty);
 
             var model = PrepareProductOverviewModels(products, true, true, productThumbPictureSize).ToList();
             return PartialView(model);
@@ -1038,7 +1038,7 @@ namespace Nop.Web.Controllers
         public ActionResult ProductsAlsoPurchased(int productId, int? productThumbPictureSize)
         {
             if (!_catalogSettings.ProductsAlsoPurchasedEnabled)
-                return Content("");
+                return Content(string.Empty);
 
             //load and cache report
             var productIds = _cacheManager.Get(string.Format(ModelCacheEventConsumer.PRODUCTS_ALSO_PURCHASED_IDS_KEY, productId, _storeContext.CurrentStore.Id),
@@ -1055,7 +1055,7 @@ namespace Nop.Web.Controllers
             products = products.Where(p => p.IsAvailable()).ToList();
 
             if (!products.Any())
-                return Content("");
+                return Content(string.Empty);
 
             //prepare model
             var model = PrepareProductOverviewModels(products, true, true, productThumbPictureSize).ToList();
@@ -1078,7 +1078,7 @@ namespace Nop.Web.Controllers
             products = products.Where(p => p.IsAvailable()).ToList();
 
             if (!products.Any())
-                return Content("");
+                return Content(string.Empty);
 
 
             //Cross-sell products are dispalyed on the shopping cart page.
@@ -1100,7 +1100,7 @@ namespace Nop.Web.Controllers
         public ActionResult RecentlyViewedProducts()
         {
             if (!_catalogSettings.RecentlyViewedProductsEnabled)
-                return Content("");
+                return Content(string.Empty);
 
             var products = _recentlyViewedProductsService.GetRecentlyViewedProducts(_catalogSettings.RecentlyViewedProductsNumber);
 
@@ -1114,7 +1114,7 @@ namespace Nop.Web.Controllers
         public ActionResult RecentlyViewedProductsBlock(int? productThumbPictureSize, bool? preparePriceModel)
         {
             if (!_catalogSettings.RecentlyViewedProductsEnabled)
-                return Content("");
+                return Content(string.Empty);
 
             var preparePictureModel = productThumbPictureSize.HasValue;
             var products = _recentlyViewedProductsService.GetRecentlyViewedProducts(_catalogSettings.RecentlyViewedProductsNumber);
@@ -1125,7 +1125,7 @@ namespace Nop.Web.Controllers
             products = products.Where(p => p.IsAvailable()).ToList();
 
             if (!products.Any())
-                return Content("");
+                return Content(string.Empty);
 
             //prepare model
             var model = new List<ProductOverviewModel>();
@@ -1145,7 +1145,7 @@ namespace Nop.Web.Controllers
         public ActionResult NewProducts()
         {
             if (!_catalogSettings.NewProductsEnabled)
-                return Content("");
+                return Content(string.Empty);
 
             var products = _productService.SearchProducts(
                 storeId: _storeContext.CurrentStore.Id,
@@ -1208,7 +1208,7 @@ namespace Nop.Web.Controllers
         public ActionResult HomepageBestSellers(int? productThumbPictureSize)
         {
             if (!_catalogSettings.ShowBestsellersOnHomepage || _catalogSettings.NumberOfBestsellersOnHomepage == 0)
-                return Content("");
+                return Content(string.Empty);
 
             //load and cache report
             var report = _cacheManager.Get(string.Format(ModelCacheEventConsumer.HOMEPAGE_BESTSELLERS_IDS_KEY, _storeContext.CurrentStore.Id),
@@ -1226,7 +1226,7 @@ namespace Nop.Web.Controllers
             products = products.Where(p => p.IsAvailable()).ToList();
 
             if (!products.Any())
-                return Content("");
+                return Content(string.Empty);
 
             //prepare model
             var model = PrepareProductOverviewModels(products, true, true, productThumbPictureSize).ToList();
@@ -1243,7 +1243,7 @@ namespace Nop.Web.Controllers
             products = products.Where(p => p.IsAvailable()).ToList();
 
             if (!products.Any())
-                return Content("");
+                return Content(string.Empty);
 
             var model = PrepareProductOverviewModels(products, true, true, productThumbPictureSize).ToList();
             return PartialView(model);
@@ -1264,7 +1264,7 @@ namespace Nop.Web.Controllers
             PrepareProductReviewsModel(model, product);
             //only registered users can leave reviews
             if (_workContext.CurrentCustomer.IsGuest() && !_catalogSettings.AllowAnonymousUsersToReviewProduct)
-                ModelState.AddModelError("", _localizationService.GetResource("Reviews.OnlyRegisteredUsersCanWriteReviews"));
+                ModelState.AddModelError(string.Empty, _localizationService.GetResource("Reviews.OnlyRegisteredUsersCanWriteReviews"));
             //default value
             model.AddProductReview.Rating = _catalogSettings.DefaultProductRatingValue;
             return View(model);
@@ -1283,12 +1283,12 @@ namespace Nop.Web.Controllers
             //validate CAPTCHA
             if (_captchaSettings.Enabled && _captchaSettings.ShowOnProductReviewPage && !captchaValid)
             {
-                ModelState.AddModelError("", _captchaSettings.GetWrongCaptchaMessage(_localizationService));
+                ModelState.AddModelError(string.Empty, _captchaSettings.GetWrongCaptchaMessage(_localizationService));
             }
 
             if (_workContext.CurrentCustomer.IsGuest() && !_catalogSettings.AllowAnonymousUsersToReviewProduct)
             {
-                ModelState.AddModelError("", _localizationService.GetResource("Reviews.OnlyRegisteredUsersCanWriteReviews"));
+                ModelState.AddModelError(string.Empty, _localizationService.GetResource("Reviews.OnlyRegisteredUsersCanWriteReviews"));
             }
 
             if (ModelState.IsValid)
@@ -1509,13 +1509,13 @@ namespace Nop.Web.Controllers
             //validate CAPTCHA
             if (_captchaSettings.Enabled && _captchaSettings.ShowOnEmailProductToFriendPage && !captchaValid)
             {
-                ModelState.AddModelError("", _captchaSettings.GetWrongCaptchaMessage(_localizationService));
+                ModelState.AddModelError(string.Empty, _captchaSettings.GetWrongCaptchaMessage(_localizationService));
             }
 
             //check whether the current customer is guest and ia allowed to email a friend
             if (_workContext.CurrentCustomer.IsGuest() && !_catalogSettings.AllowAnonymousUsersToEmailAFriend)
             {
-                ModelState.AddModelError("", _localizationService.GetResource("Products.EmailAFriend.OnlyRegisteredUsers"));
+                ModelState.AddModelError(string.Empty, _localizationService.GetResource("Products.EmailAFriend.OnlyRegisteredUsers"));
             }
 
             if (ModelState.IsValid)

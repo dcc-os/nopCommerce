@@ -185,7 +185,7 @@ namespace Nop.Web.Controllers
             {
                 AdminEmail = "admin@yourStore.com",
                 InstallSampleData = false,
-                DatabaseConnectionString = "",
+                DatabaseConnectionString = string.Empty,
                 DataProvider = "sqlserver",
                 //fast installation service does not support SQL compact
                 DisableSqlCompact = _config.UseFastInstallationService,
@@ -242,7 +242,7 @@ namespace Nop.Web.Controllers
                 {
                     //raw connection string
                     if (string.IsNullOrEmpty(model.DatabaseConnectionString))
-                        ModelState.AddModelError("", _locService.GetResource("ConnectionStringRequired"));
+                        ModelState.AddModelError(string.Empty, _locService.GetResource("ConnectionStringRequired"));
 
                     try
                     {
@@ -251,25 +251,25 @@ namespace Nop.Web.Controllers
                     }
                     catch
                     {
-                        ModelState.AddModelError("", _locService.GetResource("ConnectionStringWrongFormat"));
+                        ModelState.AddModelError(string.Empty, _locService.GetResource("ConnectionStringWrongFormat"));
                     }
                 }
                 else
                 {
                     //values
                     if (string.IsNullOrEmpty(model.SqlServerName))
-                        ModelState.AddModelError("", _locService.GetResource("SqlServerNameRequired"));
+                        ModelState.AddModelError(string.Empty, _locService.GetResource("SqlServerNameRequired"));
                     if (string.IsNullOrEmpty(model.SqlDatabaseName))
-                        ModelState.AddModelError("", _locService.GetResource("DatabaseNameRequired"));
+                        ModelState.AddModelError(string.Empty, _locService.GetResource("DatabaseNameRequired"));
 
                     //authentication type
                     if (model.SqlAuthenticationType.Equals("sqlauthentication", StringComparison.InvariantCultureIgnoreCase))
                     {
                         //SQL authentication
                         if (string.IsNullOrEmpty(model.SqlServerUsername))
-                            ModelState.AddModelError("", _locService.GetResource("SqlServerUsernameRequired"));
+                            ModelState.AddModelError(string.Empty, _locService.GetResource("SqlServerUsernameRequired"));
                         if (string.IsNullOrEmpty(model.SqlServerPassword))
-                            ModelState.AddModelError("", _locService.GetResource("SqlServerPasswordRequired"));
+                            ModelState.AddModelError(string.Empty, _locService.GetResource("SqlServerPasswordRequired"));
                     }
                 }
             }
@@ -286,12 +286,12 @@ namespace Nop.Web.Controllers
             var dirsToCheck = FilePermissionHelper.GetDirectoriesWrite();
             foreach (string dir in dirsToCheck)
                 if (!FilePermissionHelper.CheckPermissions(dir, false, true, true, false))
-                    ModelState.AddModelError("", string.Format(_locService.GetResource("ConfigureDirectoryPermissions"), WindowsIdentity.GetCurrent().Name, dir));
+                    ModelState.AddModelError(string.Empty, string.Format(_locService.GetResource("ConfigureDirectoryPermissions"), WindowsIdentity.GetCurrent().Name, dir));
 
             var filesToCheck = FilePermissionHelper.GetFilesWrite();
             foreach (string file in filesToCheck)
                 if (!FilePermissionHelper.CheckPermissions(file, false, true, true, true))
-                    ModelState.AddModelError("", string.Format(_locService.GetResource("ConfigureFilePermissions"), WindowsIdentity.GetCurrent().Name, file));
+                    ModelState.AddModelError(string.Empty, string.Format(_locService.GetResource("ConfigureFilePermissions"), WindowsIdentity.GetCurrent().Name, file));
 
             if (ModelState.IsValid)
             {
@@ -329,7 +329,7 @@ namespace Nop.Web.Controllers
                             if (!SqlServerDatabaseExists(connectionString))
                             {
                                 //create database
-                                var collation = model.UseCustomCollation ? model.Collation : "";
+                                var collation = model.UseCustomCollation ? model.Collation : string.Empty;
                                 var errorCreatingDatabase = CreateDatabase(connectionString, collation);
                                 if (!String.IsNullOrEmpty(errorCreatingDatabase))
                                     throw new Exception(errorCreatingDatabase);
@@ -427,7 +427,7 @@ namespace Nop.Web.Controllers
                         DataConnectionString = null
                     });
 
-                    ModelState.AddModelError("", string.Format(_locService.GetResource("SetupFailed"), exception.Message));
+                    ModelState.AddModelError(string.Empty, string.Format(_locService.GetResource("SetupFailed"), exception.Message));
                 }
             }
             return View(model);

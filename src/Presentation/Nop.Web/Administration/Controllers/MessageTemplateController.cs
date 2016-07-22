@@ -399,7 +399,7 @@ namespace Nop.Admin.Controllers
             foreach (var formKey in form.AllKeys)
                 if (formKey.StartsWith("token_", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    var tokenKey = formKey.Substring("token_".Length).Replace("%", "");
+                    var tokenKey = formKey.Substring("token_".Length).Replace("%", string.Empty);
                     var tokenValue = form[formKey];
                     tokens.Add(new Token(tokenKey, tokenValue));
                 }

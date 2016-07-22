@@ -45,7 +45,7 @@ namespace Nop.Services.Tests.Catalog
                 Id = 1,
                 Name = "Euro",
                 CurrencyCode = "EUR",
-                DisplayLocale =  "",
+                DisplayLocale =  string.Empty,
                 CustomFormatting = "€0.00",
                 DisplayOrder = 1,
                 Published = true,
@@ -58,7 +58,7 @@ namespace Nop.Services.Tests.Catalog
                 Name = "US Dollar",
                 CurrencyCode = "USD",
                 DisplayLocale = "en-US",
-                CustomFormatting = "",
+                CustomFormatting = string.Empty,
                 DisplayOrder = 2,
                 Published = true,
                 CreatedOnUtc = DateTime.UtcNow,
@@ -93,7 +93,7 @@ namespace Nop.Services.Tests.Catalog
                 Id = 1,
                 Name = "Euro",
                 CurrencyCode = "EUR",
-                DisplayLocale =  "",
+                DisplayLocale =  string.Empty,
                 CustomFormatting = "€0.00"
             };
             var language = new Language

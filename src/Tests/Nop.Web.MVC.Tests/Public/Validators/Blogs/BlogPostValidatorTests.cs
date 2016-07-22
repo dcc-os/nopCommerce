@@ -20,7 +20,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Blogs
         //    var model = new BlogPostModel();
         //    model.AddNewComment.CommentText = null;
         //    _validator.ShouldHaveValidationErrorFor(x => x.AddNewComment.CommentText, model);
-        //    model.AddNewComment.CommentText = "";
+        //    model.AddNewComment.CommentText = string.Empty;
         //    _validator.ShouldHaveValidationErrorFor(x => x.AddNewComment.CommentText, model);
         //}
 

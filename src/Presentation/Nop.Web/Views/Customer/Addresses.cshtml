@@ -71,7 +71,7 @@
                                 }
                                 @if (address.CityEnabled || address.StateProvinceEnabled || address.ZipPostalCodeEnabled)
                                 {
-                                    var cityStateZip = "";
+                                    var cityStateZip = string.Empty;
                                     if (address.CityEnabled)
                                     {
                                         cityStateZip = address.City;

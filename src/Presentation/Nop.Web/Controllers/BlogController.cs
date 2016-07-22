@@ -284,13 +284,13 @@ namespace Nop.Web.Controllers
 
             if (_workContext.CurrentCustomer.IsGuest() && !_blogSettings.AllowNotRegisteredUsersToLeaveComments)
             {
-                ModelState.AddModelError("", _localizationService.GetResource("Blog.Comments.OnlyRegisteredUsersLeaveComments"));
+                ModelState.AddModelError(string.Empty, _localizationService.GetResource("Blog.Comments.OnlyRegisteredUsersLeaveComments"));
             }
 
             //validate CAPTCHA
             if (_captchaSettings.Enabled && _captchaSettings.ShowOnBlogCommentPage && !captchaValid)
             {
-                ModelState.AddModelError("", _captchaSettings.GetWrongCaptchaMessage(_localizationService));
+                ModelState.AddModelError(string.Empty, _captchaSettings.GetWrongCaptchaMessage(_localizationService));
             }
 
             if (ModelState.IsValid)
@@ -329,7 +329,7 @@ namespace Nop.Web.Controllers
         public ActionResult BlogTags()
         {
             if (!_blogSettings.Enabled)
-                return Content("");
+                return Content(string.Empty);
 
             var cacheKey = string.Format(ModelCacheEventConsumer.BLOG_TAGS_MODEL_KEY, _workContext.WorkingLanguage.Id, _storeContext.CurrentStore.Id);
             var cachedModel = _cacheManager.Get(cacheKey, () =>
@@ -360,7 +360,7 @@ namespace Nop.Web.Controllers
         public ActionResult BlogMonths()
         {
             if (!_blogSettings.Enabled)
-                return Content("");
+                return Content(string.Empty);
 
             var cacheKey = string.Format(ModelCacheEventConsumer.BLOG_MONTHS_MODEL_KEY, _workContext.WorkingLanguage.Id, _storeContext.CurrentStore.Id);
             var cachedModel = _cacheManager.Get(cacheKey, () =>
@@ -423,7 +423,7 @@ namespace Nop.Web.Controllers
         public ActionResult RssHeaderLink()
         {
             if (!_blogSettings.Enabled || !_blogSettings.ShowHeaderRssUrl)
-                return Content("");
+                return Content(string.Empty);
 
             string link = string.Format("<link href=\"{0}\" rel=\"alternate\" type=\"{1}\" title=\"{2}: Blog\" />",
                 Url.RouteUrl("BlogRSS", new { languageId = _workContext.WorkingLanguage.Id }, _webHelper.IsCurrentConnectionSecured() ? "https" : "http"), MimeTypes.ApplicationRssXml, _storeContext.CurrentStore.GetLocalized(x => x.Name));

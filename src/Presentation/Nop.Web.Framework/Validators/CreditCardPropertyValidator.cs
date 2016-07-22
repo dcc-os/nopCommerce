@@ -18,8 +18,8 @@ namespace Nop.Web.Framework.Validators
             if (String.IsNullOrWhiteSpace(ccValue))
                 return false;
 
-            ccValue = ccValue.Replace(" ", "");
-            ccValue = ccValue.Replace("-", "");
+            ccValue = ccValue.Replace(" ", string.Empty);
+            ccValue = ccValue.Replace("-", string.Empty);
 
             int checksum = 0;
             bool evenDigit = false;

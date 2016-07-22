@@ -22,7 +22,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Catalog
         //    var model = new ProductReviewsModel();
         //    model.AddProductReview.Title = null;
         //    _validator.ShouldHaveValidationErrorFor(x => x.AddProductReview.Title, model);
-        //    model.AddProductReview.Title = "";
+        //    model.AddProductReview.Title = string.Empty;
         //    _validator.ShouldHaveValidationErrorFor(x => x.AddProductReview.Title, model);
         //}
 
@@ -40,7 +40,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Catalog
         //    var model = new ProductReviewsModel();
         //    model.AddProductReview.ReviewText = null;
         //    _validator.ShouldHaveValidationErrorFor(x => x.AddProductReview.ReviewText, model);
-        //    model.AddProductReview.ReviewText = "";
+        //    model.AddProductReview.ReviewText = string.Empty;
         //    _validator.ShouldHaveValidationErrorFor(x => x.AddProductReview.ReviewText, model);
         //}
 

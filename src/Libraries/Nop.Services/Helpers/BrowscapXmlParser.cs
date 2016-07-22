@@ -37,7 +37,7 @@ namespace Nop.Services.Helpers
                     //only crawlers
                     .Where(IsBrowscapItemIsCrawler)
                     //get only user agent names
-                    .Select(e => e.Attribute("name").Return(a => a.Value.Replace("&amp;", "&"), ""))
+                    .Select(e => e.Attribute("name").Return(a => a.Value.Replace("&amp;", "&"), string.Empty))
                     .Where(s => !string.IsNullOrEmpty(s))
                     .Select(ToRegexp));
             }

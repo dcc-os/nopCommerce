@@ -68,7 +68,7 @@ namespace Nop.Core.Data
         protected virtual string ComposeSettings(DataSettings settings)
         {
             if (settings == null)
-                return "";
+                return string.Empty;
 
             return string.Format("DataProvider: {0}{2}DataConnectionString: {1}{2}",
                                  settings.DataProvider,

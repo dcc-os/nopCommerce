@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "";
+    Layout = string.Empty;
 }
 @Html.AntiForgeryToken()
 <div class="panel-group">
@@ -14,13 +14,13 @@
                         type: "json",
                         transport: {
                             read: {
-                                url: "@Html.Raw(Url.Action("Configure", "TaxFixedRate", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Tax.FixedRate.Controllers" }, { "area", "" } }))",
+                                url: "@Html.Raw(Url.Action("Configure", "TaxFixedRate", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Tax.FixedRate.Controllers" }, { "area", string.Empty } }))",
                                 type: "POST",
                                 dataType: "json",
                                 data: addAntiForgeryToken
                             },
                             update: {
-                                url:"@Html.Raw(Url.Action("TaxRateUpdate", "TaxFixedRate", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Tax.FixedRate.Controllers" }, { "area", "" } }))",
+                                url:"@Html.Raw(Url.Action("TaxRateUpdate", "TaxFixedRate", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Tax.FixedRate.Controllers" }, { "area", string.Empty } }))",
                                 type: "POST",
                                 dataType: "json",
                                 data: addAntiForgeryToken

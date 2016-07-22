@@ -21,7 +21,7 @@ namespace Nop.Services.Affiliates
             var firstName = affiliate.Address.FirstName;
             var lastName = affiliate.Address.LastName;
 
-            string fullName = "";
+            string fullName = string.Empty;
             if (!String.IsNullOrWhiteSpace(firstName) && !String.IsNullOrWhiteSpace(lastName))
                 fullName = string.Format("{0} {1}", firstName, lastName);
             else

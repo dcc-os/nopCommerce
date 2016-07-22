@@ -14,7 +14,7 @@ namespace Nop.Web.Framework.UI
             where T : class
         {
             if (items == null)
-                return new HtmlString("");
+                return new HtmlString(string.Empty);
 
             var sb = new StringBuilder();
             sb.Append("<table>");

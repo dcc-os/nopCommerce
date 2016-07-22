@@ -3,7 +3,7 @@
 @using Nop.Core.Domain.Orders;
 @if (!Model.DisableWishlistButton)
 {
-    var addToWishlistText = "";
+    var addToWishlistText = string.Empty;
     if (Model.UpdatedShoppingCartItemId > 0 && Model.UpdateShoppingCartItemType.HasValue && Model.UpdateShoppingCartItemType.Value == ShoppingCartType.Wishlist)
     {
         addToWishlistText = T("ShoppingCart.AddToWishlist.Update").Text;

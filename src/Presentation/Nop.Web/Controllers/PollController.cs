@@ -75,7 +75,7 @@ namespace Nop.Web.Controllers
         public ActionResult PollBlock(string systemKeyword)
         {
             if (String.IsNullOrWhiteSpace(systemKeyword))
-                return Content("");
+                return Content(string.Empty);
 
             var cacheKey = string.Format(ModelCacheEventConsumer.POLL_BY_SYSTEMNAME__MODEL_KEY, systemKeyword, _workContext.WorkingLanguage.Id);
             var cachedModel = _cacheManager.Get(cacheKey, () =>
@@ -91,7 +91,7 @@ namespace Nop.Web.Controllers
                 return PreparePollModel(poll, false);
             });
             if (cachedModel == null || cachedModel.Id == 0)
-                return Content("");
+                return Content(string.Empty);
 
             //"AlreadyVoted" property of "PollModel" object depends on the current customer. Let's update it.
             //But first we need to clone the cached model (the updated one should not be cached)
@@ -165,7 +165,7 @@ namespace Nop.Web.Controllers
             }
 
             if (!model.Any())
-                Content("");
+                Content(string.Empty);
 
             return PartialView(model);
         }

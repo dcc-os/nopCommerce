@@ -253,7 +253,7 @@ namespace Nop.Services.Localization
             if (_workContext.WorkingLanguage != null)
                 return GetResource(resourceKey, _workContext.WorkingLanguage.Id);
             
-            return "";
+            return string.Empty;
         }
         
         /// <summary>
@@ -401,7 +401,7 @@ namespace Nop.Services.Localization
                 foreach (XmlNode node in nodes)
                 {
                     string name = node.Attributes["Name"].InnerText.Trim();
-                    string value = "";
+                    string value = string.Empty;
                     var valueNode = node.SelectSingleNode("Value");
                     if (valueNode != null)
                         value = valueNode.InnerText;

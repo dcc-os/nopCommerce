@@ -50,7 +50,7 @@ namespace Nop.Core
             if (source == null) throw new ArgumentNullException("source");
             if (ordering == null) throw new ArgumentNullException("ordering");
             ParameterExpression[] parameters = new ParameterExpression[] {
-                Expression.Parameter(source.ElementType, "") };
+                Expression.Parameter(source.ElementType, string.Empty) };
             ExpressionParser parser = new ExpressionParser(parameters, ordering, values);
             IEnumerable<DynamicOrdering> orderings = parser.ParseOrdering();
             Expression queryExpr = source.Expression;
@@ -162,7 +162,7 @@ namespace Nop.Core
         }
 
         public static LambdaExpression ParseLambda(Type itType, Type resultType, string expression, params object[] values) {
-            return ParseLambda(new ParameterExpression[] { Expression.Parameter(itType, "") }, resultType, expression, values);
+            return ParseLambda(new ParameterExpression[] { Expression.Parameter(itType, string.Empty) }, resultType, expression, values);
         }
 
         public static LambdaExpression ParseLambda(ParameterExpression[] parameters, Type resultType, string expression, params object[] values) {
@@ -1241,7 +1241,7 @@ namespace Nop.Core
 
         Expression ParseAggregate(Expression instance, Type elementType, string methodName, int errorPos) {
             ParameterExpression outerIt = it;
-            ParameterExpression innerIt = Expression.Parameter(elementType, "");
+            ParameterExpression innerIt = Expression.Parameter(elementType, string.Empty);
             it = innerIt;
             Expression[] args = ParseArgumentList();
             it = outerIt;

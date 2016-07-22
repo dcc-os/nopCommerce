@@ -16,53 +16,53 @@ namespace Nop.Web.Infrastructure
                 return;
 
             //all old aspx URLs
-            routes.MapRoute("", "{oldfilename}.aspx",
+            routes.MapRoute(string.Empty, "{oldfilename}.aspx",
                             new { controller = "BackwardCompatibility1X", action = "GeneralRedirect" },
                             new[] { "Nop.Web.Controllers" });
             
             //products
-            routes.MapRoute("", "products/{id}.aspx",
+            routes.MapRoute(string.Empty, "products/{id}.aspx",
                             new { controller = "BackwardCompatibility1X", action = "RedirectProduct"},
                             new[] { "Nop.Web.Controllers" });
             
             //categories
-            routes.MapRoute("", "category/{id}.aspx",
+            routes.MapRoute(string.Empty, "category/{id}.aspx",
                             new { controller = "BackwardCompatibility1X", action = "RedirectCategory" },
                             new[] { "Nop.Web.Controllers" });
 
             //manufacturers
-            routes.MapRoute("", "manufacturer/{id}.aspx",
+            routes.MapRoute(string.Empty, "manufacturer/{id}.aspx",
                             new { controller = "BackwardCompatibility1X", action = "RedirectManufacturer" },
                             new[] { "Nop.Web.Controllers" });
 
             //product tags
-            routes.MapRoute("", "producttag/{id}.aspx",
+            routes.MapRoute(string.Empty, "producttag/{id}.aspx",
                             new { controller = "BackwardCompatibility1X", action = "RedirectProductTag" },
                             new[] { "Nop.Web.Controllers" });
 
             //news
-            routes.MapRoute("", "news/{id}.aspx",
+            routes.MapRoute(string.Empty, "news/{id}.aspx",
                             new { controller = "BackwardCompatibility1X", action = "RedirectNewsItem" },
                             new[] { "Nop.Web.Controllers" });
 
             //blog posts
-            routes.MapRoute("", "blog/{id}.aspx",
+            routes.MapRoute(string.Empty, "blog/{id}.aspx",
                             new { controller = "BackwardCompatibility1X", action = "RedirectBlogPost" },
                             new[] { "Nop.Web.Controllers" });
 
             //topics
-            routes.MapRoute("", "topic/{id}.aspx",
+            routes.MapRoute(string.Empty, "topic/{id}.aspx",
                             new { controller = "BackwardCompatibility1X", action = "RedirectTopic" },
                             new[] { "Nop.Web.Controllers" });
 
             //forums
-            routes.MapRoute("", "boards/fg/{id}.aspx",
+            routes.MapRoute(string.Empty, "boards/fg/{id}.aspx",
                             new { controller = "BackwardCompatibility1X", action = "RedirectForumGroup" },
                             new[] { "Nop.Web.Controllers" });
-            routes.MapRoute("", "boards/f/{id}.aspx",
+            routes.MapRoute(string.Empty, "boards/f/{id}.aspx",
                             new { controller = "BackwardCompatibility1X", action = "RedirectForum" },
                             new[] { "Nop.Web.Controllers" });
-            routes.MapRoute("", "boards/t/{id}.aspx",
+            routes.MapRoute(string.Empty, "boards/t/{id}.aspx",
                             new { controller = "BackwardCompatibility1X", action = "RedirectForumTopic" },
                             new[] { "Nop.Web.Controllers" });
         }

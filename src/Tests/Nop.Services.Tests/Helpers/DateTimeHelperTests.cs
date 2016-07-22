@@ -40,7 +40,7 @@ namespace Nop.Services.Tests.Helpers
             _dateTimeSettings = new DateTimeSettings
             {
                 AllowCustomersToSetTimeZone = false,
-                DefaultStoreTimeZoneId = ""
+                DefaultStoreTimeZoneId = string.Empty
             };
 
             _dateTimeHelper = new DateTimeHelper(_workContext, _genericAttributeService,

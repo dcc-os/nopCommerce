@@ -76,7 +76,7 @@ namespace Nop.Services.Tasks
             //that's why we get one single scope here
             //this way we can also dispose resources once a task is completed
             var scope = EngineContext.Current.ContainerManager.Scope();
-            var scheduleTaskService = EngineContext.Current.ContainerManager.Resolve<IScheduleTaskService>("", scope);
+            var scheduleTaskService = EngineContext.Current.ContainerManager.Resolve<IScheduleTaskService>(string.Empty, scope);
             var scheduleTask = scheduleTaskService.GetTaskByType(this.Type);
 
             try
@@ -88,7 +88,7 @@ namespace Nop.Services.Tasks
                     var nopConfig = EngineContext.Current.ContainerManager.Resolve<NopConfig>("", scope);
                     if (nopConfig.MultipleInstancesEnabled)
                     {
-                        var machineNameProvider = EngineContext.Current.ContainerManager.Resolve<IMachineNameProvider>("", scope);
+                        var machineNameProvider = EngineContext.Current.ContainerManager.Resolve<IMachineNameProvider>(string.Empty, scope);
                         var machineName = machineNameProvider.GetMachineName();
                         if (String.IsNullOrEmpty(machineName))
                         {
@@ -131,7 +131,7 @@ namespace Nop.Services.Tasks
                 this.LastEndUtc = DateTime.UtcNow;
 
                 //log error
-                var logger = EngineContext.Current.ContainerManager.Resolve<ILogger>("", scope);
+                var logger = EngineContext.Current.ContainerManager.Resolve<ILogger>(string.Empty, scope);
                 logger.Error(string.Format("Error while running the '{0}' schedule task. {1}", this.Name, exc.Message), exc);
                 if (throwException)
                     throw;

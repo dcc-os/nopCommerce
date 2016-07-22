@@ -117,7 +117,7 @@ namespace Nop.Web.Controllers
             }
 
             //avatar
-            var avatarUrl = "";
+            var avatarUrl = string.Empty;
             if (_customerSettings.AllowCustomersToUploadAvatars)
             {
                 avatarUrl =_pictureService.GetPictureUrl(

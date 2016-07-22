@@ -241,7 +241,7 @@ namespace Nop.Web.Controllers
 
                     var rr = new ReturnRequest
                     {
-                        CustomNumber = "",
+                        CustomNumber = string.Empty,
                         StoreId = _storeContext.CurrentStore.Id,
                         OrderItemId = orderItem.Id,
                         Quantity = quantity,

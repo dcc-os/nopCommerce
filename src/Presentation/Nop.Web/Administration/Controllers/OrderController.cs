@@ -687,7 +687,7 @@ namespace Nop.Admin.Controllers
                     model.ShippingAddress.FaxEnabled = _addressSettings.FaxEnabled;
                     model.ShippingAddress.FaxRequired = _addressSettings.FaxRequired;
 
-                    model.ShippingAddressGoogleMapsUrl = string.Format("http://maps.google.com/maps?f=q&hl=en&ie=UTF8&oe=UTF8&geocode=&q={0}", Server.UrlEncode(order.ShippingAddress.Address1 + " " + order.ShippingAddress.ZipPostalCode + " " + order.ShippingAddress.City + " " + (order.ShippingAddress.Country != null ? order.ShippingAddress.Country.Name : "")));
+                    model.ShippingAddressGoogleMapsUrl = string.Format("http://maps.google.com/maps?f=q&hl=en&ie=UTF8&oe=UTF8&geocode=&q={0}", Server.UrlEncode(order.ShippingAddress.Address1 + " " + order.ShippingAddress.ZipPostalCode + " " + order.ShippingAddress.City + " " + (order.ShippingAddress.Country != null ? order.ShippingAddress.Country.Name : string.Empty)));
                 }
                 else
                 {
@@ -750,7 +750,7 @@ namespace Nop.Admin.Controllers
                 }
                 //vendor
                 var vendor = _vendorService.GetVendorById(orderItem.Product.VendorId);
-                orderItemModel.VendorName = vendor != null ? vendor.Name : "";
+                orderItemModel.VendorName = vendor != null ? vendor.Name : string.Empty;
 
                 //unit price
                 orderItemModel.UnitPriceInclTaxValue = orderItem.UnitPriceInclTax;
@@ -774,8 +774,8 @@ namespace Nop.Admin.Controllers
                 //rental info
                 if (orderItem.Product.IsRental)
                 {
-                    var rentalStartDate = orderItem.RentalStartDateUtc.HasValue ? orderItem.Product.FormatRentalDate(orderItem.RentalStartDateUtc.Value) : "";
-                    var rentalEndDate = orderItem.RentalEndDateUtc.HasValue ? orderItem.Product.FormatRentalDate(orderItem.RentalEndDateUtc.Value) : "";
+                    var rentalStartDate = orderItem.RentalStartDateUtc.HasValue ? orderItem.Product.FormatRentalDate(orderItem.RentalStartDateUtc.Value) : string.Empty;
+                    var rentalEndDate = orderItem.RentalEndDateUtc.HasValue ? orderItem.Product.FormatRentalDate(orderItem.RentalEndDateUtc.Value) : string.Empty;
                     orderItemModel.RentalInfo = string.Format(_localizationService.GetResource("Order.Rental.FormattedDate"),
                         rentalStartDate, rentalEndDate);
                 }
@@ -885,16 +885,16 @@ namespace Nop.Admin.Controllers
         {
             //measures
             var baseWeight = _measureService.GetMeasureWeightById(_measureSettings.BaseWeightId);
-            var baseWeightIn = baseWeight != null ? baseWeight.Name : "";
+            var baseWeightIn = baseWeight != null ? baseWeight.Name : string.Empty;
             var baseDimension = _measureService.GetMeasureDimensionById(_measureSettings.BaseDimensionId);
-            var baseDimensionIn = baseDimension != null ? baseDimension.Name : "";
+            var baseDimensionIn = baseDimension != null ? baseDimension.Name : string.Empty;
 
             var model = new ShipmentModel
             {
                 Id = shipment.Id,
                 OrderId = shipment.OrderId,
                 TrackingNumber = shipment.TrackingNumber,
-                TotalWeight = shipment.TotalWeight.HasValue ? string.Format("{0:F2} [{1}]", shipment.TotalWeight, baseWeightIn) : "",
+                TotalWeight = shipment.TotalWeight.HasValue ? string.Format("{0:F2} [{1}]", shipment.TotalWeight, baseWeightIn) : string.Empty,
                 ShippedDate = shipment.ShippedDateUtc.HasValue ? _dateTimeHelper.ConvertToUserTime(shipment.ShippedDateUtc.Value, DateTimeKind.Utc).ToString() : _localizationService.GetResource("Admin.Orders.Shipments.ShippedDate.NotYet"),
                 ShippedDateUtc = shipment.ShippedDateUtc,
                 CanShip = !shipment.ShippedDateUtc.HasValue,
@@ -929,7 +929,7 @@ namespace Nop.Admin.Controllers
                         AttributeInfo = orderItem.AttributeDescription,
                         ShippedFromWarehouse = warehouse != null ? warehouse.Name : null,
                         ShipSeparately = orderItem.Product.ShipSeparately,
-                        ItemWeight = orderItem.ItemWeight.HasValue ? string.Format("{0:F2} [{1}]", orderItem.ItemWeight, baseWeightIn) : "",
+                        ItemWeight = orderItem.ItemWeight.HasValue ? string.Format("{0:F2} [{1}]", orderItem.ItemWeight, baseWeightIn) : string.Empty,
                         ItemDimensions = string.Format("{0:F2} x {1:F2} x {2:F2} [{3}]", orderItem.Product.Length, orderItem.Product.Width, orderItem.Product.Height, baseDimensionIn),
                         QuantityOrdered = qtyOrdered,
                         QuantityInThisShipment = qtyInThisShipment,
@@ -939,8 +939,8 @@ namespace Nop.Admin.Controllers
                     //rental info
                     if (orderItem.Product.IsRental)
                     {
-                        var rentalStartDate = orderItem.RentalStartDateUtc.HasValue ? orderItem.Product.FormatRentalDate(orderItem.RentalStartDateUtc.Value) : "";
-                        var rentalEndDate = orderItem.RentalEndDateUtc.HasValue ? orderItem.Product.FormatRentalDate(orderItem.RentalEndDateUtc.Value) : "";
+                        var rentalStartDate = orderItem.RentalStartDateUtc.HasValue ? orderItem.Product.FormatRentalDate(orderItem.RentalStartDateUtc.Value) : string.Empty;
+                        var rentalEndDate = orderItem.RentalEndDateUtc.HasValue ? orderItem.Product.FormatRentalDate(orderItem.RentalEndDateUtc.Value) : string.Empty;
                         shipmentItemModel.RentalInfo = string.Format(_localizationService.GetResource("Order.Rental.FormattedDate"),
                             rentalStartDate, rentalEndDate);
                     }
@@ -1044,7 +1044,7 @@ namespace Nop.Admin.Controllers
                 model.AvailableWarehouses.Add(new SelectListItem { Text = w.Name, Value = w.Id.ToString() });
 
             //payment methods
-            model.AvailablePaymentMethods.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "" });
+            model.AvailablePaymentMethods.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = string.Empty });
             foreach (var pm in _paymentService.LoadAllPaymentMethods())
                 model.AvailablePaymentMethods.Add(new SelectListItem { Text = pm.PluginDescriptor.FriendlyName, Value = pm.PluginDescriptor.SystemName });
 
@@ -1191,7 +1191,7 @@ namespace Nop.Admin.Controllers
         {
             const int searchTermMinimumLength = 3;
             if (String.IsNullOrWhiteSpace(term) || term.Length < searchTermMinimumLength)
-                return Content("");
+                return Content(string.Empty);
 
             //a vendor should have access only to his products
             var vendorId = 0;
@@ -2467,7 +2467,7 @@ namespace Nop.Admin.Controllers
 
             //a vendor does not have access to this functionality
             if (_workContext.CurrentVendor != null)
-                return Content("");
+                return Content(string.Empty);
 
             var gridModel = new DataSourceResult();
             var products = _productService.SearchProducts(categoryIds: new List<int> {model.SearchCategoryId},
@@ -2540,11 +2540,11 @@ namespace Nop.Admin.Controllers
 
             #region Gift cards
 
-            string recipientName = "";
-            string recipientEmail = "";
-            string senderName = "";
-            string senderEmail = "";
-            string giftCardMessage = "";
+            string recipientName = string.Empty;
+            string recipientEmail = string.Empty;
+            string senderName = string.Empty;
+            string senderEmail = string.Empty;
+            string giftCardMessage = string.Empty;
             if (product.IsGiftCard)
             {
                 foreach (string formKey in form.AllKeys)
@@ -2770,7 +2770,7 @@ namespace Nop.Admin.Controllers
             var customAttributeWarnings = _addressAttributeParser.GetAttributeWarnings(customAttributes);
             foreach (var error in customAttributeWarnings)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
 
             if (ModelState.IsValid)
@@ -2913,7 +2913,7 @@ namespace Nop.Admin.Controllers
 
             //a vendor should have access only to his products
             if (_workContext.CurrentVendor != null && !HasAccessToOrder(order))
-                return Content("");
+                return Content(string.Empty);
 
             //shipments
             var shipmentModels = new List<ShipmentModel>();
@@ -2947,7 +2947,7 @@ namespace Nop.Admin.Controllers
 
             //a vendor should have access only to his products
             if (_workContext.CurrentVendor != null && !HasAccessToShipment(shipment))
-                return Content("");
+                return Content(string.Empty);
 
             var order = _orderService.GetOrderById(shipment.OrderId);
             if (order == null)
@@ -2955,7 +2955,7 @@ namespace Nop.Admin.Controllers
 
             //a vendor should have access only to his products
             if (_workContext.CurrentVendor != null && !HasAccessToOrder(order))
-                return Content("");
+                return Content(string.Empty);
 
             //shipments
             var shipmentModel = PrepareShipmentModel(shipment, true);
@@ -2989,9 +2989,9 @@ namespace Nop.Admin.Controllers
 
             //measures
             var baseWeight = _measureService.GetMeasureWeightById(_measureSettings.BaseWeightId);
-            var baseWeightIn = baseWeight != null ? baseWeight.Name : "";
+            var baseWeightIn = baseWeight != null ? baseWeight.Name : string.Empty;
             var baseDimension = _measureService.GetMeasureDimensionById(_measureSettings.BaseDimensionId);
-            var baseDimensionIn = baseDimension != null ? baseDimension.Name : "";
+            var baseDimensionIn = baseDimension != null ? baseDimension.Name : string.Empty;
 
             var orderItems = order.OrderItems;
             //a vendor should have access only to his products
@@ -3024,7 +3024,7 @@ namespace Nop.Admin.Controllers
                     Sku = orderItem.Product.FormatSku(orderItem.AttributesXml, _productAttributeParser),
                     AttributeInfo = orderItem.AttributeDescription,
                     ShipSeparately = orderItem.Product.ShipSeparately,
-                    ItemWeight = orderItem.ItemWeight.HasValue ? string.Format("{0:F2} [{1}]", orderItem.ItemWeight, baseWeightIn) : "",
+                    ItemWeight = orderItem.ItemWeight.HasValue ? string.Format("{0:F2} [{1}]", orderItem.ItemWeight, baseWeightIn) : string.Empty,
                     ItemDimensions = string.Format("{0:F2} x {1:F2} x {2:F2} [{3}]", orderItem.Product.Length, orderItem.Product.Width, orderItem.Product.Height, baseDimensionIn),
                     QuantityOrdered = qtyOrdered,
                     QuantityInThisShipment = qtyInThisShipment,
@@ -3034,8 +3034,8 @@ namespace Nop.Admin.Controllers
                 //rental info
                 if (orderItem.Product.IsRental)
                 {
-                    var rentalStartDate = orderItem.RentalStartDateUtc.HasValue ? orderItem.Product.FormatRentalDate(orderItem.RentalStartDateUtc.Value) : "";
-                    var rentalEndDate = orderItem.RentalEndDateUtc.HasValue ? orderItem.Product.FormatRentalDate(orderItem.RentalEndDateUtc.Value) : "";
+                    var rentalStartDate = orderItem.RentalStartDateUtc.HasValue ? orderItem.Product.FormatRentalDate(orderItem.RentalStartDateUtc.Value) : string.Empty;
+                    var rentalEndDate = orderItem.RentalEndDateUtc.HasValue ? orderItem.Product.FormatRentalDate(orderItem.RentalEndDateUtc.Value) : string.Empty;
                     shipmentItemModel.RentalInfo = string.Format(_localizationService.GetResource("Order.Rental.FormattedDate"),
                         rentalStartDate, rentalEndDate);
                 }
@@ -3640,7 +3640,7 @@ namespace Nop.Admin.Controllers
 
             //a vendor does not have access to this functionality
             if (_workContext.CurrentVendor != null)
-                return Content("");
+                return Content(string.Empty);
 
             //order notes
             var orderNoteModels = new List<OrderModel.OrderNote>();
@@ -3768,7 +3768,7 @@ namespace Nop.Admin.Controllers
         public ActionResult BestsellersBriefReportByQuantity()
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView();
         }
@@ -3776,7 +3776,7 @@ namespace Nop.Admin.Controllers
         public ActionResult BestsellersBriefReportByQuantityList(DataSourceRequest command)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             var gridModel = GetBestsellersBriefReportModel(command.Page - 1,
                 command.PageSize, 1);
@@ -3786,7 +3786,7 @@ namespace Nop.Admin.Controllers
         public ActionResult BestsellersBriefReportByAmount()
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
             
             return PartialView();
         }
@@ -3794,7 +3794,7 @@ namespace Nop.Admin.Controllers
         public ActionResult BestsellersBriefReportByAmountList(DataSourceRequest command)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             var gridModel = GetBestsellersBriefReportModel(command.Page - 1,
                 command.PageSize, 2);
@@ -3854,7 +3854,7 @@ namespace Nop.Admin.Controllers
         public ActionResult BestsellersReportList(DataSourceRequest command, BestsellersReportModel model)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             //a vendor should have access only to his products
             if (_workContext.CurrentVendor != null)
@@ -3920,7 +3920,7 @@ namespace Nop.Admin.Controllers
         public ActionResult NeverSoldReportList(DataSourceRequest command, NeverSoldReportModel model)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             //a vendor should have access only to his products
             int vendorId = 0;
@@ -3955,7 +3955,7 @@ namespace Nop.Admin.Controllers
         public ActionResult OrderAverageReport()
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView();
         }
@@ -3963,11 +3963,11 @@ namespace Nop.Admin.Controllers
         public ActionResult OrderAverageReportList(DataSourceRequest command)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             //a vendor doesn't have access to this report
             if (_workContext.CurrentVendor != null)
-                return Content("");
+                return Content(string.Empty);
 
             var report = new List<OrderAverageReportLineSummary>();
             report.Add(_orderReportService.OrderAverageReport(0, OrderStatus.Pending));
@@ -3997,7 +3997,7 @@ namespace Nop.Admin.Controllers
         public ActionResult OrderIncompleteReport()
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView();
         }
@@ -4006,11 +4006,11 @@ namespace Nop.Admin.Controllers
         public ActionResult OrderIncompleteReportList(DataSourceRequest command)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             //a vendor doesn't have access to this report
             if (_workContext.CurrentVendor != null)
-                return Content("");
+                return Content(string.Empty);
 
             var model = new List<OrderIncompleteReportLineModel>();
             //not paid
@@ -4080,7 +4080,7 @@ namespace Nop.Admin.Controllers
         public ActionResult CountryReportList(DataSourceRequest command, CountryReportModel model)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.OrderCountryReport))
-                return Content("");
+                return Content(string.Empty);
 
             DateTime? startDateValue = (model.StartDate == null) ? null
                             : (DateTime?)_dateTimeHelper.ConvertToUtcTime(model.StartDate.Value, _dateTimeHelper.CurrentTimeZone);
@@ -4119,11 +4119,11 @@ namespace Nop.Admin.Controllers
 	    public ActionResult OrderStatistics()
 	    {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             //a vendor doesn't have access to this report
             if (_workContext.CurrentVendor != null)
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView();
 	    }
@@ -4132,11 +4132,11 @@ namespace Nop.Admin.Controllers
         public ActionResult LoadOrderStatistics(string period)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             //a vendor doesn't have access to this report
             if (_workContext.CurrentVendor != null)
-                return Content("");
+                return Content(string.Empty);
 
             var result = new List<object>();
 
@@ -4230,7 +4230,7 @@ namespace Nop.Admin.Controllers
         public ActionResult LatestOrders()
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageOrders))
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView();
         }

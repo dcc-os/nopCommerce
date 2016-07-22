@@ -106,7 +106,7 @@ namespace Nop.Web.Framework
 
         public static MvcHtmlString DeleteConfirmation<T>(this HtmlHelper<T> helper, string buttonsSelector) where T : BaseNopEntityModel
         {
-            return DeleteConfirmation(helper, "", buttonsSelector);
+            return DeleteConfirmation(helper, string.Empty, buttonsSelector);
         }
 
         public static MvcHtmlString DeleteConfirmation<T>(this HtmlHelper<T> helper, string actionName,
@@ -225,7 +225,7 @@ namespace Nop.Web.Framework
             {
                 //render only when a certain store is chosen
                 const string cssClass = "multi-store-override-option";
-                string dataInputSelector = "";
+                string dataInputSelector = string.Empty;
                 if (!String.IsNullOrEmpty(parentContainer))
                 {
                     dataInputSelector = "#" + parentContainer + " input, #" + parentContainer + " textarea, #" + parentContainer + " select";
@@ -271,7 +271,7 @@ namespace Nop.Web.Framework
                 InnerHtml = content.ToHtmlString(),
                 Attributes =
                 {
-                    new KeyValuePair<string, string>("class", string.Format("tab-pane{0}", tabNameToSelect == currentTabName ? " active" : "")),
+                    new KeyValuePair<string, string>("class", string.Format("tab-pane{0}", tabNameToSelect == currentTabName ? " active" : string.Empty)),
                     new KeyValuePair<string, string>("id", string.Format("{0}", currentTabName))
                 }
             };
@@ -311,7 +311,7 @@ namespace Nop.Web.Framework
                 },
                 InnerHtml = title.Text
             };
-            var liClassValue = "";
+            var liClassValue = string.Empty;
             if (tabNameToSelect == currentTabName)
             {
                 liClassValue = "active";

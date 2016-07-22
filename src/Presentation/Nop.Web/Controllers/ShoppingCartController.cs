@@ -494,8 +494,8 @@ namespace Nop.Web.Controllers
                 //rental info
                 if (sci.Product.IsRental)
                 {
-                    var rentalStartDate = sci.RentalStartDateUtc.HasValue ? sci.Product.FormatRentalDate(sci.RentalStartDateUtc.Value) : "";
-                    var rentalEndDate = sci.RentalEndDateUtc.HasValue ? sci.Product.FormatRentalDate(sci.RentalEndDateUtc.Value) : "";
+                    var rentalStartDate = sci.RentalStartDateUtc.HasValue ? sci.Product.FormatRentalDate(sci.RentalStartDateUtc.Value) : string.Empty;
+                    var rentalEndDate = sci.RentalEndDateUtc.HasValue ? sci.Product.FormatRentalDate(sci.RentalEndDateUtc.Value) : string.Empty;
                     cartItemModel.RentalInfo = string.Format(_localizationService.GetResource("ShoppingCart.Rental.FormattedDate"),
                         rentalStartDate, rentalEndDate);
                 }
@@ -645,7 +645,7 @@ namespace Nop.Web.Controllers
                 var selectedPaymentMethodSystemName = _workContext.CurrentCustomer.GetAttribute<string>(
                     SystemCustomerAttributeNames.SelectedPaymentMethod, _storeContext.CurrentStore.Id);
                 var paymentMethod = _paymentService.LoadPaymentMethodBySystemName(selectedPaymentMethodSystemName);
-                model.OrderReviewData.PaymentMethod = paymentMethod != null ? paymentMethod.GetLocalizedFriendlyName(_localizationService, _workContext.WorkingLanguage.Id) : "";
+                model.OrderReviewData.PaymentMethod = paymentMethod != null ? paymentMethod.GetLocalizedFriendlyName(_localizationService, _workContext.WorkingLanguage.Id) : string.Empty;
 
                 //custom values
                 var processPaymentRequest = _httpContext.Session["OrderPaymentInfo"] as ProcessPaymentRequest;
@@ -684,7 +684,7 @@ namespace Nop.Web.Controllers
             model.ShowSku = _catalogSettings.ShowProductSku;
             
             //cart warnings
-            var cartWarnings = _shoppingCartService.GetShoppingCartWarnings(cart, "", false);
+            var cartWarnings = _shoppingCartService.GetShoppingCartWarnings(cart, string.Empty, false);
             foreach (var warning in cartWarnings)
                 model.Warnings.Add(warning);
 
@@ -735,8 +735,8 @@ namespace Nop.Web.Controllers
                 //rental info
                 if (sci.Product.IsRental)
                 {
-                    var rentalStartDate = sci.RentalStartDateUtc.HasValue ? sci.Product.FormatRentalDate(sci.RentalStartDateUtc.Value) : "";
-                    var rentalEndDate = sci.RentalEndDateUtc.HasValue ? sci.Product.FormatRentalDate(sci.RentalEndDateUtc.Value) : "";
+                    var rentalStartDate = sci.RentalStartDateUtc.HasValue ? sci.Product.FormatRentalDate(sci.RentalStartDateUtc.Value) : string.Empty;
+                    var rentalEndDate = sci.RentalEndDateUtc.HasValue ? sci.Product.FormatRentalDate(sci.RentalEndDateUtc.Value) : string.Empty;
                     cartItemModel.RentalInfo = string.Format(_localizationService.GetResource("ShoppingCart.Rental.FormattedDate"),
                         rentalStartDate, rentalEndDate);
                 }
@@ -1084,7 +1084,7 @@ namespace Nop.Web.Controllers
             if (form == null)
                 throw new ArgumentNullException("form");
 
-            string attributesXml = "";
+            string attributesXml = string.Empty;
             var checkoutAttributes = _checkoutAttributeService.GetAllCheckoutAttributes(_storeContext.CurrentStore.Id, !cart.RequiresShipping());
             foreach (var attribute in checkoutAttributes)
             {
@@ -1203,7 +1203,7 @@ namespace Nop.Web.Controllers
         [NonAction]
         protected virtual string ParseProductAttributes(Product product, FormCollection form)
         {
-            string attributesXml = "";
+            string attributesXml = string.Empty;
 
             #region Product attributes
 
@@ -1319,11 +1319,11 @@ namespace Nop.Web.Controllers
 
             if (product.IsGiftCard)
             {
-                string recipientName = "";
-                string recipientEmail = "";
-                string senderName = "";
-                string senderEmail = "";
-                string giftCardMessage = "";
+                string recipientName = string.Empty;
+                string recipientEmail = string.Empty;
+                string senderName = string.Empty;
+                string senderEmail = string.Empty;
+                string giftCardMessage = string.Empty;
                 foreach (string formKey in form.AllKeys)
                 {
                     if (formKey.Equals(string.Format("giftcard_{0}.RecipientName", product.Id), StringComparison.InvariantCultureIgnoreCase))
@@ -1566,7 +1566,7 @@ namespace Nop.Web.Controllers
                         
                         var updateflyoutcartsectionhtml = _shoppingCartSettings.MiniShoppingCartEnabled
                             ? this.RenderPartialViewToString("FlyoutShoppingCart", PrepareMiniShoppingCartModel())
-                            : "";
+                            : string.Empty;
 
                         return Json(new
                         {
@@ -1794,7 +1794,7 @@ namespace Nop.Web.Controllers
                         
                         var updateflyoutcartsectionhtml = _shoppingCartSettings.MiniShoppingCartEnabled
                             ? this.RenderPartialViewToString("FlyoutShoppingCart", PrepareMiniShoppingCartModel())
-                            : "";
+                            : string.Empty;
 
                         return Json(new
                         {
@@ -1837,7 +1837,7 @@ namespace Nop.Web.Controllers
             string gtin = product.FormatGtin(attributeXml, _productAttributeParser);
 
             //price
-            string price = "";
+            string price = string.Empty;
             if (_permissionService.Authorize(StandardPermissionProvider.DisplayPrices) && !product.CustomerEntersPrice)
             {
                 //we do not calculate price of "customer enters price" option is enabled
@@ -1878,8 +1878,8 @@ namespace Nop.Web.Controllers
             }
 
             //picture. used when we want to override a default product picture when some attribute is selected
-            var pictureFullSizeUrl = "";
-            var pictureDefaultSizeUrl = "";
+            var pictureFullSizeUrl = string.Empty;
+            var pictureDefaultSizeUrl = string.Empty;
             if (loadPicture)
             {
                 //just load (return) the first found picture (in case if we have several distinct attributes with associated pictures)
@@ -1976,8 +1976,8 @@ namespace Nop.Web.Controllers
             //we process it distinct ways based on a browser
             //find more info here http://stackoverflow.com/questions/4884920/mvc3-valums-ajax-file-upload
             Stream stream = null;
-            var fileName = "";
-            var contentType = "";
+            var fileName = string.Empty;
+            var contentType = string.Empty;
             if (String.IsNullOrEmpty(Request["qqfile"]))
             {
                 // IE
@@ -2023,7 +2023,7 @@ namespace Nop.Web.Controllers
             {
                 DownloadGuid = Guid.NewGuid(),
                 UseDownloadUrl = false,
-                DownloadUrl = "",
+                DownloadUrl = string.Empty,
                 DownloadBinary = fileBinary,
                 ContentType = contentType,
                 //we store filename without extension for downloads
@@ -2060,8 +2060,8 @@ namespace Nop.Web.Controllers
             //we process it distinct ways based on a browser
             //find more info here http://stackoverflow.com/questions/4884920/mvc3-valums-ajax-file-upload
             Stream stream = null;
-            var fileName = "";
-            var contentType = "";
+            var fileName = string.Empty;
+            var contentType = string.Empty;
             if (String.IsNullOrEmpty(Request["qqfile"]))
             {
                 // IE
@@ -2107,7 +2107,7 @@ namespace Nop.Web.Controllers
             {
                 DownloadGuid = Guid.NewGuid(),
                 UseDownloadUrl = false,
-                DownloadUrl = "",
+                DownloadUrl = string.Empty,
                 DownloadBinary = fileBinary,
                 ContentType = contentType,
                 //we store filename without extension for downloads
@@ -2429,7 +2429,7 @@ namespace Nop.Web.Controllers
                     ZipPostalCode = zipPostalCode,
                 };
                 GetShippingOptionResponse getShippingOptionResponse = _shippingService
-                    .GetShippingOptions(cart, address, "", _storeContext.CurrentStore.Id);
+                    .GetShippingOptions(cart, address, string.Empty, _storeContext.CurrentStore.Id);
                 if (getShippingOptionResponse.Success)
                 {
                     if (getShippingOptionResponse.ShippingOptions.Any())
@@ -2550,10 +2550,10 @@ namespace Nop.Web.Controllers
         public ActionResult FlyoutShoppingCart()
         {
             if (!_shoppingCartSettings.MiniShoppingCartEnabled)
-                return Content("");
+                return Content(string.Empty);
 
             if (!_permissionService.Authorize(StandardPermissionProvider.EnableShoppingCart))
-                return Content("");
+                return Content(string.Empty);
 
             var model = PrepareMiniShoppingCartModel();
             return PartialView(model);
@@ -2773,13 +2773,13 @@ namespace Nop.Web.Controllers
             //validate CAPTCHA
             if (_captchaSettings.Enabled && _captchaSettings.ShowOnEmailWishlistToFriendPage && !captchaValid)
             {
-                ModelState.AddModelError("", _captchaSettings.GetWrongCaptchaMessage(_localizationService));
+                ModelState.AddModelError(string.Empty, _captchaSettings.GetWrongCaptchaMessage(_localizationService));
             }
 
             //check whether the current customer is guest and ia allowed to email wishlist
             if (_workContext.CurrentCustomer.IsGuest() && !_shoppingCartSettings.AllowAnonymousUsersToEmailWishlist)
             {
-                ModelState.AddModelError("", _localizationService.GetResource("Wishlist.EmailAFriend.OnlyRegisteredUsers"));
+                ModelState.AddModelError(string.Empty, _localizationService.GetResource("Wishlist.EmailAFriend.OnlyRegisteredUsers"));
             }
 
             if (ModelState.IsValid)

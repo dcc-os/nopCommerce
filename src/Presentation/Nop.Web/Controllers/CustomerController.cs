@@ -546,7 +546,7 @@ namespace Nop.Web.Controllers
             if (form == null)
                 throw new ArgumentNullException("form");
 
-            string attributesXml = "";
+            string attributesXml = string.Empty;
             var attributes = _customerAttributeService.GetAllCustomerAttributes();
             foreach (var attribute in attributes)
             {
@@ -649,7 +649,7 @@ namespace Nop.Web.Controllers
             //validate CAPTCHA
             if (_captchaSettings.Enabled && _captchaSettings.ShowOnLoginPage && !captchaValid)
             {
-                ModelState.AddModelError("", _captchaSettings.GetWrongCaptchaMessage(_localizationService));
+                ModelState.AddModelError(string.Empty, _captchaSettings.GetWrongCaptchaMessage(_localizationService));
             }
 
             if (ModelState.IsValid)
@@ -683,20 +683,20 @@ namespace Nop.Web.Controllers
                             return Redirect(returnUrl);
                         }
                     case CustomerLoginResults.CustomerNotExist:
-                        ModelState.AddModelError("", _localizationService.GetResource("Account.Login.WrongCredentials.CustomerNotExist"));
+                        ModelState.AddModelError(string.Empty, _localizationService.GetResource("Account.Login.WrongCredentials.CustomerNotExist"));
                         break;
                     case CustomerLoginResults.Deleted:
-                        ModelState.AddModelError("", _localizationService.GetResource("Account.Login.WrongCredentials.Deleted"));
+                        ModelState.AddModelError(string.Empty, _localizationService.GetResource("Account.Login.WrongCredentials.Deleted"));
                         break;
                     case CustomerLoginResults.NotActive:
-                        ModelState.AddModelError("", _localizationService.GetResource("Account.Login.WrongCredentials.NotActive"));
+                        ModelState.AddModelError(string.Empty, _localizationService.GetResource("Account.Login.WrongCredentials.NotActive"));
                         break;
                     case CustomerLoginResults.NotRegistered:
-                        ModelState.AddModelError("", _localizationService.GetResource("Account.Login.WrongCredentials.NotRegistered"));
+                        ModelState.AddModelError(string.Empty, _localizationService.GetResource("Account.Login.WrongCredentials.NotRegistered"));
                         break;
                     case CustomerLoginResults.WrongPassword:
                     default:
-                        ModelState.AddModelError("", _localizationService.GetResource("Account.Login.WrongCredentials"));
+                        ModelState.AddModelError(string.Empty, _localizationService.GetResource("Account.Login.WrongCredentials"));
                         break;
                 }
             }
@@ -862,7 +862,7 @@ namespace Nop.Web.Controllers
                     false, _customerSettings.DefaultPasswordFormat, model.NewPassword));
                 if (response.Success)
                 {
-                    _genericAttributeService.SaveAttribute(customer, SystemCustomerAttributeNames.PasswordRecoveryToken, "");
+                    _genericAttributeService.SaveAttribute(customer, SystemCustomerAttributeNames.PasswordRecoveryToken, string.Empty);
 
                     model.DisablePasswordChanging = true;
                     model.Result = _localizationService.GetResource("Account.PasswordRecovery.PasswordHasBeenChanged");
@@ -928,13 +928,13 @@ namespace Nop.Web.Controllers
             var customerAttributeWarnings = _customerAttributeParser.GetAttributeWarnings(customerAttributesXml);
             foreach (var error in customerAttributeWarnings)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
 
             //validate CAPTCHA
             if (_captchaSettings.Enabled && _captchaSettings.ShowOnRegistrationPage && !captchaValid)
             {
-                ModelState.AddModelError("", _captchaSettings.GetWrongCaptchaMessage(_localizationService));
+                ModelState.AddModelError(string.Empty, _captchaSettings.GetWrongCaptchaMessage(_localizationService));
             }
 
             if (ModelState.IsValid)
@@ -1124,7 +1124,7 @@ namespace Nop.Web.Controllers
 
                 //errors
                 foreach (var error in registrationResult.Errors)
-                    ModelState.AddModelError("", error);
+                    ModelState.AddModelError(string.Empty, error);
             }
 
             //If we got this far, something failed, redisplay form
@@ -1136,7 +1136,7 @@ namespace Nop.Web.Controllers
         [PublicStoreAllowNavigation(true)]
         public ActionResult RegisterResult(int resultId)
         {
-            var resultText = "";
+            var resultText = string.Empty;
             switch ((UserRegistrationType)resultId)
             {
                 case UserRegistrationType.Disabled:
@@ -1223,7 +1223,7 @@ namespace Nop.Web.Controllers
             //activate user account
             customer.Active = true;
             _customerService.UpdateCustomer(customer);
-            _genericAttributeService.SaveAttribute(customer, SystemCustomerAttributeNames.AccountActivationToken, "");
+            _genericAttributeService.SaveAttribute(customer, SystemCustomerAttributeNames.AccountActivationToken, string.Empty);
             //send welcome message
             _workflowMessageService.SendCustomerWelcomeMessage(customer, _workContext.WorkingLanguage.Id);
             
@@ -1383,7 +1383,7 @@ namespace Nop.Web.Controllers
             var customerAttributeWarnings = _customerAttributeParser.GetAttributeWarnings(customerAttributesXml);
             foreach (var error in customerAttributeWarnings)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
 
             try
@@ -1509,7 +1509,7 @@ namespace Nop.Web.Controllers
             }
             catch (Exception exc)
             {
-                ModelState.AddModelError("", exc.Message);
+                ModelState.AddModelError(string.Empty, exc.Message);
             }
 
 
@@ -1640,7 +1640,7 @@ namespace Nop.Web.Controllers
             var customAttributeWarnings = _addressAttributeParser.GetAttributeWarnings(customAttributes);
             foreach (var error in customAttributeWarnings)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
 
             if (ModelState.IsValid)
@@ -1720,7 +1720,7 @@ namespace Nop.Web.Controllers
             var customAttributeWarnings = _addressAttributeParser.GetAttributeWarnings(customAttributes);
             foreach (var error in customAttributeWarnings)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError(string.Empty, error);
             }
 
             if (ModelState.IsValid)
@@ -1837,7 +1837,7 @@ namespace Nop.Web.Controllers
                 
                 //errors
                 foreach (var error in changePasswordResult.Errors)
-                    ModelState.AddModelError("", error);
+                    ModelState.AddModelError(string.Empty, error);
             }
 
 
@@ -1913,7 +1913,7 @@ namespace Nop.Web.Controllers
                 }
                 catch (Exception exc)
                 {
-                    ModelState.AddModelError("", exc.Message);
+                    ModelState.AddModelError(string.Empty, exc.Message);
                 }
             }
 

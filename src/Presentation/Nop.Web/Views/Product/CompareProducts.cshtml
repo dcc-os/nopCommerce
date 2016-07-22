@@ -9,7 +9,7 @@
 }
 @using Nop.Web.Models.Catalog;
 @{
-    string columnWidth = "";
+    string columnWidth = string.Empty;
     if (Model.Products.Count > 0)
     {
         columnWidth = Math.Round((decimal)(90M / Model.Products.Count), 0).ToString() + "%";

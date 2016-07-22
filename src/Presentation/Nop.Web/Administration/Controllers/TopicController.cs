@@ -251,7 +251,7 @@ namespace Nop.Admin.Controllers
             //"Error during serialization or deserialization using the JSON JavaScriptSerializer. The length of the string exceeds the value set on the maxJsonLength property. "
             foreach (var topic in topicModels)
             {
-                topic.Body = "";
+                topic.Body = string.Empty;
             }
             var gridModel = new DataSourceResult
             {

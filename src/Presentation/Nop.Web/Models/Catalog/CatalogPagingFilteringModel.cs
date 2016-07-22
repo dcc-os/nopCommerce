@@ -343,7 +343,7 @@ namespace Nop.Web.Models.Catalog
             protected virtual string GenerateFilteredSpecQueryParam(IList<int> optionIds)
             {
                 if (optionIds == null)
-                    return "";
+                    return string.Empty;
 
                 string result = string.Join(",", optionIds);
                 return result;

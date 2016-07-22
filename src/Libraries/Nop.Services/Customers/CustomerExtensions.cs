@@ -25,7 +25,7 @@ namespace Nop.Services.Customers
             var firstName = customer.GetAttribute<string>(SystemCustomerAttributeNames.FirstName);
             var lastName = customer.GetAttribute<string>(SystemCustomerAttributeNames.LastName);
 
-            string fullName = "";
+            string fullName = string.Empty;
             if (!String.IsNullOrWhiteSpace(firstName) && !String.IsNullOrWhiteSpace(lastName))
                 fullName = string.Format("{0} {1}", firstName, lastName);
             else

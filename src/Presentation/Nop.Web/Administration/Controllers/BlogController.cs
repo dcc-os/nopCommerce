@@ -153,7 +153,7 @@ namespace Nop.Admin.Controllers
                     //otherwise, we can get the following error if entities have too long descriptions:
                     //"Error during serialization or deserialization using the JSON JavaScriptSerializer. The length of the string exceeds the value set on the maxJsonLength property. "
                     //also it improves performance
-                    m.Body = "";
+                    m.Body = string.Empty;
                     if (x.StartDateUtc.HasValue)
                         m.StartDate = _dateTimeHelper.ConvertToUserTime(x.StartDateUtc.Value, DateTimeKind.Utc);
                     if (x.EndDateUtc.HasValue)

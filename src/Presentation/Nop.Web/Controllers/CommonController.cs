@@ -214,7 +214,7 @@ namespace Nop.Web.Controllers
             var cacheKey = string.Format(ModelCacheEventConsumer.STORE_LOGO_PATH, _storeContext.CurrentStore.Id, _themeContext.WorkingThemeName, _webHelper.IsCurrentConnectionSecured());
             model.LogoPath = _cacheManager.Get(cacheKey, () =>
             {
-                var logo = "";
+                var logo = string.Empty;
                 var logoPictureId = _storeInformationSettings.LogoPictureId;
                 if (logoPictureId > 0)
                 {
@@ -257,7 +257,7 @@ namespace Nop.Web.Controllers
             };
 
             if (model.AvailableLanguages.Count == 1)
-                Content("");
+                Content(string.Empty);
 
             return PartialView(model);
         }
@@ -306,7 +306,7 @@ namespace Nop.Web.Controllers
                     .Select(x =>
                     {
                         //currency char
-                        var currencySymbol = "";
+                        var currencySymbol = string.Empty;
                         if (!string.IsNullOrEmpty(x.DisplayLocale))
                             currencySymbol = new RegionInfo(x.DisplayLocale).CurrencySymbol;
                         else
@@ -331,7 +331,7 @@ namespace Nop.Web.Controllers
             };
 
             if (model.AvailableCurrencies.Count == 1)
-                Content("");
+                Content(string.Empty);
 
             return PartialView(model);
         }
@@ -359,7 +359,7 @@ namespace Nop.Web.Controllers
         public ActionResult TaxTypeSelector()
         {
             if (!_taxSettings.AllowCustomersToSelectTaxDisplayType)
-                return Content("");
+                return Content(string.Empty);
 
             var model = new TaxTypeSelectorModel
             {
@@ -391,7 +391,7 @@ namespace Nop.Web.Controllers
         public ActionResult JavaScriptDisabledWarning()
         {
             if (!_commonSettings.DisplayJavaScriptDisabledWarning)
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView();
         }
@@ -421,7 +421,7 @@ namespace Nop.Web.Controllers
             var model = new HeaderLinksModel
             {
                 IsAuthenticated = customer.IsRegistered(),
-                CustomerEmailUsername = customer.IsRegistered() ? (_customerSettings.UsernamesEnabled ? customer.Username : customer.Email) : "",
+                CustomerEmailUsername = customer.IsRegistered() ? (_customerSettings.UsernamesEnabled ? customer.Username : customer.Email) : string.Empty,
                 ShoppingCartEnabled = _permissionService.Authorize(StandardPermissionProvider.EnableShoppingCart),
                 WishlistEnabled = _permissionService.Authorize(StandardPermissionProvider.EnableWishlist),
                 AllowPrivateMessages = customer.IsRegistered() && _forumSettings.AllowPrivateMessages,
@@ -452,7 +452,7 @@ namespace Nop.Web.Controllers
 
             var model = new AdminHeaderLinksModel
             {
-                ImpersonatedCustomerEmailUsername = customer.IsRegistered() ? (_customerSettings.UsernamesEnabled ? customer.Username : customer.Email) : "",
+                ImpersonatedCustomerEmailUsername = customer.IsRegistered() ? (_customerSettings.UsernamesEnabled ? customer.Username : customer.Email) : string.Empty,
                 IsCustomerImpersonated = _workContext.OriginalCustomerIfImpersonated != null,
                 DisplayAdminLink = _permissionService.Authorize(StandardPermissionProvider.AccessAdminPanel),
                 EditPageUrl = _pageHeadBuilder.GetEditPageUrl()
@@ -554,7 +554,7 @@ namespace Nop.Web.Controllers
             //validate CAPTCHA
             if (_captchaSettings.Enabled && _captchaSettings.ShowOnContactUsPage && !captchaValid)
             {
-                ModelState.AddModelError("", _captchaSettings.GetWrongCaptchaMessage(_localizationService));
+                ModelState.AddModelError(string.Empty, _captchaSettings.GetWrongCaptchaMessage(_localizationService));
             }
 
             if (ModelState.IsValid)
@@ -652,7 +652,7 @@ namespace Nop.Web.Controllers
             //validate CAPTCHA
             if (_captchaSettings.Enabled && _captchaSettings.ShowOnContactUsPage && !captchaValid)
             {
-                ModelState.AddModelError("", _captchaSettings.GetWrongCaptchaMessage(_localizationService));
+                ModelState.AddModelError(string.Empty, _captchaSettings.GetWrongCaptchaMessage(_localizationService));
             }
 
             model.VendorName = vendor.GetLocalized(x => x.Name);
@@ -804,7 +804,7 @@ namespace Nop.Web.Controllers
         public ActionResult StoreThemeSelector()
         {
             if (!_storeInformationSettings.AllowCustomerToSelectTheme)
-                return Content("");
+                return Content(string.Empty);
 
             var model = new StoreThemeSelectorModel();
             var currentTheme = _themeProvider.GetThemeConfiguration(_themeContext.WorkingThemeName);
@@ -851,7 +851,7 @@ namespace Nop.Web.Controllers
                 localFaviconPath = System.IO.Path.Combine(Request.PhysicalApplicationPath, faviconFileName);
                 if (!System.IO.File.Exists(localFaviconPath))
                 {
-                    return Content("");
+                    return Content(string.Empty);
                 }
             }
 
@@ -868,20 +868,20 @@ namespace Nop.Web.Controllers
         {
             if (!_storeInformationSettings.DisplayEuCookieLawWarning)
                 //disabled
-                return Content("");
+                return Content(string.Empty);
 
             //ignore search engines because some pages could be indexed with the EU cookie as description
             if (_workContext.CurrentCustomer.IsSearchEngineAccount())
-                return Content("");
+                return Content(string.Empty);
 
             if (_workContext.CurrentCustomer.GetAttribute<bool>(SystemCustomerAttributeNames.EuCookieLawAccepted, _storeContext.CurrentStore.Id))
                 //already accepted
-                return Content("");
+                return Content(string.Empty);
 
             //ignore notification?
             //right now it's used during logout so popup window is not displayed twice
             if (TempData["nop.IgnoreEuCookieLawWarning"] != null && Convert.ToBoolean(TempData["nop.IgnoreEuCookieLawWarning"]))
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView();
         }

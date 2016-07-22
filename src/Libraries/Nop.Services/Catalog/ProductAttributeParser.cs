@@ -498,7 +498,7 @@ namespace Nop.Services.Catalog
                             //checkboxes could have several values ticked
                             foreach (var checkboxCombination in allPossibleCheckboxCombinations)
                             {
-                                var tmp1 = "";
+                                var tmp1 = string.Empty;
                                 foreach (var checkboxValue in checkboxCombination)
                                 {
                                     tmp1 = AddProductAttribute(tmp1, pam, checkboxValue.Id.ToString());
@@ -514,7 +514,7 @@ namespace Nop.Services.Catalog
                             //other attribute types (dropdownlist, radiobutton, color squares)
                             foreach (var attributeValue in attributeValues)
                             {
-                                var tmp1 = AddProductAttribute("", pam, attributeValue.Id.ToString());
+                                var tmp1 = AddProductAttribute(string.Empty, pam, attributeValue.Id.ToString());
                                 attributesXml.Add(tmp1);
                             }
                         }

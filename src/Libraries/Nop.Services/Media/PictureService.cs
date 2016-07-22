@@ -380,7 +380,7 @@ namespace Nop.Services.Media
             string filePath = GetPictureLocalPath(defaultImageFileName);
             if (!File.Exists(filePath))
             {
-                return "";
+                return string.Empty;
             }
 
 

@@ -155,7 +155,7 @@ namespace Nop.Plugin.Payments.PayPalDirect
             req.DoDirectPaymentRequest.Version = GetApiVersion();
             var details = new DoDirectPaymentRequestDetailsType();
             req.DoDirectPaymentRequest.DoDirectPaymentRequestDetails = details;
-            details.IPAddress = _webHelper.GetCurrentIpAddress() ?? "";
+            details.IPAddress = _webHelper.GetCurrentIpAddress() ?? string.Empty;
             if (authorizeOnly)
                 details.PaymentAction = PaymentActionCodeType.AUTHORIZATION;
             else

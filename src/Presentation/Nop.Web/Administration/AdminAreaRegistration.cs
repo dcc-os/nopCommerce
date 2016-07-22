@@ -17,7 +17,7 @@ namespace Nop.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", area = "Admin", id = "" },
+                new { controller = "Home", action = "Index", area = "Admin", id = string.Empty },
                 new[] { "Nop.Admin.Controllers" }
             );
         }

@@ -295,7 +295,7 @@ namespace Nop.Admin.Controllers
         public ActionResult AffiliatedOrderList(int affiliateId)
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageAffiliates))
-                return Content("");
+                return Content(string.Empty);
 
             if (affiliateId == 0)
                 throw new Exception("Affliate ID cannot be 0");

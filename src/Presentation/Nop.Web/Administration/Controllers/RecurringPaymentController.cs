@@ -66,7 +66,7 @@ namespace Nop.Admin.Controllers
             model.TotalCycles = recurringPayment.TotalCycles;
             model.StartDate = _dateTimeHelper.ConvertToUserTime(recurringPayment.StartDateUtc, DateTimeKind.Utc).ToString();
             model.IsActive = recurringPayment.IsActive;
-            model.NextPaymentDate = recurringPayment.NextPaymentDate.HasValue ? _dateTimeHelper.ConvertToUserTime(recurringPayment.NextPaymentDate.Value, DateTimeKind.Utc).ToString() : "";
+            model.NextPaymentDate = recurringPayment.NextPaymentDate.HasValue ? _dateTimeHelper.ConvertToUserTime(recurringPayment.NextPaymentDate.Value, DateTimeKind.Utc).ToString() : string.Empty;
             model.CyclesRemaining = recurringPayment.CyclesRemaining;
             model.InitialOrderId = recurringPayment.InitialOrder.Id;
             var customer = recurringPayment.InitialOrder.Customer;

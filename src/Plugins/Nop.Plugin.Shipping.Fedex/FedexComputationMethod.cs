@@ -236,7 +236,7 @@ namespace Nop.Plugin.Shipping.Fedex
             request.RequestedShipment.Shipper.Address.City = getShippingOptionRequest.CityFrom;
             if (IncludeStateProvinceCode(getShippingOptionRequest.CountryFrom.TwoLetterIsoCode))
             {
-                string stateProvinceAbbreviation = getShippingOptionRequest.StateProvinceFrom == null ? "" : getShippingOptionRequest.StateProvinceFrom.Abbreviation;
+                string stateProvinceAbbreviation = getShippingOptionRequest.StateProvinceFrom == null ? string.Empty : getShippingOptionRequest.StateProvinceFrom.Abbreviation;
                 request.RequestedShipment.Shipper.Address.StateOrProvinceCode = stateProvinceAbbreviation;
             }
             request.RequestedShipment.Shipper.Address.PostalCode = getShippingOptionRequest.ZipPostalCodeFrom;

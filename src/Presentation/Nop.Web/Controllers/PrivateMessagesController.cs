@@ -223,7 +223,7 @@ namespace Nop.Web.Controllers
 
                 if (value.Equals("on") && key.StartsWith("pm", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    var id = key.Replace("pm", "").Trim();
+                    var id = key.Replace("pm", string.Empty).Trim();
                     int privateMessageId;
                     if (Int32.TryParse(id, out privateMessageId))
                     {
@@ -252,7 +252,7 @@ namespace Nop.Web.Controllers
 
                 if (value.Equals("on") && key.StartsWith("pm", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    var id = key.Replace("pm", "").Trim();
+                    var id = key.Replace("pm", string.Empty).Trim();
                     int privateMessageId;
                     if (Int32.TryParse(id, out privateMessageId))
                     {
@@ -282,7 +282,7 @@ namespace Nop.Web.Controllers
 
                 if (value.Equals("on") && key.StartsWith("si", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    var id = key.Replace("si", "").Trim();
+                    var id = key.Replace("si", string.Empty).Trim();
                     int privateMessageId;
                     if (Int32.TryParse(id, out privateMessageId))
                     {
@@ -433,7 +433,7 @@ namespace Nop.Web.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", ex.Message);
+                    ModelState.AddModelError(string.Empty, ex.Message);
                 }
             }
 

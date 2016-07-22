@@ -370,7 +370,7 @@ namespace Nop.Core
 
             //not hosted. For example, run in unit tests
             string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            path = path.Replace("~/", "").TrimStart('/').Replace('/', '\\');
+            path = path.Replace("~/", string.Empty).TrimStart('/').Replace('/', '\\');
             return Path.Combine(baseDirectory, path);
         }        
     }

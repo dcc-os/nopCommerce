@@ -17,42 +17,42 @@ namespace Nop.Web.Infrastructure
                 return;
 
             //products
-            routes.MapLocalizedRoute("", "p/{productId}/{SeName}",
+            routes.MapLocalizedRoute(string.Empty, "p/{productId}/{SeName}",
                 new { controller = "BackwardCompatibility2X", action = "RedirectProductById", SeName = UrlParameter.Optional },
                 new { productId = @"\d+" },
                 new[] { "Nop.Web.Controllers" });
 
             //categories
-            routes.MapLocalizedRoute("", "c/{categoryId}/{SeName}",
+            routes.MapLocalizedRoute(string.Empty, "c/{categoryId}/{SeName}",
                 new { controller = "BackwardCompatibility2X", action = "RedirectCategoryById", SeName = UrlParameter.Optional },
                 new { categoryId = @"\d+" },
                 new[] { "Nop.Web.Controllers" });
 
             //manufacturers
-            routes.MapLocalizedRoute("", "m/{manufacturerId}/{SeName}",
+            routes.MapLocalizedRoute(string.Empty, "m/{manufacturerId}/{SeName}",
                 new { controller = "BackwardCompatibility2X", action = "RedirectManufacturerById", SeName = UrlParameter.Optional },
                 new { manufacturerId = @"\d+" },
                 new[] { "Nop.Web.Controllers" });
 
             //news
-            routes.MapLocalizedRoute("", "news/{newsItemId}/{SeName}",
+            routes.MapLocalizedRoute(string.Empty, "news/{newsItemId}/{SeName}",
                 new { controller = "BackwardCompatibility2X", action = "RedirectNewsItemById", SeName = UrlParameter.Optional },
                 new { newsItemId = @"\d+" },
                 new[] { "Nop.Web.Controllers" });
 
             //blog
-            routes.MapLocalizedRoute("", "blog/{blogPostId}/{SeName}",
+            routes.MapLocalizedRoute(string.Empty, "blog/{blogPostId}/{SeName}",
                 new { controller = "BackwardCompatibility2X", action = "RedirectBlogPostById", SeName = UrlParameter.Optional },
                 new { blogPostId = @"\d+" },
                 new[] { "Nop.Web.Controllers" });
 
             //topic
-            routes.MapLocalizedRoute("", "t/{SystemName}",
+            routes.MapLocalizedRoute(string.Empty, "t/{SystemName}",
                 new { controller = "BackwardCompatibility2X", action = "RedirectTopicBySystemName" },
                 new[] { "Nop.Web.Controllers" });
 
             //vendors
-            routes.MapLocalizedRoute("", "vendor/{vendorId}/{SeName}",
+            routes.MapLocalizedRoute(string.Empty, "vendor/{vendorId}/{SeName}",
                 new { controller = "BackwardCompatibility2X", action = "RedirectVendorById", SeName = UrlParameter.Optional },
                 new { vendorId = @"\d+" },
                 new[] { "Nop.Web.Controllers" });

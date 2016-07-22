@@ -215,7 +215,7 @@ namespace Nop.Web.Controllers
 
             var topics = _forumService.GetActiveTopics(0, 0, _forumSettings.HomePageActiveDiscussionsTopicCount);
             if (!topics.Any())
-                return Content("");
+                return Content(string.Empty);
 
             var model = new ActiveDiscussionsModel();
             foreach (var topic in topics)
@@ -850,7 +850,7 @@ namespace Nop.Web.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", ex.Message);
+                    ModelState.AddModelError(string.Empty, ex.Message);
                 }
             }
 
@@ -1039,7 +1039,7 @@ namespace Nop.Web.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", ex.Message);
+                    ModelState.AddModelError(string.Empty, ex.Message);
                 }
             }
 
@@ -1264,7 +1264,7 @@ namespace Nop.Web.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", ex.Message);
+                    ModelState.AddModelError(string.Empty, ex.Message);
                 }
             }
 
@@ -1432,7 +1432,7 @@ namespace Nop.Web.Controllers
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", ex.Message);
+                    ModelState.AddModelError(string.Empty, ex.Message);
                 }
             }
 
@@ -1778,7 +1778,7 @@ namespace Nop.Web.Controllers
 
                 if (value.Equals("on") && key.StartsWith("fs", StringComparison.InvariantCultureIgnoreCase))
                 {
-                    var id = key.Replace("fs", "").Trim();
+                    var id = key.Replace("fs", string.Empty).Trim();
                     int forumSubscriptionId;
                     if (Int32.TryParse(id, out forumSubscriptionId))
                     {

@@ -1022,7 +1022,7 @@ namespace Nop.Admin.Controllers
                 //otherwise, we can get the following error if products have too long descriptions:
                 //"Error during serialization or deserialization using the JSON JavaScriptSerializer. The length of the string exceeds the value set on the maxJsonLength property. "
                 //also it improves performance
-                productModel.FullDescription = "";
+                productModel.FullDescription = string.Empty;
 
                 //picture
                 var defaultProductPicture = _pictureService.GetPicturesByProductId(x.Id, 1).FirstOrDefault();
@@ -1409,7 +1409,7 @@ namespace Nop.Admin.Controllers
         [ValidateInput(false)]
         public ActionResult LoadProductFriendlyNames(string productIds)
         {
-            var result = "";
+            var result = string.Empty;
 
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageProducts))
                 return Json(new { Text = result });
@@ -3620,7 +3620,7 @@ namespace Nop.Admin.Controllers
                                         //otherwise "attributesXml" will be empty
                                         //hence we won't be able to find a selected attribute
                                         attributesXml = _productAttributeParser.AddProductAttribute(attributesXml,
-                                            attribute, "");
+                                            attribute, string.Empty);
                                     }
                                 }
                                 else
@@ -3629,7 +3629,7 @@ namespace Nop.Admin.Controllers
                                     //otherwise "attributesXml" will be empty
                                     //hence we won't be able to find a selected attribute
                                     attributesXml = _productAttributeParser.AddProductAttribute(attributesXml,
-                                        attribute, "");
+                                        attribute, string.Empty);
                                 }
                             }
                             break;
@@ -3655,7 +3655,7 @@ namespace Nop.Admin.Controllers
                                         //otherwise "attributesXml" will be empty
                                         //hence we won't be able to find a selected attribute
                                         attributesXml = _productAttributeParser.AddProductAttribute(attributesXml,
-                                            attribute, "");
+                                            attribute, string.Empty);
                                     }
                                 }
                                 else
@@ -3664,7 +3664,7 @@ namespace Nop.Admin.Controllers
                                     //otherwise "attributesXml" will be empty
                                     //hence we won't be able to find a selected attribute
                                     attributesXml = _productAttributeParser.AddProductAttribute(attributesXml,
-                                            attribute, "");
+                                            attribute, string.Empty);
                                 }
                             }
                             break;
@@ -3760,14 +3760,14 @@ namespace Nop.Admin.Controllers
                         AttributeValueTypeId = x.AttributeValueTypeId,
                         AttributeValueTypeName = x.AttributeValueType.GetLocalizedEnum(_localizationService, _workContext),
                         AssociatedProductId = x.AssociatedProductId,
-                        AssociatedProductName = associatedProduct != null ? associatedProduct.Name : "",
+                        AssociatedProductName = associatedProduct != null ? associatedProduct.Name : string.Empty,
                         Name = x.ProductAttributeMapping.AttributeControlType != AttributeControlType.ColorSquares ? x.Name : string.Format("{0} - {1}", x.Name, x.ColorSquaresRgb),
                         ColorSquaresRgb = x.ColorSquaresRgb,
                         ImageSquaresPictureId = x.ImageSquaresPictureId,
                         PriceAdjustment = x.PriceAdjustment,
-                        PriceAdjustmentStr = x.AttributeValueType == AttributeValueType.Simple ? x.PriceAdjustment.ToString("G29") : "",
+                        PriceAdjustmentStr = x.AttributeValueType == AttributeValueType.Simple ? x.PriceAdjustment.ToString("G29") : string.Empty,
                         WeightAdjustment = x.WeightAdjustment,
-                        WeightAdjustmentStr = x.AttributeValueType == AttributeValueType.Simple ? x.WeightAdjustment.ToString("G29") : "",
+                        WeightAdjustmentStr = x.AttributeValueType == AttributeValueType.Simple ? x.WeightAdjustment.ToString("G29") : string.Empty,
                         Cost = x.Cost,
                         Quantity = x.Quantity,
                         IsPreSelected = x.IsPreSelected,
@@ -3853,7 +3853,7 @@ namespace Nop.Admin.Controllers
             {
                 //ensure valid color is chosen/entered
                 if (String.IsNullOrEmpty(model.ColorSquaresRgb))
-                    ModelState.AddModelError("", "Color is required");
+                    ModelState.AddModelError(string.Empty, "Color is required");
                 try
                 {
                     //ensure color is valid (can be instanciated)
@@ -3861,14 +3861,14 @@ namespace Nop.Admin.Controllers
                 }
                 catch (Exception exc)
                 {
-                    ModelState.AddModelError("", exc.Message);
+                    ModelState.AddModelError(string.Empty, exc.Message);
                 }
             }
 
             //ensure a picture is uploaded
             if (productAttributeMapping.AttributeControlType == AttributeControlType.ImageSquares && model.ImageSquaresPictureId == 0)
             {
-                ModelState.AddModelError("", "Image is required");
+                ModelState.AddModelError(string.Empty, "Image is required");
             }
 
             if (ModelState.IsValid)
@@ -3915,7 +3915,7 @@ namespace Nop.Admin.Controllers
                 .ToList();
 
             var associatedProduct = _productService.GetProductById(model.AssociatedProductId);
-            model.AssociatedProductName = associatedProduct != null ? associatedProduct.Name : "";
+            model.AssociatedProductName = associatedProduct != null ? associatedProduct.Name : string.Empty;
 
             return View(model);
         }
@@ -3947,7 +3947,7 @@ namespace Nop.Admin.Controllers
                 AttributeValueTypeId = pav.AttributeValueTypeId,
                 AttributeValueTypeName = pav.AttributeValueType.GetLocalizedEnum(_localizationService, _workContext),
                 AssociatedProductId = pav.AssociatedProductId,
-                AssociatedProductName = associatedProduct != null ? associatedProduct.Name : "",
+                AssociatedProductName = associatedProduct != null ? associatedProduct.Name : string.Empty,
                 Name = pav.Name,
                 ColorSquaresRgb = pav.ColorSquaresRgb,
                 DisplayColorSquaresRgb = pav.ProductAttributeMapping.AttributeControlType == AttributeControlType.ColorSquares,
@@ -4008,7 +4008,7 @@ namespace Nop.Admin.Controllers
             {
                 //ensure valid color is chosen/entered
                 if (String.IsNullOrEmpty(model.ColorSquaresRgb))
-                    ModelState.AddModelError("", "Color is required");
+                    ModelState.AddModelError(string.Empty, "Color is required");
                 try
                 {
                     //ensure color is valid (can be instanciated)
@@ -4016,14 +4016,14 @@ namespace Nop.Admin.Controllers
                 }
                 catch (Exception exc)
                 {
-                    ModelState.AddModelError("", exc.Message);
+                    ModelState.AddModelError(string.Empty, exc.Message);
                 }
             }
 
             //ensure a picture is uploaded
             if (pav.ProductAttributeMapping.AttributeControlType == AttributeControlType.ImageSquares && model.ImageSquaresPictureId == 0)
             {
-                ModelState.AddModelError("", "Image is required");
+                ModelState.AddModelError(string.Empty, "Image is required");
             }
 
             if (ModelState.IsValid)
@@ -4065,7 +4065,7 @@ namespace Nop.Admin.Controllers
                 .ToList();
 
             var associatedProduct = _productService.GetProductById(model.AssociatedProductId);
-            model.AssociatedProductName = associatedProduct != null ? associatedProduct.Name : "";
+            model.AssociatedProductName = associatedProduct != null ? associatedProduct.Name : string.Empty;
 
             return View(model);
         }
@@ -4345,7 +4345,7 @@ namespace Nop.Admin.Controllers
             ViewBag.formId = formId;
 
             //attributes
-            string attributesXml = "";
+            string attributesXml = string.Empty;
             var warnings = new List<string>();
 
             #region Product attributes
@@ -4456,7 +4456,7 @@ namespace Nop.Admin.Controllers
                                     {
                                         DownloadGuid = Guid.NewGuid(),
                                         UseDownloadUrl = false,
-                                        DownloadUrl = "",
+                                        DownloadUrl = string.Empty,
                                         DownloadBinary = httpPostedFile.GetDownloadBits(),
                                         ContentType = httpPostedFile.ContentType,
                                         Filename = Path.GetFileNameWithoutExtension(httpPostedFile.FileName),

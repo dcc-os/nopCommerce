@@ -25,13 +25,13 @@
         <div id="product-edit" class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 @Html.RenderBootstrapTabHeader("tab-info", @T("Admin.Catalog.Products.Info"), true)
-                @Html.RenderBootstrapTabHeader("tab-seo", @T("Admin.Common.SEO"), customCssClass:  Model.ProductEditorSettingsModel.Seo ? "" : "advanced-setting")
+                @Html.RenderBootstrapTabHeader("tab-seo", @T("Admin.Common.SEO"), customCssClass:  Model.ProductEditorSettingsModel.Seo ? string.Empty : "advanced-setting")
                 @Html.RenderBootstrapTabHeader("tab-pictures", @T("Admin.Catalog.Products.Pictures"))
                 @Html.RenderBootstrapTabHeader("tab-product-attributes", @T("Admin.Catalog.Products.ProductAttributes"))
                 @Html.RenderBootstrapTabHeader("tab-specification-attributes", @T("Admin.Catalog.Products.SpecificationAttributes"))
                 @if (Model.Id > 0)
                 {
-                    @Html.RenderBootstrapTabHeader("tab-purchased-with-orders", @T("Admin.Catalog.Products.PurchasedWithOrders"), customCssClass: Model.ProductEditorSettingsModel.PurchasedWithOrders ? "" : "advanced-setting")
+                    @Html.RenderBootstrapTabHeader("tab-purchased-with-orders", @T("Admin.Catalog.Products.PurchasedWithOrders"), customCssClass: Model.ProductEditorSettingsModel.PurchasedWithOrders ? string.Empty : "advanced-setting")
                 }
             </ul>
             <div class="tab-content">

@@ -223,7 +223,7 @@ namespace Nop.Admin.Controllers
             }
             breadCrumb.Reverse();
 
-            var result = "";
+            var result = string.Empty;
             for (int i = 0; i <= breadCrumb.Count - 1; i++)
             {
                 result += breadCrumb[i].Name;
@@ -250,7 +250,7 @@ namespace Nop.Admin.Controllers
             //load modes
             model.AvailableLoadModes = LoadPluginsMode.All.ToSelectList(false).ToList();
             //groups
-            model.AvailableGroups.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = "" });
+            model.AvailableGroups.Add(new SelectListItem { Text = _localizationService.GetResource("Admin.Common.All"), Value = string.Empty });
             foreach (var g in _pluginFinder.GetPluginGroups())
                 model.AvailableGroups.Add(new SelectListItem { Text = g, Value = g });
             return View(model);
@@ -514,7 +514,7 @@ namespace Nop.Admin.Controllers
                         }
                         else
                         {
-                            _taxSettings.ActiveTaxProviderSystemName = "";
+                            _taxSettings.ActiveTaxProviderSystemName = string.Empty;
                             _settingService.SaveSetting(_taxSettings);
                         }
                     }

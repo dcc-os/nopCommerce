@@ -13,7 +13,7 @@ namespace Nop.Web.Infrastructure
 
             //home page
             routes.MapLocalizedRoute("HomePage",
-                            "",
+                            string.Empty,
                             new { controller = "Home", action = "Index" },
                             new[] { "Nop.Web.Controllers" });
 

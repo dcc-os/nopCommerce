@@ -293,7 +293,7 @@ namespace Nop.Services.Discounts
             if (discount == null)
                 throw new ArgumentNullException("discount");
 
-            var couponCodeToValidate = "";
+            var couponCodeToValidate = string.Empty;
             if (customer != null)
                 couponCodeToValidate = customer.GetAttribute<string>(SystemCustomerAttributeNames.DiscountCouponCode, _genericAttributeService);
 

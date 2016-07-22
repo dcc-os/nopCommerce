@@ -22,7 +22,7 @@ namespace Nop.Web.MVC.Tests.Public.Validators.Boards
             var model = new EditForumPostModel();
             model.Text = null;
             _validator.ShouldHaveValidationErrorFor(x => x.Text, model);
-            model.Text = "";
+            model.Text = string.Empty;
             _validator.ShouldHaveValidationErrorFor(x => x.Text, model);
         }
 

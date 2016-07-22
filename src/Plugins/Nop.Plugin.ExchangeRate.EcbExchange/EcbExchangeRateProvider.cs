@@ -46,7 +46,7 @@ namespace Nop.Plugin.ExchangeRate.EcbExchange
 
                 var provider = new NumberFormatInfo();
                 provider.NumberDecimalSeparator = ".";
-                provider.NumberGroupSeparator = "";
+                provider.NumberGroupSeparator = string.Empty;
                 foreach (XmlNode node2 in node.ChildNodes)
                 {
                     exchangeRates.Add(new Core.Domain.Directory.ExchangeRate()

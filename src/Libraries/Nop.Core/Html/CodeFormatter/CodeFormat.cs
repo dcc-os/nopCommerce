@@ -52,7 +52,7 @@ namespace Nop.Core.Html.CodeFormatter
 		/// </remarks>
 		protected virtual string Preprocessors
 		{
-			get { return ""; }
+			get { return string.Empty; }
 		}
 
 		/// <summary>
@@ -161,7 +161,7 @@ namespace Nop.Core.Html.CodeFormatter
 				return "<span class=\"kwrd\">" + match.ToString() + "</span>";
 			}
 			System.Diagnostics.Debug.Assert(false, "None of the above!");
-			return ""; //none of the above
+			return string.Empty; //none of the above
 		}
 	}
 }

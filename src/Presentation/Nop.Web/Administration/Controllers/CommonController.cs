@@ -681,8 +681,8 @@ namespace Nop.Admin.Controllers
                     }
 
                     //details URL
-                    string detailsUrl = "";
-                    var entityName = x.EntityName != null ? x.EntityName.ToLowerInvariant() : "";
+                    string detailsUrl = string.Empty;
+                    var entityName = x.EntityName != null ? x.EntityName.ToLowerInvariant() : string.Empty;
                     switch (entityName)
                     {
                         case "blogpost":
@@ -744,7 +744,7 @@ namespace Nop.Admin.Controllers
         public ActionResult PopularSearchTermsReport()
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageProducts))
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView();
         }
@@ -790,7 +790,7 @@ namespace Nop.Admin.Controllers
 
             //This setting is disabled. No warnings.
             if (!enabled)
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView();
         }
@@ -816,7 +816,7 @@ namespace Nop.Admin.Controllers
 
             //This setting is disabled. No warnings.
             if (!enabled)
-                return Content("");
+                return Content(string.Empty);
 
             return PartialView();
         }

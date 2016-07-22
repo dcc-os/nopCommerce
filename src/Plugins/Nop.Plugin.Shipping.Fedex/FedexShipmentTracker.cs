@@ -41,7 +41,7 @@ namespace Nop.Plugin.Shipping.Fedex
         public virtual string GetUrl(string trackingNumber)
         {
             //What is a FedEx tracking page URL?
-            return "";
+            return string.Empty;
         }
 
         /// <summary>

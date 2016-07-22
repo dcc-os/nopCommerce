@@ -1701,7 +1701,7 @@ namespace Nop.Services.Orders
 
 
             //process errors
-            string error = "";
+            string error = string.Empty;
             for (int i = 0; i < result.Errors.Count; i++)
             {
                 error += string.Format("Error {0}: {1}", i, result.Errors[i]);
@@ -2093,7 +2093,7 @@ namespace Nop.Services.Orders
 
 
             //process errors
-            string error = "";
+            string error = string.Empty;
             for (int i = 0; i < result.Errors.Count; i++)
             {
                 error += string.Format("Error {0}: {1}", i, result.Errors[i]);
@@ -2278,7 +2278,7 @@ namespace Nop.Services.Orders
             }
 
             //process errors
-            string error = "";
+            string error = string.Empty;
             for (int i = 0; i < result.Errors.Count; i++)
             {
                 error += string.Format("Error {0}: {1}", i, result.Errors[i]);
@@ -2505,7 +2505,7 @@ namespace Nop.Services.Orders
             }
 
             //process errors
-            string error = "";
+            string error = string.Empty;
             for (int i = 0; i < result.Errors.Count; i++)
             {
                 error += string.Format("Error {0}: {1}", i, result.Errors[i]);
@@ -2696,7 +2696,7 @@ namespace Nop.Services.Orders
             }
 
             //process errors
-            string error = "";
+            string error = string.Empty;
             for (int i = 0; i < result.Errors.Count; i++)
             {
                 error += string.Format("Error {0}: {1}", i, result.Errors[i]);

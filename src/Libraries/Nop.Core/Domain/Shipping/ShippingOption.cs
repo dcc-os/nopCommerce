@@ -90,7 +90,7 @@ namespace Nop.Core.Domain.Shipping
                     }
                 }
 
-                return "";
+                return string.Empty;
             }
 
             return base.ConvertTo(context, culture, value, destinationType);
@@ -153,7 +153,7 @@ namespace Nop.Core.Domain.Shipping
                     }
                 }
 
-                return "";
+                return string.Empty;
             }
 
             return base.ConvertTo(context, culture, value, destinationType);

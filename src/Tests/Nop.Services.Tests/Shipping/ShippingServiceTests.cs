@@ -122,7 +122,7 @@ namespace Nop.Services.Tests.Shipping
                 {
                     new GetShippingOptionRequest.PackageItem(new ShoppingCartItem
                     {
-                        AttributesXml = "",
+                        AttributesXml = string.Empty,
                         Quantity = 3,
                         Product = new Product
                         {
@@ -134,7 +134,7 @@ namespace Nop.Services.Tests.Shipping
                     }),
                     new GetShippingOptionRequest.PackageItem(new ShoppingCartItem
                     {
-                        AttributesXml = "",
+                        AttributesXml = string.Empty,
                         Quantity = 4,
                         Product = new Product
                         {

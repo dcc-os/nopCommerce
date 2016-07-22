@@ -152,8 +152,8 @@ namespace Nop.Services.Payments
             //We should strip out any white space or dash in the CC number entered.
             if (!String.IsNullOrWhiteSpace(processPaymentRequest.CreditCardNumber))
             {
-                processPaymentRequest.CreditCardNumber = processPaymentRequest.CreditCardNumber.Replace(" ", "");
-                processPaymentRequest.CreditCardNumber = processPaymentRequest.CreditCardNumber.Replace("-", "");
+                processPaymentRequest.CreditCardNumber = processPaymentRequest.CreditCardNumber.Replace(" ", string.Empty);
+                processPaymentRequest.CreditCardNumber = processPaymentRequest.CreditCardNumber.Replace("-", string.Empty);
             }
             var paymentMethod = LoadPaymentMethodBySystemName(processPaymentRequest.PaymentMethodSystemName);
             if (paymentMethod == null)

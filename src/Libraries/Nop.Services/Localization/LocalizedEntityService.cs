@@ -189,9 +189,9 @@ namespace Nop.Services.Localization
                                 lp.LocaleKey == localeKey
                                 select lp.LocaleValue;
                     var localeValue = query.FirstOrDefault();
-                    //little hack here. nulls aren't cacheable so set it to ""
+                    //little hack here. nulls aren't cacheable so set it to string.Empty
                     if (localeValue == null)
-                        localeValue = "";
+                        localeValue = string.Empty;
                     return localeValue;
                 });
 
@@ -210,9 +210,9 @@ namespace Nop.Services.Localization
                                 lp.LocaleKey == localeKey
                                 select lp.LocaleValue;
                     var localeValue = query.FirstOrDefault();
-                    //little hack here. nulls aren't cacheable so set it to ""
+                    //little hack here. nulls aren't cacheable so set it to string.Empty
                     if (localeValue == null)
-                        localeValue = "";
+                        localeValue = string.Empty;
                     return localeValue;
                 });
             }

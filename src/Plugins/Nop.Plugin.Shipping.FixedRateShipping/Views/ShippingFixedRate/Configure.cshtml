@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "";
+    Layout = string.Empty;
 }
 @Html.AntiForgeryToken()
 <div class="content-header clearfix">
@@ -27,13 +27,13 @@
                             type: "json",
                             transport: {
                                 read: {
-                                    url: "@Html.Raw(Url.Action("Configure", "ShippingFixedRate", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Shipping.FixedRateShipping.Controllers" }, { "area", "" } }))",
+                                    url: "@Html.Raw(Url.Action("Configure", "ShippingFixedRate", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Shipping.FixedRateShipping.Controllers" }, { "area", string.Empty } }))",
                                     type: "POST",
                                     dataType: "json",
                                     data: addAntiForgeryToken
                                 },
                                 update: {
-                                    url:"@Html.Raw(Url.Action("ShippingRateUpdate", "ShippingFixedRate", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Shipping.FixedRateShipping.Controllers" }, { "area", "" } }))",
+                                    url:"@Html.Raw(Url.Action("ShippingRateUpdate", "ShippingFixedRate", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Shipping.FixedRateShipping.Controllers" }, { "area", string.Empty } }))",
                                     type: "POST",
                                     dataType: "json",
                                     data: addAntiForgeryToken

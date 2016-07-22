@@ -315,9 +315,9 @@ namespace Nop.Services.Seo
                                 orderby ur.Id descending
                                 select ur.Slug;
                     var slug = query.FirstOrDefault();
-                    //little hack here. nulls aren't cacheable so set it to ""
+                    //little hack here. nulls aren't cacheable so set it to string.Empty
                     if (slug == null)
-                        slug = "";
+                        slug = string.Empty;
                     return slug;
                 });
             }
@@ -336,9 +336,9 @@ namespace Nop.Services.Seo
                                 orderby ur.Id descending
                                 select ur.Slug;
                     var slug = query.FirstOrDefault();
-                    //little hack here. nulls aren't cacheable so set it to ""
+                    //little hack here. nulls aren't cacheable so set it to string.Empty
                     if (slug == null)
-                        slug = "";
+                        slug = string.Empty;
                     return slug;
                 });
             }

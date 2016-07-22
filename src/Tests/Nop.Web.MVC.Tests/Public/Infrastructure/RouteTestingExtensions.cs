@@ -319,7 +319,7 @@ namespace Nop.Web.MVC.Tests.Public.Infrastructure
         public static RouteData ShouldMapTo<TController>(this RouteData routeData) where TController : Controller
         {
             //strip out the word 'Controller' from the type
-            string expected = typeof(TController).Name.Replace("Controller", "");
+            string expected = typeof(TController).Name.Replace("Controller", string.Empty);
 
             //get the key (case insensitive)
             string actual = routeData.Values.GetValue("controller").ToString();

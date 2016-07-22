@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "";
+    Layout = string.Empty;
 
     var defaultGridPageSize = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().DefaultGridPageSize;
     var gridPageSizes = EngineContext.Current.Resolve<Nop.Core.Domain.Common.AdminAreaSettings>().GridPageSizes;
@@ -24,19 +24,19 @@
                                 type: "json",
                                 transport: {
                                     read: {
-                                        url: "@Html.Raw(Url.Action("RatesList", "TaxCountryStateZip", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Tax.CountryStateZip.Controllers" }, { "area", "" } }))",
+                                        url: "@Html.Raw(Url.Action("RatesList", "TaxCountryStateZip", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Tax.CountryStateZip.Controllers" }, { "area", string.Empty } }))",
                                         type: "POST",
                                         dataType: "json",
                                         data: addAntiForgeryToken
                                     },
                                     update: {
-                                        url:"@Html.Raw(Url.Action("RateUpdate", "TaxCountryStateZip", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Tax.CountryStateZip.Controllers" }, { "area", "" } }))",
+                                        url:"@Html.Raw(Url.Action("RateUpdate", "TaxCountryStateZip", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Tax.CountryStateZip.Controllers" }, { "area", string.Empty } }))",
                                         type: "POST",
                                         dataType: "json",
                                         data: addAntiForgeryToken
                                     },
                                     destroy: {
-                                        url: "@Html.Raw(Url.Action("RateDelete", "TaxCountryStateZip", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Tax.CountryStateZip.Controllers" }, { "area", "" } }))",
+                                        url: "@Html.Raw(Url.Action("RateDelete", "TaxCountryStateZip", new RouteValueDictionary { { "Namespaces", "Nop.Plugin.Tax.CountryStateZip.Controllers" }, { "area", string.Empty } }))",
                                         type: "POST",
                                         dataType: "json",
                                         data: addAntiForgeryToken
