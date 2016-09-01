@@ -1,0 +1,231 @@
+﻿@using Nop.Core
+@using Nop.Core.Infrastructure
+@using Nop.Services.Localization
+@using Nop.Web.Framework.Themes
+@{
+    //logo path
+    var currentThemeName = EngineContext.Current.Resolve<IThemeContext>().WorkingThemeName;
+    var logoPath = "~/Themes/" + currentThemeName + "/Content/images/logo.png";
+
+    //store name
+    var storeName = EngineContext.Current.Resolve<IStoreContext>().CurrentStore.GetLocalized(x => x.Name);
+}
+<div class="beta-message">
+    Welcome to Raw Nation Official Website. This website is currently in Testing Model, if you find any problem please contact us at support@rawnation.net
+</div>
+@Html.Widget("header")
+<section id="pre-header">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-sm-6  top-header">
+                <ul class="nav navbar-nav">
+                    <li>
+                        @*<a href="#"><i class="fa fa-truck"></i> Free Shipping on Orders of Tk 999+ @@ Dhaka</a>*@
+                    </li>
+                </ul>
+                @*<p class="hidden-xs spacer-top-10">
+                        <i class="fa fa-truck"></i> FREE SHIPPING @@ PAY FIRST
+                    </p>*@
+            </div>
+            <div class="col-sm-6">
+                <div class="pull-right">
+                    <nav class="no-margin pull-left">
+                        @Html.Action("HeaderLinks", "Common")
+                        @*<div id="nav-sign" class="collapse navbar-collapse">
+                                <ul class="nav navbar-nav">
+                                    <li>
+                                        <a href="wishlist.html">
+                                            <i class="fa fa-heart"></i>
+                                        </a>
+                                    </li>
+                                    <li class="spacer-10">|</li>
+                                    <li>
+                                        <button type="button" data-toggle="modal" data-target="#modal-signup">
+                                            Signup
+                                        </button>
+                                    </li>
+                                    <li class="spacer-10">|</li>
+                                    <li>
+                                        <button type="button" data-toggle="modal" data-target="#modal-signin">
+                                            Signin
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>*@
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="main-header">
+    <div class="container">
+        <div class="border">
+            <div class="row clearfix">
+
+                <article class="col-sm-12 col-md-5 col-lg-5">
+                    <div>
+                        &nbsp;
+                        @*<span>*</span>
+                        <a href="#" class="">
+
+                            Extra 50% off all Sale Styles with code 50SUMMER
+                        </a>
+                        <span>*</span>*@
+                    </div>
+                    @Html.Action("TopMenu", "Catalog")
+                </article>
+                <article class="col-sm-12 col-md-2 col-lg-2" id="logo">
+                    <a href="./">
+                        <img title="" alt="@storeName" class="image-responsive center-block" src="@Url.Content(logoPath)">
+                        @*<img class="image-responsive center-block" alt="Kids Store" src="assets/images/logo.png">*@
+                    </a>
+                </article>
+                <article class="col-sm-12 col-md-5 col-lg-5">
+                    <form id="search" class="bg-white">
+                        @Html.Action("SearchBox", "Catalog")
+                        @*<div class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="Search the whole shop">
+                                <span class="input-group-addon">
+                                    <button class="btn-link no-margin" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>*@
+                    </form>
+                    <div id="right-nav-bar">
+                        <ul class="nav navbar-nav navbar-right" id="about-menu">
+                            <li>
+                                <a href="/find-our-store">FIND OUR STORE</a>
+                            </li>
+                            <li>
+                                <a href="/customer-service">CUSTOMER SERVICE</a>
+                            </li>
+                            @*<li>
+                                <a href="#">ABOUT US</a>
+                            </li>*@
+                            @*<li>
+                                <a href="#">CAREER</a>
+                            </li>
+                            <li>
+                                <a href="#">ABOUT US</a>
+                            </li>*@
+                            <li>
+                                <a href="/contactus-2">CONTACT US</a>
+                            </li>
+                        </ul>
+                    </div>
+                    @*<div class="dropdown bg-white" id="basket">
+                            <div class="shadow-wrap-box">
+                                <a href="#" class="checkout-basket dropdown-toggle btn-block clearfix" data-toggle="dropdown" aria-expanded="true">
+                                    <div class="pull-left bg-super-light">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </div>
+                                    <div class="info-basket pull-left">
+                                        <span data-name="item">3 item(s) - </span>
+                                        <span data-name="price">
+                                            <strong>$50.00</strong>
+                                        </span>
+                                    </div>
+                                    <div class="pull-right arrow">
+                                        <i class="glyphicon glyphicon-chevron-down"></i>
+                                    </div>
+                                </a>
+                                <div class="block-basket wrap-radius btn-block dropdown-menu col-lg-4 col-xs-12 col-md-4" role="menu">
+                                    <div class="content-basket">
+                                        <ul class="products-list list-unstyled">
+                                            <li class="item">
+                                                <div class="clearfix row">
+                                                    <div class="col-xs-10 product-details">
+                                                        <div class="clearfix row">
+                                                            <p class="col-xs-8 product-name no-margin">
+                                                                Pigiama bambina
+                                                            </p>
+                                                            <p class="col-xs-4 price no-margin text-right no-padding">
+                                                                $15
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-2 no-padding-left">
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="item">
+                                                <div class="clearfix row">
+                                                    <div class="col-xs-10 product-details">
+                                                        <div class="clearfix row">
+                                                            <p class="col-xs-8 product-name no-margin">
+                                                                Dress blue
+                                                            </p>
+                                                            <p class="col-xs-4 price no-margin text-right no-padding">
+                                                                $15
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-2 no-padding-left">
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="item">
+                                                <div class="clearfix row">
+                                                    <div class="col-xs-10 product-details">
+                                                        <div class="clearfix row">
+                                                            <p class="col-xs-8 product-name no-margin">
+                                                                Pigiama bambino
+                                                            </p>
+                                                            <p class="col-xs-4 price no-margin text-right no-padding">
+                                                                $15
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xs-2 no-padding-left">
+                                                        <button type="button" class="close" data-dismiss="modal">
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="summary clearfix">
+                                            <p class="amount pull-left no-margin">2 Items</p>
+                                            <p class="subtotale pull-right no-margin">
+                                                Tot:&nbsp;&nbsp;&nbsp;<span class="price">€ 40,90</span>
+                                            </p>
+                                        </div>
+                                        <div class="button-basket text-right">
+                                            <a class="btn btn-warning btn-sm no-margin" href="cart.html">view cart</a>
+                                            <a class="btn btn-warning btn-sm no-margin" href="payment.html">Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*@Html.Action("TopMenu", "Catalog")*@
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+@*<header class="navbar navbar-fixed-top navbar-default bgDarkBlue" role="banner" style="">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-header">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand colorWhite"  href="@Url.RouteUrl("HomePage")">*@
+@*<img title="" alt="@storeName" src="@Url.Content(logoPath)">*@
+@*@storeName*@
+@*</a>
+            </div>
+            @Html.Action("HeaderLinks", "Common")
+        </div>
+    </header>*@

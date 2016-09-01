@@ -1,0 +1,69 @@
+﻿@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+}
+@Html.Widget("home_page_top")
+@*<div id="homeBottom">
+
+</div>*@
+@*<div class="row">
+    <div class="col-md-8">@Html.Action("HomepageNewProducts", "Product")</div>
+    <div class="col-md-4">@Html.Action("TopicBlock", "Topic", new { systemName = "HomePageTvc" })</div>
+</div>*@
+
+
+
+@Html.Widget("home_page_before_categories")
+@Html.Action("HomepageCategories", "Catalog")
+@Html.Widget("home_page_before_products")
+@Html.Action("HomepageProducts", "Product")
+@Html.Widget("home_page_before_best_sellers")
+@Html.Action("HomepageBestSellers", "Product")
+@*@Html.Widget("home_page_before_news")
+    @Html.Action("HomePageNews", "News")
+    @Html.Widget("home_page_before_poll")
+    @Html.Action("HomePagePolls", "Poll")*@
+@Html.Widget("home_page_bottom")
+<section class="purchase-benefits spacer-30 " id="homeServices">
+    <div class="bg-white spacer-10">
+        <div class="container spacer-top-15">
+            <div class="row clearfix">
+                <article class="col-xs-12 col-sm-3">
+                    <div class="column text-center spacer-bottom-15">
+                        <i class="fa fa-truck fa-3x"></i>
+                        <h4>Free Worldwide Shipping</h4>
+                        <p class="no-margin">
+                            Delivery throughout England<br>in 24/48 h by courier
+                        </p>
+                    </div>
+                </article>
+                <article class="col-xs-12 col-sm-3">
+                    <div class="column text-center spacer-bottom-15">
+                        <i class="fa fa-gift fa-3x"></i>
+                        <h4>Want to make a gift?</h4>
+                        <p class="no-margin">
+                            When ordering, <a href="#" class="btn-link">ask for gift box</a> and you'll get everything you need to be able to create
+                        </p>
+                    </div>
+                </article>
+                <article class="col-xs-12 col-sm-3">
+                    <div class="column text-center spacer-bottom-15">
+                        <i class="fa fa-lock fa-3x"></i>
+                        <h4>Secure Payments!</h4>
+                        <p class="no-margin">
+                            Please card payments credit in all tranquility use certified instruments
+                        </p>
+                    </div>
+                </article>
+                <article class="col-xs-12 col-sm-3">
+                    <div class="column text-center spacer-bottom-15">
+                        <i class="fa fa-phone fa-3x"></i>
+                        <h4>Customer Service</h4>
+                        <p class="no-margin">
+                            Our customer service is available from Monday to Saturday from 9:00 to 18:00
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>

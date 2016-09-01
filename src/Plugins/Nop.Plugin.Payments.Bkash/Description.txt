@@ -1,0 +1,8 @@
+﻿Group: Payment methods
+FriendlyName: Bkash
+SystemName: Payments.Bkash
+Version: 1.10
+SupportedVersions: 3.80
+Author: Ratul Paul
+DisplayOrder: 1
+FileName: Nop.Plugin.Payments.Bkash.dll
