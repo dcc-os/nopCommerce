@@ -1,0 +1,108 @@
+﻿@model HeaderLinksModel
+@using Nop.Web.Models.Common;
+
+<section id="pre-header" class="clearfix">
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-sm-6">
+                <div id="shipping-offer">
+                    <a href="#"><i class="fa fa-truck"></i> Free Shipping on Orders of Tk 4999+ @@ Dhaka, Bangladesh</a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="pull-right">
+                    <ul id="pre-header-links">
+                        @Html.Widget("header_links_before")
+                        @Html.Widget("header_links_after")
+                        @*@Html.Action("TaxTypeSelector", "Common")*@
+                        @Html.Action("CurrencySelector", "Common")
+                        @*@Html.Action("LanguageSelector", "Common")*@
+                        @Html.Widget("header_selectors")
+                        @*<li><a href="#">Find Our Store</a></li>*@
+                        @if (Model.ShoppingCartEnabled)
+                        {
+                            <li id="topcartlink" class="dropdown ">
+                                <a href="@Url.RouteUrl("ShoppingCart")" class="dropdown-toggle" data-toggle="dropdown">
+                                    <span class="cart-label">@T("ShoppingCart")</span>
+                                    <span class="cart-qty">@T("ShoppingCart.HeaderQuantity", Model.ShoppingCartItems)</span>
+                                </a>
+                                <ul class="dropdown-menu" style="display: none;">
+                                    <li>
+                                        @Html.Action("FlyoutShoppingCart", "ShoppingCart")
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        @if (Model.IsAuthenticated)
+                        {
+                            <li>
+                                <a href="@Url.RouteUrl("CustomerInfo")">@Model.CustomerEmailUsername</a>
+                            </li>
+
+                            <li>
+                                <a href="@Url.RouteUrl("Logout")">@T("Account.Logout")</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="@Url.RouteUrl("Register")">@T("Account.Register")</a>
+                            </li>
+                            <li>
+                                <a href="@Url.RouteUrl("Login")">@T("Account.Login")</a>
+                            </li>
+                        }
+                        @if (Model.AllowPrivateMessages)
+                        {
+                            <li>
+                                <a href="@Url.RouteUrl("PrivateMessages", new {tab = ""})">
+                                    <span class="inbox-label">@T("PrivateMessages.Inbox")</span>
+                                    <span class="inbox-unread">@Model.UnreadPrivateMessages</span>
+                                </a>
+                            </li>
+                        }@*@if (Model.WishlistEnabled)
+                        {
+                            <li>
+                                <a href="@Url.RouteUrl("Wishlist")">
+                                    <span class="wishlist-label">@T("Wishlist")</span>
+                                    <span class="wishlist-qty">@T("Wishlist.HeaderQuantity", Model.WishlistItems)</span>
+                                </a>
+                            </li>
+                        }*@
+                    </ul>
+
+                    @if (Model.AllowPrivateMessages && !string.IsNullOrEmpty(Model.AlertMessage))
+                    {
+                        //new private message notification
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                displayPopupNotification('@Html.Raw(HttpUtility.JavaScriptStringEncode(Model.AlertMessage))', 'success', false);
+                            });
+                        </script>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="search-header">
+    <div class="container">
+        <div class="row clearfix">
+            <article class="col-sm-12 col-md-5 col-lg-5">
+                <div>
+                    <span>*</span>
+                    <a href="#" class="">
+                        Extra 50% off all Sale Styles with code 50SUMMER
+                    </a>
+                    <span>*</span>
+                </div>
+            </article>
+            <article class="col-sm-12 col-md-2 col-lg-2"></article>
+            <article class="col-sm-12 col-md-5 col-lg-5">
+                <form id="search" class="bg-white">
+                    @Html.Action("SearchBox", "Catalog")
+                </form>
+            </article>
+        </div>
+    </div>
+</section>

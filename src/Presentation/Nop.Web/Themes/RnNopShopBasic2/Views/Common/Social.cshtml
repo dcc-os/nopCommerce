@@ -1,0 +1,67 @@
+﻿@model Nop.Web.Models.Common.SocialModel
+
+@*<ul class="networks">
+	@if (!string.IsNullOrEmpty(Model.FacebookLink))
+	{
+		<li class="facebook"><a href="@Model.FacebookLink" target="_blank">@T("Footer.FollowUs.Facebook")</a></li>
+	}
+	@if (!string.IsNullOrEmpty(Model.TwitterLink))
+	{
+		<li class="twitter"><a href="@Model.TwitterLink" target="_blank">@T("Footer.FollowUs.Twitter")</a></li>
+	}
+	@if (Model.NewsEnabled)
+	{
+		<li class="rss"><a href="@Url.RouteUrl("NewsRSS", new {languageId = Model.WorkingLanguageId})">@T("Footer.FollowUs.RSS")</a></li>
+	}
+	@if (!string.IsNullOrEmpty(Model.YoutubeLink))
+	{
+		<li class="youtube"><a href="@Model.YoutubeLink" target="_blank">@T("Footer.FollowUs.Youtube")</a></li>
+	}
+	@if (!string.IsNullOrEmpty(Model.GooglePlusLink))
+	{
+		<li class="google-plus"><a href="@Model.GooglePlusLink" target="_blank">@T("Footer.FollowUs.GooglePlus")</a></li>
+	}
+</ul>*@
+
+<ul class="networks list-unstyled list-inline">
+    @if (!string.IsNullOrEmpty(Model.FacebookLink))
+        {
+            <li class="facebook">
+                <a href="@Model.FacebookLink" target="_blank" title="@T("Footer.FollowUs.Facebook")" class="tooltipOn" style="color: #2da2cd;">
+                    <i class="fa fa-facebook-square fa-3x"></i>
+                </a>
+            </li>
+        }
+    @*@if (!string.IsNullOrEmpty(Model.TwitterLink))
+        {
+            <li class="twitter">
+                <a href="@Model.TwitterLink" target="_blank" title="@T("Footer.FollowUs.Twitter")" class="tooltipOn" style="color: #2da2cd;">
+                    <i class="fa fa-twitter-square fa-3x"></i>
+                </a>
+            </li>
+        }*@
+    @*@if (Model.NewsEnabled)
+        {
+            <li class="rss">
+                <a href="@Url.RouteUrl("NewsRSS", new {languageId = Model.WorkingLanguageId})" title="@T("Footer.FollowUs.RSS")" class="tooltipOn colorRss">
+                    <i class="fa fa-rss-square fa-3x"></i>
+                </a>
+            </li>
+        }*@
+    @if (!string.IsNullOrEmpty(Model.YoutubeLink))
+        {
+            <li class="youtube">
+                <a href="@Model.YoutubeLink" target="_blank" title="@T("Footer.FollowUs.Youtube")" class="tooltipOn" style="color: #dc2424;">
+                    <i class="fa fa-youtube-square fa-3x"></i>
+                </a>
+            </li>
+        }
+    @*@if (!string.IsNullOrEmpty(Model.GooglePlusLink))
+        {
+            <li class="google-plus">
+                <a href="@Model.GooglePlusLink" target="_blank" title="@T("Footer.FollowUs.GooglePlus")" class="tooltipOn" style="color: #c93939;">
+                    <i class="fa fa-google-plus-square fa-3x"></i>
+                </a>
+            </li>
+        }*@
+</ul>

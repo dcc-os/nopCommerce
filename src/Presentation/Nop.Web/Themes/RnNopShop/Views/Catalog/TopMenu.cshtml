@@ -1,0 +1,108 @@
+﻿@model TopMenuModel
+@using Nop.Core
+@using Nop.Core.Infrastructure
+@using Nop.Services.Localization
+@using Nop.Web.Framework.Themes
+@using Nop.Web.Models.Catalog;
+@{
+    var rootCategories = Model.Categories.Where(x => x.IncludeInTopMenu).ToList();
+    var currentThemeName = EngineContext.Current.Resolve<IThemeContext>().WorkingThemeName;
+    var logoPath = "~/Themes/" + currentThemeName + "/Content/images/logo.png";
+    var storeName = EngineContext.Current.Resolve<IStoreContext>().CurrentStore.GetLocalized(x => x.Name);
+}
+
+@helper RenderCategoryLine(CategorySimpleModel category, int level)
+{
+if (category.SubCategories.Count > 0)
+{
+        @RenderSubCategoryLine(category, 0)
+}
+else
+{
+        <li>
+            <a href="@Url.RouteUrl("Category", new { SeName = category.SeName })">
+                @category.Name.ToUpper()
+            </a>
+        </li>
+}
+}
+@helper RenderSubCategoryLine(CategorySimpleModel category, int level)
+{
+    <li class="dropdown">
+        <a href="@Url.RouteUrl("Category", new { SeName = category.SeName })">
+            @category.Name.ToUpper()
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-no-click hidden-sm hidden-xs">
+            @foreach (var subCategory in category.SubCategories)
+            {
+                @RenderCategoryLine(subCategory, level + 1)
+            }
+        </ul>
+
+    </li>
+}
+<div id="main-nav-bar">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-menu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <a class="navbar-brand" href="#">
+                <img title="" alt="@storeName" class="image-responsive center-block" src="@Url.Content(logoPath)">
+                @*Brand*@
+            </a>
+            <div class="collapse navbar-collapse" id="top-menu" role="navigation" aria-label="Main menu">
+                <ul class="nav navbar-nav navbar-left">
+                    @Html.Widget("header_menu_before")
+                    <li><a href="/">HOME</a></li>
+
+                    @foreach (var category in rootCategories)
+                    {
+                        @RenderCategoryLine(category, 0)
+                    }
+                    @*@foreach (var topic in Model.Topics)
+                        {
+                            <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name.ToUpper()</a></li>
+                        }*@
+                    @*@if (rootCategories.Count == 0 && Model.Topics.Count == 0)
+                        {
+                            //no categories or topis to display? in this case let's diplay some default menu items (should we?)
+                            <li><a href="@Url.RouteUrl("HomePage")">@T("HomePage")</a></li>
+                            if (Model.NewProductsEnabled)
+                            {
+                                <li>
+                                    <a href="@Url.RouteUrl("NewProducts")">@T("Products.NewProducts")</a>
+                                </li>
+                            }
+                            <li><a href="@Url.RouteUrl("ProductSearch")">@T("Search")</a></li>
+                            <li><a href="@Url.RouteUrl("CustomerInfo")">@T("Account.MyAccount")</a></li>
+                            if (Model.BlogEnabled)
+                            {
+                                <li><a href="@Url.RouteUrl("Blog")">@T("Blog")</a></li>
+                            }
+                            if (Model.ForumEnabled)
+                            {
+                                <li><a href="@Url.RouteUrl("Boards")">@T("Forum.Forums")</a></li>
+                            }
+                            <li><a href="@Url.RouteUrl("ContactUs")">@T("ContactUs")</a></li>
+                        }*@
+                    @Html.Widget("header_menu_after")
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @foreach (var topic in Model.Topics)
+                    {
+                        <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">@topic.Name.ToUpper()</a></li>
+                    }
+                    <li><a href="@Url.RouteUrl("ContactUs")">CONTACT US</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
